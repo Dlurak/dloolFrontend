@@ -1,14 +1,32 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
 	import Logo from './Logo.svelte';
+	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
+	import TextOrIconLink from './navbar/textOrIconLink.svelte';
+
+	let navData: NavDataEntry[] = [];
+
+	onMount(async () => {
+		navData = (await loadLocaleJSONData('nav')) as NavDataEntry[];
+
+		console.log(navData);
+	});
 </script>
 
 <nav>
 	<Logo />
 	<ul>
-		<li>
-			<i class="bx bx-user" />
-		</li>
+		{#each navData as navDataEntry}
+			<li>
+				<TextOrIconLink
+					show={navDataEntry.showInNav}
+					boxIcon={navDataEntry.navBoxIcon}
+					title={navDataEntry.title}
+					uri={navDataEntry.uri}
+				/>
+			</li>
+		{/each}
 	</ul>
 	<HamburgerButton />
 </nav>

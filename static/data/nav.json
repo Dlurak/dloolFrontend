@@ -1,0 +1,10 @@
+[
+	{
+		"title": "Login",
+		"uri": "/login",
+		"showInNav": true,
+		"navBoxIcon": "bx-user",
+		"showInFooter": false,
+		"footerCategory": ""
+	}
+]

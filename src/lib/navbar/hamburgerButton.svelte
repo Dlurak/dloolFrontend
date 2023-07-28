@@ -1,0 +1,105 @@
+<script lang="ts">
+	export let isOpened = false;
+</script>
+
+<button
+	id="hamburgerButton"
+	on:click={() => {
+		isOpened = !isOpened;
+	}}
+	class:open={isOpened}
+>
+	<span class="hamburgerLine top" />
+	<span class="hamburgerLine middle" />
+	<span class="hamburgerLine bottom" />
+</button>
+
+<style>
+	/* DEFINE VARIABLES */
+	:root {
+		--line-height: 10%;
+	}
+
+	/* STATIC SETUP */
+	#hamburgerButton {
+		height: 50%;
+		aspect-ratio: 1;
+
+		margin: 0;
+		padding: 0;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		position: relative;
+
+		border: none;
+		background-color: transparent;
+		border-radius: 2px;
+	}
+
+	.hamburgerLine {
+		width: 100%;
+		height: var(--line-height);
+		position: relative;
+
+		border-radius: 100vmax;
+
+		background-color: var(--text);
+
+		transition: all var(--transition-timing-function) var(--transition-timing);
+	}
+
+	.top,
+	.bottom {
+		position: absolute;
+	}
+
+	.top {
+		top: 0;
+	}
+	.bottom {
+		bottom: 0;
+	}
+
+	/* HOVER AND FOCUS STATE */
+
+	#hamburgerButton:is(:focus):not(:focus-visible) {
+		outline: none;
+	}
+	#hamburgerButton:is(:focus-visible) {
+		outline: 1px solid var(--primary);
+	}
+
+	#hamburgerButton:is(:hover, :focus) > .middle {
+		width: 0;
+	}
+	#hamburgerButton:is(:hover, :focus) > .top {
+		top: calc(25% - calc(var(--line-height) / 2));
+	}
+	#hamburgerButton:is(:hover, :focus) > .bottom {
+		bottom: calc(25% - calc(var(--line-height) / 2));
+	}
+
+	/* ACTIVE STATE */
+
+	#hamburgerButton:is(:active, .open) > .middle {
+		width: 0;
+	}
+
+	#hamburgerButton:is(:active, .open) > .top {
+		top: calc(50% - calc(var(--line-height) / 2));
+		transform-origin: center center;
+		transform: rotate(45deg);
+		width: 114%;
+	}
+
+	#hamburgerButton:is(:active, .open) > .bottom {
+		bottom: calc(50% - calc(var(--line-height) / 2));
+		transform-origin: center center;
+		transform: rotate(-45deg);
+		width: 114%;
+	}
+</style>

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@media only screen and (prefers-color-scheme: light) {
+	:root {
+		--text: hsl(0, 0%, 2%);
+		--background: hsl(0, 0%, 98%);
+		--primary: hsl(154, 49%, 22%);
+		--secondary: hsl(153, 57%, 90%);
+		--accent: hsl(154, 58%, 50%);
+	}
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+	:root {
+		--text: hsl(0, 0%, 98%);
+		--background: hsl(0, 0%, 2%);
+		--primary: hsl(154, 49%, 22%);
+		--secondary: hsl(153, 57%, 10%);
+		--accent: hsl(154, 58%, 70%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--transition-timing-function: ease-in-out;
+		--transition-timing: 0;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	button {
+		--transition-timing-function: ease-in-out;
+		--transition-timing: 0.3s;
+	}
+}
+
+body {
+	padding: 0;
+	margin: 0;
+
+	background-color: var(--background);
+	color: var(--text);
+	font-family: 'Roboto', sans-serif;
+}

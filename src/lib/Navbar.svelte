@@ -1,10 +1,15 @@
 <script>
+	import Logo from './Logo.svelte';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
 </script>
 
 <nav>
-	<div>Logo</div>
-	<div>Links</div>
+	<Logo />
+	<ul>
+		<li>
+			<i class="bx bx-user" />
+		</li>
+	</ul>
 	<HamburgerButton />
 </nav>
 

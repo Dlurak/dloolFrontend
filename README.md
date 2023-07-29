@@ -1,38 +1,48 @@
-# create-svelte
+# Dlool
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## A digital and collaborative homework book
 
-## Creating a project
+Dlool is the digital version of a homework book. And it is collaborative.
+Classical homework books have a lot of problems, also a lot of people use tablets in school and don't have any folders but still an analog homework book. With Dlool there is a gogod solution to this problem. There are even more problems here is a table with some problems:
 
-If you're seeing this, you've probably already done this step. Congrats!
+| Problem                                    | Solution                                                                       |
+| ------------------------------------------ | ------------------------------------------------------------------------------ |
+| Everyone in a class writes down the same   | Dlool is collaborative, all entries from one class are available in one class. |
+| They are not very good for the environment | Dlool is digital, no paper is needed.                                          |
+| They are not very practical                | Dlool is available on all devices.                                             |
+| Entries are not very structured            | Dlool has a structured entry system.                                           |
+| When you lose your homework book           | Dlool is digital, you can't lose it.                                           |
+| Every year you need a new homework book    | Dlool can be used for multiple years.                                          |
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+---
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Installation
 
-## Developing
+1. Clone this repository
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+   ```bash
+   git clone git@github.com:Dlurak/dloolFrontend.git
+   ```
 
-```bash
-npm run dev
+2. Install the dependencies
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+   ```bash
+   npm install
+   ```
 
-## Building
+3. Build from source
 
-To create a production version of your app:
+   ```bash
+   npm run build
+   ```
 
-```bash
-npm run build
-```
+4. Start the server
 
-You can preview the production build with `npm run preview`.
+   ```bash
+   npm run preview 
+   ```
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+5. The server runs on [localhost port 4173](http://localhost:4173)
+
+As for now it doesn't need the backend but in the near future the backend must be running for this to work. You can see how to install it [here](https://www.github.com/Dlurak/dloolBackend).
+

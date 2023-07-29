@@ -28,10 +28,14 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	button {
+	:root {
 		--transition-timing-function: ease-in-out;
 		--transition-timing: 0.3s;
 	}
+}
+
+:root {
+	--nav-height: 3rem;
 }
 
 body {
@@ -41,4 +45,8 @@ body {
 	background-color: var(--background);
 	color: var(--text);
 	font-family: 'Roboto', sans-serif;
+}
+
+* {
+	font-size: 1.2rem;
 }

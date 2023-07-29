@@ -24,7 +24,7 @@
 		width: 100%;
 		box-sizing: border-box;
 
-		padding: .75rem;
+		padding: 0.75rem;
 
 		position: relative;
 
@@ -34,12 +34,12 @@
 	}
 
 	a::after {
-		content: "";
+		content: '';
 		position: absolute;
 
 		bottom: 0;
 		left: 0;
-		
+
 		height: 2px;
 
 		width: 0;

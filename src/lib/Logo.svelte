@@ -1,4 +1,4 @@
-<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool">
+<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" />
 
 <style>
 	img {

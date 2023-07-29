@@ -39,10 +39,9 @@ Classical homework books have a lot of problems, also a lot of people use tablet
 4. Start the server
 
    ```bash
-   npm run preview 
+   npm run preview
    ```
 
 5. The server runs on [localhost port 4173](http://localhost:4173)
 
 As for now it doesn't need the backend but in the near future the backend must be running for this to work. You can see how to install it [here](https://www.github.com/Dlurak/dloolBackend).
-

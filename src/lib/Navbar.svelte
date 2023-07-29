@@ -32,7 +32,7 @@
 		{/each}
 	</ul>
 	<div id="hamburgerWrapper">
-		<HamburgerButton bind:isOpened={isHamburgerOpened}/>
+		<HamburgerButton bind:isOpened={isHamburgerOpened} />
 	</div>
 </nav>
 

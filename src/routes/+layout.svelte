@@ -4,4 +4,13 @@
 
 <Navbar />
 
-<slot />
+<main>
+	<slot />
+</main>
+
+<style>
+	main {
+		margin-inline: 1.5rem;
+		margin-block: 1rem;
+	}
+</style>

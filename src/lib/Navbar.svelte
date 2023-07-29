@@ -42,7 +42,15 @@
 		gap: 2rem;
 
 		padding-inline: 2rem;
+	}
 
-		outline: 2px solid red;
+	ul {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+
+		padding: 0;
+
+		list-style-type: none;
 	}
 </style>

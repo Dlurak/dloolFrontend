@@ -12,8 +12,6 @@
 
 	onMount(async () => {
 		navData = (await loadLocaleJSONData('nav')) as NavDataEntry[];
-
-		console.log(navData);
 	});
 </script>
 

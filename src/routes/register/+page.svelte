@@ -29,3 +29,32 @@
 		/>
 	</form>
 </div>
+
+<style>
+	/* OVERALL LAYOUT*/
+
+	:root {
+		--bg: hsla(0, 0%, 5%, 0.2);
+	}
+
+	#wrapper {
+		display: flex;
+		flex-direction: column;
+
+		padding: 1rem;
+
+		box-sizing: border-box;
+
+		border-radius: 1rem;
+
+		text-align: center;
+
+		width: 100%;
+		background-color: var(--bg);
+	}
+
+	form {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+</style>

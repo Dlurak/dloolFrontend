@@ -1,8 +1,13 @@
-<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" />
+<a href="/">
+	<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" />
+</a>
 
 <style>
+	a {
+		height: 100%;
+	}
 	img {
 		height: 100%;
-		aspect-ratio: 1;
+		object-fit: contain;
 	}
 </style>

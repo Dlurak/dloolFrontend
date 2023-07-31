@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
+	import SubmitButton from '$lib/SubmitButton.svelte';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -70,7 +71,7 @@
 			bind:value={passwordValue}
 			tooltip="This is your password, if you forgot it, your account is lost for ever; there is now way to restore it!"
 		/>
-		<input type="submit" value="Login" {disabled} />
+		<SubmitButton value="Login" {disabled} />
 	</form>
 
 	<span id="small">
@@ -114,41 +115,6 @@
 		gap: 0.5rem;
 
 		margin-bottom: 1rem;
-	}
-
-	/* SUBMIT BUTTON */
-
-	input[type='submit'] {
-		border: none;
-		border-radius: 0.4rem;
-		background-color: green;
-		color: white;
-		padding: 0.25rem;
-		cursor: pointer;
-
-		margin-top: 1rem;
-
-		box-shadow: 0 0 2rem black;
-
-		transition: all var(--transition-timing-function) var(--transition-timing);
-	}
-
-	input[type='submit']:not(:disabled):is(:hover, :focus) {
-		translate: 0 -0.25rem;
-		box-shadow: 0 15px 2rem black;
-
-		outline: none;
-	}
-
-	input[type='submit']:active {
-		transform: scale(0.95);
-		box-shadow: 0 0 2.5rem black;
-	}
-
-	input[type='submit']:disabled {
-		opacity: 0.7;
-		box-shadow: none;
-		cursor: not-allowed;
 	}
 
 	/* SUCCESS AND ERROR MESSAGES */

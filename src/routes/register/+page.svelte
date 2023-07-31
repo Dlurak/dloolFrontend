@@ -1,5 +1,6 @@
 <script>
 	import LoginInput from '$lib/LoginInput.svelte';
+	import SubmitButton from '$lib/SubmitButton.svelte';
 </script>
 
 <svelte:head>
@@ -27,6 +28,8 @@
 			newPassword={true}
 			tooltip="This is your password, currently I don't require a secure password but you should choose a secure one"
 		/>
+
+        <SubmitButton value="Register" disabled/>
 	</form>
 </div>
 

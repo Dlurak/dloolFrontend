@@ -41,7 +41,7 @@
 			})
 				.then((res) => res.json())
 				.then((obj) => {
-					if (obj.status === 'error') {
+					if (obj.status === 'error') { // create error messages for the user when there is an error
 						const errorTextesObj = {
 							[`User ${username} already exists`]: 'The username is already taken',
 							[`School ${school} does not exist`]: "This school doesn't exist",
@@ -96,6 +96,10 @@
 		<SubmitButton value="Register" {disabled} />
 	</form>
 
+	<span id="small">
+		When you already have an account you can login <a href="/login">here</a>
+	</span>
+
 	<p id="successMessage">{successText}</p>
 	<p id="errorMessage">{errorText}</p>
 </div>
@@ -126,6 +130,9 @@
 	form {
 		display: grid;
 		grid-template-columns: 1fr;
+		gap: 0.5rem;
+
+		margin-bottom: 1rem;
 	}
 
 	/* SUCCESS AND ERROR MESSAGES */
@@ -141,9 +148,16 @@
 		color: var(--error);
 	}
 
-    /* DESKTOP LAYOUT */
+	/* SMALL TEXT AND LINK */
 
-    @media only screen and (min-width: 768px) {
+	#small,
+	#small * {
+		font-size: 0.75rem;
+	}
+
+	/* DESKTOP LAYOUT */
+
+	@media only screen and (min-width: 768px) {
 		/* Large Screens */
 		#wrapper {
 			width: clamp(19rem, 50%, 25rem);

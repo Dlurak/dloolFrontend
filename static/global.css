@@ -10,6 +10,8 @@
 
 		--error: red;
 		--success: hsl(120, 74%, 30%);
+
+		--link: #0000ee;
 	}
 }
 
@@ -23,6 +25,8 @@
 
 		--error: lightcoral;
 		--success: lightgreen;
+
+		--link: #0c88f7;
 	}
 }
 
@@ -55,6 +59,10 @@ body {
 	background-color: var(--background);
 	color: var(--text);
 	font-family: 'Roboto', sans-serif;
+}
+
+a {
+	color: var(--link);
 }
 
 * {

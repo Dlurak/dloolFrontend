@@ -69,6 +69,10 @@
 		<input type="submit" value="Login" {disabled} />
 	</form>
 
+	<span id="small">
+		No acount? No problem! You can register <a href="/register">here</a>
+	</span>
+
 	<p id="successMessage">{successText}</p>
 	<p id="errorMessage">{errorText}</p>
 </div>
@@ -104,6 +108,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+
+		margin-bottom: 1rem;
 	}
 
 	/* SUBMIT BUTTON */
@@ -153,6 +159,15 @@
 	#errorMessage {
 		color: var(--error);
 	}
+
+	/* SMALL TEXT AND LINK */
+
+	#small,
+	#small * {
+		font-size: 0.75rem;
+	}
+
+	/* DESKTOP LAYOUT */
 
 	@media only screen and (min-width: 768px) {
 		/* Large Screens */

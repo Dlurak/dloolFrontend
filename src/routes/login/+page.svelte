@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import LoginInput from '$lib/LoginInput.svelte';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -59,14 +60,8 @@
 				});
 		}}
 	>
-		<div class="inputBox">
-			<input type="text" name="username" bind:value={usernameValue} placeholder=" " />
-			<label for="username">Username</label>
-		</div>
-		<div class="inputBox">
-			<input type="password" bind:value={passwordValue} placeholder=" " />
-			<label for="username">Password</label>
-		</div>
+		<LoginInput type="text" bind:value={usernameValue} />
+		<LoginInput type="password" bind:value={passwordValue} />
 		<input type="submit" value="Login" {disabled} />
 	</form>
 
@@ -78,7 +73,7 @@
 	/* OVERALL LAYOUT */
 
 	:root {
-		--bg: hsla(0, 0%, 5%, 0.4);
+		--bg: hsla(0, 0%, 5%, 0.2);
 	}
 	#wrapper {
 		display: flex;
@@ -105,39 +100,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-	}
-
-	/* BASIC INPUT BOX */
-
-	.inputBox {
-		position: relative;
-		isolation: isolate;
-		border-radius: 0.5rem;
-		border: solid 2px var(--accent);
-	}
-
-	label {
-		position: absolute;
-		text-align: start;
-
-		display: inline-block;
-
-		left: 0.5rem; /* The padding of the inputbox */
-		top: 0.5rem;
-
-		z-index: -1;
-
-		color: var(--text);
-		opacity: 0.5;
-	}
-
-	input {
-		background-color: transparent;
-		border: none;
-		padding: 0.5rem;
-		color: var(--text);
-
-		border-radius: inherit;
 	}
 
 	/* SUCCESS AND ERROR MESSAGES */

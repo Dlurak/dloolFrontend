@@ -24,6 +24,8 @@
 	:root {
 		--transition-timing-function: ease-in-out;
 		--transition-timing: 0;
+
+		--transition: 0.3s ease-in-out;
 	}
 }
 
@@ -31,7 +33,13 @@
 	:root {
 		--transition-timing-function: ease-in-out;
 		--transition-timing: 0.3s;
+
+		--transition: 0.3s ease-in-out;
 	}
+}
+
+:root {
+	--secondary-opacity: 0.2;
 }
 
 body {

@@ -7,6 +7,9 @@
 		--primary: hsl(154, 49%, 22%);
 		--secondary: hsl(153, 57%, 90%);
 		--accent: hsl(154, 58%, 50%);
+
+		--error: red;
+		--success: hsl(120, 74%, 30%);
 	}
 }
 
@@ -17,6 +20,9 @@
 		--primary: hsl(154, 49%, 22%);
 		--secondary: hsl(153, 57%, 10%);
 		--accent: hsl(154, 58%, 70%);
+
+		--error: lightcoral;
+		--success: lightgreen;
 	}
 }
 

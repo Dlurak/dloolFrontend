@@ -144,9 +144,16 @@
 	}
 
 	#successMessage {
-		color: lightgreen;
+		color: var(--success);
 	}
 	#errorMessage {
-		color: lightcoral;
+		color: var(--error);
+	}
+
+	@media only screen and (min-width: 768px) {
+		/* Large Screens */
+		#wrapper {
+			width: clamp(19rem, 50%, 25rem);
+		}
 	}
 </style>

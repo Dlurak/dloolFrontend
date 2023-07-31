@@ -6,7 +6,12 @@
 	export let newPassword: boolean = false;
 	export let value = '';
 
-	let name = type === 'password' ? 'password' : 'username';
+	export let name = type === 'password' ? 'password' : 'username';
+
+	export let tooltip = '';
+
+	export let showTooltip = false;
+
 	let showPassword = false;
 	let autocomplete =
 		type === 'password' ? (newPassword ? 'new' : 'current') + '-password' : 'username';
@@ -36,6 +41,7 @@
 		aria-labelledby="span > label"
 	/>
 	<label for={name}>{name}</label>
+
 	{#if type === 'password'}
 		<button
 			title={`${showPassword ? 'Hide' : 'Show'} Password`}
@@ -47,7 +53,24 @@
 			<i class={`bx ${passwordIconSolidString}-${showPassword ? 'hide' : 'show'}`} />
 		</button>
 	{/if}
+
+	{#if tooltip}
+		<button
+			title="Explaination of this field"
+			on:click={(e) => {
+				e.preventDefault();
+				showTooltip = !showTooltip;
+			}}
+		>
+			<i class="bx bx-question-mark" />
+		</button>
+	{/if}
 </span>
+{#if showTooltip}
+	<p id="tooltipText">
+		{tooltip}
+	</p>
+{/if}
 
 <style>
 	span {
@@ -123,7 +146,7 @@
 		-webkit-text-fill-color: var(--text);
 	}
 
-	.showPasswordButton {
+	button {
 		background-color: transparent;
 		border: none;
 		outline: none;
@@ -132,7 +155,11 @@
 		font-size: 100%;
 		color: var(--text);
 	}
-	.showPasswordButton:focus {
+	button:focus {
 		outline: none;
+	}
+
+	#tooltipText {
+		text-align: start;
 	}
 </style>

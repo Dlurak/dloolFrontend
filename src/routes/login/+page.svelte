@@ -64,8 +64,12 @@
 				});
 		}}
 	>
-		<LoginInput type="text" bind:value={usernameValue} />
-		<LoginInput type="password" bind:value={passwordValue} />
+		<LoginInput type="text" bind:value={usernameValue} tooltip="This is your unique username" />
+		<LoginInput
+			type="password"
+			bind:value={passwordValue}
+			tooltip="This is your password, if you forgot it, your account is lost for ever; there is now way to restore it!"
+		/>
 		<input type="submit" value="Login" {disabled} />
 	</form>
 
@@ -114,12 +118,12 @@
 
 	/* SUBMIT BUTTON */
 
-	input[type=submit] {
+	input[type='submit'] {
 		border: none;
 		border-radius: 0.4rem;
 		background-color: green;
 		color: white;
-		padding: .25rem;
+		padding: 0.25rem;
 		cursor: pointer;
 
 		margin-top: 1rem;
@@ -129,19 +133,19 @@
 		transition: all var(--transition-timing-function) var(--transition-timing);
 	}
 
-	input[type=submit]:not(:disabled):is(:hover, :focus) {
+	input[type='submit']:not(:disabled):is(:hover, :focus) {
 		translate: 0 -0.25rem;
 		box-shadow: 0 15px 2rem black;
 
 		outline: none;
 	}
 
-	input[type=submit]:active {
+	input[type='submit']:active {
 		transform: scale(0.95);
 		box-shadow: 0 0 2.5rem black;
 	}
 
-	input[type=submit]:disabled {
+	input[type='submit']:disabled {
 		opacity: 0.7;
 		box-shadow: none;
 		cursor: not-allowed;

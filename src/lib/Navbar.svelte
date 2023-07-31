@@ -90,6 +90,8 @@
 			flex-direction: column;
 
 			background-color: var(--background);
+
+			z-index: 999;
 		}
 		li {
 			width: 100%;

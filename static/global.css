@@ -7,16 +7,22 @@
 		--primary: hsl(154, 49%, 22%);
 		--secondary: hsl(153, 57%, 90%);
 		--accent: hsl(154, 58%, 50%);
+
+		--error: red;
+		--success: hsl(120, 74%, 30%);
 	}
 }
 
 @media only screen and (prefers-color-scheme: dark) {
 	:root {
 		--text: hsl(0, 0%, 98%);
-		--background: hsl(0, 0%, 2%);
+		--background: hsl(0, 0%, 12%);
 		--primary: hsl(154, 49%, 22%);
 		--secondary: hsl(153, 57%, 10%);
 		--accent: hsl(154, 58%, 70%);
+
+		--error: lightcoral;
+		--success: lightgreen;
 	}
 }
 
@@ -24,6 +30,8 @@
 	:root {
 		--transition-timing-function: ease-in-out;
 		--transition-timing: 0;
+
+		--transition: 0.3s ease-in-out;
 	}
 }
 
@@ -31,7 +39,13 @@
 	:root {
 		--transition-timing-function: ease-in-out;
 		--transition-timing: 0.3s;
+
+		--transition: 0.3s ease-in-out;
 	}
+}
+
+:root {
+	--secondary-opacity: 0.2;
 }
 
 body {

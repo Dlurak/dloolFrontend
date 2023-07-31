@@ -13,7 +13,7 @@
 @media only screen and (prefers-color-scheme: dark) {
 	:root {
 		--text: hsl(0, 0%, 98%);
-		--background: hsl(0, 0%, 2%);
+		--background: hsl(0, 0%, 12%);
 		--primary: hsl(154, 49%, 22%);
 		--secondary: hsl(153, 57%, 10%);
 		--accent: hsl(154, 58%, 70%);

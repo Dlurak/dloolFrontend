@@ -140,4 +140,13 @@
 	#errorMessage {
 		color: var(--error);
 	}
+
+    /* DESKTOP LAYOUT */
+
+    @media only screen and (min-width: 768px) {
+		/* Large Screens */
+		#wrapper {
+			width: clamp(19rem, 50%, 25rem);
+		}
+	}
 </style>

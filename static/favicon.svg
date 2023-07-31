@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 1024 1024" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<g id="Icon">
+<path d="M705.5 705.5L955.5 705.5L955.5 955.5L705.5 955.5L705.5 705.5Z" fill="#00a89e" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M387 705.496L637 705.496L637 955.496L387 955.496L387 705.496Z" fill="#2ece2e" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M68.5 705.5L318.5 705.5L318.5 955.5L68.5 955.5L68.5 705.5Z" fill="#00a89e" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M705.5 387L955.5 387L955.5 637L705.5 637L705.5 387Z" fill="#007f4d" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M387 387L637 387L637 637L387 637L387 387Z" fill="#2ece2e" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M68.5 387L318.5 387L318.5 637L68.5 637L68.5 387Z" fill="#007f4d" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M705.5 68.5039L955.5 68.5039L955.5 318.504L705.5 318.504L705.5 68.5039Z" fill="#007f4d" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M387 68.5039L637 68.5039L637 318.504L387 318.504L387 68.5039Z" fill="#00a89e" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M68.5 68.5L318.5 68.5L318.5 318.5L68.5 318.5L68.5 68.5Z" fill="#2ece2e" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+</svg>

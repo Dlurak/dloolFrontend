@@ -15,6 +15,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Dlool | Login</title>
+</svelte:head>
+
 <div id="wrapper">
 	<h3>Welcome Back</h3>
 

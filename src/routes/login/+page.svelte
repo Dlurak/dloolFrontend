@@ -29,6 +29,7 @@
 				})
 			})
 				.then((res) => {
+					console.log('Am I here?');
 					switch (res.status) {
 						case 400:
 							errorText = 'Something went wrong';

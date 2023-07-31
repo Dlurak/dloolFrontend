@@ -14,7 +14,8 @@
 
 	let inputField: HTMLInputElement;
 
-	const handleShowPassword = () => {
+	const handleShowPassword = (e: Event) => {
+		e.preventDefault();
 		showPassword = !showPassword;
 		inputField.type = showPassword ? 'text' : 'password';
 	};

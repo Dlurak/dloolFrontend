@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { languages } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
-	// @ts-ignore
+	
 	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
 	import TextOrIconLink from './navbar/textOrIconLink.svelte';
@@ -17,18 +18,25 @@
 
 <nav>
 	<Logo />
-	<ul id="linkList" class:mobileVisible={isHamburgerOpened}>
-		{#each navData as navDataEntry}
-			<li>
-				<TextOrIconLink
-					show={navDataEntry.showInNav}
-					boxIcon={navDataEntry.navBoxIcon}
-					title={navDataEntry.title}
-					uri={navDataEntry.uri}
-				/>
-			</li>
-		{/each}
-	</ul>
+	<div id="items" class:mobileVisible={isHamburgerOpened}>
+		<ul id="linkList">
+			{#each navData as navDataEntry}
+				<li>
+					<TextOrIconLink
+						show={navDataEntry.showInNav}
+						boxIcon={navDataEntry.navBoxIcon}
+						title={navDataEntry.title}
+						uri={navDataEntry.uri}
+					/>
+				</li>
+			{/each}
+		</ul>
+		<select>
+			{#each languages as lang}
+				<option value={lang}>{lang}</option>
+			{/each}
+		</select>
+	</div>
 	<div id="hamburgerWrapper">
 		<HamburgerButton bind:isOpened={isHamburgerOpened} />
 	</div>
@@ -47,6 +55,26 @@
 		padding-inline: 2rem;
 	}
 
+	#items {
+		display: flex;
+
+		gap: 1rem;
+
+		padding: 0;
+	}
+
+	select {
+		background-color: transparent;
+		color: var(--text);
+		border: none;
+		padding: 0.2rem;
+		border-radius: 0.25rem;
+	}
+
+	select:is(:focus, :hover) {
+		background-color: var(--secondary);
+	}
+
 	ul {
 		display: flex;
 		flex-direction: row;
@@ -63,9 +91,10 @@
 			padding-inline: 1rem;
 			height: 2.5rem;
 		}
-		#linkList:not(.mobileVisible) {
+		#items:not(.mobileVisible) {
 			display: none;
 		}
+
 		#hamburgerWrapper {
 			padding: 0;
 			margin: 0;
@@ -93,6 +122,16 @@
 
 			z-index: 999;
 		}
+
+		#linkList {
+			display: flex;
+			flex-direction: column;
+		}
+
+		select {
+			text-align: start;
+		}
+
 		li {
 			width: 100%;
 		}

@@ -1,5 +1,5 @@
 <script>
-	import { i, languages, switchLanguage } from '@inlang/sdk-js';
+	import { i } from '@inlang/sdk-js';
 </script>
 
 <svelte:head>
@@ -7,4 +7,4 @@
 </svelte:head>
 
 <h1>{i('welcome')}</h1>
-<p>Just a little bit of text to have some content</p>
+<p>{i('homeDummytext')}</p>

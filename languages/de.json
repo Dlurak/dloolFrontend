@@ -23,5 +23,8 @@
 	"register.userCouldNotbeCreatedError": "Nutzer konnte nicht erstellt werden",
 	"register.userCreated": "Du bist jetzt ein Nutzer!",
 
-	"register.login": "Du kannst dich hier einloggen"
+	"register.login": "Du kannst dich hier einloggen",
+
+	"nav.about": "Über mich",
+	"nav.login": "Einloggen"
 }

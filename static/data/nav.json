@@ -1,6 +1,6 @@
 [
 	{
-		"title": "Login",
+		"title": "login",
 		"uri": "/login",
 		"showInNav": true,
 		"navBoxIcon": "bx-user",
@@ -8,11 +8,11 @@
 		"footerCategory": ""
 	},
 	{
-		"title": "About",
+		"title": "about",
 		"uri": "/about",
 		"showInNav": true,
 		"navBoxIcon": "",
 		"showInFooter": true,
-		"footerCategory": "About us"
+		"footerCategory": "About me"
 	}
 ]

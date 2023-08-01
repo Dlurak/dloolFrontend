@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { languages, switchLanguage, language } from '@inlang/sdk-js';
+	import { languages, switchLanguage, language, i } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
 
 	import { loadLocaleJSONData } from './loadLocalData';
@@ -27,7 +27,7 @@
 					<TextOrIconLink
 						show={navDataEntry.showInNav}
 						boxIcon={navDataEntry.navBoxIcon}
-						title={navDataEntry.title}
+						title={i(`nav.${navDataEntry.title}`)}
 						uri={navDataEntry.uri}
 					/>
 				</li>

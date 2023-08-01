@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
 	export let type: 'password' | 'text';
@@ -44,7 +45,7 @@
 
 	{#if type === 'password'}
 		<button
-			title={`${showPassword ? 'Hide' : 'Show'} Password`}
+			title={`${showPassword ? i('input.password.hide') : i('input.password.show')}`}
 			on:click={handleShowPassword}
 			class="showPasswordButton"
 			on:focus={() => (passwordIconSolidString = 'bxs')}
@@ -56,7 +57,7 @@
 
 	{#if tooltip}
 		<button
-			title="Explaination of this field"
+			title={i('input.explaination')}
 			on:click={(e) => {
 				e.preventDefault();
 				showTooltip = !showTooltip;

@@ -35,5 +35,9 @@
 	"login.success": "You are now logged in",
 	"login.username.tooltip": "This is your uniqe username",
 	"login.password.tooltip": "This is your password, if you forgot it, it is impossible to get it again!",
-	"login.register": "Here you can register"
+	"login.register": "Here you can register",
+
+	"input.explaination": "Explaination of this field",
+	"input.password.show": "Show password",
+	"input.password.hide": "Hide password"
 }

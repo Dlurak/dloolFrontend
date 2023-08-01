@@ -35,5 +35,9 @@
 	"login.success": "Du bist jetzt eingeloggt",
 	"login.username.tooltip": "Das ist dein einzigartiger Nutzername",
 	"login.password.tooltip": "Das ist dein Passwort, wenn du es vergessen hast, ist es nicht möglich es wiederherzustellen!",
-	"login.register": "Hier kannst du dich registrieren"
+	"login.register": "Hier kannst du dich registrieren",
+
+	"input.explaination": "Erklärung dieses Feldes",
+	"input.password.show": "Passwort anzeigen",
+	"input.password.hide": "Passwort verstecken"
 }

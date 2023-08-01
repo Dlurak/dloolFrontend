@@ -39,5 +39,6 @@
 	"date.thursday": "Donnerstag",
 	"date.friday": "Freitag",
 	"date.saturday": "Samstag",
-	"date.sunday": "Sonntag"
+	"date.sunday": "Sonntag",
+	"filter.apply": "anwenden"
 }

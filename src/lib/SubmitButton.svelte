@@ -1,9 +1,11 @@
 <script lang="ts">
-	export let disabled: boolean;
+	export let disabled = false;
 	export let value: string;
+
+	export let onClick = (e: Event) => {}
 </script>
 
-<input type="submit" {value} {disabled} />
+<input type="submit" {value} {disabled} on:click={onClick}/>
 
 <style>
 	input[type='submit'] {
@@ -18,6 +20,7 @@
 
 		box-shadow: 0 0 2rem black;
 
+		text-transform: capitalize;
 		transition: all var(--transition-timing-function) var(--transition-timing);
 	}
 

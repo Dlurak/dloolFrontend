@@ -1,67 +1,107 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import LoginInput from '$lib/LoginInput.svelte';
+	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: any;
+
+	let missingSchool = !$page.url.searchParams.get('school');
+	let missingClass = !$page.url.searchParams.get('class');
+
+	let schoolInputValue = $page.url.searchParams.get('school') || '';
+	let classInputValue = $page.url.searchParams.get('class') || '';
+
+	function setParameter(param: 'school' | 'class', value: string) {
+		const newUrl = new URL($page.url);
+		newUrl?.searchParams?.set(param, value);
+		goto(newUrl);
+	}
 </script>
 
 <div id="wrapper">
-	{#each data.data as homework}
-		<div class="box">
-			<h3 class="date">
-				{getWeekdayByDate(homework.from)}
-				{homework.from.day}.{homework.from.month}.{homework.from.year}
-			</h3>
+	<div class="box">
+		<h3>Filters</h3>
 
-			<ul class="assignmentList">
-				{#each homework.assignments as assignment}
-                    <li>
-                        <span class="assignments-firstrow">
-                            <h4>{assignment.subject}</h4>
-                            <p>
-                                {getWeekdayByDate(assignment.due)}
-                                {assignment.due.day}.{assignment.due.month}.{assignment.due.year}
-                            </p>
-                        </span>
-                        <p class="description">{assignment.description}</p>
-                    </li>
-				{/each}
-			</ul>
+		<div class="filter-row">
+			<LoginInput type="text" name={i('school')} bind:value={schoolInputValue} />
+            <SubmitButton value={i('filter.apply')} onClick={() => setParameter('school', schoolInputValue)}/>
 		</div>
-	{/each}
+
+		<div class="filter-row">
+			<LoginInput type="text" name={i('class')} bind:value={classInputValue} />
+            <SubmitButton value={i('filter.apply')} onClick={() => setParameter('class', classInputValue)}/>
+		</div>
+	</div>
+    
+	{#if !missingClass && !missingSchool && data.status === 'success'}
+		{#each data.data as homework}
+			<div class="box">
+				<h3 class="date">
+					{getWeekdayByDate(homework.from)}
+					{homework.from.day}.{homework.from.month}.{homework.from.year}
+				</h3>
+
+				<ul class="assignmentList">
+					{#each homework.assignments as assignment}
+						<li>
+							<span class="assignments-firstrow">
+								<h4>{assignment.subject}</h4>
+								<p>
+									{getWeekdayByDate(assignment.due)}
+									{assignment.due.day}.{assignment.due.month}.{assignment.due.year}
+								</p>
+							</span>
+							<p class="description">{assignment.description}</p>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/each}
+	{/if}
 </div>
 
 <style>
-    #wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        width: 100%;
-        gap: 2rem;
-    }
+	#wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+		width: 100%;
+		gap: 2rem;
+	}
 
-    .box {
-        padding: 1rem;
-        border-radius: 1rem;
+	.box {
+		padding: 1rem;
+		border-radius: 1rem;
 		background-color: var(--bg);
-    }
+	}
 
-    .assignmentList {
-        list-style-type: none;
-        padding: 0;
-    }
+	.assignmentList {
+		list-style-type: none;
+		padding: 0;
+	}
 
-    .assignments-firstrow {
+	.assignments-firstrow {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: start;
+		gap: 0.5rem;
+	}
+
+	.assignments-firstrow * {
+		margin-block: 0.6rem;
+	}
+
+	.description {
+		margin-block: 0.5rem;
+	}
+
+    .filter-row {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: start;
         gap: 0.5rem;
-    }
-
-    .assignments-firstrow * {
-        margin-block: 0.6rem;
-    }
-
-    .description {
-        margin-block: 0.5rem;
     }
 </style>

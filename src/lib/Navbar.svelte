@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { languages } from '@inlang/sdk-js';
+	import { languages, switchLanguage, language } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
-	
+
 	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
 	import TextOrIconLink from './navbar/textOrIconLink.svelte';
 
 	let navData: NavDataEntry[] = [];
+
+	let selected: string;
 
 	let isHamburgerOpened: boolean;
 
@@ -31,9 +33,9 @@
 				</li>
 			{/each}
 		</ul>
-		<select>
+		<select bind:value={selected} on:change={() => switchLanguage(selected)}>
 			{#each languages as lang}
-				<option value={lang}>{lang}</option>
+				<option value={lang} selected={lang === language}>{lang}</option>
 			{/each}
 		</select>
 	</div>

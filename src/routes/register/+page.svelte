@@ -41,7 +41,8 @@
 			})
 				.then((res) => res.json())
 				.then((obj) => {
-					if (obj.status === 'error') { // create error messages for the user when there is an error
+					if (obj.status === 'error') {
+						// create error messages for the user when there is an error
 						const errorTextesObj = {
 							[`User ${username} already exists`]: 'The username is already taken',
 							[`School ${school} does not exist`]: "This school doesn't exist",

@@ -2,6 +2,7 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { i } from '@inlang/sdk-js';
 
 	let username: string;
 	let name: string;
@@ -20,11 +21,11 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | Register</title>
+	<title>Dlool | {i('register')}</title>
 </svelte:head>
 
 <div id="wrapper">
-	<h3>Register now</h3>
+	<h3>{i('registerNow')}</h3>
 
 	<form
 		on:submit={() => {
@@ -44,61 +45,60 @@
 					if (obj.status === 'error') {
 						// create error messages for the user when there is an error
 						const errorTextesObj = {
-							[`User ${username} already exists`]: 'The username is already taken',
-							[`School ${school} does not exist`]: "This school doesn't exist",
-							[`Class ${className} does not exist`]: "This class doesn't exist",
-							'Internal server error': 'User could not be created'
+							[`User ${username} already exists`]: i('regisiter.usernameTakenError'),
+							[`School ${school} does not exist`]: i('regisiter.schoolExistensError'),
+							[`Class ${className} does not exist`]: i('regisiter.classExistensError'),
+							'Internal server error': i('regisiter.userCouldNotbeCreatedError')
 						};
 
-						errorText = errorTextesObj[obj.error] || 'Something went wrong';
+						errorText = errorTextesObj[obj.error] || i('error');
 						successText = '';
 					} else if (obj.status === 'success') {
-						successText = 'You are now a user!';
+						successText = i('regisiter.userCreated');
 						errorText = '';
 					} else {
-						errorText = 'This is very unexpected';
-						successText =
-							"Indeed this is so unexpected that I don't even now if a account was created or not";
+						errorText = i('error');
 					}
 				});
 		}}
 	>
 		<LoginInput
 			type="text"
-			name="username"
-			tooltip="This is your username, it must be unique"
+			name={i('username')}
+			tooltip={i('register.username.tooltip')}
 			bind:value={username}
 		/>
 		<LoginInput
 			type="text"
-			name="name"
-			tooltip="This is your name, it doesn't need to be unique"
+			name={i('name')}
+			tooltip={i('register.name.tooltip')}
 			bind:value={name}
 		/>
 		<LoginInput
 			type="text"
-			name="school"
-			tooltip="This is your school. Insert the uniquename of your school, currently you can't figuere out what this is but soon"
+			name={i('school')}
+			tooltip={i('register.school.tooltip')}
 			bind:value={school}
 		/>
 		<LoginInput
 			type="text"
-			name="class"
-			tooltip="This is your class. Insert the name of your class."
+			name={i('class')}
+			tooltip={i('register.class.tooltip')}
 			bind:value={className}
 		/>
 		<LoginInput
 			type="password"
 			newPassword={true}
-			tooltip="This is your password, currently I don't require a secure password but you should choose a secure one"
+			name={i('password')}
+			tooltip={i('register.password.tooltip')}
 			bind:value={password}
 		/>
 
-		<SubmitButton value="Register" {disabled} />
+		<SubmitButton value={i('register')} {disabled} />
 	</form>
 
 	<span id="small">
-		When you already have an account you can login <a href="/login">here</a>
+		<a href="/login">{i('register.login')}</a>
 	</span>
 
 	<p id="successMessage">{successText}</p>

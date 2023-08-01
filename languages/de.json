@@ -1,4 +1,27 @@
 {
 	"welcome": "Willkommen bei Dlool",
-	"homeDummytext": "Dieser Text ist nur hier um temporär bischen Inhalt zu haben."
+	"homeDummytext": "Dieser Text ist nur hier um temporär bischen Inhalt zu haben.",
+
+	"error": "Etwas ist schiefgelaufen",
+	"username": "Nutzername",
+	"name": "Name",
+	"school": "Schule",
+	"class": "Klasse",
+	"password": "Passwort",
+
+	"register.username.tooltip": "Das ist dein Nutzername, er muss einzigartig sein",
+	"register.name.tooltip": "Das ist dein Name, er muss nicht einzigartig sein. Bitte gebe nicht deinen echten Namen an",
+	"register.school.tooltip": "Das ist deine Schule. Füge hier den einzigartigen Namen der Schule ein. Momentan ist es leider nicht möglich rauszufinden wie der einzigartige Name lautet.",
+	"register.class.tooltip": "Das ist deine Klasse. Füge hier den Namen deiner Klasse ein.",
+	"register.password.tooltip": "Das ist dein Passwort, wenn du es verlierst ist es Weg, es ist unmöglich es wiederherzustellen! Bitte wähle trotzdem ein sicheres Passwort.",
+
+	"register": "Registrieren",
+	"registerNow": "Registriere dich jetzt",
+	"register.usernameTakenError": "Dieser Benutzername ist bereits vergeben",
+	"register.schoolExistensError": "Diese Schule existiert nicht",
+	"register.classExistensError": "Diese Klasse existiert nicht",
+	"register.userCouldNotbeCreatedError": "Nutzer konnte nicht erstellt werden",
+	"register.userCreated": "Du bist jetzt ein Nutzer!",
+
+	"register.login": "Du kannst dich hier einloggen"
 }

@@ -12,7 +12,7 @@
 				{homework.from.day}.{homework.from.month}.{homework.from.year}
 			</h3>
 
-			<ul>
+			<ul class="assignmentList">
 				{#each homework.assignments as assignment}
                     <li>
                         <span class="assignments-firstrow">
@@ -22,10 +22,46 @@
                                 {assignment.due.day}.{assignment.due.month}.{assignment.due.year}
                             </p>
                         </span>
-                        <p>{assignment.description}</p>
+                        <p class="description">{assignment.description}</p>
                     </li>
 				{/each}
 			</ul>
 		</div>
 	{/each}
 </div>
+
+<style>
+    #wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .box {
+        padding: 1rem;
+        border-radius: 1rem;
+		background-color: var(--bg);
+    }
+
+    .assignmentList {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .assignments-firstrow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        gap: 0.5rem;
+    }
+
+    .assignments-firstrow * {
+        margin-block: 0.6rem;
+    }
+
+    .description {
+        margin-block: 0.5rem;
+    }
+</style>

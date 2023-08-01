@@ -50,6 +50,7 @@
 
 :root {
 	--secondary-opacity: 0.2;
+	--bg: hsla(0, 0%, 5%, 0.2);
 }
 
 body {

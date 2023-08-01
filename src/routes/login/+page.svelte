@@ -91,10 +91,6 @@
 
 <style>
 	/* OVERALL LAYOUT */
-
-	:root {
-		--bg: hsla(0, 0%, 5%, 0.2);
-	}
 	#wrapper {
 		display: flex;
 		flex-direction: column;

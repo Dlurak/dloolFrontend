@@ -6,7 +6,7 @@
 	export let newPassword: boolean = false;
 	export let value = '';
 
-	export let name = type === 'password' ? 'password' : 'username';
+	export let name: string;
 
 	export let tooltip = '';
 

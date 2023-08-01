@@ -2,6 +2,7 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { i } from '@inlang/sdk-js';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -17,11 +18,11 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | Login</title>
+	<title>Dlool | {i('login')}</title>
 </svelte:head>
 
 <div id="wrapper">
-	<h3>Welcome Back</h3>
+	<h3>{i('login.welcome')}</h3>
 
 	<form
 		on:submit={() => {
@@ -36,19 +37,19 @@
 				.then((res) => {
 					switch (res.status) {
 						case 400:
-							errorText = 'Something went wrong';
+							errorText = i('error');
 							successText = '';
 							break;
 						case 401:
-							errorText = 'Wrong password or username';
+							errorText = i('login.error.wrongCred');
 							successText = '';
 							break;
 						case 200:
 							errorText = '';
-							successText = 'You are now logged in';
+							successText = i('login.success');
 							break;
 						default:
-							errorText = `This is weird, when you see this text please submit a GitHub issue. Please say that this was the status code: ${res.status}`;
+							errorText = i('login.error.weird');
 							successText = '';
 							break;
 					}
@@ -60,22 +61,28 @@
 					localStorage.setItem('token', obj.token);
 				})
 				.catch((err) => {
-					errorText = 'Oh no, something went wrong';
+					errorText = i('error');
 					successText = '';
 				});
 		}}
 	>
-		<LoginInput type="text" bind:value={usernameValue} tooltip="This is your unique username" />
+		<LoginInput
+			type="text"
+			name={i('username')}
+			bind:value={usernameValue}
+			tooltip={i('login.username.tooltip')}
+		/>
 		<LoginInput
 			type="password"
+			name={i('password')}
 			bind:value={passwordValue}
-			tooltip="This is your password, if you forgot it, your account is lost for ever; there is now way to restore it!"
+			tooltip={i('login.password.tooltip')}
 		/>
-		<SubmitButton value="Login" {disabled} />
+		<SubmitButton value={i('login')} {disabled} />
 	</form>
 
 	<span id="small">
-		No acount? No problem! You can register <a href="/register">here</a>
+		<a href="/register">{i('login.register')}</a>
 	</span>
 
 	<p id="successMessage">{successText}</p>

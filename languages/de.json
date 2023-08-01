@@ -26,5 +26,14 @@
 	"register.login": "Du kannst dich hier einloggen",
 
 	"nav.about": "Über mich",
-	"nav.login": "Einloggen"
+	"nav.login": "Einloggen",
+
+	"login": "Einloggen",
+	"login.welcome": "Willkommen zurück",
+	"login.error.wrongCred": "Falscher Nutzername oder Passwort",
+	"login.error.weird": "Unbekannter Fehler",
+	"login.success": "Du bist jetzt eingeloggt",
+	"login.username.tooltip": "Das ist dein einzigartiger Nutzername",
+	"login.password.tooltip": "Das ist dein Passwort, wenn du es vergessen hast, ist es nicht möglich es wiederherzustellen!",
+	"login.register": "Hier kannst du dich registrieren"
 }

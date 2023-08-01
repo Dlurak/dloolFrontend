@@ -1,20 +1,17 @@
 {
 	"welcome": "Welcome to Dlool",
 	"homeDummytext": "This text ist only here to have some temporary content.",
-
 	"error": "Something went wrong",
 	"username": "Username",
 	"name": "name",
 	"school": "school",
 	"class": "class",
 	"password": "password",
-
 	"register.username.tooltip": "This is your username, it must be unique",
 	"register.name.tooltip": "This is your name, it doesn't need to be unique. Please don't use your real name.",
 	"register.school.tooltip": "This is your school. Insert the uniquename of the school here. Currently it is not possible to find out what the uniquename is.",
 	"register.class.tooltip": "This is your class. Insert the name of your class here.",
 	"register.password.tooltip": "This is your password, if you loose it, it's lost forever, it is impossible to get it again! Please choose a secure password!",
-
 	"register": "Register",
 	"registerNow": "Register now",
 	"register.usernameTakenError": "The username is already taken",
@@ -22,12 +19,9 @@
 	"register.classExistensError": "This class doesn't exist",
 	"register.userCouldNotbeCreatedError": "User could not be created",
 	"register.userCreated": "You are now an user!",
-
 	"register.login": "You can login here",
-
 	"nav.about": "About",
 	"nav.login": "login",
-
 	"login": "Login",
 	"login.welcome": "Welcome back",
 	"login.error.wrongCred": "Wrong username or password",
@@ -36,8 +30,14 @@
 	"login.username.tooltip": "This is your uniqe username",
 	"login.password.tooltip": "This is your password, if you forgot it, it is impossible to get it again!",
 	"login.register": "Here you can register",
-
 	"input.explaination": "Explaination of this field",
 	"input.password.show": "Show password",
-	"input.password.hide": "Hide password"
+	"input.password.hide": "Hide password",
+	"date.monday": "monday",
+	"date.tuesday": "tuesday",
+	"date.wednesday": "wednesday",
+	"date.thursday": "thursday",
+	"date.friday": "friday",
+	"date.saturday": "saturday",
+	"date.sunday": "sunday"
 }

@@ -1,20 +1,17 @@
 {
 	"welcome": "Willkommen bei Dlool",
 	"homeDummytext": "Dieser Text ist nur hier um temporär bischen Inhalt zu haben.",
-
 	"error": "Etwas ist schiefgelaufen",
 	"username": "Nutzername",
 	"name": "Name",
 	"school": "Schule",
 	"class": "Klasse",
 	"password": "Passwort",
-
 	"register.username.tooltip": "Das ist dein Nutzername, er muss einzigartig sein",
 	"register.name.tooltip": "Das ist dein Name, er muss nicht einzigartig sein. Bitte gebe nicht deinen echten Namen an",
 	"register.school.tooltip": "Das ist deine Schule. Füge hier den einzigartigen Namen der Schule ein. Momentan ist es leider nicht möglich rauszufinden wie der einzigartige Name lautet.",
 	"register.class.tooltip": "Das ist deine Klasse. Füge hier den Namen deiner Klasse ein.",
 	"register.password.tooltip": "Das ist dein Passwort, wenn du es verlierst ist es Weg, es ist unmöglich es wiederherzustellen! Bitte wähle trotzdem ein sicheres Passwort.",
-
 	"register": "Registrieren",
 	"registerNow": "Registriere dich jetzt",
 	"register.usernameTakenError": "Dieser Benutzername ist bereits vergeben",
@@ -22,12 +19,9 @@
 	"register.classExistensError": "Diese Klasse existiert nicht",
 	"register.userCouldNotbeCreatedError": "Nutzer konnte nicht erstellt werden",
 	"register.userCreated": "Du bist jetzt ein Nutzer!",
-
 	"register.login": "Du kannst dich hier einloggen",
-
 	"nav.about": "Über mich",
 	"nav.login": "Einloggen",
-
 	"login": "Einloggen",
 	"login.welcome": "Willkommen zurück",
 	"login.error.wrongCred": "Falscher Nutzername oder Passwort",
@@ -36,8 +30,14 @@
 	"login.username.tooltip": "Das ist dein einzigartiger Nutzername",
 	"login.password.tooltip": "Das ist dein Passwort, wenn du es vergessen hast, ist es nicht möglich es wiederherzustellen!",
 	"login.register": "Hier kannst du dich registrieren",
-
 	"input.explaination": "Erklärung dieses Feldes",
 	"input.password.show": "Passwort anzeigen",
-	"input.password.hide": "Passwort verstecken"
+	"input.password.hide": "Passwort verstecken",
+	"date.monday": "Montag",
+	"date.tuesday": "Dienstag",
+	"date.wednesday": "Mittwoch",
+	"date.thursday": "Donnerstag",
+	"date.friday": "Freitag",
+	"date.saturday": "Samstag",
+	"date.sunday": "Sonntag"
 }

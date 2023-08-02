@@ -2,10 +2,10 @@
 	export let disabled = false;
 	export let value: string;
 
-	export let onClick = (e: Event) => {}
+	export let onClick = (e: Event) => {};
 </script>
 
-<input type="submit" {value} {disabled} on:click={onClick}/>
+<input type="submit" {value} {disabled} on:click={onClick} />
 
 <style>
 	input[type='submit'] {
@@ -15,6 +15,8 @@
 		color: white;
 		padding: 0.25rem;
 		cursor: pointer;
+
+		width: 100%;
 
 		margin-top: 1rem;
 

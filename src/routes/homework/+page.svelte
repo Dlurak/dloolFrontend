@@ -5,6 +5,7 @@
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { i } from '@inlang/sdk-js';
 
 	export let data: any;
@@ -28,16 +29,24 @@
 
 		<div class="filter-row">
 			<LoginInput type="text" name={i('school')} bind:value={schoolInputValue} />
-            <SubmitButton value={i('filter.apply')} onClick={() => setParameter('school', schoolInputValue)}/>
+			<SubmitButton
+				value={i('filter.apply')}
+				onClick={() => setParameter('school', schoolInputValue)}
+			/>
 		</div>
 
 		<div class="filter-row">
 			<LoginInput type="text" name={i('class')} bind:value={classInputValue} />
-            <SubmitButton value={i('filter.apply')} onClick={() => setParameter('class', classInputValue)}/>
+			<SubmitButton
+				value={i('filter.apply')}
+				onClick={() => setParameter('class', classInputValue)}
+			/>
 		</div>
 	</div>
-    
+
 	{#if !missingClass && !missingSchool && data.status === 'success'}
+		<CreateHomework />
+
 		{#each data.data as homework}
 			<div class="box">
 				<h3 class="date">
@@ -99,9 +108,9 @@
 		margin-block: 0.5rem;
 	}
 
-    .filter-row {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-    }
+	.filter-row {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 0.5rem;
+	}
 </style>

@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
+
+	export let preSubmit = (e: Event) => {};
 
 	const currentDate = new Date();
 
@@ -13,6 +17,7 @@
 	let assignments: any[] = [];
 
 	let newAssignmentButtonDisabled = false;
+	let submitButtonDisabled = false;
 
 	function createDate(d: Date) {
 		return {
@@ -54,10 +59,42 @@
 
 		newAssignmentButtonDisabled = !(allFieldsFilled && validDate);
 	}
+
+	$: {
+		let assignmentsLongEnough = assignments.length >= 1;
+		let classNotEmpty = $page.url.searchParams.get('class') !== '';
+
+		submitButtonDisabled = !(assignmentsLongEnough && classNotEmpty);
+	}
 </script>
 
 <div class="box">
-	<form>
+	<form
+		on:submit={(e) => {
+			// TODO: check that the user is in the class
+			e.preventDefault();
+			const bodyObj = {
+				from: date,
+				className: $page.url.searchParams.get('class'),
+				assignments
+			};
+
+			console.log(bodyObj);
+
+			fetch(PUBLIC_API_URL + '/homework', {
+				method: 'POST',
+				headers: new Headers({
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+					'content-type': 'application/json'
+				}),
+				body: JSON.stringify(bodyObj)
+			})
+				.then((res) => res.json())
+				.then((j) => console.log(j));
+
+			preSubmit(e);
+		}}
+	>
 		<div class="first-row">
 			<h3>
 				{getWeekdayByDate(date)}
@@ -100,7 +137,7 @@
 			/>
 		</div>
 
-		<SubmitButton value="Temporary" />
+		<SubmitButton value="Temporary" disabled={submitButtonDisabled} />
 	</form>
 </div>
 

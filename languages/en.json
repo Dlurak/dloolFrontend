@@ -40,5 +40,11 @@
 	"date.friday": "friday",
 	"date.saturday": "saturday",
 	"date.sunday": "sunday",
-	"filter.apply": "apply"
+
+	"homework": "homework",
+	"homework.filters": "filters",
+	"homework.filters.apply": "apply",
+	"homework.add.subject": "Subject",
+	"homework.add.description": "Description",
+	"homework.add.submit": "Add"
 }

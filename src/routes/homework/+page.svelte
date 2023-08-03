@@ -30,14 +30,18 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Dlool | {i('homework')}</title>
+</svelte:head>
+
 <div id="wrapper">
 	<div class="box">
-		<h3>Filters</h3>
+		<h3>{i('homework.filters')}</h3>
 
 		<div class="filter-row">
 			<LoginInput type="text" name={i('school')} bind:value={schoolInputValue} />
 			<SubmitButton
-				value={i('filter.apply')}
+				value={i('homework.filters.apply')}
 				onClick={() => setParameter('school', schoolInputValue)}
 			/>
 		</div>
@@ -45,7 +49,7 @@
 		<div class="filter-row">
 			<LoginInput type="text" name={i('class')} bind:value={classInputValue} />
 			<SubmitButton
-				value={i('filter.apply')}
+				value={i('homework.filters.apply')}
 				onClick={() => setParameter('class', classInputValue)}
 			/>
 		</div>

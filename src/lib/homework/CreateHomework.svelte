@@ -3,6 +3,7 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import { i } from '@inlang/sdk-js';
 
 	export let preSubmit = (e: Event) => {};
 
@@ -121,14 +122,13 @@
 
 				<li id="add-item">
 					<div class="first-row">
-						<input type="text" placeholder="Subject" bind:value={newSubject} />
-						<!--TODO: l10n-->
+						<input type="text" placeholder={i('homework.add.subject')} bind:value={newSubject} />
 						<input type="date" bind:value={newDate} />
 					</div>
 					<span class="second-row">
 						<input
 							type="text"
-							placeholder="Description"
+							placeholder={i('homework.add.description')}
 							bind:value={newDescription}
 							class="description-input"
 						/>
@@ -144,7 +144,7 @@
 			</ul>
 		</div>
 
-		<SubmitButton value="Temporary" disabled={submitButtonDisabled} />
+		<SubmitButton value={i('homework.add.submit')} disabled={submitButtonDisabled} />
 	</form>
 </div>
 

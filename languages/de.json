@@ -40,5 +40,11 @@
 	"date.friday": "Freitag",
 	"date.saturday": "Samstag",
 	"date.sunday": "Sonntag",
-	"filter.apply": "anwenden"
+
+	"homework": "Hausaufgaben",
+	"homework.filters": "Filter",
+	"homework.filters.apply": "anwenden",
+	"homework.add.subject": "Fach",
+	"homework.add.description": "Aufgabenstellung",
+	"homework.add.submit": "Hinzufügen"
 }

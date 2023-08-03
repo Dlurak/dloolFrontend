@@ -88,6 +88,8 @@
 				body: JSON.stringify(bodyObj)
 			}).then((res) => res.json());
 
+			assignments = []
+
 			preSubmit(e);
 		}}
 	>

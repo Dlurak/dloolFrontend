@@ -3,8 +3,10 @@
 	import { onMount } from 'svelte';
 
 	export let type: 'password' | 'text';
-	export let onInput: (e: Event) => void = () => {};
-	export let newPassword: boolean = false;
+	export let onInput: (e: Event) => void = () => {
+		return;
+	};
+	export let newPassword = false;
 	export let value = '';
 
 	export let name: string;

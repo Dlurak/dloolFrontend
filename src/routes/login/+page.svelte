@@ -61,7 +61,7 @@
 					localStorage.setItem('token', obj.token);
 					localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
 				})
-				.catch((err) => {
+				.catch(() => {
 					errorText = i('error');
 					successText = '';
 				});

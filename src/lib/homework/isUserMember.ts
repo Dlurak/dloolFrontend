@@ -15,7 +15,7 @@ export async function isUserMember(classname: string, school: string) {
 	const userData = requestResponse.data;
 
 	const userSchool = userData.school.uniqueName;
-	const userClasses: string[] = userData.classes.map((i: any) => i.name);
+	const userClasses: string[] = userData.classes.map((i: { name: string }) => i.name);
 
 	const userIsInSchool = school === userSchool;
 	const userIsInClass = userClasses.includes(classname);

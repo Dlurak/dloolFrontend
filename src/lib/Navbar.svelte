@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { languages, switchLanguage, language, i } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
+	import type { NavDataEntry } from '../types/navData';
 
 	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';

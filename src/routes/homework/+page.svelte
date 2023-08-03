@@ -9,7 +9,31 @@
 	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
-	export let data: any;
+	export let data:
+		| {
+				status: 'success';
+				message: 'Homework found';
+				data: {
+					creator: string;
+					class: string;
+					createdAt: number;
+					from: {
+						year: number;
+						month: number;
+						day: number;
+					};
+					assignments: {
+						subject: string;
+						description: string;
+						due: {
+							year: number;
+							month: number;
+							day: number;
+						};
+					}[];
+				}[];
+		  }
+		| undefined;
 
 	let missingSchool = !$page.url.searchParams.get('school');
 	let missingClass = !$page.url.searchParams.get('class');
@@ -62,7 +86,7 @@
 		</div>
 	</div>
 
-	{#if !missingClass && !missingSchool && data.status === 'success'}
+	{#if !missingClass && !missingSchool && data?.status === 'success'}
 		{#if new Date().getTime() < tokenExpires && userIsMemberOfClass}
 			<CreateHomework
 				preSubmit={() => {

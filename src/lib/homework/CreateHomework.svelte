@@ -5,17 +5,27 @@
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import { i } from '@inlang/sdk-js';
 
-	export let preSubmit = (e: Event) => {};
+	export let preSubmit: (e: Event) => void = () => {
+		return;
+	};
 
 	const currentDate = new Date();
 
 	let date = createDate(currentDate);
 
-	let newSubject: string = '';
-	let newDescription: string = '';
+	let newSubject = '';
+	let newDescription = '';
 	let newDate = getDateInInputFormat(new Date(currentDate.getTime() + 24 * 60 * 60 * 1000));
 
-	let assignments: any[] = [];
+	let assignments: {
+		subject: string;
+		description: string;
+		due: {
+			year: number;
+			month: number;
+			day: number;
+		};
+	}[] = [];
 
 	let newAssignmentButtonDisabled = false;
 	let submitButtonDisabled = false;
@@ -88,7 +98,7 @@
 				body: JSON.stringify(bodyObj)
 			}).then((res) => res.json());
 
-			assignments = []
+			assignments = [];
 
 			preSubmit(e);
 		}}

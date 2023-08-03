@@ -4,7 +4,9 @@
 	export let disabled = false;
 	export let value: string;
 
-	export let onClick = (e: Event) => {};
+	export let onClick: (e: Event) => void = () => {
+		return;
+	};
 
 	export let topMargin = '1rem';
 	export let width = '100%';

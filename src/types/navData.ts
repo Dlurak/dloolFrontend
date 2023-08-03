@@ -1,4 +1,4 @@
-interface NavDataEntry {
+export interface NavDataEntry {
 	title: string;
 	uri: string;
 	showInNav: boolean;

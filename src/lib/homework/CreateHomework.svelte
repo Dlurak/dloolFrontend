@@ -101,6 +101,7 @@
 				{date.day}.{date.month}.{date.year}
 			</h3>
 			<i class="bx bx-calendar-plus" />
+			<!--TODO: give the button functionality, it should open a calender dialog-->
 		</div>
 
 		<div id="assignments">
@@ -118,23 +119,29 @@
 					</li>
 				{/each}
 
-				<li>
-					<h4>
+				<li id="add-item">
+					<div class="first-row">
 						<input type="text" placeholder="Subject" bind:value={newSubject} />
 						<!--TODO: l10n-->
-					</h4>
-					<input type="date" bind:value={newDate} />
-					<p>
-						<input type="text" placeholder="Description" bind:value={newDescription} />
-					</p>
+						<input type="date" bind:value={newDate} />
+					</div>
+					<span class="second-row">
+						<input
+							type="text"
+							placeholder="Description"
+							bind:value={newDescription}
+							class="description-input"
+						/>
+						<SubmitButton
+							value="+"
+							onClick={handleNewAssignmentButtonClick}
+							disabled={newAssignmentButtonDisabled}
+							topMargin="0"
+							width="50%"
+						/>
+					</span>
 				</li>
 			</ul>
-
-			<button
-				class="bx bx-plus"
-				on:click={handleNewAssignmentButtonClick}
-				disabled={newAssignmentButtonDisabled}
-			/>
 		</div>
 
 		<SubmitButton value="Temporary" disabled={submitButtonDisabled} />
@@ -146,5 +153,77 @@
 		padding: 1rem;
 		border-radius: 1rem;
 		background-color: var(--bg);
+	}
+
+	.first-row {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+		align-items: center;
+		justify-content: start;
+	}
+
+	li .first-row {
+		align-items: start;
+	}
+
+	li .first-row * {
+		margin-top: 0;
+	}
+
+	li p {
+		margin-block: 0;
+	}
+
+	li h4 {
+		margin-bottom: 0.75rem;
+	}
+
+	#add-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	#add-item .first-row {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	}
+
+	#add-item .second-row {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	#assignments-list {
+		padding: 0;
+		list-style-type: none;
+	}
+	#assignments-list li:not(:last-child)::after {
+		content: '';
+		display: inline-block;
+		height: 0.125rem;
+		width: 100%;
+		border-radius: 100vmax;
+
+		background-color: var(--text);
+
+		margin-block: 0.5rem;
+	}
+
+	input {
+		color: var(--text);
+		background-color: transparent;
+		border: none;
+		border-radius: 0.25rem;
+		padding: 0.125rem;
+		outline: 1px solid gray;
+	}
+	input:focus-visible {
+		outline: 2px solid var(--accent);
+	}
+
+	.description-input {
+		width: 100%;
 	}
 </style>

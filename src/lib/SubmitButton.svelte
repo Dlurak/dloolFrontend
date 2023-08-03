@@ -1,11 +1,23 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	export let disabled = false;
 	export let value: string;
 
 	export let onClick = (e: Event) => {};
+
+	export let topMargin = '1rem';
+	export let width = '100%';
+
+	let buttonElement: HTMLElement;
+
+	onMount(() => {
+		buttonElement.style.marginTop = topMargin;
+		buttonElement.style.width = width;
+	});
 </script>
 
-<input type="submit" {value} {disabled} on:click={onClick} />
+<input type="submit" {value} {disabled} on:click={onClick} bind:this={buttonElement} />
 
 <style>
 	input[type='submit'] {
@@ -18,7 +30,7 @@
 
 		width: 100%;
 
-		margin-top: 1rem;
+		margin-top: var(--margin-top);
 
 		box-shadow: 0 0 2rem black;
 

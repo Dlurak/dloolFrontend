@@ -72,15 +72,12 @@
 <div class="box">
 	<form
 		on:submit={(e) => {
-			// TODO: check that the user is in the class
 			e.preventDefault();
 			const bodyObj = {
 				from: date,
 				className: $page.url.searchParams.get('class'),
 				assignments
 			};
-
-			console.log(bodyObj);
 
 			fetch(PUBLIC_API_URL + '/homework', {
 				method: 'POST',
@@ -89,9 +86,7 @@
 					'content-type': 'application/json'
 				}),
 				body: JSON.stringify(bodyObj)
-			})
-				.then((res) => res.json())
-				.then((j) => console.log(j));
+			}).then((res) => res.json());
 
 			preSubmit(e);
 		}}
@@ -101,8 +96,6 @@
 				{getWeekdayByDate(date)}
 				{date.day}.{date.month}.{date.year}
 			</h3>
-			<i class="bx bx-calendar-plus" />
-			<!--TODO: give the button functionality, it should open a calender dialog-->
 		</div>
 
 		<div id="assignments">

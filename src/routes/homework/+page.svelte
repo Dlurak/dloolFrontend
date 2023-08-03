@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
+	import { isUserMember } from '$lib/homework/isUserMember';
 	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
@@ -19,14 +19,21 @@
 
 	let tokenExpires = 0;
 
+	let userIsMemberOfClass = false;
+
 	function setParameter(param: 'school' | 'class', value: string) {
 		const newUrl = new URL($page.url);
 		newUrl?.searchParams?.set(param, value);
 		goto(newUrl);
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		tokenExpires = Number(localStorage.getItem('tokenExpires'));
+
+		userIsMemberOfClass = await isUserMember(
+			$page.url.searchParams.get('class') as string,
+			$page.url.searchParams.get('school') as string
+		);
 	});
 </script>
 
@@ -56,7 +63,7 @@
 	</div>
 
 	{#if !missingClass && !missingSchool && data.status === 'success'}
-		{#if new Date().getTime() < tokenExpires}
+		{#if new Date().getTime() < tokenExpires && userIsMemberOfClass}
 			<CreateHomework
 				preSubmit={() => {
 					invalidateAll();

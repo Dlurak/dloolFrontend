@@ -6,6 +6,8 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import { i } from '@inlang/sdk-js';
+	import { createDate } from '$lib/dates/createDateObject';
+	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 
 	export let preSubmit: (e: Event) => void = () => {
 		return;
@@ -37,24 +39,6 @@
 
 	let newAssignmentButtonDisabled = false;
 	let submitButtonDisabled = false;
-
-	function createDate(d: Date) {
-		return {
-			day: d.getDate(),
-			month: d.getMonth() + 1,
-			year: d.getFullYear()
-		};
-	}
-
-	function leadingZeroDaysAndMonths(n: number) {
-		return `${n < 10 ? 0 : ''}${n}`;
-	}
-
-	function getDateInInputFormat(date: Date) {
-		return `${date.getFullYear()}-${leadingZeroDaysAndMonths(
-			date.getMonth() + 1
-		)}-${leadingZeroDaysAndMonths(date.getDate())}`;
-	}
 
 	function handleNewAssignmentButtonClick(e: Event) {
 		e.preventDefault();

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import { createDate } from '$lib/dates/createDateObject';
+	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 
 	const currentDate = new Date();
 
@@ -11,24 +13,6 @@
 	} = createDate(currentDate);
 
 	let dateInput: HTMLInputElement;
-
-	function getDateInInputFormat(date: Date) {
-		return `${date.getFullYear()}-${leadingZeroDaysAndMonths(
-			date.getMonth() + 1
-		)}-${leadingZeroDaysAndMonths(date.getDate())}`;
-	}
-
-	function leadingZeroDaysAndMonths(n: number) {
-		return `${n < 10 ? 0 : ''}${n}`;
-	}
-
-	function createDate(d: Date) {
-		return {
-			day: d.getDate(),
-			month: d.getMonth() + 1,
-			year: d.getFullYear()
-		};
-	}
 
 	$: {
 		dateObj = createDate(new Date(date));

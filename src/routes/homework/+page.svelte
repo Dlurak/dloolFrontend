@@ -6,6 +6,8 @@
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { isUserMember } from '$lib/homework/isUserMember';
+	import { loadClasses } from '$lib/register/loadClasses';
+	import { loadSchools } from '$lib/register/loadSchools';
 	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
@@ -70,19 +72,36 @@
 		<h3>{i('homework.filters')}</h3>
 
 		<div class="filter-row">
-			<LoginInput type="text" name={i('school')} bind:value={schoolInputValue} />
+			<LoginInput type="text" name={i('school')} bind:value={schoolInputValue} list="schoolsList" />
 			<SubmitButton
 				value={i('homework.filters.apply')}
 				onClick={() => setParameter('school', schoolInputValue)}
 			/>
+			{#await loadSchools(schoolInputValue) then data}
+				<datalist id="schoolsList">
+					{#each data.schools as schoolObj}
+						<option value={schoolObj.uniqueName} />
+					{/each}
+				</datalist>
+			{/await}
 		</div>
 
 		<div class="filter-row">
-			<LoginInput type="text" name={i('class')} bind:value={classInputValue} />
+			<LoginInput type="text" name={i('class')} bind:value={classInputValue} list="classList" />
 			<SubmitButton
 				value={i('homework.filters.apply')}
 				onClick={() => setParameter('class', classInputValue)}
 			/>
+
+			{#await loadClasses(schoolInputValue) then data}
+				{#if data}
+					<datalist id="classList">
+						{#each data as classObj}
+							<option value={classObj.name} />
+						{/each}
+					</datalist>
+				{/if}
+			{/await}
 		</div>
 	</div>
 

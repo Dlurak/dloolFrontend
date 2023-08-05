@@ -1,4 +1,6 @@
 <script lang="ts">
+	import DatePicker from './DatePicker.svelte';
+
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
@@ -17,13 +19,11 @@
 	let newDescription = '';
 	let newDate = getDateInInputFormat(new Date(currentDate.getTime() + 24 * 60 * 60 * 1000));
 
-	let assignedAtDate = getDateInInputFormat(currentDate);
 	let assignedAtDateObj: {
 		day: number;
 		month: number;
 		year: number;
 	};
-	let assignedAtDateInput: HTMLInputElement;
 
 	let assignments: {
 		subject: string;
@@ -85,10 +85,6 @@
 
 		submitButtonDisabled = !(assignmentsLongEnough && classNotEmpty);
 	}
-
-	$: {
-		assignedAtDateObj = createDate(new Date(assignedAtDate));
-	}
 </script>
 
 <div class="box">
@@ -115,29 +111,7 @@
 			preSubmit(e);
 		}}
 	>
-		<div class="first-row">
-			<input
-				type="date"
-				bind:value={assignedAtDate}
-				id={navigator.userAgent.toLocaleLowerCase().includes('safari')
-					? 'safari-date-picker'
-					: 'heading-input'}
-				bind:this={assignedAtDateInput}
-			/>
-			{#if !navigator.userAgent.toLocaleLowerCase().includes('safari')}
-				<h3>
-					{getWeekdayByDate(assignedAtDateObj)}
-					{assignedAtDateObj.day}.{assignedAtDateObj.month}.{assignedAtDateObj.year}
-				</h3>
-				<button
-					on:click={(e) => {
-						e.preventDefault();
-						assignedAtDateInput.showPicker();
-					}}
-					class="bx bx-calendar"
-				/>
-			{/if}
-		</div>
+		<DatePicker bind:dateObj={assignedAtDateObj} />
 
 		<div id="assignments">
 			<ul id="assignments-list">
@@ -157,7 +131,9 @@
 				<li id="add-item">
 					<div class="first-row">
 						<input type="text" placeholder={i('homework.add.subject')} bind:value={newSubject} />
-						<input type="date" bind:value={newDate} />
+						<span class="dateWrapper">
+							<DatePicker bind:date={newDate} />
+						</span>
 					</div>
 					<span class="second-row">
 						<input
@@ -183,22 +159,6 @@
 </div>
 
 <style>
-	#heading-input {
-		display: none;
-	}
-
-	#safari-date-picker {
-		display: inline-block;
-		width: 100%;
-	}
-
-	button {
-		border: none;
-		background-color: transparent;
-		color: var(--text);
-		font-size: 1.5rem;
-	}
-
 	.box {
 		padding: 1rem;
 		border-radius: 1rem;
@@ -275,5 +235,10 @@
 
 	.description-input {
 		width: 100%;
+	}
+
+	.dateWrapper {
+		width: 100%;
+		outline: 1px solid gray;
 	}
 </style>

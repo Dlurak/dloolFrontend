@@ -2,6 +2,8 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { loadClasses } from '$lib/register/loadClasses';
+	import { loadSchools } from '$lib/register/loadSchools';
 	import { i } from '@inlang/sdk-js';
 
 	let username: string;
@@ -79,13 +81,35 @@
 			name={i('school')}
 			tooltip={i('register.school.tooltip')}
 			bind:value={school}
+			list="schoolsList"
+			autocomplete="off"
 		/>
+		{#await loadSchools(school) then data}
+			<datalist id="schoolsList">
+				{#each data.schools as schoolObj}
+					<option value={schoolObj.uniqueName} />
+				{/each}
+			</datalist>
+		{/await}
+
 		<LoginInput
 			type="text"
 			name={i('class')}
 			tooltip={i('register.class.tooltip')}
 			bind:value={className}
+			list="classList"
+			autocomplete="off"
 		/>
+		{#await loadClasses(school) then data}
+			{#if data}
+				<datalist id="classList">
+					{#each data as classObj}
+						<option value={classObj.name} />
+					{/each}
+				</datalist>
+			{/if}
+		{/await}
+
 		<LoginInput
 			type="password"
 			newPassword={true}

@@ -15,8 +15,10 @@
 
 	export let showTooltip = false;
 
+	export let list = '';
+
 	let showPassword = false;
-	let autocomplete =
+	export let autocomplete =
 		type === 'password' ? (newPassword ? 'new' : 'current') + '-password' : 'username';
 	let passwordIconSolidString = 'bx';
 
@@ -36,6 +38,7 @@
 <span>
 	<input
 		{name}
+		{list}
 		placeholder=" "
 		bind:this={inputField}
 		bind:value

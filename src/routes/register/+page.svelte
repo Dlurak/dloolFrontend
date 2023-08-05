@@ -30,7 +30,35 @@
 	<h3>{i('registerNow')}</h3>
 
 	<form
-		on:submit={() => {
+		on:submit={async () => {
+			// check if the school exists
+			const schoolDetails = await fetch(`${PUBLIC_API_URL}/schools/${school}`).then((res) =>
+				res.json()
+			);
+
+			if (!schoolDetails.data) {
+				// create the school
+				await fetch(`${PUBLIC_API_URL}/schools`, {
+					method: 'POST',
+					headers: new Headers({ 'content-type': 'application/json' }),
+					body: JSON.stringify({
+						name: school,
+						uniqueName: school,
+						description: school,
+						timezoneOffset: 0
+					})
+				}).then((res) => {
+					if (!res.ok) {
+						errorText = i('error');
+						successText = '';
+					}
+				});
+			}
+
+			// Now the school exists either newly created or old
+
+			// TODO: it isn't usefull when the school just got created because a class can't be created
+
 			fetch(PUBLIC_API_URL + '/auth/register', {
 				method: 'POST',
 				headers: new Headers({ 'content-type': 'application/json' }),
@@ -44,6 +72,7 @@
 			})
 				.then((res) => res.json())
 				.then((obj) => {
+					console.log(obj);
 					if (obj.status === 'error') {
 						// create error messages for the user when there is an error
 						const errorTextesObj = {

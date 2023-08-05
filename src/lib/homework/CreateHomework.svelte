@@ -95,8 +95,9 @@
 			preSubmit(e);
 		}}
 	>
-		<DatePicker bind:dateObj={assignedAtDateObj} />
-
+		<h3>
+			<DatePicker bind:dateObj={assignedAtDateObj} />
+		</h3>
 		<div id="assignments">
 			<ul id="assignments-list">
 				{#each assignments as assignment}
@@ -224,5 +225,6 @@
 	.dateWrapper {
 		width: 100%;
 		outline: 1px solid gray;
+		border-radius: 0.25rem;
 	}
 </style>

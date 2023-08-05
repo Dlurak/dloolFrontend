@@ -45,5 +45,6 @@
 	"homework.filters.apply": "anwenden",
 	"homework.add.subject": "Fach",
 	"homework.add.description": "Aufgabenstellung",
-	"homework.add.submit": "Hinzufügen"
+	"homework.add.submit": "Hinzufügen",
+	"datepicker.selectDate": "Datum auswählen"
 }

@@ -2,6 +2,7 @@
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
+	import { i } from '@inlang/sdk-js';
 
 	const currentDate = new Date();
 
@@ -14,9 +15,7 @@
 
 	let dateInput: HTMLInputElement;
 
-	$: {
-		dateObj = createDate(new Date(date));
-	}
+	$: dateObj = createDate(new Date(date));
 </script>
 
 <div class="row">
@@ -39,6 +38,7 @@
 				dateInput.showPicker();
 			}}
 			class="bx bx-calendar"
+			title={i('datepicker.selectDate')}
 		/>
 	{/if}
 </div>
@@ -57,6 +57,11 @@
 	#safari-date-picker {
 		display: inline-block;
 		width: 100%;
+
+		background-color: transparent;
+		color: var(--text);
+		outline: none;
+		border: none;
 	}
 
 	button {

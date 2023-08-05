@@ -45,5 +45,6 @@
 	"homework.filters.apply": "apply",
 	"homework.add.subject": "Subject",
 	"homework.add.description": "Description",
-	"homework.add.submit": "Add"
+	"homework.add.submit": "Add",
+	"datepicker.selectDate": "Select date"
 }

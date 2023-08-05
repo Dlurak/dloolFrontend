@@ -17,6 +17,14 @@
 	let newDescription = '';
 	let newDate = getDateInInputFormat(new Date(currentDate.getTime() + 24 * 60 * 60 * 1000));
 
+	let assignedAtDate = getDateInInputFormat(currentDate);
+	let assignedAtDateObj: {
+		day: number;
+		month: number;
+		year: number;
+	};
+	let assignedAtDateInput: HTMLInputElement;
+
 	let assignments: {
 		subject: string;
 		description: string;
@@ -77,6 +85,10 @@
 
 		submitButtonDisabled = !(assignmentsLongEnough && classNotEmpty);
 	}
+
+	$: {
+		assignedAtDateObj = createDate(new Date(assignedAtDate));
+	}
 </script>
 
 <div class="box">
@@ -84,7 +96,7 @@
 		on:submit={(e) => {
 			e.preventDefault();
 			const bodyObj = {
-				from: date,
+				from: assignedAtDateObj,
 				className: $page.url.searchParams.get('class'),
 				assignments
 			};
@@ -104,10 +116,27 @@
 		}}
 	>
 		<div class="first-row">
-			<h3>
-				{getWeekdayByDate(date)}
-				{date.day}.{date.month}.{date.year}
-			</h3>
+			<input
+				type="date"
+				bind:value={assignedAtDate}
+				id={navigator.userAgent.toLocaleLowerCase().includes('safari')
+					? 'safari-date-picker'
+					: 'heading-input'}
+				bind:this={assignedAtDateInput}
+			/>
+			{#if !navigator.userAgent.toLocaleLowerCase().includes('safari')}
+				<h3>
+					{getWeekdayByDate(assignedAtDateObj)}
+					{assignedAtDateObj.day}.{assignedAtDateObj.month}.{assignedAtDateObj.year}
+				</h3>
+				<button
+					on:click={(e) => {
+						e.preventDefault();
+						assignedAtDateInput.showPicker();
+					}}
+					class="bx bx-calendar"
+				/>
+			{/if}
 		</div>
 
 		<div id="assignments">
@@ -154,6 +183,22 @@
 </div>
 
 <style>
+	#heading-input {
+		display: none;
+	}
+
+	#safari-date-picker {
+		display: inline-block;
+		width: 100%;
+	}
+
+	button {
+		border: none;
+		background-color: transparent;
+		color: var(--text);
+		font-size: 1.5rem;
+	}
+
 	.box {
 		padding: 1rem;
 		border-radius: 1rem;

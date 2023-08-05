@@ -57,7 +57,26 @@
 
 			// Now the school exists either newly created or old
 
-			// TODO: it isn't usefull when the school just got created because a class can't be created
+			const classDetails = await fetch(
+				`${PUBLIC_API_URL}/classes/${school}/${className.toLowerCase()}`
+			).then((res) => res.json());
+
+			if (!classDetails.data) {
+				// create the class
+				await fetch(`${PUBLIC_API_URL}/classes`, {
+					method: 'POST',
+					headers: new Headers({ 'content-type': 'application/json' }),
+					body: JSON.stringify({
+						name: className,
+						school: school
+					})
+				}).then((res) => {
+					if (!res.ok) {
+						errorText = i('error');
+						successText = '';
+					}
+				});
+			}
 
 			fetch(PUBLIC_API_URL + '/auth/register', {
 				method: 'POST',
@@ -72,20 +91,17 @@
 			})
 				.then((res) => res.json())
 				.then((obj) => {
-					console.log(obj);
 					if (obj.status === 'error') {
 						// create error messages for the user when there is an error
 						const errorTextesObj = {
 							[`User ${username} already exists`]: i('regisiter.usernameTakenError'),
-							[`School ${school} does not exist`]: i('regisiter.schoolExistensError'),
-							[`Class ${className} does not exist`]: i('regisiter.classExistensError'),
-							'Internal server error': i('regisiter.userCouldNotbeCreatedError')
+							'Internal server error': i('regissiter.userCouldNotbeCreatedError')
 						};
 
 						errorText = errorTextesObj[obj.error] || i('error');
 						successText = '';
 					} else if (obj.status === 'success') {
-						successText = i('regisiter.userCreated');
+						successText = i('register.userCreated');
 						errorText = '';
 					} else {
 						errorText = i('error');

@@ -4,8 +4,16 @@
 		"uri": "/login",
 		"showInNav": true,
 		"navBoxIcon": "bx-user",
-		"showInFooter": false,
-		"footerCategory": ""
+		"showInFooter": true,
+		"footerCategory": "Authentication"
+	},
+	{
+		"title": "register",
+		"uri": "/register",
+		"showInNav": true,
+		"navBoxIcon": "bx-user-plus",
+		"showInFooter": true,
+		"footerCategory": "Authentication"
 	},
 	{
 		"title": "about",

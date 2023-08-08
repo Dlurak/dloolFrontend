@@ -14,12 +14,14 @@
 
 	let isHamburgerOpened: boolean;
 
+	export let height;
+
 	onMount(async () => {
 		navData = (await loadLocaleJSONData('nav')) as NavDataEntry[];
 	});
 </script>
 
-<nav>
+<nav bind:clientHeight={height}>
 	<Logo />
 	<div id="items" class:mobileVisible={isHamburgerOpened}>
 		<ul id="linkList">

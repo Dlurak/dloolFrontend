@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { languages, switchLanguage, language, i } from '@inlang/sdk-js';
+	import { i } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
 	import type { NavDataEntry } from '../types/navData';
 
 	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
 	import TextOrIconLink from './navbar/textOrIconLink.svelte';
+	import LanguageSwitcher from './LanguageSwitcher.svelte';
 
 	let navData: NavDataEntry[] = [];
-
-	let selected: string;
 
 	let isHamburgerOpened: boolean;
 
@@ -36,11 +35,7 @@
 				</li>
 			{/each}
 		</ul>
-		<select bind:value={selected} on:change={() => switchLanguage(selected)}>
-			{#each languages as lang}
-				<option value={lang} selected={lang === language}>{lang}</option>
-			{/each}
-		</select>
+		<LanguageSwitcher />
 	</div>
 	<div id="hamburgerWrapper">
 		<HamburgerButton bind:isOpened={isHamburgerOpened} />
@@ -66,18 +61,6 @@
 		gap: 1rem;
 
 		padding: 0;
-	}
-
-	select {
-		background-color: transparent;
-		color: var(--text);
-		border: none;
-		padding: 0.2rem;
-		border-radius: 0.25rem;
-	}
-
-	select:is(:focus, :hover) {
-		background-color: var(--secondary);
 	}
 
 	ul {

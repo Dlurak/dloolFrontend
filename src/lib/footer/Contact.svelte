@@ -17,3 +17,10 @@
 		</ul>
 	</div>
 </div>
+
+<style>
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+</style>

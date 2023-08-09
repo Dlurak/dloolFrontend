@@ -30,14 +30,50 @@
 
 <div class="column">
 	<h3>Links</h3>
-	{#each Object.keys(categories) as categoriy}
-		<h4>{categoriy}</h4>
-		<ul>
-			{#each categories[categoriy] as entry}
-				<li>
-					<TextOrIconLink uri={entry.uri} title={entry.title} boxIcon={entry.navBoxIcon} />
-				</li>
-			{/each}
-		</ul>
-	{/each}
+	<div class="row">
+		{#each Object.keys(categories) as categoriy}
+			<div class="category">
+				<h4>{categoriy}</h4>
+				<ul>
+					{#each categories[categoriy] as entry}
+						<li>
+							<TextOrIconLink uri={entry.uri} title={entry.title} boxIcon={entry.navBoxIcon} />
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/each}
+	</div>
 </div>
+
+<style>
+	.row {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+	}
+
+	.category {
+		position: relative;
+	}
+
+	.category:not(:nth-last-col(0))::after {
+		position: absolute;
+
+		content: '';
+		height: 100%;
+		width: 0.125rem;
+		right: -0.5rem;
+		top: 0;
+
+		border-radius: 100vmax;
+		background-color: gray;
+	}
+</style>

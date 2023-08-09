@@ -22,6 +22,9 @@
 	"register.login": "Du kannst dich hier einloggen",
 	"nav.about": "Über mich",
 	"nav.login": "Einloggen",
+	"nav.register": "Registrieren",
+	"nav.categories.authentication": "Authentifizierungen",
+	"nav.categories.about-me": "Über mich",
 	"login": "Einloggen",
 	"login.welcome": "Willkommen zurück",
 	"login.error.wrongCred": "Falscher Nutzername oder Passwort",
@@ -46,5 +49,10 @@
 	"homework.add.subject": "Fach",
 	"homework.add.description": "Aufgabenstellung",
 	"homework.add.submit": "Hinzufügen",
-	"datepicker.selectDate": "Datum auswählen"
+	"datepicker.selectDate": "Datum auswählen",
+	"footer.liscence.text": "Lizensiert unter der GNU General Public License Version 2",
+	"footer.contact": "Kontakt",
+	"footer.contact.backend": "Backend auf GitHub",
+	"footer.contact.frontend": "Frontend auf GitHub",
+	"footer.links": "Links"
 }

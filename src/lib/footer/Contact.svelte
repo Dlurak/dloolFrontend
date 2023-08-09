@@ -1,17 +1,21 @@
+<script>
+	import { i } from '@inlang/sdk-js';
+</script>
+
 <div class="column">
 	<div class="row">
-		<h3>Contact</h3>
+		<h3>{i('footer.contact')}</h3>
 		<ul>
 			<li>
 				<a href="https://www.github.com/dlurak/dloolBackend">
 					<i class="bx bxl-github" />
-					Backend source code
+					{i('footer.contact.github.backend')}
 				</a>
 			</li>
 			<li>
 				<a href="https://www.github.com/dlurak/dloolFrontend">
 					<i class="bx bxl-github" />
-					Frontend source code
+					{i('footer.contact.github.frontend')}
 				</a>
 			</li>
 		</ul>

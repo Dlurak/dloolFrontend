@@ -116,10 +116,6 @@
 			flex-direction: column;
 		}
 
-		select {
-			text-align: start;
-		}
-
 		li {
 			width: 100%;
 		}

@@ -1,5 +1,6 @@
 <script>
 	import LanguageSwitcher from '$lib/LanguageSwitcher.svelte';
+	import { i } from '@inlang/sdk-js';
 </script>
 
 <div class="column">
@@ -7,7 +8,7 @@
 		<h3>© 2023 Dlurak</h3>
 		<LanguageSwitcher />
 	</div>
-	<div class="row">Licensed under the GNU General Public License, Version 2.</div>
+	<div class="row">{i('footer.liscence.text')}</div>
 </div>
 
 <style>

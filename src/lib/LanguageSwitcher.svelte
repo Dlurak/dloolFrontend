@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { languages, switchLanguage, language, i } from '@inlang/sdk-js';
+	import { languages, switchLanguage, language } from '@inlang/sdk-js';
 
 	let selected: string;
 </script>

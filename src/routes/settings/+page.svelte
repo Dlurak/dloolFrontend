@@ -2,6 +2,7 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { onMount } from 'svelte';
 
 	let successText = '';
 	let errorText = '';
@@ -14,6 +15,17 @@
 
 	// make it true once at least one field is filled
 	$: disabled = !(username || name || password);
+
+	onMount(() => {
+		const tokenExpiresString = localStorage.getItem('tokenExpires');
+		const tokenExpires = tokenExpiresString ? Number(tokenExpiresString) : 0;
+
+		const isTokenExpired = new Date().getTime() > tokenExpires;
+
+		if (isTokenExpired) {
+			window.location.href = '/login?redirect=/settings';
+		}
+	});
 </script>
 
 <svelte:head>

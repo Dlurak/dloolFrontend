@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
@@ -9,6 +10,8 @@
 
 	let errorText = '';
 	let successText = '';
+
+	let redirectUri = $page.url.searchParams.get('redirect');
 
 	let disabled = false;
 
@@ -60,6 +63,8 @@
 
 					localStorage.setItem('token', obj.token);
 					localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
+
+					if (redirectUri) window.location.href = redirectUri;
 				})
 				.catch(() => {
 					errorText = i('error');

@@ -54,5 +54,17 @@
 	"footer.contact": "Contact",
 	"footer.contact.github.backend": "Backend on GitHub",
 	"footer.contact.github.frontend": "Frontend on GitHub",
-	"footer.links": "Links"
+	"footer.links": "Links",
+
+	"settings": "Settings",
+	"settings.settings": "Profile settings",
+	"settings.success": "Updated your profile! Redirect to login in 5 seconds",
+	"settings.error": "Failed to update profile",
+	"settings.username": "Username",
+	"settings.username.tooltip": "This will be your new username",
+	"settings.name": "Name",
+	"settings.name.tooltip": "This will be your new name, please don't use your real name",
+	"settings.password": "Password",
+	"settings.password.tooltip": "This will be your new password, please choose a secure one",
+	"settings.save": "Save"
 }

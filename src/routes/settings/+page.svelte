@@ -2,6 +2,7 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/LoginInput.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
 	let successText = '';
@@ -29,12 +30,12 @@
 </script>
 
 <svelte:head>
-	<title>Settings</title>
+	<title>{i('settings')}</title>
 </svelte:head>
 
 <div>
 	<div id="wrapper">
-		<h2 class="text-2xl text-center font-semibold">Profile Settings</h2>
+		<h2 class="text-2xl text-center font-semibold">{i('settings.settings')}</h2>
 
 		<form
 			on:submit={(e) => {
@@ -56,7 +57,7 @@
 				}).then((res) => {
 					console.log(res);
 					if (res.status === 200) {
-						successText = 'Successfully updated profile! Redirecting to login...';
+						successText = i('settings.success');
 						localStorage.removeItem('token');
 						localStorage.removeItem('tokenExpires');
 
@@ -64,21 +65,31 @@
 							window.location.href = '/login';
 						}, 5 * 1000);
 					} else {
-						errorText = 'Failed to update profile!';
+						errorText = i('settings.error');
 					}
 				});
 			}}
 		>
-			<LoginInput name="Username" type="text" tooltip="Your new username" bind:value={username} />
-			<LoginInput name="Name" type="text" tooltip="Your new name" bind:value={name} />
 			<LoginInput
-				name="Password"
+				name={i('settings.username')}
+				type="text"
+				tooltip={i('settings.username.tooltip')}
+				bind:value={username}
+			/>
+			<LoginInput
+				name={i('settings.name')}
+				type="text"
+				tooltip={i('settings.name.tooltip')}
+				bind:value={name}
+			/>
+			<LoginInput
+				name={i('settings.password')}
 				type="password"
 				newPassword={true}
-				tooltip="Your new password"
+				tooltip={i('settings.password.tooltip')}
 				bind:value={password}
 			/>
-			<SubmitButton value="Save" {disabled} />
+			<SubmitButton value={i('settings.save')} {disabled} />
 		</form>
 
 		{#if successText}

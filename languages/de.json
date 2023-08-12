@@ -52,7 +52,19 @@
 	"datepicker.selectDate": "Datum auswählen",
 	"footer.liscence.text": "Lizensiert unter der GNU General Public License Version 2",
 	"footer.contact": "Kontakt",
-	"footer.contact.backend": "Backend auf GitHub",
-	"footer.contact.frontend": "Frontend auf GitHub",
-	"footer.links": "Links"
+	"footer.contact.github.backend": "Backend auf GitHub",
+	"footer.contact.github.frontend": "Frontend auf GitHub",
+	"footer.links": "Links",
+
+	"settings": "Einstellungen",
+	"settings.settings": "Profil Einstellungen",
+	"settings.success": "Dein Profil wurde aktualisiert.",
+	"settings.error": "Dein Profil konnte nicht aktualisiert werden.",
+	"settings.username": "Nutzername",
+	"settings.username.tooltip": "Das wird Dein neuer Nutzername sein.",
+	"settings.name": "Name",
+	"settings.name.tooltip": "Das wird Dein neuer Name sein, bitte gebe nicht ",
+	"settings.password": "Passwort",
+	"settings.password.tooltip": "Das wird Dein neues Passwort sein, bitte wähle ein sicheres!",
+	"settings.save": "Speichern"
 }

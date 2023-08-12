@@ -2,6 +2,9 @@
 	import { browser } from '$app/environment';
 	import Navbar from '$lib/Navbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
+
+	import '../app.css';
+
 	import { onMount } from 'svelte';
 
 	let footerHeight = 0;

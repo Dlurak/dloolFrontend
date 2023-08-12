@@ -6,5 +6,7 @@
 	<title>Dlool</title>
 </svelte:head>
 
-<h1>{i('welcome')}</h1>
+<h1 class="text-4xl text-center mt-8 font-bold">
+	{i('welcome')}
+</h1>
 <p>{i('homeDummytext')}</p>

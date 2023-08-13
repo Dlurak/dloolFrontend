@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
-	import LoginInput from '$lib/LoginInput.svelte';
+	import LoginInput from '$lib/auth/Input.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { getWeekdayByDate } from '$lib/dataWeekday';
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { isUserMember } from '$lib/homework/isUserMember';
-	import { loadClasses } from '$lib/register/loadClasses';
-	import { loadSchools } from '$lib/register/loadSchools';
+	import { loadClasses } from '$lib/auth/loadClasses';
+	import { loadSchools } from '$lib/auth/loadSchools';
 	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 
@@ -77,13 +77,6 @@
 				value={i('homework.filters.apply')}
 				onClick={() => setParameter('school', schoolInputValue)}
 			/>
-			{#await loadSchools(schoolInputValue) then data}
-				<datalist id="schoolsList">
-					{#each data.schools as schoolObj}
-						<option value={schoolObj.uniqueName} />
-					{/each}
-				</datalist>
-			{/await}
 		</div>
 
 		<div class="filter-row">

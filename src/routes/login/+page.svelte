@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
-	import LoginInput from '$lib/LoginInput.svelte';
+	import LoginInput from '$lib/auth/Input.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { i } from '@inlang/sdk-js';
 

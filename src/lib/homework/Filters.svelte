@@ -20,7 +20,7 @@
 	<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={schoolName} />
 
 	<Input type="text" name={i('class')} list="classesList" bind:value={className} />
-	<SelectDataList id="classesList" loadFunction={loadClasses} searchParam={className} />
+	<SelectDataList id="classesList" loadFunction={loadClasses} searchParam={schoolName} />
 
 	<SubmitButton
 		value={i('homework.filters.apply')}

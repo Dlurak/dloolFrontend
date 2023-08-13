@@ -22,10 +22,15 @@
 
 	let isLoggedInBool = false;
 
-	function setParameter(param: 'school' | 'class', value: string) {
+	function setParameters(params: { school: string; class: string }) {
 		const newUrl = new URL($page.url);
-		newUrl?.searchParams?.set(param, value);
+
+		newUrl?.searchParams?.set('school', params.school);
+		newUrl?.searchParams?.set('class', params.class);
+
 		goto(newUrl);
+
+		invalidateAll();
 	}
 
 	onMount(async () => {
@@ -47,8 +52,10 @@
 		bind:className={classInputValue}
 		bind:schoolName={schoolInputValue}
 		onFilterSet={() => {
-			setParameter('school', schoolInputValue);
-			setParameter('class', classInputValue);
+			setParameters({
+				school: schoolInputValue,
+				class: classInputValue
+			});
 		}}
 	/>
 

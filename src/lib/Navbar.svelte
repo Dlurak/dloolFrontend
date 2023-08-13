@@ -20,12 +20,19 @@
 	});
 </script>
 
-<nav bind:clientHeight={height}>
+<nav
+	bind:clientHeight={height}
+	class="flex justify-between items-center gap-8 px-4 h-10 md:px-8 md:h-12"
+>
 	<Logo />
-	<div id="items" class:mobileVisible={isHamburgerOpened}>
-		<ul id="linkList">
+	<div
+		class="md:flex md:flex-row flex-col gap-4 p-0 md:static md:inset-0 fixed top-10 bottom-0 right-0 m-0 md:w-max w-[70%] bg-light-background dark:bg-dark-background md:bg-transparent z-50 {isHamburgerOpened
+			? 'flex'
+			: 'hidden'}"
+	>
+		<ul id="linkList" class="flex flex-col md:flex-row gap-4 p-0">
 			{#each navData as navDataEntry}
-				<li>
+				<li class="w-full md:w-auto">
 					<TextOrIconLink
 						show={navDataEntry.showInNav}
 						boxIcon={navDataEntry.navBoxIcon}
@@ -37,94 +44,10 @@
 		</ul>
 		<LanguageSwitcher />
 	</div>
-	<div id="hamburgerWrapper">
+	<div
+		id="hamburgerWrapper"
+		class="p-0 m-0 aspect-square h-full flex items-center justify-center md:hidden"
+	>
 		<HamburgerButton bind:isOpened={isHamburgerOpened} />
 	</div>
 </nav>
-
-<style>
-	nav {
-		height: 3rem;
-
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		gap: 2rem;
-
-		padding-inline: 2rem;
-	}
-
-	#items {
-		display: flex;
-
-		gap: 1rem;
-
-		padding: 0;
-	}
-
-	ul {
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-
-		padding: 0;
-
-		list-style-type: none;
-	}
-
-	@media only screen and (max-width: 768px) {
-		/* Small Screens */
-		nav {
-			padding-inline: 1rem;
-			height: 2.5rem;
-		}
-		#items:not(.mobileVisible) {
-			display: none;
-		}
-
-		#hamburgerWrapper {
-			padding: 0;
-			margin: 0;
-			aspect-ratio: 1;
-			height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.mobileVisible {
-			position: fixed;
-			top: 2.5rem; /* The height of the navbar */
-			bottom: 0;
-			right: 0;
-
-			margin: 0;
-
-			width: 70%;
-
-			display: flex;
-			flex-direction: column;
-
-			background-color: var(--background);
-
-			z-index: 999;
-		}
-
-		#linkList {
-			display: flex;
-			flex-direction: column;
-		}
-
-		li {
-			width: 100%;
-		}
-	}
-
-	@media only screen and (min-width: 768px) {
-		/* Large Screens */
-		#hamburgerWrapper {
-			display: none;
-		}
-	}
-</style>

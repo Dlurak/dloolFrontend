@@ -8,11 +8,18 @@ export const loadSchools = async (query: string) => {
 		(res) => res.json()
 	);
 
-	const schools: { _id: string, name: string, description: string, uniqueName: string, timezoneOffset: number, classes: string[] }[] = (await data).data.schools;
-	
+	const schools: {
+		_id: string;
+		name: string;
+		description: string;
+		uniqueName: string;
+		timezoneOffset: number;
+		classes: string[];
+	}[] = (await data).data.schools;
+
 	const mappedSchools = schools.map((school) => {
-		return { name: school.name }
-	})
+		return { name: school.name };
+	});
 
 	return mappedSchools;
 };

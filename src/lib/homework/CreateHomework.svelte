@@ -1,15 +1,15 @@
 <script lang="ts">
-	import DatePicker from './DatePicker.svelte';
+	import DatePicker from '../dates/DatePicker.svelte';
 
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import { getWeekdayByDate } from '$lib/dates/dataWeekday';
 	import { i } from '@inlang/sdk-js';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 
-	export let preSubmit: (e: Event) => void = () => {
+	export let postSubmit: (e: Event) => void = () => {
 		return;
 	};
 
@@ -92,7 +92,7 @@
 
 			assignments = [];
 
-			preSubmit(e);
+			postSubmit(e);
 		}}
 	>
 		<h3>

@@ -25,6 +25,9 @@ export default {
 					link: '#0c88f7'
 				},
 				'form-box-background': 'hsla(0, 0%, 5%, 0.2)'
+			},
+			gridTemplateColumns: {
+				'box-list': 'repeat(auto-fill, minmax(20rem, 1fr))'
 			}
 		}
 	},

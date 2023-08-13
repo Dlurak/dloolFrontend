@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getWeekdayByDate } from '$lib/dataWeekday';
+	import { getWeekdayByDate } from '$lib/dates/dataWeekday';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 	import { i } from '@inlang/sdk-js';

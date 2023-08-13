@@ -19,24 +19,14 @@
 	});
 </script>
 
-<input type="submit" {value} {disabled} on:click={onClick} bind:this={buttonElement} />
+<input type="submit" {value} {disabled} on:click={onClick} bind:this={buttonElement} class="rounded-md bg-green-600 text-white p-1 cursor-pointer w-full capitalize" />
 
 <style>
 	input[type='submit'] {
-		border: none;
-		border-radius: 0.4rem;
-		background-color: green;
-		color: white;
-		padding: 0.25rem;
-		cursor: pointer;
-
-		width: 100%;
-
 		margin-top: var(--margin-top);
 
 		box-shadow: 0 0 2rem black;
 
-		text-transform: capitalize;
 		transition: all var(--transition-timing-function) var(--transition-timing);
 	}
 

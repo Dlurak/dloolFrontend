@@ -23,7 +23,8 @@ export default {
 					error: 'lightcoral',
 					success: 'lightgreen',
 					link: '#0c88f7'
-				}
+				},
+				'form-box-background': 'hsla(0, 0%, 5%, 0.2)'
 			}
 		}
 	},

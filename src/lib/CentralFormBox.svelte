@@ -15,7 +15,7 @@
 >
 	<h3>{title}</h3>
 
-	<form on:submit={onSubmit} class="fflex flex-col gap-2 mb-4">
+	<form on:submit={onSubmit} class="flex flex-col gap-2 mb-4">
 		<slot />
 	</form>
 

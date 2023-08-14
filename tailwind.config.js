@@ -28,6 +28,9 @@ export default {
 			},
 			gridTemplateColumns: {
 				'box-list': 'repeat(auto-fill, minmax(20rem, 1fr))'
+			},
+			screens: {
+				print: { raw: 'print' }
 			}
 		}
 	},

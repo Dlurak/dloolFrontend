@@ -4,10 +4,13 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { getWeekdayByDate } from '$lib/dates/dataWeekday';
 	import { i } from '@inlang/sdk-js';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
+	import Box from './Box.svelte';
+	import DateLabel from '$lib/dates/dateLabel.svelte';
+	import type { CustomDate } from '../../types/customDate';
+	import type { Assignment } from '../../types/homework';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -21,21 +24,9 @@
 	let newDescription = '';
 	let newDate = getDateInInputFormat(new Date(currentDate.getTime() + 24 * 60 * 60 * 1000));
 
-	let assignedAtDateObj: {
-		day: number;
-		month: number;
-		year: number;
-	};
+	let assignedAtDateObj: CustomDate;
 
-	let assignments: {
-		subject: string;
-		description: string;
-		due: {
-			year: number;
-			month: number;
-			day: number;
-		};
-	}[] = [];
+	let assignments: Assignment[] = [];
 
 	let newAssignmentButtonDisabled = false;
 	let submitButtonDisabled = false;
@@ -71,7 +62,7 @@
 	}
 </script>
 
-<div class="box">
+<Box hideOnPrint>
 	<form
 		on:submit={(e) => {
 			e.preventDefault();
@@ -95,37 +86,40 @@
 			postSubmit(e);
 		}}
 	>
-		<h3>
+		<h3 class="mb-4">
 			<DatePicker bind:dateObj={assignedAtDateObj} />
 		</h3>
-		<div id="assignments">
-			<ul id="assignments-list">
+		<div>
+			<ul>
 				{#each assignments as assignment}
 					<li>
-						<span class="first-row">
+						<span class="flex flex-row gap-2 items-center justify-start">
 							<h4>{assignment.subject}</h4>
 							<p>
-								{getWeekdayByDate(assignment.due)}
-								{assignment.due.day}.{assignment.due.month}.{assignment.due.year}
+								<DateLabel date={assignment.due} />
 							</p>
 						</span>
-						<p class="description">{assignment.description}</p>
+						<p>{assignment.description}</p>
 					</li>
 				{/each}
 
-				<li id="add-item">
-					<div class="first-row">
+				{#if assignments.length !== 0}
+					<hr />
+				{/if}
+
+				<li class="flex flex-col gap-2">
+					<div class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-2">
 						<input type="text" placeholder={i('homework.add.subject')} bind:value={newSubject} />
-						<span class="dateWrapper">
+						<span class="w-max outline-1 outline-gray-400 outline">
 							<DatePicker bind:date={newDate} />
 						</span>
 					</div>
-					<span class="second-row">
+					<div class="flex gap-2">
 						<input
 							type="text"
 							placeholder={i('homework.add.description')}
 							bind:value={newDescription}
-							class="description-input"
+							class="w-full"
 						/>
 						<SubmitButton
 							value="+"
@@ -134,78 +128,15 @@
 							topMargin="0"
 							width="50%"
 						/>
-					</span>
+					</div>
 				</li>
 			</ul>
 		</div>
-
 		<SubmitButton value={i('homework.add.submit')} disabled={submitButtonDisabled} />
 	</form>
-</div>
+</Box>
 
 <style>
-	.box {
-		padding: 1rem;
-		border-radius: 1rem;
-		background-color: var(--bg);
-	}
-
-	.first-row {
-		display: flex;
-		flex-direction: row;
-		gap: 0.5rem;
-		align-items: center;
-		justify-content: start;
-	}
-
-	li .first-row {
-		align-items: start;
-	}
-
-	li .first-row * {
-		margin-top: 0;
-	}
-
-	li p {
-		margin-block: 0;
-	}
-
-	li h4 {
-		margin-bottom: 0.75rem;
-	}
-
-	#add-item {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	#add-item .first-row {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-	}
-
-	#add-item .second-row {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	#assignments-list {
-		padding: 0;
-		list-style-type: none;
-	}
-	#assignments-list li:not(:last-child)::after {
-		content: '';
-		display: inline-block;
-		height: 0.125rem;
-		width: 100%;
-		border-radius: 100vmax;
-
-		background-color: var(--text);
-
-		margin-block: 0.5rem;
-	}
-
 	input {
 		color: var(--text);
 		background-color: transparent;
@@ -216,15 +147,5 @@
 	}
 	input:focus-visible {
 		outline: 2px solid var(--accent);
-	}
-
-	.description-input {
-		width: 100%;
-	}
-
-	.dateWrapper {
-		width: 100%;
-		outline: 1px solid gray;
-		border-radius: 0.25rem;
 	}
 </style>

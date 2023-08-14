@@ -28,9 +28,11 @@
 		newUrl?.searchParams?.set('school', params.school);
 		newUrl?.searchParams?.set('class', params.class);
 
-		goto(newUrl);
+		console.log(newUrl);
 
-		invalidateAll();
+		goto(newUrl).then(() => {
+			invalidateAll();
+		});
 	}
 
 	onMount(async () => {

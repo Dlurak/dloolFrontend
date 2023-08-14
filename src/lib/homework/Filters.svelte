@@ -13,7 +13,7 @@
 	export let onFilterSet: (school: string, className: string) => void;
 </script>
 
-<Box>
+<Box hideOnPrint>
 	<h3>{i('homework.filters')}</h3>
 
 	<Input type="text" name={i('school')} list="schoolsList" bind:value={schoolName} />

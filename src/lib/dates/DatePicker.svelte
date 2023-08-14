@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getWeekdayByDate } from '$lib/dates/dataWeekday';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 	import { i } from '@inlang/sdk-js';
+	import DateLabel from './dateLabel.svelte';
 
 	const currentDate = new Date();
 
@@ -28,10 +28,7 @@
 		bind:this={dateInput}
 	/>
 	{#if !navigator.userAgent.toLocaleLowerCase().includes('safari')}
-		<p>
-			{getWeekdayByDate(dateObj)}
-			{dateObj.day}.{dateObj.month}.{dateObj.year}
-		</p>
+		<DateLabel date={dateObj} />
 		<button
 			on:click={(e) => {
 				e.preventDefault();
@@ -69,8 +66,5 @@
 		background-color: transparent;
 		color: var(--text);
 		font-size: 1.5rem;
-	}
-	p {
-		margin: 0.125rem;
 	}
 </style>

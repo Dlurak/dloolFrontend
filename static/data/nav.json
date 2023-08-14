@@ -16,11 +16,19 @@
 		"footerCategory": "Authentication"
 	},
 	{
-		"title": "about",
-		"uri": "/about",
+		"title": "homework",
+		"uri": "/homework",
 		"showInNav": true,
+		"navBoxIcon": "bx-book",
+		"showInFooter": true,
+		"footerCategory": "Homework"
+	},
+	{
+		"title": "ical",
+		"uri": "/tricks#ical",
+		"showInNav": false,
 		"navBoxIcon": "",
 		"showInFooter": true,
-		"footerCategory": "About me"
+		"footerCategory": "Tricks"
 	}
 ]

@@ -6,7 +6,7 @@
 	export let height: number;
 </script>
 
-<footer bind:clientHeight={height}>
+<footer bind:clientHeight={height} class="grid print:hidden">
 	<CopyRight />
 	<Contact />
 	<Links />
@@ -19,7 +19,6 @@
 		padding-inline: 1.5rem;
 		padding-block: 1rem;
 
-		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 		gap: 1rem;
 

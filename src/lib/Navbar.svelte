@@ -22,7 +22,7 @@
 
 <nav
 	bind:clientHeight={height}
-	class="flex justify-between items-center gap-8 px-4 h-10 md:px-8 md:h-12"
+	class="flex justify-between items-center gap-8 px-4 h-10 md:px-8 md:h-12 print:hidden"
 >
 	<Logo />
 	<div

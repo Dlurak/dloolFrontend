@@ -67,5 +67,6 @@
 	"settings.name.tooltip": "Das wird Dein neuer Name sein, bitte gebe nicht ",
 	"settings.password": "Passwort",
 	"settings.password.tooltip": "Das wird Dein neues Passwort sein, bitte wähle ein sicheres!",
-	"settings.save": "Speichern"
+	"settings.save": "Speichern",
+	"printing.footer": "Dein kollaboratives Hausaufgabenheft"
 }

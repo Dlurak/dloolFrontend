@@ -67,5 +67,6 @@
 	"settings.name.tooltip": "This will be your new name, please don't use your real name",
 	"settings.password": "Password",
 	"settings.password.tooltip": "This will be your new password, please choose a secure one",
-	"settings.save": "Save"
+	"settings.save": "Save",
+	"printing.footer": "Your collaborative homeworkbook"
 }

@@ -67,5 +67,10 @@
 	"settings.name.tooltip": "Das wird Dein neuer Name sein, bitte gebe nicht ",
 	"settings.password": "Passwort",
 	"settings.password.tooltip": "Das wird Dein neues Passwort sein, bitte wähle ein sicheres!",
-	"settings.save": "Speichern"
+	"settings.save": "Speichern",
+
+	"tricks": "Tricks",
+	"tricks.ical": "iCal",
+	"tricks.ical.copy": "Kopieren",
+	"tricks.ical.copy.success": "Wurde in die Zwischenablage kopiert"
 }

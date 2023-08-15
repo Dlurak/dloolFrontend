@@ -23,10 +23,10 @@
 </script>
 
 <svelte:head>
-    <title>Dlool | Tricks</title>
+	<title>Dlool | {i('tricks')}</title>
 </svelte:head>
 
-<h2>iCal</h2>
+<h2>{i('tricks.ical')}</h2>
 <Box>
 	<div class="flex flex-col">
 		<div class="flex flex-row gap-2">
@@ -34,8 +34,8 @@
 				<Input type="text" name={i('school')} bind:value={school} />
 			</div>
 			<div class="flex flex-col">
-				{#each classes as _, i}
-					<Input type="text" name="Klasse {i + 1}" bind:value={classes[i]} />
+				{#each classes as _, index}
+					<Input type="text" name="{i('class')} {index + 1}" bind:value={classes[index]} />
 				{/each}
 				<button
 					on:click={(e) => {
@@ -50,11 +50,11 @@
 			<!--The clipboard API is only avialable with a secure origin-->
 			{#if clipboardIsAvailable}
 				<SubmitButton
-					value="Copy"
+					value={i('tricks.ical.copy')}
 					onClick={(e) => {
 						e.preventDefault();
 						navigator.clipboard.writeText(resultUrl).then(() => {
-							communicationText = 'Copied to clipboard';
+							communicationText = i('tricks.ical.copy.success');
 						});
 					}}
 				/>
@@ -65,9 +65,3 @@
 	</div>
 	<p class="text-light-success dark:text-dark-success text-center mt-3">{communicationText}</p>
 </Box>
-
-<style>
-	* {
-		outline: 0px solid red;
-	}
-</style>

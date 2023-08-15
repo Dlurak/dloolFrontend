@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PrintingFooter from '$lib/PrintingFooter.svelte';
 	import Contact from './Contact.svelte';
 	import CopyRight from './CopyRight.svelte';
 	import Links from './Links.svelte';
@@ -11,6 +12,7 @@
 	<Contact />
 	<Links />
 </footer>
+<PrintingFooter />
 
 <style>
 	footer {

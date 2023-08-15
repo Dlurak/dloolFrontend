@@ -15,11 +15,16 @@
 
 	let communicationText = '';
 
+	let disabled = true;
+
 	onMount(() => {
 		clipboardIsAvailable = navigator.clipboard !== undefined;
 	});
 
 	$: resultUrl = `${PUBLIC_API_URL}/homework/ical/${school}?classes=${classes.join(',')}`;
+	$: {
+		disabled = school === '' || classes.some((c) => c === '');
+	}
 </script>
 
 <svelte:head>
@@ -57,6 +62,7 @@
 							communicationText = i('tricks.ical.copy.success');
 						});
 					}}
+					{disabled}
 				/>
 			{:else}
 				<code class="mt-3">{resultUrl}</code>

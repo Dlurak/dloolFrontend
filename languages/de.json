@@ -68,5 +68,9 @@
 	"settings.password": "Passwort",
 	"settings.password.tooltip": "Das wird Dein neues Passwort sein, bitte wähle ein sicheres!",
 	"settings.save": "Speichern",
-	"printing.footer": "Dein kollaboratives Hausaufgabenheft"
+	"printing.footer": "Dein kollaboratives Hausaufgabenheft",
+	"tricks": "Tricks",
+	"tricks.ical": "iCal",
+	"tricks.ical.copy": "Kopieren",
+	"tricks.ical.copy.success": "Wurde in die Zwischenablage kopiert"
 }

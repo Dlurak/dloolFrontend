@@ -68,5 +68,9 @@
 	"settings.password": "Password",
 	"settings.password.tooltip": "This will be your new password, please choose a secure one",
 	"settings.save": "Save",
-	"printing.footer": "Your collaborative homeworkbook"
+	"printing.footer": "Your collaborative homeworkbook",
+	"tricks": "Tricks",
+	"tricks.ical": "iCal",
+	"tricks.ical.copy": "Copy",
+	"tricks.ical.copy.success": "Copied to clipboard"
 }

@@ -7,8 +7,8 @@
 
 	const currentDate = new Date();
 
-	export let date = getDateInInputFormat(currentDate);
 	export let dateObj: CustomDate = createDate(currentDate);
+	export let date = getDateInInputFormat(new Date(dateObj.year, dateObj.month - 1, dateObj.day));
 
 	let dateInput: HTMLInputElement;
 

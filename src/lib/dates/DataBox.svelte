@@ -12,13 +12,15 @@
 	export let assignments: Assignment[];
 	export let id: string;
 
+	export let postUpdate: () => void = () => {};
+
 	let editButtonIsFocused = false;
 
 	let editMode = false;
 
 	// EDIT MODE THINGS //
 
-	let newDate: CustomDate;
+	let newDate = date;
 	let newAssignments: Assignment[] = assignments;
 	let disabled = false;
 
@@ -28,6 +30,8 @@
 		});
 		disabled = !allFilled;
 	}
+
+	$: console.log(newDate);
 </script>
 
 <Box hideOnPrint={editMode}>
@@ -96,16 +100,9 @@
 			onClick={() => {
 				editMode = false;
 
-				console.log(
-					JSON.stringify({
-						from: newDate,
-						assignments: newAssignments
-					})
-				);
-
 				const url = `${PUBLIC_API_URL}/homework/${id}`;
 
-				const thing = fetch(url, {
+				fetch(url, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
@@ -115,15 +112,7 @@
 						from: newDate,
 						assignments: newAssignments
 					})
-				});
-				thing
-					.then((res) => {
-						console.log(res);
-						return res.json();
-					})
-					.then((data) => {
-						console.log(data);
-					});
+				}).then(() => postUpdate());
 			}}
 		/>
 	{/if}

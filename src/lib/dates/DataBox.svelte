@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { json } from '@sveltejs/kit';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import Box from '../homework/Box.svelte';
@@ -8,19 +10,31 @@
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
+	export let id: string;
 
 	let editButtonIsFocused = false;
 
 	let editMode = false;
 
-	$: console.log(assignments);
+	// EDIT MODE THINGS //
+
+	let newDate: CustomDate;
+	let newAssignments: Assignment[] = assignments;
+	let disabled = false;
+
+	$: {
+		const allFilled = newAssignments.every((assignment) => {
+			return assignment.subject && assignment.description;
+		});
+		disabled = !allFilled;
+	}
 </script>
 
-<Box>
+<Box hideOnPrint={editMode}>
 	<div class="flex justify-between items-center">
 		<h3>
 			{#if editMode}
-				<DatePicker />
+				<DatePicker bind:dateObj={newDate} />
 			{:else}
 				<DateLabel {date} />
 			{/if}
@@ -40,38 +54,78 @@
 	</div>
 
 	<ul class="list-none p-0">
-		{#each assignments as assignment}
-			<li class="flex flex-row">
-				<div class="w-full">
-					<span class="flex flex-row items-center justify-start gap-2 my-2">
-						{#if editMode}
+		{#if editMode}
+			{#each newAssignments as assignment}
+				<li class="flex flex-row">
+					<div class="w-full">
+						<span class="flex flex-row items-center justify-start gap-2 my-2">
 							<div class="flex flex-row w-full gap-2">
 								<input type="text" bind:value={assignment.subject} class="w-full" />
 								<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
 									<DatePicker bind:dateObj={assignment.due} />
 								</span>
 							</div>
-						{:else}
+						</span>
+
+						<input type="text" bind:value={assignment.description} class="w-full" />
+					</div>
+				</li>
+			{/each}
+		{:else}
+			{#each assignments as assignment}
+				<li class="flex flex-row">
+					<div class="w-full">
+						<span class="flex flex-row items-center justify-start gap-2 my-2">
 							<h4>{assignment.subject}</h4>
 							<DateLabel date={assignment.due} />
-						{/if}
-					</span>
-
-					{#if editMode}
-						<input type="text" bind:value={assignment.description} class="w-full" />
-					{:else}
+						</span>
 						<p class="my-2">{assignment.description}</p>
-					{/if}
-				</div>
-				<div class="hidden print:flex items-start">
-					<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
-				</div>
-			</li>
-		{/each}
+					</div>
+					<div class="hidden print:flex items-start">
+						<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
+					</div>
+				</li>
+			{/each}
+		{/if}
 	</ul>
 
 	{#if editMode}
-		<SubmitButton value="Update" />
+		<SubmitButton
+			value="Update"
+			{disabled}
+			onClick={() => {
+				editMode = false;
+
+				console.log(
+					JSON.stringify({
+						from: newDate,
+						assignments: newAssignments
+					})
+				);
+
+				const url = `${PUBLIC_API_URL}/homework/${id}`;
+
+				const thing = fetch(url, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${localStorage.getItem('token')}`
+					},
+					body: JSON.stringify({
+						from: newDate,
+						assignments: newAssignments
+					})
+				});
+				thing
+					.then((res) => {
+						console.log(res);
+						return res.json();
+					})
+					.then((data) => {
+						console.log(data);
+					});
+			}}
+		/>
 	{/if}
 </Box>
 

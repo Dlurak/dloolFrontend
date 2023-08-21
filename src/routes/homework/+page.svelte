@@ -79,6 +79,7 @@
 				assignments={homework.assignments}
 				id={homework.id}
 				postUpdate={reload}
+				validUser={userIsMemberOfClass}
 			/>
 		{/each}
 	{/if}

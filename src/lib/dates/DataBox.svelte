@@ -26,10 +26,7 @@
 	let newAssignments: Assignment[] = assignments;
 	let disabled = false;
 
-	let isLoggedInBool = false;
-	onMount(() => {
-		isLoggedInBool = isLoggedIn();
-	});
+	export let validUser: boolean;
 
 	$: {
 		const allFilled = newAssignments.every((assignment) => {
@@ -50,7 +47,7 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
-		{#if isLoggedInBool}
+		{#if validUser}
 			<button
 				class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
 				on:focus={() => {

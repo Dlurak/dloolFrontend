@@ -7,6 +7,8 @@
 	import Box from '../homework/Box.svelte';
 	import DatePicker from './DatePicker.svelte';
 	import DateLabel from './dateLabel.svelte';
+	import { onMount } from 'svelte';
+	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -23,6 +25,11 @@
 	let newDate = date;
 	let newAssignments: Assignment[] = assignments;
 	let disabled = false;
+
+	let isLoggedInBool = false;
+	onMount(() => {
+		isLoggedInBool = isLoggedIn();
+	});
 
 	$: {
 		const allFilled = newAssignments.every((assignment) => {
@@ -43,18 +50,20 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
-		<button
-			class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
-			on:focus={() => {
-				editButtonIsFocused = true;
-			}}
-			on:blur={() => {
-				editButtonIsFocused = false;
-			}}
-			on:click={() => {
-				editMode = !editMode;
-			}}
-		/>
+		{#if isLoggedInBool}
+			<button
+				class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
+				on:focus={() => {
+					editButtonIsFocused = true;
+				}}
+				on:blur={() => {
+					editButtonIsFocused = false;
+				}}
+				on:click={() => {
+					editMode = !editMode;
+				}}
+			/>
+		{/if}
 	</div>
 
 	<ul class="list-none p-0">

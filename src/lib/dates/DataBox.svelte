@@ -6,10 +6,23 @@
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
+
+	let editButtonIsFocused = false;
 </script>
 
 <Box>
-	<h3><DateLabel {date} /></h3>
+	<div class="flex justify-between items-center">
+		<h3><DateLabel {date} /></h3>
+		<button
+			class="p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
+			on:focus={() => {
+				editButtonIsFocused = true;
+			}}
+			on:blur={() => {
+				editButtonIsFocused = false;
+			}}
+		/>
+	</div>
 
 	<ul class="list-none p-0">
 		{#each assignments as assignment}

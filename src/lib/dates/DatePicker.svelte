@@ -3,15 +3,12 @@
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 	import { i } from '@inlang/sdk-js';
 	import DateLabel from './dateLabel.svelte';
+	import type { CustomDate } from '../../types/customDate';
 
 	const currentDate = new Date();
 
-	export let date = getDateInInputFormat(currentDate);
-	export let dateObj: {
-		day: number;
-		month: number;
-		year: number;
-	} = createDate(currentDate);
+	export let dateObj: CustomDate = createDate(currentDate);
+	export let date = getDateInInputFormat(new Date(dateObj.year, dateObj.month - 1, dateObj.day));
 
 	let dateInput: HTMLInputElement;
 

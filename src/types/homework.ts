@@ -14,8 +14,12 @@ export interface Homework {
 	assignments: Assignment[];
 }
 
+export interface HomeworkWithId extends Homework {
+	id: string;
+}
+
 export interface HomeworkResponse {
 	status: 'success';
 	message: 'Homework found';
-	data: Homework[];
+	data: HomeworkWithId[];
 }

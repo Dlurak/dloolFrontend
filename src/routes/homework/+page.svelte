@@ -74,7 +74,12 @@
 		{/if}
 
 		{#each data.data as homework}
-			<DataBox date={homework.from} assignments={homework.assignments} />
+			<DataBox
+				date={homework.from}
+				assignments={homework.assignments}
+				id={homework.id}
+				postUpdate={reload}
+			/>
 		{/each}
 	{/if}
 </div>

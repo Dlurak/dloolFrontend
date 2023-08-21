@@ -22,16 +22,19 @@
 
 	let isLoggedInBool = false;
 
+	const reload = () => {
+		invalidateAll();
+		data = data;
+	};
+
 	function setParameters(params: { school: string; class: string }) {
 		const newUrl = new URL($page.url);
 
 		newUrl?.searchParams?.set('school', params.school);
 		newUrl?.searchParams?.set('class', params.class);
 
-		console.log(newUrl);
-
 		goto(newUrl).then(() => {
-			invalidateAll();
+			reload();
 		});
 	}
 
@@ -65,7 +68,7 @@
 		{#if isLoggedInBool && userIsMemberOfClass}
 			<CreateHomework
 				postSubmit={() => {
-					invalidateAll();
+					reload();
 				}}
 			/>
 		{/if}

@@ -27,7 +27,7 @@
 	{disabled}
 	on:click={onClick}
 	bind:this={buttonElement}
-	class="rounded-md bg-{colour}-600 text-white p-1 cursor-pointer w-full capitalize"
+	class="rounded-md {colour} text-white p-1 cursor-pointer w-full capitalize"
 />
 
 <style>
@@ -55,5 +55,11 @@
 		opacity: 0.7;
 		box-shadow: none;
 		cursor: not-allowed;
+	}
+	.green {
+		background-color: rgb(22, 163, 74);
+	}
+	.red {
+		background-color: rgb(220, 38, 38);
 	}
 </style>

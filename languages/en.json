@@ -79,7 +79,6 @@
 	"request.status.pending": "Pending",
 	"request.status.rejected": "Rejected",
 	"request.status.noData": "There is no data",
-
 	"request.list.title": "Your requests",
 	"request.list.noData": "There are not requests to show",
 	"request.list.wantsToJoin": "Wants to join",

@@ -6,6 +6,7 @@ export const load = async ({ fetch, url }) => {
 
 	const rawData = await fetch(newUrl).then((res) => res.json());
 
+	if (rawData.status === 'error') return undefined;
 	// map data.data[]._id to data.data[].id
 	const data = rawData.data.map((homework: HomeworkWithMongoId) => {
 		homework.id = homework._id as string;

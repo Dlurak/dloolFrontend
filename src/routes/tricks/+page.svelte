@@ -40,7 +40,7 @@
 			</div>
 			<div class="flex flex-col">
 				{#each classes as _, index}
-					<Input type="text" name="{i('class')} {index + 1}" bind:value={classes[index]} />
+					<Input type="text" name="{i('class')} {index + 1}" bind:value={_} />
 				{/each}
 				<button
 					on:click={(e) => {

@@ -18,6 +18,11 @@ export interface HomeworkWithId extends Homework {
 	id: string;
 }
 
+export interface HomeworkWithMongoId extends Homework {
+	id: string;
+	_id?: string;
+}
+
 export interface HomeworkResponse {
 	status: 'success';
 	message: 'Homework found';

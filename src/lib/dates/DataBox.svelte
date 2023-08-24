@@ -1,20 +1,19 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { json } from '@sveltejs/kit';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import Box from '../homework/Box.svelte';
 	import DatePicker from './DatePicker.svelte';
 	import DateLabel from './dateLabel.svelte';
-	import { onMount } from 'svelte';
-	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
 	export let id: string;
 
-	export let postUpdate: () => void = () => {};
+	export let postUpdate: () => void = () => {
+		return;
+	};
 
 	let editButtonIsFocused = false;
 

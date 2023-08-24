@@ -21,3 +21,12 @@ export interface RequestResponse {
 	message: 'Request found' | 'Invalid id' | 'Request not found';
 	data?: RequestData;
 }
+
+export interface RequestsData extends RequestData {
+	_id: string;
+}
+export interface RequestsResponse {
+	status: 'success' | 'error';
+	message: string;
+	data?: RequestsData[];
+}

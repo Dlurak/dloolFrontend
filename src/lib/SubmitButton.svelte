@@ -11,6 +11,8 @@
 	export let topMargin = '1rem';
 	export let width = '100%';
 
+	export let colour: 'green' | 'red' = 'green';
+
 	let buttonElement: HTMLElement;
 
 	onMount(() => {
@@ -25,7 +27,7 @@
 	{disabled}
 	on:click={onClick}
 	bind:this={buttonElement}
-	class="rounded-md bg-green-600 text-white p-1 cursor-pointer w-full capitalize"
+	class="rounded-md bg-{colour}-600 text-white p-1 cursor-pointer w-full capitalize"
 />
 
 <style>

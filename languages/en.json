@@ -19,6 +19,7 @@
 	"register.classExistensError": "This class doesn't exist",
 	"register.userCouldNotbeCreatedError": "User could not be created",
 	"register.userCreated": "You are now an user!",
+	"register.requestCreated": "Your request has been created, you will be able to login once your request has been accepted",
 	"register.login": "You can login here",
 	"nav.login": "login",
 	"nav.register": "register",

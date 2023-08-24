@@ -19,6 +19,7 @@
 	"register.classExistensError": "Diese Klasse existiert nicht",
 	"register.userCouldNotbeCreatedError": "Nutzer konnte nicht erstellt werden",
 	"register.userCreated": "Du bist jetzt ein Nutzer!",
+	"register.requestCreated": "Deine Anfrage wurde erstellt, du kannst dich einloggen sobald sie akzeptiert wurde.",
 	"register.login": "Du kannst dich hier einloggen",
 	"nav.login": "Einloggen",
 	"nav.register": "Registrieren",

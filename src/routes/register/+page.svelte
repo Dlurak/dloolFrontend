@@ -104,9 +104,13 @@
 
 					errorText = errorTextesObj[obj.error] || i('error');
 					successText = '';
-				} else if (obj.status === 'success') {
+				} else if (obj.message === 'User created') {
 					successText = i('register.userCreated');
 					errorText = '';
+				} else if (obj.message === 'Successfully created request') {
+					successText = i('register.requestCreated');
+					errorText = '';
+					localStorage.setItem('registerRequest', obj.data.id);
 				} else {
 					errorText = i('error');
 				}

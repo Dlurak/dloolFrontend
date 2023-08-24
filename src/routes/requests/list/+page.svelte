@@ -9,6 +9,7 @@
 	import { getClassById } from '$lib/classes/getClass';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import { invalidateAll } from '$app/navigation';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: RequestsResponse;
 
@@ -32,10 +33,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Dlool | {i('request.list.title')}</title>
+</svelte:head>
+
 {#if !data.data}
-	<p>There are no requests to show.</p>
+	<p>{i('request.list.noData')}</p>
 {:else if data.data.length === 0}
-	<p>There are no requests to show.</p>
+	<p>{i('request.list.noData')}</p>
 {:else}
 	<div class="grid grid-cols-box-list w-full gap-4">
 		{#each data.data as req}
@@ -51,7 +56,7 @@
 						</div>
 						<hr />
 						<div>
-							Wants to join
+							{i('request.list.wantsToJoin')}
 							{#await getClassById(req.classId)}
 								...
 							{:then classData}
@@ -61,7 +66,7 @@
 						<hr />
 						<div>
 							{#if req.userDetails.acceptedClasses.length !== 0}
-								<p>Accepted in:</p>
+								<p>{i('request.list.acceptedIn')}</p>
 								<ul class="list-disc pl-6">
 									{#each req.userDetails.acceptedClasses as classId}
 										<li>
@@ -74,21 +79,21 @@
 									{/each}
 								</ul>
 							{:else}
-								<p>This user isn't accepted in any class</p>
+								<p>{i('request.list.accepted.none')}</p>
 							{/if}
 						</div>
 						<hr />
 					</div>
 					<div>
 						<SubmitButton
-							value="Accept"
+							value={i('request.list.accept')}
 							onClick={(e) => {
 								e.preventDefault();
 								processRequest('accept', req._id);
 							}}
 						/>
 						<SubmitButton
-							value="Reject"
+							value={i('request.list.reject')}
 							onClick={(e) => {
 								e.preventDefault();
 								processRequest('reject', req._id);

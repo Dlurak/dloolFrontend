@@ -78,5 +78,13 @@
 	"request.status.accepted": "Akzeptiert",
 	"request.status.pending": "Ausstehend",
 	"request.status.rejected": "Abgelehnt",
-	"request.status.noData": "Es gibt keine Daten"
+	"request.status.noData": "Es gibt keine Daten",
+
+	"request.list.title": "Deine Anfragen",
+	"request.list.noData": "Es gibt keine Anfragen für dich",
+	"request.list.wantsToJoin": "Möchte der folgenden Klasse beitreten:",
+	"request.list.acceptedIn": "Akzeptiert in:",
+	"request.list.accepted.none": "Dieser Nutzer ist in keiner Klasse",
+	"request.list.accept": "Akzeptieren",
+	"request.list.reject": "Ablehnen"
 }

@@ -78,5 +78,13 @@
 	"request.status.accepted": "Accepted",
 	"request.status.pending": "Pending",
 	"request.status.rejected": "Rejected",
-	"request.status.noData": "There is no data"
+	"request.status.noData": "There is no data",
+
+	"request.list.title": "Your requests",
+	"request.list.noData": "There are not requests to show",
+	"request.list.wantsToJoin": "Wants to join",
+	"request.list.acceptedIn": "Accepted in:",
+	"request.list.accepted.none": "This user isn't accepted in any class",
+	"request.list.accept": "Accept",
+	"request.list.reject": "Reject"
 }

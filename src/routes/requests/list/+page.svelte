@@ -7,8 +7,25 @@
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import { createDateFromTimestamp } from '$lib/dates/createDateObject';
 	import { getClassById } from '$lib/classes/getClass';
+	import { PUBLIC_API_URL } from '$env/static/public';
+	import { invalidateAll } from '$app/navigation';
 
 	export let data: RequestsResponse;
+
+	const reload = () => {
+		invalidateAll();
+		data = data;
+	};
+
+	const processRequest = (operation: 'accept' | 'reject', id: string) => {
+		const uri = `/auth/requests/${id}/${operation}`;
+		fetch(PUBLIC_API_URL + uri, {
+			method: 'PATCH',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`
+			}
+		}).then(reload);
+	};
 
 	onMount(() => {
 		if (!isLoggedIn()) window.location.href = '/login?redirect=/requests/list?status=p';
@@ -67,16 +84,16 @@
 							value="Accept"
 							onClick={(e) => {
 								e.preventDefault();
+								processRequest('accept', req._id);
 							}}
-							disabled
 						/>
 						<SubmitButton
 							value="Reject"
 							onClick={(e) => {
 								e.preventDefault();
+								processRequest('reject', req._id);
 							}}
 							colour="red"
-							disabled
 						/>
 					</div>
 				</div>

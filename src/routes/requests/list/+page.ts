@@ -10,7 +10,7 @@ export const load = async ({ fetch }) => {
 
 		if (!loggedIn) return null;
 
-		const uri = '/auth/requests';
+		const uri = '/auth/requests?status=p';
 		const url = PUBLIC_API_URL + uri;
 		const response: RequestsResponse = await fetch(url, {
 			headers: {

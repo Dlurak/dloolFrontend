@@ -73,5 +73,10 @@
 	"tricks": "Tricks",
 	"tricks.ical": "iCal",
 	"tricks.ical.copy": "Copy",
-	"tricks.ical.copy.success": "Copied to clipboard"
+	"tricks.ical.copy.success": "Copied to clipboard",
+	"request.status.status": "The status of your request",
+	"request.status.accepted": "Accepted",
+	"request.status.pending": "Pending",
+	"request.status.rejected": "Rejected",
+	"request.status.noData": "There is no data"
 }

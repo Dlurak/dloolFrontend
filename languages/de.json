@@ -73,5 +73,10 @@
 	"tricks": "Tricks",
 	"tricks.ical": "iCal",
 	"tricks.ical.copy": "Kopieren",
-	"tricks.ical.copy.success": "Wurde in die Zwischenablage kopiert"
+	"tricks.ical.copy.success": "Wurde in die Zwischenablage kopiert",
+	"request.status.status": "Der Status deiner Anfrage",
+	"request.status.accepted": "Akzeptiert",
+	"request.status.pending": "Ausstehend",
+	"request.status.rejected": "Abgelehnt",
+	"request.status.noData": "Es gibt keine Daten"
 }

@@ -52,6 +52,10 @@
 	"homework.add.subject": "Fach",
 	"homework.add.description": "Aufgabenstellung",
 	"homework.add.submit": "Hinzufügen",
+
+	"homework.delete": "Löschen",
+	"homework.delete.confirm": "Bist du dir sicher, dass du diese Hausaufgabe löschen möchtest?",
+
 	"datepicker.selectDate": "Datum auswählen",
 	"footer.liscence.text": "Lizensiert unter der GNU General Public License Version 2",
 	"footer.contact": "Kontakt",

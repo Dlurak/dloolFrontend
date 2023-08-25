@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { i } from '@inlang/sdk-js';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import Box from '../homework/Box.svelte';
@@ -34,7 +35,8 @@
 		disabled = !allFilled;
 	}
 
-	$: console.log(newDate);
+	// DELETION THINGS //
+	let deleteButtonIsFocused = false;
 </script>
 
 <Box hideOnPrint={editMode}>
@@ -46,19 +48,49 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
+
 		{#if validUser}
-			<button
-				class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
-				on:focus={() => {
-					editButtonIsFocused = true;
-				}}
-				on:blur={() => {
-					editButtonIsFocused = false;
-				}}
-				on:click={() => {
-					editMode = !editMode;
-				}}
-			/>
+			<div>
+				<button
+					class="print:hidden p-3 bx bx{deleteButtonIsFocused ? 's' : ''}-trash"
+					title={i('homework.delete')}
+					on:focus={() => {
+						deleteButtonIsFocused = true;
+					}}
+					on:blur={() => {
+						deleteButtonIsFocused = false;
+					}}
+					on:click={() => {
+						// confirm deletion
+						const confirmed = confirm(i('homework.delete.confirm'));
+						if (!confirmed) return;
+
+						const uri = `/homework/${id}`;
+						const url = PUBLIC_API_URL + uri;
+
+						fetch(url, {
+							method: 'DELETE',
+							headers: {
+								Authorization: `Bearer ${localStorage.getItem('token')}`
+							}
+						}).then(() => {
+							postUpdate();
+						});
+					}}
+				/>
+				<button
+					class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
+					on:focus={() => {
+						editButtonIsFocused = true;
+					}}
+					on:blur={() => {
+						editButtonIsFocused = false;
+					}}
+					on:click={() => {
+						editMode = !editMode;
+					}}
+				/>
+			</div>
 		{/if}
 	</div>
 

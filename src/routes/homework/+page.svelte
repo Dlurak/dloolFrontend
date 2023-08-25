@@ -9,6 +9,7 @@
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import DataBox from '$lib/dates/DataBox.svelte';
 	import type { HomeworkResponse } from '../../types/homework';
+	import { browser } from '$app/environment';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -27,6 +28,13 @@
 		data = data;
 	};
 
+	const reloadIsUserMember = async () => {
+		userIsMemberOfClass = await isUserMember(
+			$page.url.searchParams.get('class') as string,
+			$page.url.searchParams.get('school') as string
+		);
+	};
+
 	function setParameters(params: { school: string; class: string }) {
 		const newUrl = new URL($page.url);
 
@@ -39,11 +47,7 @@
 	}
 
 	onMount(async () => {
-		userIsMemberOfClass = await isUserMember(
-			$page.url.searchParams.get('class') as string,
-			$page.url.searchParams.get('school') as string
-		);
-
+		reloadIsUserMember();
 		isLoggedInBool = isLoggedIn();
 	});
 </script>
@@ -61,6 +65,7 @@
 				school: schoolInputValue,
 				class: classInputValue
 			});
+			reloadIsUserMember();
 		}}
 	/>
 

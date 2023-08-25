@@ -16,6 +16,18 @@ Classical homework books have a lot of problems, also a lot of people use tablet
 
 ---
 
+## Getting started
+
+The easiest way to try Dlool is to visit [the official deployment](https://dlool-frontend.vercel.app/).
+
+If you want to run it locally e.g. for development you can follow the instructions below.
+
+Homeworks will be publicly visible for everyone, this isn't a bug but to prevent bullying. But if you want to create, update or delete homeworks you will need an account for a specific class. You can create one [here](https://dlool-frontend.vercel.app/register). It may happen that somebody from your class is already using Dlool, then they will need to accept your request to sign up for the class. This can be done by going to [this page](https://dlool-frontend.vercel.app/requests/list) and clicking on the accept button.
+
+Once you have your account you can login [here](https://dlool-frontend.vercel.app/login) and create a homework [here](https://dlool-frontend.vercel.app/homeworks/). You can also export your homework as ical [here](https://dlool-frontend.vercel.app/tricks#ical).
+
+When you have any questions, find a bug or have an idea for a feature you can create an issue.
+
 ## Installation
 
 1. Clone this repository

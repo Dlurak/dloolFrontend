@@ -43,13 +43,37 @@
 
 		goto(newUrl).then(() => {
 			reload();
+			if (browser) {
+				localStorage.setItem('school', params.school);
+				localStorage.setItem('class', params.class);
+			}
 		});
 	}
 
 	onMount(async () => {
 		reloadIsUserMember();
 		isLoggedInBool = isLoggedIn();
+
+		const schoolLocalStorage = localStorage.getItem('school');
+		const classLocalStorage = localStorage.getItem('class');
+		const currentSchool = $page.url.searchParams.get('school');
+		const currentClass = $page.url.searchParams.get('class');
+
+		const currentlyValid = currentSchool && currentClass;
+
+		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
+			console.log('Setting parameters');
+			setParameters({
+				school: schoolLocalStorage,
+				class: classLocalStorage
+			});
+			schoolInputValue = schoolLocalStorage;
+			classInputValue = classLocalStorage;
+		}
 	});
+
+	$: missingSchool = !$page.url.searchParams.get('school');
+	$: missingClass = !$page.url.searchParams.get('class');
 </script>
 
 <svelte:head>

@@ -21,7 +21,7 @@
 		clipboardIsAvailable = navigator.clipboard !== undefined;
 	});
 
-	$: resultUrl = `${PUBLIC_API_URL}/homework/ical/${school}?classes=${classes.join(',')}`;
+	$: resultUrl = `${PUBLIC_API_URL}/homework/calendar/${school}?classes=${classes.join(',')}`;
 	$: {
 		disabled = school === '' || classes.some((c) => c === '');
 	}

@@ -16,10 +16,22 @@
 <Box hideOnPrint>
 	<h3>{i('homework.filters')}</h3>
 
-	<Input type="text" name={i('school')} list="schoolsList" bind:value={schoolName} />
+	<Input
+		type="text"
+		name={i('school')}
+		list="schoolsList"
+		bind:value={schoolName}
+		autocomplete="off"
+	/>
 	<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={schoolName} />
 
-	<Input type="text" name={i('class')} list="classesList" bind:value={className} />
+	<Input
+		type="text"
+		name={i('class')}
+		list="classesList"
+		bind:value={className}
+		autocomplete="off"
+	/>
 	<SelectDataList id="classesList" loadFunction={loadClasses} searchParam={schoolName} />
 
 	<SubmitButton

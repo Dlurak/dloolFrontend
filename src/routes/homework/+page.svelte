@@ -47,6 +47,7 @@
 				localStorage.setItem('school', params.school);
 				localStorage.setItem('class', params.class);
 			}
+			reloadIsUserMember();
 		});
 	}
 
@@ -62,7 +63,6 @@
 		const currentlyValid = currentSchool && currentClass;
 
 		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
-			console.log('Setting parameters');
 			setParameters({
 				school: schoolLocalStorage,
 				class: classLocalStorage
@@ -89,12 +89,11 @@
 				school: schoolInputValue,
 				class: classInputValue
 			});
-			reloadIsUserMember();
 		}}
 	/>
 
 	{#if !missingClass && !missingSchool && data?.status === 'success'}
-		{#if isLoggedInBool && userIsMemberOfClass}
+		{#if userIsMemberOfClass}
 			<CreateHomework
 				postSubmit={() => {
 					reload();

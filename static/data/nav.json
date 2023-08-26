@@ -24,8 +24,8 @@
 		"footerCategory": "Homework"
 	},
 	{
-		"title": "ical",
-		"uri": "/tricks#ical",
+		"title": "export",
+		"uri": "/tricks#export",
 		"showInNav": false,
 		"navBoxIcon": "",
 		"showInFooter": true,

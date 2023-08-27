@@ -1,5 +1,26 @@
 <script lang="ts">
 	export let isOpened = false;
+
+	$: {
+		if (isOpened) {
+			const domElements = [
+				document.getElementsByTagName('main')[0],
+				document.getElementsByTagName('footer')[0],
+				document.getElementsByClassName('logo')[0],
+				...document.getElementsByClassName('textOrIconLink')
+			].filter((e) => e !== undefined);
+
+			domElements.forEach((element) => {
+				element.addEventListener(
+					'click',
+					() => {
+						isOpened = false;
+					},
+					{ once: true }
+				);
+			});
+		}
+	}
 </script>
 
 <button
@@ -26,7 +47,7 @@
 		aspect-ratio: 1;
 
 		margin: 0;
-		padding: 0;
+		padding: 0rem;
 
 		display: flex;
 		flex-direction: column;

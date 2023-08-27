@@ -7,32 +7,19 @@
 </script>
 
 {#if show}
-	<a href={uri} {title}>
+	<a
+		href={uri}
+		{title}
+		class="w-full h-full flex gap-2 capitalize items-center p-3 relative justify-center text-center box-border cursor-pointer no-underline dark:text-dark-text text-light-text textOrIconLink"
+	>
+		{title}
 		{#if boxIcon}
 			<i class="bx {boxIcon}" />
-		{:else}
-			{title}
 		{/if}
 	</a>
 {/if}
 
 <style>
-	a {
-		display: inline-block;
-		text-align: center;
-		height: 100%;
-		width: 100%;
-		box-sizing: border-box;
-
-		padding: 0.75rem;
-
-		position: relative;
-
-		text-decoration: none;
-
-		color: var(--text);
-	}
-
 	a::after {
 		content: '';
 		position: absolute;

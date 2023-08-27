@@ -92,25 +92,39 @@
 		<div>
 			<ul>
 				{#each assignments as assignment}
-					<li>
-						<span class="flex flex-row gap-2 items-center justify-start">
-							<h4>{assignment.subject}</h4>
-							<p>
-								<DateLabel date={assignment.due} />
-							</p>
-						</span>
-						<p>{assignment.description}</p>
+					<li class="flex justify-between items-start">
+						<div>
+							<span class="flex flex-row gap-2 items-center justify-start">
+								<h4>{assignment.subject}</h4>
+								<p>
+									<DateLabel date={assignment.due} />
+								</p>
+							</span>
+							<p>{assignment.description}</p>
+						</div>
+						<button
+							class="bx bx-trash text-red-500 dark:text-red-400 p-3"
+							on:click={(e) => {
+								e.preventDefault();
+								assignments = assignments.filter((a) => a !== assignment);
+							}}
+						/>
 					</li>
 				{/each}
 
 				{#if assignments.length !== 0}
-					<hr />
+					<hr class="mb-3" />
 				{/if}
 
 				<li class="flex flex-col gap-2">
-					<div class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-2">
-						<input type="text" placeholder={i('homework.add.subject')} bind:value={newSubject} />
-						<span class="w-max outline-1 outline-gray-400 outline">
+					<div class="flex flex-row items-center justify-start gap-2 my-2">
+						<input
+							type="text"
+							placeholder={i('homework.add.subject')}
+							bind:value={newSubject}
+							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1 bg-transparent text-light-text dark:text-dark-text"
+						/>
+						<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
 							<DatePicker bind:date={newDate} />
 						</span>
 					</div>
@@ -119,7 +133,7 @@
 							type="text"
 							placeholder={i('homework.add.description')}
 							bind:value={newDescription}
-							class="w-full"
+							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1 bg-transparent text-light-text dark:text-dark-text"
 						/>
 						<SubmitButton
 							value="+"
@@ -137,15 +151,15 @@
 </Box>
 
 <style>
-	input {
+	/* input {
 		color: var(--text);
 		background-color: transparent;
 		border: none;
-		border-radius: 0.25rem;
+		border-radius: 0.125rem;
 		padding: 0.125rem;
 		outline: 1px solid gray;
-	}
-	input:focus-visible {
+	} */
+	/* input:focus-visible {
 		outline: 2px solid var(--accent);
-	}
+	} */
 </style>

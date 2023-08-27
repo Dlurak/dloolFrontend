@@ -52,7 +52,9 @@
 		{#if validUser}
 			<div>
 				<button
-					class="print:hidden p-3 bx bx{deleteButtonIsFocused ? 's' : ''}-trash"
+					class="print:hidden p-3 bx bx{deleteButtonIsFocused
+						? 's'
+						: ''}-trash text-red-500 dark:text-red-400"
 					title={i('homework.delete')}
 					on:focus={() => {
 						deleteButtonIsFocused = true;
@@ -79,7 +81,7 @@
 					}}
 				/>
 				<button
-					class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit"
+					class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
 					on:focus={() => {
 						editButtonIsFocused = true;
 					}}

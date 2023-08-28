@@ -30,5 +30,13 @@
 		"navBoxIcon": "",
 		"showInFooter": true,
 		"footerCategory": "Tricks"
+	},
+	{
+		"title": "install",
+		"uri": "/tricks#install",
+		"showInNav": false,
+		"navBoxIcon": "",
+		"showInFooter": true,
+		"footerCategory": "Tricks"
 	}
 ]

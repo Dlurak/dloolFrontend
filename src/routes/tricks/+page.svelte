@@ -36,66 +36,75 @@
 	<title>Dlool | {i('tricks')}</title>
 </svelte:head>
 
-<h2 id="export">{i('tricks.export')}</h2>
-<Box>
-	<div>
-		<select
-			class="bg-transparent w-full rounded-md border-2 border-gray-400 p-4"
-			bind:value={resultType}
-		>
-			<option value="calendar">iCal</option>
-			<option value="todo">Todo.txt</option>
-		</select>
-	</div>
-	<div class="flex flex-col">
-		<div class="flex flex-row gap-2">
-			<div class="flex flex-col justify-start">
-				<Input
-					type="text"
-					name={i('school')}
-					bind:value={school}
-					autocomplete="off"
-					list="schoolsList"
-				/>
-				<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
-			</div>
-			<div class="flex flex-col">
-				{#each classes as _, index}
+<div class="flex gap-4 flex-col">
+	<Box>
+		<h2 id="export">{i('tricks.export')}</h2>
+		<div>
+			<select
+				class="bg-transparent w-full rounded-md border-2 border-gray-400 p-4"
+				bind:value={resultType}
+			>
+				<option value="calendar">iCal</option>
+				<option value="todo">Todo.txt</option>
+			</select>
+		</div>
+		<div class="flex flex-col">
+			<div class="flex flex-row gap-2">
+				<div class="flex flex-col justify-start">
 					<Input
 						type="text"
-						name="{i('class')} {index + 1}"
-						bind:value={_}
+						name={i('school')}
+						bind:value={school}
 						autocomplete="off"
-						list="classList"
+						list="schoolsList"
 					/>
-				{/each}
-				<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
-				<button
-					on:click={(e) => {
-						e.preventDefault();
-						classes.push('');
-						classes = classes;
-					}}>+</button
-				>
+					<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
+				</div>
+				<div class="flex flex-col">
+					{#each classes as _, index}
+						<Input
+							type="text"
+							name="{i('class')} {index + 1}"
+							bind:value={_}
+							autocomplete="off"
+							list="classList"
+						/>
+					{/each}
+					<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
+					<button
+						on:click={(e) => {
+							e.preventDefault();
+							classes.push('');
+							classes = classes;
+						}}>+</button
+					>
+				</div>
+			</div>
+			<div class="flex flex-row justify-between items-center">
+				<!--The clipboard API is only avialable with a secure origin-->
+				{#if clipboardIsAvailable}
+					<SubmitButton
+						value={i('tricks.export.copy')}
+						onClick={(e) => {
+							e.preventDefault();
+							navigator.clipboard.writeText(resultUrl).then(() => {
+								communicationText = i('tricks.export.copy.success');
+							});
+						}}
+						{disabled}
+					/>
+				{:else}
+					<code class="mt-3">{resultUrl}</code>
+				{/if}
 			</div>
 		</div>
-		<div class="flex flex-row justify-between items-center">
-			<!--The clipboard API is only avialable with a secure origin-->
-			{#if clipboardIsAvailable}
-				<SubmitButton
-					value={i('tricks.export.copy')}
-					onClick={(e) => {
-						e.preventDefault();
-						navigator.clipboard.writeText(resultUrl).then(() => {
-							communicationText = i('tricks.export.copy.success');
-						});
-					}}
-					{disabled}
-				/>
-			{:else}
-				<code class="mt-3">{resultUrl}</code>
-			{/if}
-		</div>
+		<p class="text-light-success dark:text-dark-success text-center mt-3">{communicationText}</p>
+	</Box>
+	<hr />
+	<div>
+		<h2 id="install">{i('tricks.install')}</h2>
+		<p>
+			{i('tricks.install.text')}
+		</p>
 	</div>
-	<p class="text-light-success dark:text-dark-success text-center mt-3">{communicationText}</p>
-</Box>
+</div>

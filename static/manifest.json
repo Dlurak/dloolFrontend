@@ -1,0 +1,37 @@
+{
+    "short_name": "Dlool",
+    "name": "Dlool",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/apple-touch-icon-precomposed.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+        },
+        {
+            "src": "/favicon.svg",
+            "type": "image/svg+xml",
+            "sizes": "any"
+        }
+    ],
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#ffffff",
+    "shortcuts": [
+        {
+            "name": "Login",
+            "short_name": "Login",
+            "description": "Login to Dlool",
+            "url": "/login"
+        },
+        {
+            "name": "Homework",
+            "short_name": "Homework",
+            "description": "See, submit, edit and delete homework",
+            "url": "/homework"
+        }
+    ],
+    "orientation": "portrait-primary",
+    "description": "Dlool is your colloborative homework book"
+}

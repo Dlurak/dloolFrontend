@@ -37,7 +37,7 @@
 </svelte:head>
 
 <div class="flex gap-4 flex-col">
-	<Box tailwindWidth="full">
+	<Box>
 		<h2 id="export">{i('tricks.export')}</h2>
 		<div>
 			<select

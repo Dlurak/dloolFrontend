@@ -47,6 +47,7 @@
 	"date.saturday": "saturday",
 	"date.sunday": "sunday",
 	"homework": "homework",
+	"homework.noHomework": "There is no homework",
 	"homework.filters": "filters",
 	"homework.filters.apply": "apply",
 	"homework.add.subject": "Subject",

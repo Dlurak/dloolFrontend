@@ -110,5 +110,10 @@
 				validUser={userIsMemberOfClass}
 			/>
 		{/each}
+		{#if data.data.length === 0}
+			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
+				{i('homework.noHomework')}
+			</p>
+		{/if}
 	{/if}
 </div>

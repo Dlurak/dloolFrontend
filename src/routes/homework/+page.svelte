@@ -80,7 +80,7 @@
 	<title>Dlool | {i('homework')}</title>
 </svelte:head>
 
-<div class="grid grid-cols-box-list w-full gap-4">
+<div class="flex flex-row flex-wrap w-full gap-4">
 	<Filters
 		bind:className={classInputValue}
 		bind:schoolName={schoolInputValue}
@@ -111,7 +111,7 @@
 			/>
 		{/each}
 		{#if data.data.length === 0}
-			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
+			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400 mx-5">
 				{i('homework.noHomework')}
 			</p>
 		{/if}

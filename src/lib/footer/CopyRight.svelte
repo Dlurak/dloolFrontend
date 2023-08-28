@@ -3,7 +3,7 @@
 	import { i } from '@inlang/sdk-js';
 </script>
 
-<div class="column">
+<div class="column flex-1">
 	<div class="row">
 		<h3>© 2023 Dlurak</h3>
 		<LanguageSwitcher />

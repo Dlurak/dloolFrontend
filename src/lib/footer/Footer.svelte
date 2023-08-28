@@ -7,9 +7,11 @@
 	export let height: number;
 </script>
 
-<footer bind:clientHeight={height} class="grid print:hidden">
-	<CopyRight />
-	<Contact />
+<footer bind:clientHeight={height} class="flex flex-col items-stretch gap-7">
+	<div class="flex flex-col md:flex-row justify-start gap-7">
+		<CopyRight />
+		<Contact />
+	</div>
 	<Links />
 </footer>
 <PrintingFooter />
@@ -20,9 +22,6 @@
 
 		padding-inline: 1.5rem;
 		padding-block: 1rem;
-
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-		gap: 1rem;
 
 		background-color: var(--secondary);
 	}

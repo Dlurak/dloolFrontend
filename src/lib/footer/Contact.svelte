@@ -2,7 +2,7 @@
 	import { i } from '@inlang/sdk-js';
 </script>
 
-<div class="column">
+<div class="column flex-1">
 	<div class="row">
 		<h3>{i('footer.contact')}</h3>
 		<ul>

@@ -34,7 +34,9 @@
 	<div class="row">
 		{#each Object.keys(categories) as categoriy}
 			<div class="category">
-				<h4>{i(`nav.categories.${categoriy.toLowerCase().replaceAll(' ', '-')}`)}</h4>
+				<h4 class="text-start md:text-center">
+					{i(`nav.categories.${categoriy.toLowerCase().replaceAll(' ', '-')}`)}
+				</h4>
 				<ul>
 					{#each categories[categoriy] as entry}
 						<li>

@@ -53,6 +53,7 @@
 			title={`${showPassword ? i('input.password.hide') : i('input.password.show')}`}
 			on:click={handleShowPassword}
 			class="showPasswordButton"
+			type="button"
 			on:focus={() => (passwordIconSolidString = 'bxs')}
 			on:blur={() => (passwordIconSolidString = 'bx')}
 		>
@@ -63,6 +64,7 @@
 	{#if tooltip}
 		<button
 			title={i('input.explaination')}
+			type="button"
 			on:click={(e) => {
 				e.preventDefault();
 				showTooltip = !showTooltip;

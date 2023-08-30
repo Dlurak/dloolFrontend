@@ -56,7 +56,7 @@
 <style>
 	.row {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
 		gap: 1rem;
 	}
 	ul {
@@ -64,7 +64,7 @@
 		padding: 0;
 
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 	}
 
 	.category {

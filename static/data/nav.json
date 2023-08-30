@@ -16,6 +16,14 @@
 		"footerCategory": "Authentication"
 	},
 	{
+		"title": "settings",
+		"uri": "/settings",
+		"showInNav": false,
+		"navBoxIcon": "bx-cog",
+		"showInFooter": true,
+		"footerCategory": "Authentication"
+	},
+	{
 		"title": "homework",
 		"uri": "/homework",
 		"showInNav": true,
@@ -38,5 +46,21 @@
 		"navBoxIcon": "",
 		"showInFooter": true,
 		"footerCategory": "Tricks"
+	},
+	{
+		"title": "status",
+		"uri": "/requests",
+		"showInNav": false,
+		"navBoxIcon": "",
+		"showInFooter": true,
+		"footerCategory": "Moderation"
+	},
+	{
+		"title": "requests",
+		"uri": "/requests/list",
+		"showInNav": false,
+		"navBoxIcon": "",
+		"showInFooter": true,
+		"footerCategory": "Moderation"
 	}
 ]

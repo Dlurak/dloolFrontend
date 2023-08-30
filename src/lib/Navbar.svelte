@@ -32,14 +32,15 @@
 	>
 		<ul id="linkList" class="flex flex-col md:flex-row gap-4 p-0">
 			{#each navData as navDataEntry}
-				<li class="w-full md:w-auto">
-					<TextOrIconLink
-						show={navDataEntry.showInNav}
-						boxIcon={navDataEntry.navBoxIcon}
-						title={i(`nav.${navDataEntry.title}`)}
-						uri={navDataEntry.uri}
-					/>
-				</li>
+				{#if navDataEntry.showInNav}
+					<li class="w-full md:w-auto">
+						<TextOrIconLink
+							boxIcon={navDataEntry.navBoxIcon}
+							title={i(`nav.${navDataEntry.title}`)}
+							uri={navDataEntry.uri}
+						/>
+					</li>
+				{/if}
 			{/each}
 		</ul>
 		<LanguageSwitcher />

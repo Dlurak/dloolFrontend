@@ -54,7 +54,7 @@
 	"homework": "Hausaufgaben",
 	"homework.noHomework": "Es gibt keine Hausaufgaben",
 	"homework.filters": "Filter",
-	"homework.filters.apply": "anwenden?",
+	"homework.filters.apply": "anwenden",
 	"homework.add.subject": "Fach",
 	"homework.add.description": "Aufgabenstellung",
 	"homework.add.submit": "Hinzufügen",
@@ -83,7 +83,7 @@
 	"tricks.export.copy": "Kopieren",
 	"tricks.export.copy.success": "Wurde in die Zwischenablage kopiert",
 	"tricks.install": "Installieren",
-	"tricks.install.text": "Du musst Dlool auf deinen Homescreen hinzufügen, um es wie eine App zu benutzen.",
+	"tricks.install.text": "Du kannst Dlool auf deinen Homescreen hinzufügen, um es wie eine App zu benutzen.",
 	"request.status.status": "Der Status deiner Anfrage",
 	"request.status.accepted": "Akzeptiert",
 	"request.status.pending": "Ausstehend",
@@ -98,5 +98,5 @@
 	"request.list.reject": "Ablehnen",
 	"account.delete": "Konto löschen?",
 	"account.delete.confirm.1": "Bist du dir ganz sicher, dass du deinen Account löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!",
-	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher??? Das ist die letzte Warnung!!!"
+	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher? Das ist die letzte Warnung!!!"
 }

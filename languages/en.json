@@ -95,5 +95,8 @@
 	"request.list.acceptedIn": "Accepted in:",
 	"request.list.accepted.none": "This user isn't accepted in any class",
 	"request.list.accept": "Accept",
-	"request.list.reject": "Reject"
+	"request.list.reject": "Reject",
+	"account.delete": "Delete account",
+	"account.delete.confirm.1": "Are you really sure you want to delete your account, that can't be undone!",
+	"account.delete.confirm.2": "Are you really really sure you want to delete your account, that is the last warning!"
 }

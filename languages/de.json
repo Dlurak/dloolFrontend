@@ -95,5 +95,8 @@
 	"request.list.acceptedIn": "Akzeptiert in:",
 	"request.list.accepted.none": "Dieser Nutzer ist in keiner Klasse",
 	"request.list.accept": "Akzeptieren",
-	"request.list.reject": "Ablehnen"
+	"request.list.reject": "Ablehnen",
+	"account.delete": "Konto löschen",
+	"account.delete.confirm.1": "Bist du dir gnaz sicher, dass du deinen Account löschen möchtest? Diese Aktion kann nicht rückgaängig gemacht werden!",
+	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher? Das ist die letzte Warnung!"
 }

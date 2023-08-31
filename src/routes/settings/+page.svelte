@@ -15,6 +15,8 @@
 
 	let disabled = true;
 
+	let deleteDisabled = false;
+
 	// make it true once at least one field is filled
 	$: disabled = !(username || name || password);
 
@@ -60,6 +62,7 @@
 				successText = i('settings.success');
 				localStorage.removeItem('token');
 				localStorage.removeItem('tokenExpires');
+				deleteDisabled = true;
 
 				setTimeout(() => {
 					window.location.href = '/login';
@@ -90,4 +93,28 @@
 		bind:value={password}
 	/>
 	<SubmitButton value={i('settings.save')} {disabled} />
+	<SubmitButton
+		value={i('account.delete')}
+		disabled={deleteDisabled}
+		colour="red"
+		onClick={(e) => {
+			e.preventDefault();
+			const token = localStorage.getItem('token');
+
+			if (!confirm(i('account.delete.confirm.1'))) return;
+			if (!confirm(i('account.delete.confirm.2'))) return;
+
+			const resPromise = fetch(PUBLIC_API_URL + '/auth/me', {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token
+				}
+			});
+
+			resPromise.then(() => {
+				window.location.href = '/';
+			});
+		}}
+	/>
 </CentralFormBox>

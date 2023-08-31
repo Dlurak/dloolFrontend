@@ -96,13 +96,15 @@
 			.then((res) => res.json())
 			.then((obj) => {
 				if (obj.status === 'error') {
-					// create error messages for the user when there is an error
-					const errorTextesObj = {
-						[`User ${username} already exists`]: i('regisiter.usernameTakenError'),
-						'Internal server error': i('regissiter.userCouldNotbeCreatedError')
-					};
-
-					errorText = errorTextesObj[obj.error] || i('error');
+					switch (obj.error) {
+						case `User ${username} already exists`:
+							console.log('Well?');
+							errorText = i('register.usernameTakenError');
+							break;
+						default:
+							errorText = i('error');
+							break;
+					}
 					successText = '';
 				} else if (obj.message === 'User created') {
 					successText = i('register.userCreated');

@@ -109,12 +109,38 @@
 				} else if (obj.message === 'User created') {
 					successText = i('register.userCreated');
 					errorText = '';
+
+					// log the user in
+					return fetch(PUBLIC_API_URL + '/auth/login', {
+						method: 'POST',
+						headers: new Headers({ 'content-type': 'application/json' }),
+						body: JSON.stringify({
+							username,
+							password
+						})
+					});
 				} else if (obj.message === 'Successfully created request') {
 					successText = i('register.requestCreated');
 					errorText = '';
 					localStorage.setItem('registerRequest', obj.data.id);
 				} else {
 					errorText = i('error');
+				}
+			})
+			.then((data) => {
+				if (data) {
+					return data.json();
+				}
+			})
+			.then((obj) => {
+				if (obj) {
+					const { token } = obj;
+					if (!token) return;
+
+					localStorage.setItem('token', token);
+					localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
+
+					successText = i('login.success');
 				}
 			});
 	}}

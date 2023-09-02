@@ -126,6 +126,11 @@
 				} else {
 					errorText = i('error');
 				}
+
+				if (obj.status === 'success') {
+					// clear all fields so it is clear that it worked and the user doesn't try to register twice
+					username = name = school = className = password = '';
+				}
 			})
 			.then((data) => {
 				if (data) {

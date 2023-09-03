@@ -14,10 +14,19 @@
 	let className: string;
 	let password: string;
 
+	/**
+	 * A boolean indicating whether the submit button should be disabled
+	 */
 	let disabled = false;
 
 	let errorText = '';
 	let successText = '';
+
+	const setErrorText = (text: string) => {
+		errorText = i(text);
+		successText = '';
+		disabled = false;
+	};
 
 	$: {
 		disabled = !(!!username && !!name && !!school && !!className && !!password); // all fields need to be filled
@@ -35,6 +44,7 @@
 	linkName={i('register.login')}
 	linkHref="/login"
 	onSubmit={async () => {
+		disabled = true;
 		// check if the school exists
 		const schoolDetails = await fetch(`${PUBLIC_API_URL}/schools/${school}`).then((res) =>
 			res.json()
@@ -53,8 +63,7 @@
 				})
 			}).then((res) => {
 				if (!res.ok) {
-					errorText = i('error');
-					successText = '';
+					setErrorText('error');
 				}
 			});
 		}
@@ -76,8 +85,7 @@
 				})
 			}).then((res) => {
 				if (!res.ok) {
-					errorText = i('error');
-					successText = '';
+					setErrorText('error');
 				}
 			});
 		}
@@ -98,11 +106,10 @@
 				if (obj.status === 'error') {
 					switch (obj.error) {
 						case `User ${username} already exists`:
-							console.log('Well?');
-							errorText = i('register.usernameTakenError');
+							setErrorText('register.usernameTakenError');
 							break;
 						default:
-							errorText = i('error');
+							setErrorText('error');
 							break;
 					}
 					successText = '';
@@ -124,7 +131,7 @@
 					errorText = '';
 					localStorage.setItem('registerRequest', obj.data.id);
 				} else {
-					errorText = i('error');
+					setErrorText('error');
 				}
 
 				if (obj.status === 'success') {

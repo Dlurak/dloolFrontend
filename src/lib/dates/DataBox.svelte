@@ -55,7 +55,7 @@
 
 <Box hideOnPrint={editMode} {id}>
 	<div class="flex flex-col items-start justify-between h-full">
-		<div>
+		<div class="w-full">
 			<div class="flex justify-between items-center">
 				<h3>
 					{#if editMode}
@@ -108,7 +108,9 @@
 					{/if}
 					{#if shareEnabled || copyEnabled}
 						<button
-							class="print:hidden p-3 bx bx{shareButtonIsFocused ? 's' : ''}-share text-green-500"
+							class="print:hidden p-3 bx bx{shareButtonIsFocused
+								? 's'
+								: ''}-share-alt text-green-500 dark:text-green-600"
 							on:focus={() => {
 								shareButtonIsFocused = true;
 							}}
@@ -118,20 +120,16 @@
 							on:click={() => {
 								const shareUrl = $page.url.toString() + `#${id}`;
 								if (shareEnabled) {
-									console.log('sharing....');
-									navigator
-										.share({
+									try {
+										navigator.share({
 											title: 'Dlool',
 											text: 'Check out this homework!',
 											url: shareUrl
-										})
-										.catch(() => {
-											errorMessage = i('error');
-											setTimeout(() => {
-												errorMessage = '';
-											}, 5000);
 										});
-									return;
+										return;
+									} catch (e) {
+										return;
+									}
 								} else if (copyEnabled) {
 									navigator.clipboard.writeText(shareUrl).then(() => {
 										successMessage = i('tricks.export.copy.success');

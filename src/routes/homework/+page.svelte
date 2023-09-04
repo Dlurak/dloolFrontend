@@ -10,6 +10,7 @@
 	import DataBox from '$lib/dates/DataBox.svelte';
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
+	import PageSelector from '$lib/homework/pageSelector.svelte';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -23,9 +24,14 @@
 
 	let isLoggedInBool = false;
 
+	const currentPageUrlParamString = $page.url.searchParams.get('page');
+	const currentPageUrlParamInt = parseInt(currentPageUrlParamString || '1');
+	let currentPage = currentPageUrlParamInt || 1;
+
 	const reload = () => {
 		invalidateAll();
 		data = data;
+		console.log(data);
 	};
 
 	const reloadIsUserMember = async () => {
@@ -51,6 +57,17 @@
 		});
 	}
 
+	const setPage = (page: number) => {
+		currentPage = page;
+		const newUrl = new URL($page.url);
+
+		newUrl?.searchParams?.set('page', page.toString());
+
+		goto(newUrl).then(() => {
+			reload();
+		});
+	};
+
 	onMount(async () => {
 		reloadIsUserMember();
 		isLoggedInBool = isLoggedIn();
@@ -62,6 +79,7 @@
 
 		const currentlyValid = currentSchool && currentClass;
 
+		setPage(currentPage);
 		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
 			setParameters({
 				school: schoolLocalStorage,
@@ -114,6 +132,12 @@
 			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
 				{i('homework.noHomework')}
 			</p>
+		{:else if data.totalPageCount > 1}
+			<PageSelector
+				bind:currentPage
+				setPageFunction={setPage}
+				totalPageCount={data.totalPageCount}
+			/>
 		{/if}
 	{/if}
 </div>

@@ -27,4 +27,5 @@ export interface HomeworkResponse {
 	status: 'success';
 	message: 'Homework found';
 	data: HomeworkWithId[];
+	totalPageCount: number;
 }

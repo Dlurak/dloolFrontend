@@ -57,15 +57,15 @@
 		});
 	}
 
-	const setPage = (page: number) => {
+	const setPage = async (page: number, postReload = false) => {
 		currentPage = page;
 		const newUrl = new URL($page.url);
 
 		newUrl?.searchParams?.set('page', page.toString());
 
-		goto(newUrl).then(() => {
-			reload();
-		});
+		await goto(newUrl);
+		if (postReload) reload();
+		return;
 	};
 
 	onMount(async () => {
@@ -79,7 +79,7 @@
 
 		const currentlyValid = currentSchool && currentClass;
 
-		setPage(currentPage);
+		await setPage(currentPage);
 		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
 			setParameters({
 				school: schoolLocalStorage,
@@ -135,7 +135,7 @@
 		{:else if data.totalPageCount > 1}
 			<PageSelector
 				bind:currentPage
-				setPageFunction={setPage}
+				setPageFunction={(pageCount) => setPage(pageCount, true)}
 				totalPageCount={data.totalPageCount}
 			/>
 		{/if}

@@ -67,7 +67,7 @@
 				<div>
 					{#if validUser}
 						<button
-							class="print:hidden p-3 bx bx{deleteButtonIsFocused
+							class="print:hidden p-1 bx bx{deleteButtonIsFocused
 								? 's'
 								: ''}-trash text-red-500 dark:text-red-400"
 							title={i('homework.delete')}
@@ -94,7 +94,7 @@
 							}}
 						/>
 						<button
-							class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
+							class="print:hidden p-1 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
 							on:focus={() => {
 								editButtonIsFocused = true;
 							}}
@@ -108,7 +108,7 @@
 					{/if}
 					{#if shareEnabled || copyEnabled}
 						<button
-							class="print:hidden p-3 bx bx{shareButtonIsFocused
+							class="print:hidden p-1 bx bx{shareButtonIsFocused
 								? 's'
 								: ''}-share-alt text-green-500 dark:text-green-600"
 							on:focus={() => {

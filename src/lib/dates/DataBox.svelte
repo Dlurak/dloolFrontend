@@ -27,6 +27,8 @@
 	let shareEnabled = false;
 	let copyEnabled = false;
 
+	let shareIcon = 'share-alt';
+
 	let errorMessage = '';
 	let successMessage = '';
 
@@ -43,6 +45,14 @@
 	onMount(() => {
 		shareEnabled = !!navigator.share;
 		copyEnabled = !!navigator.clipboard;
+
+		if (shareEnabled) {
+			shareIcon = 'share-alt';
+		} else if (copyEnabled) {
+			shareIcon = 'copy-alt';
+		} else {
+			shareIcon = 'shield-x';
+		}
 	});
 
 	$: {
@@ -161,7 +171,7 @@
 					<button
 						class="print:hidden p-3 bx bx{shareButtonIsFocused
 							? 's'
-							: ''}-share-alt text-green-500 dark:text-green-600"
+							: ''}-{shareIcon} text-green-500 dark:text-green-600"
 						on:focus={() => {
 							shareButtonIsFocused = true;
 						}}

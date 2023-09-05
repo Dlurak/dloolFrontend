@@ -64,85 +64,6 @@
 						<DateLabel {date} />
 					{/if}
 				</h3>
-				<div>
-					{#if validUser}
-						<button
-							class="print:hidden p-1 bx bx{deleteButtonIsFocused
-								? 's'
-								: ''}-trash text-red-500 dark:text-red-400"
-							title={i('homework.delete')}
-							on:focus={() => {
-								deleteButtonIsFocused = true;
-							}}
-							on:blur={() => {
-								deleteButtonIsFocused = false;
-							}}
-							on:click={() => {
-								// confirm deletion
-								const confirmed = confirm(i('homework.delete.confirm'));
-								if (!confirmed) return;
-								const uri = `/homework/${id}`;
-								const url = PUBLIC_API_URL + uri;
-								fetch(url, {
-									method: 'DELETE',
-									headers: {
-										Authorization: `Bearer ${localStorage.getItem('token')}`
-									}
-								}).then(() => {
-									postUpdate();
-								});
-							}}
-						/>
-						<button
-							class="print:hidden p-1 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
-							on:focus={() => {
-								editButtonIsFocused = true;
-							}}
-							on:blur={() => {
-								editButtonIsFocused = false;
-							}}
-							on:click={() => {
-								editMode = !editMode;
-							}}
-						/>
-					{/if}
-					{#if shareEnabled || copyEnabled}
-						<button
-							class="print:hidden p-1 bx bx{shareButtonIsFocused
-								? 's'
-								: ''}-share-alt text-green-500 dark:text-green-600"
-							on:focus={() => {
-								shareButtonIsFocused = true;
-							}}
-							on:blur={() => {
-								shareButtonIsFocused = false;
-							}}
-							on:click={() => {
-								const shareUrl = $page.url.toString() + `#${id}`;
-								if (shareEnabled) {
-									try {
-										navigator.share({
-											title: 'Dlool',
-											text: 'Check out this homework!',
-											url: shareUrl
-										});
-										return;
-									} catch (e) {
-										return;
-									}
-								} else if (copyEnabled) {
-									navigator.clipboard.writeText(shareUrl).then(() => {
-										successMessage = i('tricks.export.copy.success');
-										setTimeout(() => {
-											successMessage = '';
-										}, 5000);
-									});
-									return;
-								}
-							}}
-						/>
-					{/if}
-				</div>
 			</div>
 			<ul class="list-none p-0">
 				{#if editMode}
@@ -200,13 +121,94 @@
 				/>
 			{/if}
 		</div>
-		<div class="w-full text-center">
-			<p class:hidden={!successMessage} class="text-light-success dark:text-dark-success">
-				{successMessage}
-			</p>
-			<p class:hidden={!errorMessage} class="text-light-error dark:text-dark-error">
-				{errorMessage}
-			</p>
+		<div class="w-full flex flex-col">
+			<div class="w-full flex flex-row items-center justify-evenly">
+				{#if shareEnabled || copyEnabled}
+					<button
+						class="print:hidden p-3 bx bx{shareButtonIsFocused
+							? 's'
+							: ''}-share-alt text-green-500 dark:text-green-600"
+						on:focus={() => {
+							shareButtonIsFocused = true;
+						}}
+						on:blur={() => {
+							shareButtonIsFocused = false;
+						}}
+						on:click={() => {
+							const shareUrl = $page.url.toString() + `#${id}`;
+							if (shareEnabled) {
+								try {
+									navigator.share({
+										title: 'Dlool',
+										text: 'Check out this homework!',
+										url: shareUrl
+									});
+									return;
+								} catch (e) {
+									return;
+								}
+							} else if (copyEnabled) {
+								navigator.clipboard.writeText(shareUrl).then(() => {
+									successMessage = i('tricks.export.copy.success');
+									setTimeout(() => {
+										successMessage = '';
+									}, 5000);
+								});
+								return;
+							}
+						}}
+					/>
+				{/if}
+				{#if validUser}
+					<button
+						class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
+						on:focus={() => {
+							editButtonIsFocused = true;
+						}}
+						on:blur={() => {
+							editButtonIsFocused = false;
+						}}
+						on:click={() => {
+							editMode = !editMode;
+						}}
+					/>
+					<button
+						class="print:hidden p-3 bx bx{deleteButtonIsFocused
+							? 's'
+							: ''}-trash text-red-500 dark:text-red-400"
+						title={i('homework.delete')}
+						on:focus={() => {
+							deleteButtonIsFocused = true;
+						}}
+						on:blur={() => {
+							deleteButtonIsFocused = false;
+						}}
+						on:click={() => {
+							// confirm deletion
+							const confirmed = confirm(i('homework.delete.confirm'));
+							if (!confirmed) return;
+							const uri = `/homework/${id}`;
+							const url = PUBLIC_API_URL + uri;
+							fetch(url, {
+								method: 'DELETE',
+								headers: {
+									Authorization: `Bearer ${localStorage.getItem('token')}`
+								}
+							}).then(() => {
+								postUpdate();
+							});
+						}}
+					/>
+				{/if}
+			</div>
+			<div class="w-full text-center">
+				<p class:hidden={!successMessage} class="text-light-success dark:text-dark-success">
+					{successMessage}
+				</p>
+				<p class:hidden={!errorMessage} class="text-light-error dark:text-dark-error">
+					{errorMessage}
+				</p>
+			</div>
 		</div>
 	</div>
 </Box>

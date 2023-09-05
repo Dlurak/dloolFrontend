@@ -32,6 +32,25 @@
 	let errorMessage = '';
 	let successMessage = '';
 
+	let dialogElement: HTMLDialogElement;
+	let dialogIsOpen = false;
+
+	const openDialog = () => {
+		dialogElement.showModal();
+		dialogIsOpen = true;
+	};
+	const closeDialog = () => {
+		dialogElement.close();
+		dialogIsOpen = false;
+	};
+	const toggleDialog = () => {
+		if (dialogIsOpen) {
+			closeDialog();
+		} else {
+			openDialog();
+		}
+	};
+
 	let editMode = false;
 
 	// EDIT MODE THINGS //
@@ -203,6 +222,12 @@
 						}}
 					/>
 				{/if}
+				<button
+					class="bx bx-info-circle print:hidden p-3"
+					on:click={() => {
+						toggleDialog();
+					}}
+				/>
 				{#if validUser}
 					<button
 						class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
@@ -257,6 +282,31 @@
 	</div>
 </Box>
 
+<dialog
+	bind:this={dialogElement}
+	class="p-4 rounded-md backdrop:bg-black backdrop:opacity-50 resize bg-slate-700 dark:bg-slate-300 text-dark-text dark:text-light-text"
+>
+	<div class="w-full flex flex-row justify-end">
+		<button on:click={toggleDialog} class="bx bx-window-close" />
+	</div>
+	<ul>
+		{#each assignments as assignment}
+			<li class="flex flex-row">
+				<div class="w-full">
+					<span class="flex flex-row items-center justify-start gap-2 my-2">
+						<h4>{assignment.subject}</h4>
+						<DateLabel date={assignment.due} />
+					</span>
+					<p class="my-2">{assignment.description}</p>
+				</div>
+				<div class="hidden print:flex items-start">
+					<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
+				</div>
+			</li>
+		{/each}
+	</ul>
+</dialog>
+
 <style>
 	input {
 		color: var(--text);
@@ -264,5 +314,12 @@
 	}
 	input:focus-visible {
 		outline: 2px solid var(--accent);
+	}
+
+	dialog::backdrop {
+		--blur: blur(10px);
+
+		-webkit-backdrop-filter: var(--blur);
+		backdrop-filter: var(--blur);
 	}
 </style>

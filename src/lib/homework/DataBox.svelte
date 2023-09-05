@@ -108,7 +108,7 @@
 					/>
 				{/if}
 				<button
-					class="bx bx-info-circle print:hidden p-3"
+					class="bx bx-window-open print:hidden p-3"
 					on:click={() => {
 						toggleDialog();
 					}}

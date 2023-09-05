@@ -109,7 +109,7 @@
 	<div class="grid grid-cols-2 gap-2">
 		{#each mappedButtons as buttonObj}
 			<button
-				class="flex items-center justify-center w-full h-full bg-form-box-background rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+				class="flex items-center justify-center w-full h-full bg-light-box dark:bg-dark-box rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
 				title={i(`homework.page.${buttonObj.title}`)}
 				on:click={buttonObj.onClick}
 				disabled={buttonObj.disabled}

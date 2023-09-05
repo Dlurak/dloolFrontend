@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="flex flex-col p-4 box-border rounded-xl text-center w-full bg-form-box-background md:w-[clamp(19rem,50%,25rem)]"
+	class="flex flex-col p-4 box-border rounded-xl text-center w-full bg-light-box dark:bg-dark-box md:w-[clamp(19rem,50%,25rem)]"
 >
 	<h3>{title}</h3>
 

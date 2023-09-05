@@ -12,7 +12,8 @@ export default {
 					accent: 'hsl(154, 58%, 50%)',
 					error: 'red',
 					success: 'hsl(120, 74%, 30%)',
-					link: '#0000ee'
+					link: '#0000ee',
+					box: '#cbcbcb',
 				},
 				dark: {
 					text: 'hsl(0, 0%, 98%)',
@@ -22,9 +23,9 @@ export default {
 					accent: 'hsl(154, 58%, 70%)',
 					error: 'lightcoral',
 					success: 'lightgreen',
-					link: '#0c88f7'
+					link: '#0c88f7',
+					box: '#1b1b1b',
 				},
-				'form-box-background': 'hsla(0, 0%, 5%, 0.2)'
 			},
 			gridTemplateColumns: {
 				'box-list': 'repeat(auto-fill, minmax(20rem, 1fr))'

@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 	import Filters from '$lib/homework/Filters.svelte';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
-	import DataBox from '$lib/dates/DataBox.svelte';
+	import DataBox from '$lib/homework/DataBox.svelte';
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';

@@ -72,13 +72,21 @@
 							<div class="w-full">
 								<span class="flex flex-row items-center justify-start gap-2 my-2">
 									<div class="flex flex-row w-full gap-2">
-										<input type="text" bind:value={assignment.subject} class="w-full" />
+										<input
+											type="text"
+											bind:value={assignment.subject}
+											class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+										/>
 										<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
 											<DatePicker bind:dateObj={assignment.due} />
 										</span>
 									</div>
 								</span>
-								<input type="text" bind:value={assignment.description} class="w-full" />
+								<input
+									type="text"
+									bind:value={assignment.description}
+									class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+								/>
 							</div>
 						</li>
 					{/each}
@@ -100,6 +108,32 @@
 				{/if}
 			</ul>
 			{#if editMode}
+				<div class="flex flex-row gap-2">
+					<SubmitButton
+						value="-"
+						colour="red"
+						disabled={newAssignments.length === 1}
+						onClick={() => {
+							newAssignments = newAssignments.slice(0, newAssignments.length - 1);
+						}}
+					/>
+					<SubmitButton
+						value="+"
+						colour="yellow"
+						disabled={newAssignments.at(-1)?.subject === '' ||
+							newAssignments.at(-1)?.description === ''}
+						onClick={() => {
+							newAssignments = [
+								...newAssignments,
+								{
+									subject: '',
+									description: '',
+									due: newDate
+								}
+							];
+						}}
+					/>
+				</div>
 				<SubmitButton
 					value="Update"
 					{disabled}
@@ -217,10 +251,6 @@
 	input {
 		color: var(--text);
 		background-color: transparent;
-		border: none;
-		border-radius: 0.25rem;
-		padding: 0.125rem;
-		outline: 1px solid gray;
 	}
 	input:focus-visible {
 		outline: 2px solid var(--accent);

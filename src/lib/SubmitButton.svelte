@@ -11,7 +11,7 @@
 	export let topMargin = '1rem';
 	export let width = '100%';
 
-	export let colour: 'green' | 'red' = 'green';
+	export let colour: 'green' | 'red' | 'yellow' = 'green';
 
 	let buttonElement: HTMLElement;
 
@@ -61,5 +61,9 @@
 	}
 	.red {
 		background-color: rgb(220, 38, 38);
+	}
+
+	.yellow {
+		background-color: rgb(234 179 8);
 	}
 </style>

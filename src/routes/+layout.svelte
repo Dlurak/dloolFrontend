@@ -31,7 +31,7 @@
 
 <Navbar bind:height={navbarHeight} />
 
-<main>
+<main class="flex flex-col items-center mx-2 md:mx-6 my-4">
 	<slot />
 </main>
 
@@ -39,13 +39,6 @@
 
 <style>
 	main {
-		margin-inline: 1.5rem;
-		margin-block: 1rem;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
 		min-height: calc(100vh - var(--navbar-height) - var(--footer-height) - 2rem);
 	}
 </style>

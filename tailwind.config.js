@@ -13,7 +13,7 @@ export default {
 					error: 'red',
 					success: 'hsl(120, 74%, 30%)',
 					link: '#0000ee',
-					box: '#cbcbcb',
+					box: '#cbcbcb'
 				},
 				dark: {
 					text: 'hsl(0, 0%, 98%)',
@@ -24,8 +24,8 @@ export default {
 					error: 'lightcoral',
 					success: 'lightgreen',
 					link: '#0c88f7',
-					box: '#1b1b1b',
-				},
+					box: '#1b1b1b'
+				}
 			},
 			gridTemplateColumns: {
 				'box-list': 'repeat(auto-fill, minmax(min(20rem, 100%), 1fr))'

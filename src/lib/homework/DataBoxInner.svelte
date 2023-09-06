@@ -56,10 +56,10 @@
 								</span>
 							</div>
 						</span>
-						<input
-							type="text"
+						<textarea
 							bind:value={assignment.description}
 							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+							rows="2"
 						/>
 					</div>
 				</li>
@@ -131,11 +131,12 @@
 </div>
 
 <style>
-	input {
+	input,
+	textarea {
 		color: var(--text);
 		background-color: transparent;
 	}
-	input:focus-visible {
+	:is(input, textarea):focus-visible {
 		outline: 2px solid var(--accent);
 	}
 </style>

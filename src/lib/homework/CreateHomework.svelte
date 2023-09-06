@@ -129,10 +129,10 @@
 						</span>
 					</div>
 					<div class="flex gap-2">
-						<input
-							type="text"
-							placeholder={i('homework.add.description')}
+						<textarea
 							bind:value={newDescription}
+							placeholder={i('homework.add.description')}
+							rows="2"
 							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1 bg-transparent text-light-text dark:text-dark-text"
 						/>
 						<SubmitButton

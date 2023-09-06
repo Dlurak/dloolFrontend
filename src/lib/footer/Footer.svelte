@@ -7,7 +7,7 @@
 	export let height: number;
 </script>
 
-<footer bind:clientHeight={height} class="flex flex-col items-stretch gap-7">
+<footer bind:clientHeight={height} class="flex flex-col items-stretch gap-7 print:hidden">
 	<div class="flex flex-col md:flex-row justify-start gap-7">
 		<CopyRight />
 		<Contact />

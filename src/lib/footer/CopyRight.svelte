@@ -1,5 +1,6 @@
 <script>
 	import LanguageSwitcher from '$lib/LanguageSwitcher.svelte';
+	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { i } from '@inlang/sdk-js';
 
 	let printingButtonIsFocused = false;
@@ -20,18 +21,11 @@
 	<div class="flex flex-nowrap justify-between">
 		<h3>© 2023 Dlurak</h3>
 		<div class="flex justify-end gap-1">
-			<button
-				class="bx {printIcon} p-3"
-				on:click={() => {
+			<QuickActionButton
+				iconName="bx-printer"
+				focusedIconName="bxs-printer"
+				onClick={() => {
 					window.print();
-				}}
-				on:blur={() => {
-					printingButtonIsFocused = false;
-					printIcon = unfocusedIcon;
-				}}
-				on:focus={() => {
-					printingButtonIsFocused = true;
-					printIcon = focusedIcon;
 				}}
 			/>
 			<LanguageSwitcher />

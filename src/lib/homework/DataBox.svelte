@@ -8,6 +8,7 @@
 	import Box from './Box.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import QuickActionButton from '$lib/QuickActionButton.svelte';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -71,73 +72,57 @@
 		<DataBoxInner {assignments} {date} {id} {postUpdate} bind:editMode />
 		<div class="w-full flex flex-col">
 			<div class="w-full flex flex-row items-center justify-evenly">
-				{#if shareEnabled || copyEnabled}
-					<button
-						class="print:hidden p-3 bx bx{shareButtonIsFocused
-							? 's'
-							: ''}-{shareIcon} text-green-500 dark:text-green-600"
-						on:focus={() => {
-							shareButtonIsFocused = true;
-						}}
-						on:blur={() => {
-							shareButtonIsFocused = false;
-						}}
-						on:click={() => {
+				{#if shareEnabled}
+					<QuickActionButton
+						iconName="bx-share-alt"
+						focusedIconName="bxs-share-alt"
+						color="text-green-500 dark:text-green-600"
+						onClick={() => {
 							const shareUrl = $page.url.toString() + `#${id}`;
-							if (shareEnabled) {
-								try {
-									navigator.share({
-										title: 'Dlool',
-										text: 'Check out this homework!',
-										url: shareUrl
-									});
-									return;
-								} catch (e) {
-									return;
-								}
-							} else if (copyEnabled) {
-								navigator.clipboard.writeText(shareUrl).then(() => {
-									successMessage = i('tricks.export.copy.success');
-									setTimeout(() => {
-										successMessage = '';
-									}, 5000);
+							try {
+								navigator.share({
+									title: 'Dlool',
+									text: 'Check out this homework!',
+									url: shareUrl
 								});
+								return;
+							} catch (e) {
 								return;
 							}
 						}}
 					/>
 				{/if}
-				<button
-					class="bx bx-window-open print:hidden p-3"
-					on:click={() => {
-						toggleDialog();
-					}}
-				/>
+				{#if !shareEnabled && copyEnabled}
+					<QuickActionButton
+						iconName="bx-copy-alt"
+						focusedIconName="bxs-copy-alt"
+						color="text-green-500 dark:text-green-600"
+						onClick={() => {
+							const shareUrl = $page.url.toString() + `#${id}`;
+							navigator.clipboard.writeText(shareUrl).then(() => {
+								successMessage = i('tricks.export.copy.success');
+								setTimeout(() => {
+									successMessage = '';
+								}, 5000);
+							});
+						}}
+					/>
+				{/if}
+				<QuickActionButton iconName="bx-window-open" onClick={toggleDialog} />
 				{#if validUser}
-					<button
-						class="print:hidden p-3 bx bx{editButtonIsFocused ? 's' : ''}-edit text-blue-500"
-						on:focus={() => {
-							editButtonIsFocused = true;
-						}}
-						on:blur={() => {
-							editButtonIsFocused = false;
-						}}
-						on:click={() => {
+					<QuickActionButton
+						iconName="bx-edit"
+						focusedIconName="bxs-edit"
+						color="text-blue-500"
+						onClick={() => {
 							editMode = !editMode;
 						}}
 					/>
-					<button
-						class="print:hidden p-3 bx bx{deleteButtonIsFocused
-							? 's'
-							: ''}-trash text-red-500 dark:text-red-400"
-						title={i('homework.delete')}
-						on:focus={() => {
-							deleteButtonIsFocused = true;
-						}}
-						on:blur={() => {
-							deleteButtonIsFocused = false;
-						}}
-						on:click={() => {
+					<QuickActionButton
+						iconName="bx-trash"
+						focusedIconName="bxs-trash"
+						color="text-red-500 dark:text-red-400"
+						onClick={() => {
 							// confirm deletion
 							const confirmed = confirm(i('homework.delete.confirm'));
 							if (!confirmed) return;

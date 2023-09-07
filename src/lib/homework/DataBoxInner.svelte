@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import { swapArrayElements } from '$lib/utils/SwapItems';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
@@ -43,6 +45,30 @@
 		{#if editMode}
 			{#each newAssignments as assignment}
 				<li class="flex flex-row">
+					<div class="flex flex-col justify-evenly items-center">
+						<QuickActionButton
+							iconName="bx-up-arrow"
+							focusedIconName="bxs-up-arrow"
+							onClick={() => {
+								const index = newAssignments.indexOf(assignment);
+								const newIndex = index - 1;
+
+								newAssignments = swapArrayElements(newAssignments, index, newIndex);
+							}}
+							disabled={newAssignments.indexOf(assignment) === 0}
+						/>
+						<QuickActionButton
+							iconName="bx-down-arrow"
+							focusedIconName="bxs-down-arrow"
+							onClick={() => {
+								const index = newAssignments.indexOf(assignment);
+								const newIndex = index + 1;
+
+								newAssignments = swapArrayElements(newAssignments, index, newIndex);
+							}}
+							disabled={newAssignments.indexOf(assignment) === newAssignments.length - 1}
+						/>
+					</div>
 					<div class="w-full">
 						<span class="flex flex-row items-center justify-start gap-2 my-2">
 							<div class="flex flex-row w-full gap-2">
@@ -72,7 +98,7 @@
 							<h4>{assignment.subject}</h4>
 							<DateLabel date={assignment.due} />
 						</span>
-						<p class="my-2">{assignment.description}</p>
+						<p class="my-2 whitespace-pre-line">{assignment.description}</p>
 					</div>
 					<div class="hidden print:flex items-start">
 						<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />

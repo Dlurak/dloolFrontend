@@ -47,7 +47,7 @@
 			{#each assignments as assignment}
 				<li class="flex flex-row">
 					<div class="w-full">
-						<span class="flex flex-row items-center justify-start gap-2 my-2">
+						<span class="flex flex-row items-baseline justify-start gap-2 my-2">
 							<h4>{assignment.subject}</h4>
 							<DateLabel date={assignment.due} />
 						</span>

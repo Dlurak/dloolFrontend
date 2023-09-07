@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
-	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { swapArrayElements } from '$lib/utils/SwapItems';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
 	import DateLabel from '../dates/dateLabel.svelte';
+	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -43,53 +42,7 @@
 	</div>
 	<ul class="list-none p-0">
 		{#if editMode}
-			{#each newAssignments as assignment}
-				<li class="flex flex-row">
-					<div class="flex flex-col justify-evenly items-center">
-						<QuickActionButton
-							iconName="bx-up-arrow"
-							focusedIconName="bxs-up-arrow"
-							onClick={() => {
-								const index = newAssignments.indexOf(assignment);
-								const newIndex = index - 1;
-
-								newAssignments = swapArrayElements(newAssignments, index, newIndex);
-							}}
-							disabled={newAssignments.indexOf(assignment) === 0}
-						/>
-						<QuickActionButton
-							iconName="bx-down-arrow"
-							focusedIconName="bxs-down-arrow"
-							onClick={() => {
-								const index = newAssignments.indexOf(assignment);
-								const newIndex = index + 1;
-
-								newAssignments = swapArrayElements(newAssignments, index, newIndex);
-							}}
-							disabled={newAssignments.indexOf(assignment) === newAssignments.length - 1}
-						/>
-					</div>
-					<div class="w-full">
-						<span class="flex flex-row items-center justify-start gap-2 my-2">
-							<div class="flex flex-row w-full gap-2">
-								<input
-									type="text"
-									bind:value={assignment.subject}
-									class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-								/>
-								<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
-									<DatePicker bind:dateObj={assignment.due} />
-								</span>
-							</div>
-						</span>
-						<textarea
-							bind:value={assignment.description}
-							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-							rows="2"
-						/>
-					</div>
-				</li>
-			{/each}
+			<CreateHomeworkInner bind:assignments={newAssignments} />
 		{:else}
 			{#each assignments as assignment}
 				<li class="flex flex-row">
@@ -108,38 +61,21 @@
 		{/if}
 	</ul>
 	{#if editMode}
-		<div class="flex flex-row gap-2">
-			<SubmitButton
-				value="-"
-				colour="red"
-				disabled={newAssignments.length === 1}
-				onClick={() => {
-					newAssignments = newAssignments.slice(0, newAssignments.length - 1);
-				}}
-			/>
-			<SubmitButton
-				value="+"
-				colour="yellow"
-				disabled={newAssignments.at(-1)?.subject === '' ||
-					newAssignments.at(-1)?.description === ''}
-				onClick={() => {
-					newAssignments = [
-						...newAssignments,
-						{
-							subject: '',
-							description: '',
-							due: newDate
-						}
-					];
-				}}
-			/>
-		</div>
 		<SubmitButton
 			value="Update"
 			{disabled}
 			onClick={() => {
 				editMode = false;
 				const url = `${PUBLIC_API_URL}/homework/${id}`;
+
+				const mappedAssignments = newAssignments.map((assignment) => {
+					return {
+						subject: assignment.subject.trim(),
+						description: assignment.description.trim(),
+						due: assignment.due
+					};
+				});
+
 				fetch(url, {
 					method: 'PUT',
 					headers: {
@@ -148,21 +84,10 @@
 					},
 					body: JSON.stringify({
 						from: newDate,
-						assignments: newAssignments
+						assignments: mappedAssignments
 					})
 				}).then(() => postUpdate());
 			}}
 		/>
 	{/if}
 </div>
-
-<style>
-	input,
-	textarea {
-		color: var(--text);
-		background-color: transparent;
-	}
-	:is(input, textarea):focus-visible {
-		outline: 2px solid var(--accent);
-	}
-</style>

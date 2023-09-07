@@ -18,14 +18,9 @@
 		return;
 	};
 
-	let editButtonIsFocused = false;
-	let deleteButtonIsFocused = false;
-	let shareButtonIsFocused = false;
-
 	let shareEnabled = false;
 	let copyEnabled = false;
 
-	let shareIcon = 'share-alt';
 
 	let errorMessage = '';
 	let successMessage = '';
@@ -56,14 +51,6 @@
 	onMount(() => {
 		shareEnabled = !!navigator.share;
 		copyEnabled = !!navigator.clipboard;
-
-		if (shareEnabled) {
-			shareIcon = 'share-alt';
-		} else if (copyEnabled) {
-			shareIcon = 'copy-alt';
-		} else {
-			shareIcon = 'shield-x';
-		}
 	});
 </script>
 

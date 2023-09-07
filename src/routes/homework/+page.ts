@@ -9,7 +9,13 @@ export const load = async ({ fetch, url }) => {
 	searchParams.set('page', urlPage || '1');
 	const newUrl = PUBLIC_API_URL + '/homework?' + searchParams.toString();
 
-	const rawData = await fetch(newUrl).then(async (res) => res.json());
+	const rawData = await fetch(newUrl)
+		.then((res) => res.json())
+		.catch(() => {
+			return {
+				status: 'error',
+			}
+		});
 
 	if (rawData.status === 'error') return undefined;
 

@@ -14,6 +14,7 @@
 
 <button
 	class="print:hidden p-3 bx {icon} {color} disabled:opacity-50 disabled:cursor-not-allowed"
+	type="button"
 	{disabled}
 	on:focus={() => {
 		isFocused = true;

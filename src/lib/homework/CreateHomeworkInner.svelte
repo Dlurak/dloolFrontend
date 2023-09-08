@@ -26,7 +26,7 @@
 				<QuickActionButton
 					iconName="bx-up-arrow"
 					focusedIconName="bxs-up-arrow"
-					onClick={() => {
+					on:click={() => {
 						const index = assignments.indexOf(assignment);
 						const newIndex = index - 1;
 
@@ -37,7 +37,7 @@
 				<QuickActionButton
 					iconName="bx-down-arrow"
 					focusedIconName="bxs-down-arrow"
-					onClick={() => {
+					on:click={() => {
 						const index = assignments.indexOf(assignment);
 						const newIndex = index + 1;
 

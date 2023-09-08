@@ -7,8 +7,6 @@
 	export let title = '';
 
 	let dialogElement: HTMLDialogElement;
-	let clickCount = 0;
-
 	const dispatch = createEventDispatcher();
 
 	const openDialog = () => {
@@ -48,7 +46,7 @@
 		<p>
 			{title}
 		</p>
-		<QuickActionButton iconName="bx-x" onClick={closeDialog} />
+		<QuickActionButton iconName="bx-x" on:click={closeDialog} />
 	</div>
 	<slot />
 </dialog>

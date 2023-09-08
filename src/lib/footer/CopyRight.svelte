@@ -24,7 +24,7 @@
 			<QuickActionButton
 				iconName="bx-printer"
 				focusedIconName="bxs-printer"
-				onClick={() => {
+				on:click={() => {
 					window.print();
 				}}
 			/>

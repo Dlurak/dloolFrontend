@@ -5,7 +5,7 @@
 	export let date: CustomDate;
 </script>
 
-<p>
+<p class="capitalize">
 	{getWeekdayByDate(date)}
 	{date.day}.{date.month}.{date.year}
 </p>

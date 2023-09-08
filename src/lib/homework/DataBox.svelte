@@ -48,7 +48,7 @@
 						iconName="bx-share-alt"
 						focusedIconName="bxs-share-alt"
 						color="text-green-500 dark:text-green-600"
-						onClick={() => {
+						on:click={() => {
 							const shareUrl = $page.url.toString() + `#${id}`;
 							try {
 								navigator.share({
@@ -68,7 +68,7 @@
 						iconName="bx-copy-alt"
 						focusedIconName="bxs-copy-alt"
 						color="text-green-500 dark:text-green-600"
-						onClick={() => {
+						on:click={() => {
 							const shareUrl = $page.url.toString() + `#${id}`;
 							navigator.clipboard.writeText(shareUrl).then(() => {
 								successMessage = i('tricks.export.copy.success');
@@ -81,7 +81,7 @@
 				{/if}
 				<QuickActionButton
 					iconName="bx-window-open"
-					onClick={() => {
+					on:click={() => {
 						dialogIsOpen = true;
 					}}
 				/>
@@ -90,7 +90,7 @@
 						iconName="bx-edit"
 						focusedIconName="bxs-edit"
 						color="text-blue-500"
-						onClick={() => {
+						on:click={() => {
 							editMode = !editMode;
 						}}
 					/>
@@ -98,7 +98,7 @@
 						iconName="bx-trash"
 						focusedIconName="bxs-trash"
 						color="text-red-500 dark:text-red-400"
-						onClick={() => {
+						on:click={() => {
 							// confirm deletion
 							const confirmed = confirm(i('homework.delete.confirm'));
 							if (!confirmed) return;

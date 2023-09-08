@@ -1,13 +1,14 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	export let iconName: string;
 	export let focusedIconName = iconName;
 	export let color = '';
-	export let onClick: (e: Event) => void = () => {
-		return;
-	};
 	export let disabled = false;
 
 	let icon = iconName;
+
+	const dispatch = createEventDispatcher();
 
 	let isFocused = false;
 </script>
@@ -24,5 +25,8 @@
 		isFocused = false;
 		icon = iconName;
 	}}
-	on:click={onClick}
+	on:click={(e) => {
+		if (disabled) return;
+		dispatch('click', e);
+	}}
 />

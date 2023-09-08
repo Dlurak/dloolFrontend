@@ -9,6 +9,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
+	import Modal from '$lib/Modal.svelte';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -21,28 +22,11 @@
 	let shareEnabled = false;
 	let copyEnabled = false;
 
-
 	let errorMessage = '';
 	let successMessage = '';
 
-	let dialogElement: HTMLDialogElement;
 	let dialogIsOpen = false;
 
-	const openDialog = () => {
-		dialogElement.showModal();
-		dialogIsOpen = true;
-	};
-	const closeDialog = () => {
-		dialogElement.close();
-		dialogIsOpen = false;
-	};
-	const toggleDialog = () => {
-		if (dialogIsOpen) {
-			closeDialog();
-		} else {
-			openDialog();
-		}
-	};
 
 	let editMode = false;
 
@@ -95,7 +79,12 @@
 						}}
 					/>
 				{/if}
-				<QuickActionButton iconName="bx-window-open" onClick={toggleDialog} />
+				<QuickActionButton
+					iconName="bx-window-open"
+					onClick={() => {
+						dialogIsOpen = true;
+					}}
+				/>
 				{#if validUser}
 					<QuickActionButton
 						iconName="bx-edit"
@@ -139,21 +128,8 @@
 	</div>
 </Box>
 
-<dialog
-	bind:this={dialogElement}
-	class="p-4 rounded-md backdrop:bg-black backdrop:opacity-50 resize bg-light-box dark:bg-dark-box text-light-text dark:text-dark-text"
+<Modal
+	bind:open={dialogIsOpen}
 >
-	<div class="w-full flex flex-row justify-end">
-		<button on:click={toggleDialog} class="bx bx-window-close" />
-	</div>
 	<DataBoxInner {assignments} {date} {id} {postUpdate} editMode={false} />
-</dialog>
-
-<style>
-	dialog::backdrop {
-		--blur: blur(10px);
-
-		-webkit-backdrop-filter: var(--blur);
-		backdrop-filter: var(--blur);
-	}
-</style>
+</Modal>

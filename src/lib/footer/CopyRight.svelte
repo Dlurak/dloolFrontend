@@ -2,19 +2,6 @@
 	import LanguageSwitcher from '$lib/LanguageSwitcher.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { i } from '@inlang/sdk-js';
-
-	let printingButtonIsFocused = false;
-	let focusedIcon = 'bxs-printer';
-	let unfocusedIcon = 'bx-printer';
-	let printIcon = unfocusedIcon;
-
-	const getPrintIcon = () => {
-		if (printingButtonIsFocused) {
-			return focusedIcon;
-		} else {
-			return unfocusedIcon;
-		}
-	};
 </script>
 
 <div class="column flex-1">

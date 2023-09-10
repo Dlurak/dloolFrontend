@@ -9,8 +9,6 @@
 	let icon = iconName;
 
 	const dispatch = createEventDispatcher();
-
-	let isFocused = false;
 </script>
 
 <button
@@ -18,11 +16,9 @@
 	type="button"
 	{disabled}
 	on:focus={() => {
-		isFocused = true;
 		icon = focusedIconName;
 	}}
 	on:blur={() => {
-		isFocused = false;
 		icon = iconName;
 	}}
 	on:click={(e) => {

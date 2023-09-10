@@ -5,7 +5,7 @@
 	import DatePicker from '$lib/dates/DatePicker.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
-	import { error } from '@sveltejs/kit';
+	import { i } from '@inlang/sdk-js';
 	import type { CustomDate } from '../../../types/customDate';
 	import { onMount } from 'svelte';
 
@@ -19,7 +19,6 @@
 
 	let disabled = true;
 
-	let successText = '';
 	let errorText = '';
 
 	onMount(() => {
@@ -37,7 +36,6 @@
 </script>
 
 <CentralFormBox
-	{successText}
 	{errorText}
 	onSubmit={(e) => {
 		e.preventDefault();
@@ -59,24 +57,33 @@
 			})
 		}).then((res) => {
 			if (res.ok) {
-				successText = 'Note created successfully!';
 				window.location.href = '/notes';
 			} else {
-				errorText = 'Something went wrong. Please try again.';
+				errorText = i('error');
 				disabled = false;
 			}
 		});
 	}}
 >
 	<div class="flex flex-col gap-5">
-		<textarea maxlength="63" bind:value={title} placeholder="Title" class="rounded-sm" />
-		<textarea maxlength="511" bind:value={content} placeholder="Content" class="rounded-sm" />
+		<textarea
+			maxlength="63"
+			bind:value={title}
+			placeholder={i('notes.create.title')}
+			class="rounded-sm"
+		/>
+		<textarea
+			maxlength="511"
+			bind:value={content}
+			placeholder={i('notes.create.content')}
+			class="rounded-sm"
+		/>
 		<DatePicker bind:dateObj={due} />
 		<select bind:value={visibility} class="outline outline-1 outline-gray-400 p-3 rounded-sm">
-			<option value="public">Public</option>
-			<option value="private">Private</option>
+			<option value="public">{i('notes.create.public')}</option>
+			<option value="private">{i('notes.create.private')}</option>
 		</select>
-		<SubmitButton value="Create Note" {disabled} />
+		<SubmitButton value={i('notes.create.submit')} {disabled} />
 	</div>
 </CentralFormBox>
 

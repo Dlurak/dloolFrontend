@@ -71,32 +71,32 @@
 	{/each}
 </ul>
 <div class="flex flex-row gap-2">
-    <SubmitButton
-        value="-"
-        colour="red"
-        disabled={assignments.length === 1}
-        onClick={(e) => {
-            e.preventDefault();
-            assignments = assignments.slice(0, assignments.length - 1);
-        }}
-    />
-    <SubmitButton
-        value="+"
-        disabled={assignments.at(-1)?.subject.trim() === '' ||
-            assignments.at(-1)?.description.trim() === ''}
-        colour="yellow"
-        onClick={(e) => {
-            e.preventDefault();
-            assignments = [
-                ...assignments,
-                {
-                    subject: '',
-                    description: '',
-                    due: date
-                }
-            ];
-        }}
-    />
+	<SubmitButton
+		value="-"
+		colour="red"
+		disabled={assignments.length === 1}
+		onClick={(e) => {
+			e.preventDefault();
+			assignments = assignments.slice(0, assignments.length - 1);
+		}}
+	/>
+	<SubmitButton
+		value="+"
+		disabled={assignments.at(-1)?.subject.trim() === '' ||
+			assignments.at(-1)?.description.trim() === ''}
+		colour="yellow"
+		onClick={(e) => {
+			e.preventDefault();
+			assignments = [
+				...assignments,
+				{
+					subject: '',
+					description: '',
+					due: date
+				}
+			];
+		}}
+	/>
 </div>
 
 <style>

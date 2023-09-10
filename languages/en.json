@@ -29,10 +29,12 @@
 	"nav.install": "install",
 	"nav.status": "Your status",
 	"nav.requests": "Sign up requests",
+	"nav.notes": "Notes",
 	"nav.categories.authentication": "Authentication",
 	"nav.categories.homework": "Homework",
 	"nav.categories.tricks": "Tricks",
 	"nav.categories.moderation": "Moderation",
+	"nav.categories.notes": "Notes",
 	"login": "Login",
 	"login.welcome": "Welcome back",
 	"login.error.wrongCred": "Wrong username or password",
@@ -102,5 +104,21 @@
 	"request.list.reject": "Reject",
 	"account.delete": "Delete account",
 	"account.delete.confirm.1": "Are you sure you want to delete your account, that can't be undone!",
-	"account.delete.confirm.2": "Are you really really sure you want to delete your account? That is the last warning!!!"
+	"account.delete.confirm.2": "Are you really really sure you want to delete your account? That is the last warning!!!",
+
+	"notes.create.button": "Create a new note",
+	"notes.create.title": "Title",
+	"notes.create.content": "Content",
+	"notes.create.public": "Public",
+	"notes.create.private": "Private",
+	"notes.create.submit": "Create Note",
+	"notes.selected.none": "No note selected",
+
+	"time.ago.seconds": "time Seconds ago",
+	"time.ago.minutes": "time Minutes ago",
+	"time.ago.hours": "time Hours ago",
+	"time.ago.days": "time Days ago",
+	"time.ago.weeks": "time Weeks ago",
+	"time.ago.months": "time Months ago",
+	"time.ago.years": "time Years ago"
 }

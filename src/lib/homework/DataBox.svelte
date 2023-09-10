@@ -27,7 +27,6 @@
 
 	let dialogIsOpen = false;
 
-
 	let editMode = false;
 
 	export let validUser: boolean;
@@ -128,8 +127,6 @@
 	</div>
 </Box>
 
-<Modal
-	bind:open={dialogIsOpen}
->
+<Modal bind:open={dialogIsOpen}>
 	<DataBoxInner {assignments} {date} {id} {postUpdate} editMode={false} />
 </Modal>

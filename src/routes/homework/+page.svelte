@@ -6,7 +6,6 @@
 	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
 	import Filters from '$lib/homework/Filters.svelte';
-	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import DataBox from '$lib/homework/DataBox.svelte';
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
@@ -21,8 +20,6 @@
 	let classInputValue = $page.url.searchParams.get('class') || '';
 
 	let userIsMemberOfClass = false;
-
-	let isLoggedInBool = false;
 
 	const currentPageUrlParamString = $page.url.searchParams.get('page');
 	const currentPageUrlParamInt = parseInt(currentPageUrlParamString || '1');
@@ -57,11 +54,11 @@
 		});
 	}
 
-	const setPage = async (page: number, postReload = false) => {
-		currentPage = page;
+	const setPage = async (pageNumber: number, postReload = false) => {
+		currentPage = pageNumber;
 		const newUrl = new URL($page.url);
 
-		newUrl?.searchParams?.set('page', page.toString());
+		newUrl.searchParams.set('page', currentPage.toString());
 
 		await goto(newUrl);
 		if (postReload) reload();
@@ -70,7 +67,6 @@
 
 	onMount(async () => {
 		reloadIsUserMember();
-		isLoggedInBool = isLoggedIn();
 
 		const schoolLocalStorage = localStorage.getItem('school');
 		const classLocalStorage = localStorage.getItem('class');

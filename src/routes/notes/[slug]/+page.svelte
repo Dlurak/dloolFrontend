@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
+	import { i } from '@inlang/sdk-js';
 	import type { Note } from '../../../types/notes';
 	import { focusedNote } from '../../stores';
 
@@ -29,6 +28,6 @@
 			</div>
 		</div>
 	{:else}
-		<p>Something unexpected happend</p>
+		<p>{i('error')}</p>
 	{/if}
 </div>

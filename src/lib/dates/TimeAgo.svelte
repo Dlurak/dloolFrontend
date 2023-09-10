@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { i } from '@inlang/sdk-js';
 	import { onDestroy } from 'svelte';
 
 	export let timestamp: number;
@@ -9,18 +10,35 @@
 		const currentTime = Date.now();
 		const timeDifference = Math.floor((currentTime - timestamp) / 1000);
 
+		let unit: 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years';
+		let time: number;
+
 		if (timeDifference < 60) {
-			return `${timeDifference} Seconds ago`;
+			time = timeDifference;
+			unit = 'seconds';
 		} else if (timeDifference < 3600) {
-			const minutes = Math.floor(timeDifference / 60);
-			return `${minutes} Minutes ago`;
+			time = Math.floor(timeDifference / 60);
+			unit = 'minutes';
 		} else if (timeDifference < 86400) {
-			const hours = Math.floor(timeDifference / 3600);
-			return `${hours} Hours ago`;
+			time = Math.floor(timeDifference / 3600);
+			unit = 'hours';
+		} else if (timeDifference < 604800) {
+			time = Math.floor(timeDifference / 86400);
+			unit = 'days';
+		} else if (timeDifference < 2628000) {
+			time = Math.floor(timeDifference / 604800);
+			unit = 'weeks';
+		} else if (timeDifference < 31536000) {
+			time = Math.floor(timeDifference / 2628000);
+			unit = 'months';
 		} else {
-			const months = Math.floor(timeDifference / 2592000); // Assuming 30 days per month
-			return `${months} Months ago`;
+			time = Math.floor(timeDifference / 31536000);
+			unit = 'years';
 		}
+
+		const baseString = i(`time.ago.${unit}`);
+		const fullString = baseString.replace('time', time.toString());
+		return fullString;
 	}
 
 	const interval = setInterval(() => {

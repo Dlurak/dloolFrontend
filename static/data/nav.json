@@ -62,5 +62,13 @@
 		"navBoxIcon": "",
 		"showInFooter": true,
 		"footerCategory": "Moderation"
+	},
+	{
+		"title": "notes",
+		"uri": "/notes",
+		"showInNav": true,
+		"navBoxIcon": "bx-book-bookmark",
+		"showInFooter": true,
+		"footerCategory": "Notes"
 	}
 ]

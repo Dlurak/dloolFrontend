@@ -13,8 +13,8 @@ export const load = async ({ fetch, url }) => {
 		.then((res) => res.json())
 		.catch(() => {
 			return {
-				status: 'error',
-			}
+				status: 'error'
+			};
 		});
 
 	if (rawData.status === 'error') return undefined;

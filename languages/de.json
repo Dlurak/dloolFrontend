@@ -29,10 +29,12 @@
 	"nav.install": "Installieren",
 	"nav.status": "Dein Status",
 	"nav.requests": "Registrierungsanfragen",
+	"nav.notes": "Notizen",
 	"nav.categories.authentication": "Authentifizierungen",
 	"nav.categories.homework": "Hausaufgaben",
 	"nav.categories.tricks": "Tricks",
 	"nav.categories.moderation": "Moderation",
+	"nav.categories.notes": "Notizen",
 	"login": "Einloggen",
 	"login.welcome": "Willkommen zurück!",
 	"login.error.wrongCred": "Falscher Nutzername oder Passwort",
@@ -102,5 +104,21 @@
 	"request.list.reject": "Ablehnen",
 	"account.delete": "Konto löschen?",
 	"account.delete.confirm.1": "Bist du dir ganz sicher, dass du deinen Account löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!",
-	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher? Das ist die letzte Warnung!!!"
+	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher? Das ist die letzte Warnung!!!",
+
+	"notes.create.button": "Neue Notitz erstellen",
+	"notes.create.title": "Titel",
+	"notes.create.content": "Inhalt",
+	"notes.create.public": "Öffentlich",
+	"notes.create.private": "Privat",
+	"notes.create.submit": "Notitz erstellen",
+	"notes.selected.none": "Keine Notiz ausgewählt",
+
+	"time.ago.seconds": "Vor time Sekunden",
+	"time.ago.minutes": "Vor time Minuten",
+	"time.ago.hours": "Vor time Stunden",
+	"time.ago.days": "Vor time Tagen",
+	"time.ago.weeks": "Vor time Wochen",
+	"time.ago.months": "Vor time Monaten",
+	"time.ago.years": "Vor time Jahren"
 }

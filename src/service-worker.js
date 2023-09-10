@@ -40,7 +40,6 @@ self.addEventListener('fetch', (event) => {
 		} catch {
 			return cache.match(event.request);
 		}
-
-		event.respondWith(respond());
 	}
+	event.respondWith(respond());
 });

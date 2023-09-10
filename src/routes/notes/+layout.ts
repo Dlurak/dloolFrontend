@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { PUBLIC_API_URL } from '$env/static/public';
-import type { NoteResponse } from '../../types/notes.js';
+import type { Note, NoteResponse } from '../../types/notes.js';
 
 const getNameOfClass = (classId: string) => {
 	const url = `${PUBLIC_API_URL}/classes/${classId}`;
@@ -9,10 +9,10 @@ const getNameOfClass = (classId: string) => {
 	return className;
 };
 
-let dataLoaded: {
+const dataLoaded: {
 	[key: number]: boolean;
 } = {};
-let data: {
+const data: {
 	[key: number]: NoteResponse;
 } = {};
 
@@ -41,7 +41,7 @@ export const load = async ({ fetch, url }) => {
 
 	if (rawData.status === 'error') return { noteDataAvailable: false };
 
-	const mappedData = rawData.data.notes.map(async (note: any) => {
+	const mappedData = rawData.data.notes.map(async (note: Note) => {
 		note.class = note.class ? await getNameOfClass(note.class) : null;
 		return note;
 	});

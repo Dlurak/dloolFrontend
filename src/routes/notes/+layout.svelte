@@ -9,14 +9,11 @@
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
 
 	let currentPage = 1;
-	const getIsNoteFocused = () => {
-		return slug !== undefined;
-		// TODO: When it isn't a slug but still a sub page this will return false. e.g. /notes/new
-	};
 	const isSubPage = () => {
 		const subPages = $page.url.pathname.split('/');
 		return subPages.length > 2;
@@ -76,7 +73,7 @@
 			<ul class="flex flex-col gap-2">
 				{#if isLoggedInBool}
 					<SubmitButton
-						value="Create new note"
+						value={i('notes.create.button')}
 						onClick={(e) => {
 							e.preventDefault();
 							focusedNote.set(null);
@@ -100,7 +97,7 @@
 				{/if}
 			</ul>
 		{:else}
-			<p>A error occured</p>
+			<p>{i('error')}</p>
 		{/if}
 	</div>
 

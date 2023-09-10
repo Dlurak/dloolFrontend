@@ -1,1 +1,5 @@
-No note selected
+<script>
+	import { i } from '@inlang/sdk-js';
+</script>
+
+{i('notes.selected.none')}

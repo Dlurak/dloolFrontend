@@ -1,5 +1,4 @@
 import { PUBLIC_API_URL } from '$env/static/public';
-import type { Note } from '../../types/notes.js';
 
 const getNameOfClass = (classId: string) => {
 	const url = `${PUBLIC_API_URL}/classes/${classId}`;

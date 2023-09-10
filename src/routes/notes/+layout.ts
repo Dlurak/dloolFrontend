@@ -1,4 +1,5 @@
 import { PUBLIC_API_URL } from '$env/static/public';
+import type { NoteResponse } from '../../types/notes.js';
 
 const getNameOfClass = (classId: string) => {
 	const url = `${PUBLIC_API_URL}/classes/${classId}`;
@@ -7,12 +8,18 @@ const getNameOfClass = (classId: string) => {
 	return className;
 };
 
-let dataLoaded = false;
-let data: any = null;
+let dataLoaded: {
+	[key: number]: boolean;
+} = {};
+let data: {
+	[key: number]: NoteResponse;
+} = {};
 
 export const load = async ({ fetch, url }) => {
-	if (dataLoaded) return data;
 	const urlPage = url.searchParams.get('page');
+	const page = urlPage ? parseInt(urlPage) : 1;
+
+	if (dataLoaded[page]) return data[page];
 
 	const searchParams = new URLSearchParams(url.search);
 	searchParams.set('pageSize', '15');
@@ -33,13 +40,13 @@ export const load = async ({ fetch, url }) => {
 	});
 	const mappedDataPromise = Promise.all(mappedData);
 
-	dataLoaded = true;
-	data = {
+	dataLoaded[page] = true;
+	data[page] = {
 		noteDataAvailable: true,
 		data: {
 			pageCount: rawData.data.pageCount,
 			notes: await mappedDataPromise
 		}
 	};
-	return data;
+	return data[page];
 };

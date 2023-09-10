@@ -3,9 +3,13 @@
 	import type { Note, NoteResponse } from '../../types/notes';
 	import { page } from '$app/stores';
 	import { focusedNote } from '../stores';
+	import PageSelector from '$lib/homework/pageSelector.svelte';
+	import { goto, invalidateAll } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
 
+	let currentPage = 1;
 	const getIsNoteFocused = () => {
 		return slug !== undefined;
 	};
@@ -16,6 +20,16 @@
 		return note;
 	};
 
+	const setPage = (page: number) => {
+		currentPage = page;
+		const url = new URL(window.location.href);
+		url.searchParams.set('page', page.toString());
+		goto(url.toString()).then(() => {
+			invalidateAll();
+			data = data;
+		});
+	};
+
 	let { slug } = $page.params;
 	let isNoteFocused = getIsNoteFocused();
 	$: {
@@ -23,6 +37,24 @@
 		isNoteFocused = getIsNoteFocused();
 		focusedNote.set(getFocusedNote());
 	}
+
+	onMount(() => {
+		const currentUrlPage = $page.url.searchParams.get('page');
+		console.log(currentUrlPage);
+		const currentPage = parseInt(currentUrlPage ?? '1');
+		let totalPageCount = 1;
+		if (data.noteDataAvailable) {
+			totalPageCount = data.data.pageCount;
+		}
+
+		if (currentPage > totalPageCount) {
+			setPage(totalPageCount);
+		} else if (currentPage < 1) {
+			setPage(1);
+		} else {
+			setPage(currentPage);
+		}
+	});
 </script>
 
 <div class="w-full h-full md:grid md:grid-cols-[1fr,2fr] gap-2">
@@ -34,6 +66,15 @@
 						<NoteBox {note} />
 					</li>
 				{/each}
+				{#if data.data.pageCount > 1}
+					<li>
+						<PageSelector
+							totalPageCount={data.data.pageCount}
+							bind:currentPage
+							setPageFunction={setPage}
+						/>
+					</li>
+				{/if}
 			</ul>
 		{:else}
 			<p>A error occured</p>

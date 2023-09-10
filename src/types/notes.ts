@@ -12,8 +12,6 @@ export interface Note {
 }
 
 export interface NoteResponse {
-	status: 'success';
-	message: 'Note found';
 	data: {
 		pageCount: number;
 		notes: Note[];

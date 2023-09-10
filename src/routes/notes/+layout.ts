@@ -1,3 +1,4 @@
+import { browser } from '$app/environment';
 import { PUBLIC_API_URL } from '$env/static/public';
 import type { NoteResponse } from '../../types/notes.js';
 
@@ -26,7 +27,13 @@ export const load = async ({ fetch, url }) => {
 	searchParams.set('page', urlPage || '1');
 	const newUrl = `${PUBLIC_API_URL}/notes?${searchParams.toString()}`;
 
-	const rawData = await fetch(newUrl)
+	const token = browser ? localStorage.getItem('token') : null;
+
+	const rawData = await fetch(newUrl, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	})
 		.then((res) => res.json())
 		.catch(() => ({
 			status: 'error'

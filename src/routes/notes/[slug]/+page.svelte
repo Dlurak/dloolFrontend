@@ -14,15 +14,6 @@
 </script>
 
 <div class="w-full h-full flex flex-col">
-	<div class="flex flex-row">
-		<QuickActionButton
-			iconName="bx-arrow-back"
-			on:click={() => {
-				goto('/notes');
-			}}
-		/>
-	</div>
-
 	{#if note}
 		<div class=" w-full h-full">
 			<div class="flex justify-between gap-2 items-baseline">

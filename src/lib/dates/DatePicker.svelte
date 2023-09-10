@@ -4,6 +4,7 @@
 	import { i } from '@inlang/sdk-js';
 	import DateLabel from './dateLabel.svelte';
 	import type { CustomDate } from '../../types/customDate';
+	import { onMount } from 'svelte';
 
 	const currentDate = new Date();
 
@@ -11,6 +12,11 @@
 	export let date = getDateInInputFormat(new Date(dateObj.year, dateObj.month - 1, dateObj.day));
 
 	let dateInput: HTMLInputElement;
+	let isSafari = false;
+
+	onMount(() => {
+		isSafari = navigator.userAgent.toLocaleLowerCase().includes('safari');
+	});
 
 	$: dateObj = createDate(new Date(date));
 </script>
@@ -19,12 +25,10 @@
 	<input
 		type="date"
 		bind:value={date}
-		id={navigator.userAgent.toLocaleLowerCase().includes('safari')
-			? 'safari-date-picker'
-			: 'heading-input'}
+		id={isSafari ? 'safari-date-picker' : 'heading-input'}
 		bind:this={dateInput}
 	/>
-	{#if !navigator.userAgent.toLocaleLowerCase().includes('safari')}
+	{#if !isSafari}
 		<DateLabel date={dateObj} />
 		<button
 			on:click={(e) => {

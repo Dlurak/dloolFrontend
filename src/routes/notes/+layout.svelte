@@ -6,12 +6,20 @@
 	import PageSelector from '$lib/homework/pageSelector.svelte';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
+	import SubmitButton from '$lib/SubmitButton.svelte';
+	import QuickActionButton from '$lib/QuickActionButton.svelte';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
 
 	let currentPage = 1;
 	const getIsNoteFocused = () => {
 		return slug !== undefined;
+		// TODO: When it isn't a slug but still a sub page this will return false. e.g. /notes/new
+	};
+	const isSubPage = () => {
+		const subPages = $page.url.pathname.split('/');
+		return subPages.length > 2;
 	};
 	const getFocusedNote = () => {
 		if (slug === undefined) return null;
@@ -31,14 +39,19 @@
 	};
 
 	let { slug } = $page.params;
-	let isNoteFocused = getIsNoteFocused();
+	let isNoteFocused = isSubPage();
+
+	let isLoggedInBool = false;
+
 	$: {
 		slug = $page.params.slug;
-		isNoteFocused = getIsNoteFocused();
+		isNoteFocused = isSubPage();
 		focusedNote.set(getFocusedNote());
 	}
 
 	onMount(() => {
+		isLoggedInBool = isLoggedIn();
+
 		const currentUrlPage = $page.url.searchParams.get('page');
 		console.log(currentUrlPage);
 		const currentPage = parseInt(currentUrlPage ?? '1');
@@ -61,6 +74,16 @@
 	<div class="md:flex h-full" class:hidden={isNoteFocused}>
 		{#if data.noteDataAvailable}
 			<ul class="flex flex-col gap-2">
+				{#if isLoggedInBool}
+					<SubmitButton
+						value="Create new note"
+						onClick={(e) => {
+							e.preventDefault();
+							focusedNote.set(null);
+							goto('/notes/new');
+						}}
+					/>
+				{/if}
 				{#each data.data.notes as note}
 					<li>
 						<NoteBox {note} />
@@ -81,7 +104,17 @@
 		{/if}
 	</div>
 
-	<div class:hidden={!isNoteFocused} class="md:flex items-center justify-center">
-		<slot />
+	<div class:hidden={!isNoteFocused} class="md:flex flex-col">
+		<div class="flex flex-row">
+			<QuickActionButton
+				iconName="bx-arrow-back"
+				on:click={() => {
+					goto('/notes');
+				}}
+			/>
+		</div>
+		<div class="h-full w-full flex justify-center items-center">
+			<slot />
+		</div>
 	</div>
 </div>

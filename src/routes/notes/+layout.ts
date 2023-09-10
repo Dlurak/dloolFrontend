@@ -7,7 +7,11 @@ const getNameOfClass = (classId: string) => {
 	return className;
 };
 
+let dataLoaded = false;
+let data: any = null;
+
 export const load = async ({ fetch, url }) => {
+	if (dataLoaded) return data;
 	const urlPage = url.searchParams.get('page');
 
 	const searchParams = new URLSearchParams(url.search);
@@ -29,11 +33,13 @@ export const load = async ({ fetch, url }) => {
 	});
 	const mappedDataPromise = Promise.all(mappedData);
 
-	return {
+	dataLoaded = true;
+	data = {
 		noteDataAvailable: true,
 		data: {
 			pageCount: rawData.data.pageCount,
 			notes: await mappedDataPromise
 		}
 	};
+	return data;
 };

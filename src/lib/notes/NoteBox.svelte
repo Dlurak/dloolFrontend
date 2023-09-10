@@ -12,12 +12,13 @@
 	class="w-full h-full text-light-text dark:text-dark-text focus:outline focus:outline-3 focus:outline-light-secondary focus:dark:outline-dark-secondary rounded-md"
 >
 	<Box id={note._id}>
-		<div class="flex justify-between gap-2 align-baseline">
-			<h3 class="truncate max-w-lg">{note.title}</h3>
+		<div class="flex justify-between gap-2 items-baseline">
+			<h3 class="truncate max-w-sm">{note.title}</h3>
 			<DateLabel date={note.due} />
 		</div>
+
 		<p class="line-clamp-3">{note.content}</p>
-		<div class="flex justify-between align-baseline gap-2">
+		<div class="flex justify-between items-baseline gap-2">
 			<TimeAgo timestamp={note.createdAt} />
 			{#if note.class}
 				<p>{note.class}</p>

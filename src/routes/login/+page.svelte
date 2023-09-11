@@ -67,6 +67,21 @@
 				localStorage.setItem('token', obj.token);
 				localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
 
+				return fetch(`${PUBLIC_API_URL}/auth/me`, {
+					headers: {
+						Authorization: `Bearer ${obj.token}`
+					}
+				});
+			})
+			.then((res) => {
+				if (!res) return;
+				return res.json();
+			})
+			.then((data) => {
+				if (!data) return;
+				localStorage.setItem('user', JSON.stringify(data));
+				localStorage.setItem('userId', data.data.id);
+				localStorage.setItem('userExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
 				if (redirectUri) window.location.href = redirectUri;
 			})
 			.catch(() => {

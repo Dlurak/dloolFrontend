@@ -105,7 +105,6 @@
 	"account.delete": "Delete account",
 	"account.delete.confirm.1": "Are you sure you want to delete your account, that can't be undone!",
 	"account.delete.confirm.2": "Are you really really sure you want to delete your account? That is the last warning!!!",
-
 	"notes.create.button": "Create a new note",
 	"notes.create.title": "Title",
 	"notes.create.content": "Content",
@@ -113,7 +112,6 @@
 	"notes.create.private": "Private",
 	"notes.create.submit": "Create Note",
 	"notes.selected.none": "No note selected",
-
 	"time.ago.seconds": "time Seconds ago",
 	"time.ago.minutes": "time Minutes ago",
 	"time.ago.hours": "time Hours ago",

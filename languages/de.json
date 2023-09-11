@@ -105,7 +105,6 @@
 	"account.delete": "Konto löschen?",
 	"account.delete.confirm.1": "Bist du dir ganz sicher, dass du deinen Account löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!",
 	"account.delete.confirm.2": "Bist du dir wirklich ganz sicher? Das ist die letzte Warnung!!!",
-
 	"notes.create.button": "Neue Notitz erstellen",
 	"notes.create.title": "Titel",
 	"notes.create.content": "Inhalt",
@@ -113,7 +112,6 @@
 	"notes.create.private": "Privat",
 	"notes.create.submit": "Notitz erstellen",
 	"notes.selected.none": "Keine Notiz ausgewählt",
-
 	"time.ago.seconds": "Vor time Sekunden",
 	"time.ago.minutes": "Vor time Minuten",
 	"time.ago.hours": "Vor time Stunden",

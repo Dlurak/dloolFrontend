@@ -7,9 +7,17 @@
 	import { browser } from '$app/environment';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import Input from '$lib/auth/Input.svelte';
+	import SubmitButton from '$lib/SubmitButton.svelte';
 
 	let note: Note | null | undefined;
 	let hasEditRights = false;
+	let editMode = false;
+
+	let title = note?.title || '';
+	let content = note?.content || '';
+
+	let disabled = true;
 
 	focusedNote.subscribe((value) => {
 		note = value;
@@ -24,24 +32,76 @@
 			const userIsExpired = userExpires < now;
 
 			hasEditRights = userIsCreator && !userIsExpired;
+
+			title = note?.title || '';
+			content = note?.content || '';
 		}
 	});
+
+	$: {
+		const isTitleValid = title.length > 0 && title.length < 64;
+		const isContentValid = content.length > 0 && content.length < 512;
+
+		const isTitleInvalid = !isTitleValid;
+		const isContentInvalid = !isContentValid;
+
+		disabled = isTitleInvalid || isContentInvalid;
+	}
 </script>
 
 <div class="w-full h-full flex flex-col">
 	{#if note}
 		<div class=" w-full h-full">
 			<div class="flex justify-between gap-2 items-baseline">
-				<h3>{note.title}</h3>
+				{#if editMode}
+					<textarea
+						maxlength="63"
+						bind:value={title}
+						placeholder={i('notes.create.title')}
+						class="rounded-sm text-2xl font-bold w-full"
+					/>
+				{:else}
+					<h3>{note.title}</h3>
+				{/if}
 				<DateLabel date={note.due} />
 			</div>
-			{note.content}
+			{#if editMode}
+				<textarea
+					maxlength="511"
+					bind:value={content}
+					placeholder={i('notes.create.content')}
+					class="rounded-sm w-full"
+				/>
+			{:else}
+				{note.content}
+			{/if}
 			<div class="flex justify-between items-baseline gap-2">
 				<TimeAgo timestamp={note.createdAt} />
 				{#if note.class}
 					{note.class}
 				{/if}
 			</div>
+			{#if editMode}
+				<SubmitButton
+					value="Update"
+					{disabled}
+					onClick={() => {
+						fetch(`${PUBLIC_API_URL}/notes/${note?._id}`, {
+							method: 'PATCH',
+							headers: {
+								Authorization: `Bearer ${localStorage.getItem('token')}`,
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								title,
+								content
+							})
+						}).then(() => {
+							window.location.reload();
+						});
+					}}
+				/>
+			{/if}
 			{#if hasEditRights}
 				<div>
 					<QuickActionButton
@@ -60,6 +120,14 @@
 							});
 						}}
 					/>
+					<QuickActionButton
+						iconName="bx-edit"
+						focusedIconName="bxs-edit"
+						color="text-blue-500 dark:text-blue-400"
+						on:click={() => {
+							editMode = !editMode;
+						}}
+					/>
 				</div>
 			{/if}
 		</div>
@@ -67,3 +135,14 @@
 		<p>{i('error')}</p>
 	{/if}
 </div>
+
+<style>
+	textarea {
+		color: var(--text);
+		background-color: transparent;
+	}
+
+	textarea:focus-visible {
+		outline: 2px solid var(--accent);
+	}
+</style>

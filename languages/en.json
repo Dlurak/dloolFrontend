@@ -111,6 +111,7 @@
 	"notes.create.public": "Public",
 	"notes.create.private": "Private",
 	"notes.create.submit": "Create Note",
+	"notes.create.documentTitle": "Create a new note",
 	"notes.selected.none": "No note selected",
 	"time.ago.seconds": "time Seconds ago",
 	"time.ago.minutes": "time Minutes ago",

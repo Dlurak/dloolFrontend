@@ -49,6 +49,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Dlool | {note?.title || i('notes.selected.none')}</title>
+</svelte:head>
+
 <div class="w-full h-full flex flex-col">
 	{#if note}
 		<div class=" w-full h-full">

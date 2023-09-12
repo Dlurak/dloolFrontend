@@ -35,6 +35,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Dlool | {i('notes.create.documentTitle')}</title>
+</svelte:head>
+
 <CentralFormBox
 	{errorText}
 	onSubmit={(e) => {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
@@ -11,6 +12,7 @@
 	export let assignments: Assignment[];
 	export let id: string;
 	export let editMode = false;
+	export let createdAt: number;
 
 	export let postUpdate: () => void = () => {
 		return;
@@ -31,7 +33,7 @@
 </script>
 
 <div class="w-full">
-	<div class="flex justify-between items-center">
+	<div class="flex flex-col">
 		<h3>
 			{#if editMode}
 				<DatePicker bind:dateObj={newDate} />
@@ -39,6 +41,7 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
+		<TimeAgo classes="text-xs" timestamp={createdAt} />
 	</div>
 	<ul class="list-none p-0">
 		{#if editMode}

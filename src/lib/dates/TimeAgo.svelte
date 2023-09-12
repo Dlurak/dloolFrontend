@@ -3,6 +3,7 @@
 	import { onDestroy } from 'svelte';
 
 	export let timestamp: number;
+	export let classes = '';
 
 	let timeDifference: string = getTimeDifference();
 
@@ -50,4 +51,4 @@
 	});
 </script>
 
-<p>{timeDifference}</p>
+<p class={classes}>{timeDifference}</p>

@@ -122,6 +122,7 @@
 				id={homework.id}
 				postUpdate={reload}
 				validUser={userIsMemberOfClass}
+				createdAt={homework.createdAt}
 			/>
 		{/each}
 		{#if data.data.length === 0}

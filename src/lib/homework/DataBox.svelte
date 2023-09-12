@@ -14,6 +14,7 @@
 	export let date: CustomDate;
 	export let assignments: Assignment[];
 	export let id: string;
+	export let createdAt: number;
 
 	export let postUpdate: () => void = () => {
 		return;
@@ -39,7 +40,7 @@
 
 <Box hideOnPrint={editMode} {id}>
 	<div class="h-full flex flex-col justify-between">
-		<DataBoxInner {assignments} {date} {id} {postUpdate} bind:editMode />
+		<DataBoxInner {assignments} {date} {id} {postUpdate} bind:editMode {createdAt} />
 		<div class="w-full flex flex-col">
 			<div class="w-full flex flex-row items-center justify-evenly">
 				{#if shareEnabled}
@@ -128,5 +129,5 @@
 </Box>
 
 <Modal bind:open={dialogIsOpen}>
-	<DataBoxInner {assignments} {date} {id} {postUpdate} editMode={false} />
+	<DataBoxInner {assignments} {date} {id} {postUpdate} editMode={false} {createdAt} />
 </Modal>

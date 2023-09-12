@@ -16,6 +16,39 @@ Classical homework books have a lot of problems, also a lot of people use tablet
 
 ---
 
+## Features
+
+- Collaborative
+- Structured
+- Exportable as ical and todo.txt
+- Available on all devices
+- PWA
+- Dark mode
+- REST API
+- Usable without an account
+- Usable for many years
+- Moderation system
+- Private and public notes
+- And more...
+
+## Technologies
+
+### Frontend
+
+- [SvelteKit](https://kit.svelte.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Vercel](https://vercel.com/)
+- [Boxicons](https://boxicons.com/)
+- [inLang](https://inlang.com/)
+
+### Backend
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+
+---
+
 ## Getting started
 
 The easiest way to try Dlool is to visit [the official deployment](https://dlool-frontend.vercel.app/).

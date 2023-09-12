@@ -114,10 +114,17 @@
 	"notes.create.documentTitle": "Create a new note",
 	"notes.selected.none": "No note selected",
 	"time.ago.seconds": "time Seconds ago",
+	"time.ago.seconds.1": "Just now",
 	"time.ago.minutes": "time Minutes ago",
+	"time.ago.minutes.1": "A minute ago",
 	"time.ago.hours": "time Hours ago",
+	"time.ago.hours.1": "An hour ago",
 	"time.ago.days": "time Days ago",
+	"time.ago.days.1": "Yesterday",
 	"time.ago.weeks": "time Weeks ago",
+	"time.ago.weeks.1": "A week ago",
 	"time.ago.months": "time Months ago",
-	"time.ago.years": "time Years ago"
+	"time.ago.months.1": "A month ago",
+	"time.ago.years": "time Years ago",
+	"time.ago.years.1": "A year ago"
 }

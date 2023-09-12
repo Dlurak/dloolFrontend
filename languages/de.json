@@ -114,10 +114,18 @@
 	"notes.create.documentTitle": "Notiz erstellen",
 	"notes.selected.none": "Keine Notiz ausgewählt",
 	"time.ago.seconds": "Vor time Sekunden",
+	"time.ago.seconds.1": "Gerade eben",
 	"time.ago.minutes": "Vor time Minuten",
+	"time.ago.minutes.1": "Vor einer Minute",
 	"time.ago.hours": "Vor time Stunden",
+	"time.ago.hours.1": "Vor einer Stunde",
 	"time.ago.days": "Vor time Tagen",
+	"time.ago.days.1": "Gestern",
+	"time.ago.days.2": "Vorgestern",
 	"time.ago.weeks": "Vor time Wochen",
+	"time.ago.weeks.1": "Vor einer Woche",
 	"time.ago.months": "Vor time Monaten",
-	"time.ago.years": "Vor time Jahren"
+	"time.ago.months.1": "Vor einem Monat",
+	"time.ago.years": "Vor time Jahren",
+	"time.ago.years.1": "Vor einem Jahr"
 }

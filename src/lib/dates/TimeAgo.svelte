@@ -37,7 +37,9 @@
 			unit = 'years';
 		}
 
-		const baseString = i(`time.ago.${unit}`);
+		const specificString = i(`time.ago.${unit}.${time}`);
+
+		const baseString = specificString || i(`time.ago.${unit}`);
 		const fullString = baseString.replace('time', time.toString());
 		return fullString;
 	}

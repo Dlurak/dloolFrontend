@@ -38,7 +38,7 @@
 	});
 </script>
 
-<Box hideOnPrint={editMode} {id}>
+<Box hideOnPrint={editMode} {id} fullHeight>
 	<div class="h-full flex flex-col justify-between">
 		<DataBoxInner {assignments} {date} {id} {postUpdate} bind:editMode {createdAt} />
 		<div class="w-full flex flex-col">

@@ -10,6 +10,7 @@
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
+	import { showHomeworkFilter } from '../stores';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -18,6 +19,10 @@
 
 	let schoolInputValue = $page.url.searchParams.get('school') || '';
 	let classInputValue = $page.url.searchParams.get('class') || '';
+
+	let showFilters: boolean = true;
+
+	let homeworkAmount = 0;
 
 	let userIsMemberOfClass = false;
 
@@ -88,6 +93,18 @@
 
 	$: missingSchool = !$page.url.searchParams.get('school');
 	$: missingClass = !$page.url.searchParams.get('class');
+	$: {
+		const dataList = data?.data;
+		if (dataList) {
+			homeworkAmount = dataList.length;
+		} else {
+			homeworkAmount = 0;
+		}
+	}
+
+	showHomeworkFilter.subscribe((value) => {
+		showFilters = value;
+	});
 </script>
 
 <svelte:head>
@@ -95,35 +112,65 @@
 </svelte:head>
 
 <div class="grid grid-cols-box-list w-full gap-4">
-	<Filters
-		bind:className={classInputValue}
-		bind:schoolName={schoolInputValue}
-		onFilterSet={() => {
-			setParameters({
-				school: schoolInputValue,
-				class: classInputValue
-			});
-		}}
-	/>
+	{#if showFilters || homeworkAmount === 0}
+		<Filters
+			bind:className={classInputValue}
+			bind:schoolName={schoolInputValue}
+			onFilterSet={() => {
+				setParameters({
+					school: schoolInputValue,
+					class: classInputValue
+				});
+			}}
+		/>
+	{/if}
 
 	{#if !missingClass && !missingSchool && data?.status === 'success'}
 		{#if userIsMemberOfClass}
-			<CreateHomework
-				postSubmit={() => {
-					reload();
-				}}
-			/>
+			<div class="flex flex-col gap-2">
+				{#if !showFilters}
+					<Filters
+						bind:className={classInputValue}
+						bind:schoolName={schoolInputValue}
+						onFilterSet={() => {
+							setParameters({
+								school: schoolInputValue,
+								class: classInputValue
+							});
+						}}
+					/>
+				{/if}
+				<CreateHomework
+					postSubmit={() => {
+						reload();
+					}}
+				/>
+			</div>
 		{/if}
 
-		{#each data.data as homework}
-			<DataBox
-				date={homework.from}
-				assignments={homework.assignments}
-				id={homework.id}
-				postUpdate={reload}
-				validUser={userIsMemberOfClass}
-				createdAt={homework.createdAt}
-			/>
+		{#each data.data as homework, i}
+			<div class="flex flex-col gap-2">
+				{#if !showFilters && !userIsMemberOfClass && i === 0}
+					<Filters
+						bind:className={classInputValue}
+						bind:schoolName={schoolInputValue}
+						onFilterSet={() => {
+							setParameters({
+								school: schoolInputValue,
+								class: classInputValue
+							});
+						}}
+					/>
+				{/if}
+				<DataBox
+					date={homework.from}
+					assignments={homework.assignments}
+					id={homework.id}
+					postUpdate={reload}
+					validUser={userIsMemberOfClass}
+					createdAt={homework.createdAt}
+				/>
+			</div>
 		{/each}
 		{#if data.data.length === 0}
 			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">

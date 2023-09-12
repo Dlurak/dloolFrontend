@@ -37,7 +37,7 @@
 	}
 </script>
 
-<Box hideOnPrint>
+<Box hideOnPrint fullHeight>
 	<form
 		on:submit={(e) => {
 			e.preventDefault();

@@ -7,9 +7,9 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
-	import SubmitButton from '$lib/SubmitButton.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { i } from '@inlang/sdk-js';
+	import Box from '$lib/homework/Box.svelte';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
 
@@ -67,19 +67,24 @@
 	});
 </script>
 
-<div class="w-full h-full md:grid md:grid-cols-[1fr,2fr] gap-2">
-	<div class="md:flex h-full" class:hidden={isNoteFocused}>
+<div class="w-full md:grid md:grid-cols-[1fr,2fr] gap-2 parent">
+	<div class:hidden={isNoteFocused} class="w-full md:flex overflow-y-scroll">
 		{#if data.noteDataAvailable}
-			<ul class="flex flex-col gap-2">
+			<ul class="flex flex-col gap-2 items-stretch w-full">
 				{#if isLoggedInBool}
-					<SubmitButton
-						value={i('notes.create.button')}
-						onClick={(e) => {
-							e.preventDefault();
-							focusedNote.set(null);
-							goto('/notes/new');
-						}}
-					/>
+					<li>
+						<a
+							href="/notes/new"
+							class="w-full h-full text-light-text dark:text-dark-text focus:outline focus:outline-3 focus:outline-light-accent focus:dark:outline-dark-accent rounded-sm"
+						>
+							<Box>
+								<h4 class="flex gap-2 items-center">
+									<i class="bx bxs-note" />
+									<span>{i('notes.create.button')}</span>
+								</h4>
+							</Box>
+						</a>
+					</li>
 				{/if}
 				{#each data.data.notes as note}
 					<li>
@@ -101,7 +106,7 @@
 		{/if}
 	</div>
 
-	<div class:hidden={!isNoteFocused} class="md:flex flex-col">
+	<div class:hidden={!isNoteFocused} class="md:flex flex-col overflow-y-scroll">
 		<div class="flex flex-row">
 			<QuickActionButton
 				iconName="bx-arrow-back"
@@ -115,3 +120,12 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	@media (min-width: 768px) {
+		.parent {
+			--basic-height: calc(100vh - var(--navbar-height) - var(--footer-height) - 2rem);
+			height: calc(2 * var(--basic-height)); /* copied from the main +layout.svelte */
+		}
+	}
+</style>

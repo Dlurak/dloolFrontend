@@ -16,12 +16,12 @@
 		"footerCategory": "Authentication"
 	},
 	{
-		"title": "settings",
-		"uri": "/settings",
-		"showInNav": false,
-		"navBoxIcon": "bx-cog",
+		"title": "notes",
+		"uri": "/notes",
+		"showInNav": true,
+		"navBoxIcon": "bx-notepad",
 		"showInFooter": true,
-		"footerCategory": "Authentication"
+		"footerCategory": "Notes"
 	},
 	{
 		"title": "homework",
@@ -30,6 +30,14 @@
 		"navBoxIcon": "bx-book",
 		"showInFooter": true,
 		"footerCategory": "Homework"
+	},
+	{
+		"title": "settings",
+		"uri": "/settings",
+		"showInNav": false,
+		"navBoxIcon": "bx-cog",
+		"showInFooter": true,
+		"footerCategory": "Authentication"
 	},
 	{
 		"title": "export",
@@ -62,13 +70,5 @@
 		"navBoxIcon": "",
 		"showInFooter": true,
 		"footerCategory": "Moderation"
-	},
-	{
-		"title": "notes",
-		"uri": "/notes",
-		"showInNav": true,
-		"navBoxIcon": "bx-book-bookmark",
-		"showInFooter": true,
-		"footerCategory": "Notes"
 	}
 ]

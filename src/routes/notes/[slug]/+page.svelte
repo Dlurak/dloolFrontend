@@ -7,7 +7,7 @@
 	import { browser } from '$app/environment';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { PUBLIC_API_URL } from '$env/static/public';
-	import Input from '$lib/auth/Input.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 
 	let note: Note | null | undefined;
@@ -77,7 +77,7 @@
 					class="rounded-sm w-full"
 				/>
 			{:else}
-				{note.content}
+				<SvelteMarkdown source={note.content} />
 			{/if}
 			<div class="flex justify-between items-baseline gap-2">
 				<TimeAgo timestamp={note.createdAt} />

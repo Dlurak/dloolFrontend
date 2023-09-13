@@ -32,6 +32,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@inlang/sdk-js": "^0.11.0"
+		"@inlang/sdk-js": "^0.11.0",
+		"svelte-markdown": "^0.4.0"
 	}
 }

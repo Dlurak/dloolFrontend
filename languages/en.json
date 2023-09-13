@@ -71,6 +71,7 @@
 	"footer.contact": "Contact",
 	"footer.contact.github.backend": "Backend on GitHub",
 	"footer.contact.github.frontend": "Frontend on GitHub",
+	"footer.contact.apiDocs": "API-Documentation",
 	"footer.links": "Links",
 	"settings": "Settings",
 	"settings.settings": "Profile settings",

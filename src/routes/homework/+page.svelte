@@ -4,7 +4,7 @@
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { isUserMember } from '$lib/homework/isUserMember';
 	import { i } from '@inlang/sdk-js';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import Filters from '$lib/homework/Filters.svelte';
 	import DataBox from '$lib/homework/DataBox.svelte';
 	import type { HomeworkResponse } from '../../types/homework';
@@ -37,7 +37,7 @@
 	};
 
 	const reloadIsUserMember = async () => {
-		userIsMemberOfClass = await isUserMember(
+		userIsMemberOfClass = isUserMember(
 			$page.url.searchParams.get('class') as string,
 			$page.url.searchParams.get('school') as string
 		);
@@ -70,6 +70,10 @@
 		return;
 	};
 
+	const userIsMemberInterval = setInterval(() => {
+		reloadIsUserMember();
+	}, 1000);
+
 	onMount(async () => {
 		reloadIsUserMember();
 
@@ -89,6 +93,10 @@
 			schoolInputValue = schoolLocalStorage;
 			classInputValue = classLocalStorage;
 		}
+	});
+
+	onDestroy(() => {
+		clearInterval(userIsMemberInterval);
 	});
 
 	$: missingSchool = !$page.url.searchParams.get('school');

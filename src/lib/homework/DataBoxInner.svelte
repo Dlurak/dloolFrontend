@@ -41,7 +41,7 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
-		<TimeAgo classes="text-xs" timestamp={createdAt} />
+		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited"/>
 	</div>
 	<ul class="list-none p-0">
 		{#if editMode}

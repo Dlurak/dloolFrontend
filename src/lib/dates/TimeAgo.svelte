@@ -5,6 +5,8 @@
 	export let timestamp: number;
 	export let classes = '';
 
+	export let type: 'edited' | 'created' = 'created';
+
 	let timeDifference: string = getTimeDifference();
 
 	function getTimeDifference() {
@@ -37,9 +39,9 @@
 			unit = 'years';
 		}
 
-		const specificString = i(`time.ago.${unit}.${time}`);
+		const specificString = i(`time.ago.${type}.${unit}.${time}`);
 
-		const baseString = specificString || i(`time.ago.${unit}`);
+		const baseString = specificString || i(`time.ago.${type}.${unit}`);
 		const fullString = baseString.replace('time', time.toString());
 		return fullString;
 	}

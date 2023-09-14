@@ -3,7 +3,7 @@
 ## A digital and collaborative homework book
 
 Dlool is the digital version of a homework book. And it is collaborative.
-Classical homework books have a lot of problems, also a lot of people use tablets in school and don't have any folders but still an analog homework book. With Dlool there is a gogod solution to this problem. There are even more problems here is a table with some problems:
+Classical homework books have a lot of problems, also a lot of people use tablets in school and don't have any folders but still an analog homework book. With Dlool there is a good solution to this problem. There are even more problems here is a table with some problems:
 
 | Problem                                    | Solution                                                                      |
 | ------------------------------------------ | ----------------------------------------------------------------------------- |

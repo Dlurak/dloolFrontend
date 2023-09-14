@@ -3,3 +3,4 @@ import type { Note } from '../types/notes';
 
 export const focusedNote = writable<Note | null>(null);
 export const showHomeworkFilter = writable<boolean>(false);
+export const subjectIcons = writable<Record<string, string>>({});

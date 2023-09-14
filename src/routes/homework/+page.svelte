@@ -10,7 +10,8 @@
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
-	import { showHomeworkFilter } from '../stores';
+	import { showHomeworkFilter, subjectIcons } from '../stores';
+	import { loadLocaleJSONData } from '$lib/loadLocalData';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -84,6 +85,7 @@
 
 		const currentlyValid = currentSchool && currentClass;
 
+		subjectIcons.set(await loadLocaleJSONData('subjectIcons'));
 		await setPage(currentPage);
 		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
 			setParameters({

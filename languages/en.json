@@ -128,7 +128,6 @@
 	"time.ago.created.months.1": "A month ago",
 	"time.ago.created.years": "time Years ago",
 	"time.ago.created.years.1": "A year ago",
-
 	"time.ago.edited.seconds": "Edited time Seconds ago",
 	"time.ago.edited.seconds.1": "Edited just now",
 	"time.ago.edited.minutes": "Edited time Minutes ago",
@@ -144,4 +143,3 @@
 	"time.ago.edited.years": "Edited time Years ago",
 	"time.ago.edited.years.1": "Edited a Year ago"
 }
-

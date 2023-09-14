@@ -2,6 +2,8 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
+	import { i } from '@inlang/sdk-js';
+	import { subjectIcons } from '../../routes/stores';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
@@ -18,11 +20,17 @@
 		return;
 	};
 
+	let subjectIconsObj: Record<string, string> = {};
+
 	// EDIT MODE THINGS //
 
 	let newDate = date;
 	let newAssignments: Assignment[] = assignments;
 	let disabled = false;
+
+	subjectIcons.subscribe((icons) => {
+		subjectIconsObj = icons;
+	});
 
 	$: {
 		const allFilled = newAssignments.every((assignment) => {
@@ -41,7 +49,7 @@
 				<DateLabel {date} />
 			{/if}
 		</h3>
-		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited"/>
+		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited" />
 	</div>
 	<ul class="list-none p-0">
 		{#if editMode}
@@ -51,6 +59,9 @@
 				<li class="flex flex-row">
 					<div class="w-full">
 						<span class="flex flex-row items-baseline justify-start gap-2 my-2">
+							{#if subjectIconsObj[assignment.subject.toLowerCase()]}
+								<i class="bx {subjectIconsObj[assignment.subject.toLowerCase()]}" />
+							{/if}
 							<h4>{assignment.subject}</h4>
 							<DateLabel date={assignment.due} />
 						</span>

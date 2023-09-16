@@ -179,6 +179,7 @@
 					postUpdate={reload}
 					validUser={userIsMemberOfClass}
 					createdAt={homework.createdAt}
+					creatorId={homework.creator}
 				/>
 			</div>
 		{/each}

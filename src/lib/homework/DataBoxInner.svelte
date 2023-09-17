@@ -44,46 +44,42 @@
 </script>
 
 <div class="w-full h-full">
-	<div class="h-full flex flex-col justify-between">
-		<div>
-			<div class="flex flex-col">
-				<h3>
-					{#if editMode}
-						<DatePicker bind:dateObj={newDate} />
-					{:else}
-						<DateLabel {date} />
-					{/if}
-				</h3>
-				<TimeAgo classes="text-xs" timestamp={createdAt} type="edited" />
-			</div>
-			<ul class="list-none p-0">
-				{#if editMode}
-					<CreateHomeworkInner bind:assignments={newAssignments} />
-				{:else}
-					{#each assignments as assignment}
-						<li class="flex flex-row">
-							<div class="w-full">
-								<span class="flex flex-row items-baseline justify-start gap-2 my-2">
-									{#if subjectIconsObj[assignment.subject.toLowerCase()]}
-										<i class="bx {subjectIconsObj[assignment.subject.toLowerCase()]}" />
-									{/if}
-									<h4>{assignment.subject}</h4>
-									<DateLabel date={assignment.due} />
-								</span>
-								<p class="my-2 whitespace-pre-line">{assignment.description}</p>
-							</div>
-							<div class="hidden print:flex items-start">
-								<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
-							</div>
-						</li>
-					{/each}
-				{/if}
-			</ul>
-		</div>
-		{#await userData then uD}
-			<p class="text-xs">{uD.data.user.name || i('error')}</p>
-		{/await}
+	<div class="flex flex-col">
+		<h3>
+			{#if editMode}
+				<DatePicker bind:dateObj={newDate} />
+			{:else}
+				<DateLabel {date} />
+			{/if}
+		</h3>
+		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited" />
 	</div>
+	<ul class="list-none p-0">
+		{#if editMode}
+			<CreateHomeworkInner bind:assignments={newAssignments} />
+		{:else}
+			{#each assignments as assignment}
+				<li class="flex flex-row">
+					<div class="w-full">
+						<span class="flex flex-row items-baseline justify-start gap-2 my-2">
+							{#if subjectIconsObj[assignment.subject.toLowerCase()]}
+								<i class="bx {subjectIconsObj[assignment.subject.toLowerCase()]}" />
+							{/if}
+							<h4>{assignment.subject}</h4>
+							<DateLabel date={assignment.due} />
+						</span>
+						<p class="my-2 whitespace-pre-line">{assignment.description}</p>
+					</div>
+					<div class="hidden print:flex items-start">
+						<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
+					</div>
+				</li>
+			{/each}
+		{/if}
+	</ul>
+	{#await userData then uD}
+		<p class="text-xs">{uD.data.user.name || i('error')}</p>
+	{/await}
 	{#if editMode}
 		<SubmitButton
 			value="Update"

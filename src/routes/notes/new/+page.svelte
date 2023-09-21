@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
-	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import DatePicker from '$lib/dates/DatePicker.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
@@ -12,7 +11,6 @@
 	import { loadSchools } from '$lib/auth/loadSchools';
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { loadClasses } from '$lib/auth/loadClasses';
-	import SvelteMarkdown from 'svelte-markdown';
 
 	const currentDate = new Date();
 
@@ -25,8 +23,6 @@
 	let className = '';
 
 	let disabled = true;
-
-	let errorText = '';
 
 	const getClassId = (schoolName: string, className: string) => {
 		const url = `${PUBLIC_API_URL}/classes/${schoolName}/${className}`;
@@ -44,8 +40,6 @@
 
 			if (classId) {
 				return classId;
-			} else {
-				errorText = i('error');
 			}
 		});
 	};
@@ -134,7 +128,6 @@
 						if (res.ok) {
 							window.location.href = '/notes';
 						} else {
-							errorText = i('error');
 							disabled = false;
 						}
 					});

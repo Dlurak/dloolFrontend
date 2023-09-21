@@ -21,7 +21,7 @@
 	let schoolInputValue = $page.url.searchParams.get('school') || '';
 	let classInputValue = $page.url.searchParams.get('class') || '';
 
-	let showFilters: boolean = true;
+	let showFilters = true;
 
 	let homeworkAmount = 0;
 

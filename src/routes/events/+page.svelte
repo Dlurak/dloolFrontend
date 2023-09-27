@@ -20,6 +20,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Dlool | Events</title>
+</svelte:head>
+
 <div class="grid grid-cols-7">
 	{#each weekdays as weekday}
 		<p>{weekday}</p>

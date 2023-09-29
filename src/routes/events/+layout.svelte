@@ -1,18 +1,33 @@
 <script lang="ts">
 	import CreateEvent from '$lib/events/CreateEvent.svelte';
 	import EventBox from '$lib/events/EventBox.svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import type { EventResponse } from '../../types/events';
+	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
+	import { browser } from '$app/environment';
 
 	export let data: EventResponse | { eventDataAvailable: false };
+
+	let loggedIn = false;
+
+	const interval = setInterval(() => {
+		if (browser) loggedIn = isLoggedIn();
+	}, 2000);
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 </script>
 
 <div class="w-full md:grid md:grid-cols-[1fr,2fr] gap-2 parent">
 	<div class="w-full h-full md:flex overflow-y-scroll flex flex-col gap-2 items-stretch">
 		{#if data.eventDataAvailable}
 			<ul class="flex flex-col gap-2 items-stretch w-full">
-				<li>
-					<CreateEvent />
-				</li>
+				{#if loggedIn}
+					<li>
+						<CreateEvent />
+					</li>
+				{/if}
 				{#each data.data.events as event}
 					<li>
 						<EventBox {event} />

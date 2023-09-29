@@ -1,24 +1,19 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import LoginInput from '$lib/auth/Input.svelte';
-	import SelectDataList from '$lib/auth/SelectDataList.svelte';
-	import { loadClasses } from '$lib/auth/loadClasses';
-	import { loadSchools } from '$lib/auth/loadSchools';
 	import DateTimePicker from '$lib/dates/DateTimePicker.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import NormalInput from '$lib/utils/NormalInput.svelte';
-	import SchoolClassInput from '$lib/utils/SchoolClassInput.svelte';
-	import { i } from '@inlang/sdk-js';
 	import type { CustomDateTime } from '../../types/customDate';
+
+	export let school = '';
+	export let className = '';
 
 	let disabled = true;
 	let title = '';
 	let subject = '';
 	let dateObjStart: CustomDateTime;
 	let description = '';
-	let school = '';
-	let className = '';
 	let location = '';
 
 	let startTimestamp: number;
@@ -73,25 +68,6 @@
 		</h3>
 		<NormalInput type="textarea" bind:value={description} placeholder="Beschreibung" />
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-			<LoginInput
-				type="text"
-				name={i('school')}
-				bind:value={school}
-				list="schoolsList"
-				autocomplete="off"
-			/>
-			<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
-
-			<LoginInput
-				type="text"
-				name={i('class')}
-				bind:value={className}
-				list="classList"
-				autocomplete="off"
-			/>
-			<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
-		</div>
 		<NormalInput bind:value={location} placeholder="Location" />
 
 		<DateTimePicker bind:dateObj={dateObjStart} bind:timestamp={startTimestamp} />

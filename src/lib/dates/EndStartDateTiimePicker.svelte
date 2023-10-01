@@ -20,7 +20,7 @@
 		</span>
 		<input
 			type="datetime-local"
-			class="bg-transparent rounded-sm outline outline-1 outline-light-secondary dark:outline-dark-secondary w-full"
+			class="bg-transparent rounded-sm outline outline-1 outline-light-secondary dark:outline-dark-secondary w-full h-full"
 			bind:value={startString}
 			on:change={() => (startDate = new Date(startString + 'Z'))}
 		/>
@@ -33,7 +33,7 @@
 		</span>
 		<input
 			type="datetime-local"
-			class="bg-transparent rounded-sm outline outline-1 outline-light-secondary dark:outline-dark-secondary w-full"
+			class="bg-transparent rounded-sm outline outline-1 outline-light-secondary dark:outline-dark-secondary w-full h-full"
 			min={startString}
 			bind:value={endString}
 			on:change={() => (endDate = new Date(endString + 'Z'))}

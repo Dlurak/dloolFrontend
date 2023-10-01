@@ -17,12 +17,11 @@
 
 		return day === todayDay && month === todayMonth && year === todayYear;
 	};
-	const today = isToday(day, month, year);
 </script>
 
 <div class="border border-1 border-gray-600 dark:border-gray-300 p-2">
 	<div
-		class="rounded-full p-1 flex items-center justify-center w-6 h-6 mb-1 {today
+		class="rounded-full p-1 flex items-center justify-center w-6 h-6 mb-1 {isToday(day, month, year)
 			? focusedBg
 			: unfocusedBg}"
 	>

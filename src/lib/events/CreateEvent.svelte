@@ -87,7 +87,10 @@
 			placeholder={i('events.create.description')}
 		/>
 
-		<NormalInput bind:value={location} placeholder={i('events.create.location')} />
+		<span class="flex items-center gap-1">
+			<i class="bx bx-map" />
+			<NormalInput bind:value={location} placeholder={i('events.create.location')} />
+		</span>
 
 		<DateTimePicker bind:startDate bind:endDate bind:endDateIsAfterStartDate />
 

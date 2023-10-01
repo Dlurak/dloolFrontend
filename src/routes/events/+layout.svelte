@@ -6,7 +6,8 @@
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import { browser } from '$app/environment';
 	import Filters from '$lib/homework/Filters.svelte';
-	import { invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	export let data: EventResponse | { eventDataAvailable: false };
 
@@ -23,14 +24,34 @@
 	let filteredClassName = '';
 
 	const reload = () => {
-		invalidateAll();
 		const url = new URL(location.href);
 		url.searchParams.set('school', filteredSchool);
 		url.searchParams.set('class', filteredClassName);
 
-		history.replaceState(null, '', url.toString());
-		data = data;
+		goto(url).then(() => {
+			invalidateAll();
+			data = data;
+		});
 	};
+
+	onMount(() => {
+		// TODO: Refactor this into the Filters component
+		const schoolLocalStorage = localStorage.getItem('school');
+		const classLocalStorage = localStorage.getItem('class');
+		const currentSchool = $page.url.searchParams.get('school');
+		const currentClass = $page.url.searchParams.get('class');
+
+		const currentlyValid = !!(currentSchool && currentClass);
+		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
+			filteredSchool = schoolLocalStorage;
+			filteredClassName = classLocalStorage;
+
+			reload();
+		}
+
+		if (schoolLocalStorage) school = schoolLocalStorage;
+		if (classLocalStorage) className = classLocalStorage;
+	});
 
 	onDestroy(() => {
 		clearInterval(interval);
@@ -49,6 +70,10 @@
 						filteredClassName = className;
 
 						reload();
+						if (browser) {
+							localStorage.setItem('school', filteredSchool);
+							localStorage.setItem('class', filteredClassName);
+						}
 					}}
 				/>
 			</li>

@@ -146,5 +146,11 @@
 	"time.ago.edited.years.1": "Vor einem Jahr bearbeitet",
 	"events.create.success": "Erfolgreich erstellt",
 	"events.create.time.start": "Start",
-	"events.create.time.end": "Ende"
+	"events.create.time.end": "Ende",
+
+	"events.create.title": "Titel",
+	"events.create.subject": "Fach",
+	"events.create.description": "Beschreibung",
+	"events.create.location": "Ort",
+	"events.create.submit": "Erstellen"
 }

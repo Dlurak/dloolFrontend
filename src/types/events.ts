@@ -17,6 +17,7 @@ export interface Event {
 	class: string;
 	editedAt: number[];
 	school: string;
+	location?: string;
 }
 
 export interface EventResponse {

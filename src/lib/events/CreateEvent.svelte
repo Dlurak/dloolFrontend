@@ -78,16 +78,20 @@
 <Box>
 	<form class="flex flex-col gap-2 w-full" on:submit={handleSubmit}>
 		<h3 class="grid grid-cols-1 @md:grid-cols-2 gap-2">
-			<NormalInput bind:value={title} placeholder="Titel" />
-			<NormalInput bind:value={subject} placeholder="Fach" />
+			<NormalInput bind:value={title} placeholder={i('events.create.title')} />
+			<NormalInput bind:value={subject} placeholder={i('events.create.subject')} />
 		</h3>
-		<NormalInput type="textarea" bind:value={description} placeholder="Beschreibung" />
+		<NormalInput
+			type="textarea"
+			bind:value={description}
+			placeholder={i('events.create.description')}
+		/>
 
-		<NormalInput bind:value={location} placeholder="Location" />
+		<NormalInput bind:value={location} placeholder={i('events.create.location')} />
 
 		<DateTimePicker bind:startDate bind:endDate bind:endDateIsAfterStartDate />
 
-		<SubmitButton {disabled} value="Submit" />
+		<SubmitButton {disabled} value={i('events.create.submit')} />
 
 		<CommunicationText type="success" text={successText} />
 		<CommunicationText type="error" text={errorText} />

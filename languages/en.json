@@ -144,5 +144,11 @@
 	"time.ago.edited.years.1": "Edited a Year ago",
 	"events.create.success": "Successfully created new event",
 	"events.create.time.start": "Start",
-	"events.create.time.end": "End"
+	"events.create.time.end": "End",
+	
+	"events.create.title": "Title",
+	"events.create.subject": "Subject",
+	"events.create.description": "Description",
+	"events.create.location": "Location",
+	"events.create.submit": "Create"
 }

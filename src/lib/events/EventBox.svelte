@@ -1,6 +1,7 @@
 <script lang="ts">
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import Box from '$lib/homework/Box.svelte';
+	import { i } from '@inlang/sdk-js';
 	import type { Event } from '../../types/events';
 
 	export let event: Event;
@@ -31,6 +32,12 @@
 		<span>
 			{startDate.toLocaleString()} - {endDate.toLocaleTimeString()}
 		</span>
+		{#if event.location}
+			<span class="flex gap-1 items-center">
+				<i class="bx bxs-map" />
+				{event.location}
+			</span>
+		{/if}
 		<span>
 			{event.class}
 			{event.school}

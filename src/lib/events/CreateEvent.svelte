@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import DateTimePicker from '$lib/dates/DateTimePicker.svelte';
+	import DateTimePicker from '$lib/dates/EndStartDateTiimePicker.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import NormalInput from '$lib/utils/NormalInput.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import type { CustomDateTime } from '../../types/customDate';
 	import { i } from '@inlang/sdk-js';
 	import CommunicationText from '$lib/communicationText.svelte';
+	import { createDateTime } from '$lib/dates/createDateObject';
 
 	const dispatch = createEventDispatcher();
 
@@ -17,12 +17,11 @@
 	let disabled = true;
 	let title = '';
 	let subject = '';
-	let dateObjStart: CustomDateTime;
 	let description = '';
 	let location = '';
 
-	let startTimestamp: number;
-	let endTimestamp: number;
+	let startDate = new Date();
+	let endDate = new Date();
 
 	let errorText = '';
 	let successText = '';
@@ -30,33 +29,23 @@
 	$: disabled =
 		!title ||
 		!subject ||
-		!dateObjStart ||
+		!createDateTime(startDate) ||
 		!description ||
 		!school ||
 		!className ||
-		!(startTimestamp < endTimestamp);
-
-	$: console.table({
-		title,
-		subject,
-		description,
-		school,
-		className,
-		startTimestamp,
-		endTimestamp
-	});
+		!(startDate < endDate);
 
 	const handleSubmit = (e: SubmitEvent) => {
 		e.preventDefault();
 		dispatch('preSubmit');
 
-		const durationMilliSeconds = endTimestamp - startTimestamp;
+		const durationMilliSeconds = endDate.getTime() - startDate.getTime();
 		const durationSeconds = durationMilliSeconds / 1000;
 
 		const eventObj: any = {
 			title,
 			description,
-			date: dateObjStart,
+			date: createDateTime(startDate),
 			duration: durationSeconds,
 			subject,
 			school,
@@ -102,8 +91,7 @@
 
 		<NormalInput bind:value={location} placeholder="Location" />
 
-		<DateTimePicker bind:dateObj={dateObjStart} bind:timestamp={startTimestamp} />
-		<DateTimePicker bind:timestamp={endTimestamp} />
+		<DateTimePicker bind:startDate bind:endDate />
 
 		<SubmitButton {disabled} value="Submit" />
 

@@ -7,5 +7,5 @@ export function getDateInInputFormat(date: Date) {
 }
 
 export function getDateTimeInInputFormat(date: Date) {
-	return date.toISOString().slice(0, 16);
+	return `${date.toISOString().slice(0, 16)}Z`;
 }

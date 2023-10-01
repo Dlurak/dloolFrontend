@@ -16,6 +16,12 @@
 
 	let disabled = false;
 
+	const setError = (text: string) => {
+		errorText = i(text);
+		successText = '';
+		disabled = false;
+	};
+
 	$: {
 		disabled = !(!!usernameValue && !!passwordValue);
 	}
@@ -31,7 +37,8 @@
 	linkName={i('login.register')}
 	linkHref="/register"
 	title={i('login.welcome')}
-	onSubmit={() => {
+	onSubmit={async () => {
+		disabled = true;
 		fetch(PUBLIC_API_URL + '/auth/login', {
 			method: 'POST',
 			headers: new Headers({ 'content-type': 'application/json' }),
@@ -43,20 +50,17 @@
 			.then((res) => {
 				switch (res.status) {
 					case 400:
-						errorText = i('error');
-						successText = '';
+						setError('error');
 						break;
 					case 401:
-						errorText = i('login.error.wrongCred');
-						successText = '';
+						setError('login.error.wrongCred');
 						break;
 					case 200:
 						errorText = '';
 						successText = i('login.success');
 						break;
 					default:
-						errorText = i('login.error.weird');
-						successText = '';
+						setError('login.error.weird');
 						break;
 				}
 				return res.json();

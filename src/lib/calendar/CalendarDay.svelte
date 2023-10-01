@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Event } from '../../types/events';
+	import CalendarEvent from './CalendarEvent.svelte';
 
 	export let day: number;
 	export let month: number;
@@ -19,7 +20,9 @@
 	};
 </script>
 
-<div class="border border-1 border-gray-600 dark:border-gray-300 p-2">
+<div
+	class="border border-1 border-gray-600 dark:border-gray-300 p-2 aspect-square overflow-y-scroll"
+>
 	<div
 		class="rounded-full p-1 flex items-center justify-center w-6 h-6 mb-1 {isToday(day, month, year)
 			? focusedBg
@@ -28,10 +31,9 @@
 		{day}
 	</div>
 
-	{#each events as event}
-		<div class="rounded-sm bg-light-box dark:bg-dark-box px-2 py-1">
-			<h4 class="line-clamp-1">{event.title}</h4>
-			<p class="line-clamp-3 whitespace-pre-line">{event.description}</p>
-		</div>
-	{/each}
+	<div class="flex flex-col gap-1">
+		{#each events as event}
+			<CalendarEvent {event} />
+		{/each}
+	</div>
 </div>

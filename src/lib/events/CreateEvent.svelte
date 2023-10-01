@@ -76,8 +76,8 @@
 </script>
 
 <Box>
-	<form class="flex flex-col gap-2" on:submit={handleSubmit}>
-		<h3 class="grid grid-cols-1 md:grid-cols-2 gap-2">
+	<form class="flex flex-col gap-2 w-full" on:submit={handleSubmit}>
+		<h3 class="grid grid-cols-1 @md:grid-cols-2 gap-2">
 			<NormalInput bind:value={title} placeholder="Titel" />
 			<NormalInput bind:value={subject} placeholder="Fach" />
 		</h3>

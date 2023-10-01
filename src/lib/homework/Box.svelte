@@ -7,7 +7,7 @@
 <div
 	class="p-4 rounded-2xl bg-light-box dark:bg-dark-box {hideOnPrint
 		? 'print:hidden'
-		: ''} print:bg-transparent print:border-b print:border-gray-400 print:pb-4 print:rounded-none print:pt-0 print:px-0 max-w-full"
+		: ''} print:bg-transparent print:border-b print:border-gray-400 print:pb-4 print:rounded-none print:pt-0 print:px-0 max-w-full @container"
 	{id}
 	class:h-full={fullHeight}
 >

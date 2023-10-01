@@ -21,13 +21,13 @@
 </script>
 
 <Box>
-	<div class="flex justify-between gap-2">
+	<div class="grid grid-cols-1 @sm:grid-cols-2 justify-between gap-2">
 		<h3>{event.title}</h3>
-		<h3>{event.subject}</h3>
+		<h3 class="@sm:text-right">{event.subject}</h3>
 	</div>
 	<p>{event.description}</p>
 
-	<div class="flex justify-between gap-2">
+	<div class="flex justify-between gap-2 flex-wrap">
 		<span>
 			{startDate.toLocaleString()} - {endDate.toLocaleTimeString()}
 		</span>

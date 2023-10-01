@@ -1,4 +1,5 @@
 import { PUBLIC_API_URL } from '$env/static/public';
+import { calendarEvents } from '../stores.js';
 
 export const load = async ({ fetch, url }) => {
 	// TODO: Replace with real pagination data
@@ -22,6 +23,7 @@ export const load = async ({ fetch, url }) => {
 	const res = await fetch(reqUrl);
 	const data = await res.json();
 	if (data.status === 'error') return { dataAvailable: false };
+	calendarEvents.set(data.data.events);
 	return {
 		eventDataAvailable: true,
 		data: data.data

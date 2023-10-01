@@ -4,6 +4,10 @@
 
 	let endString = '';
 	export let endDate: Date = new Date();
+
+	export let endDateIsAfterStartDate = false;
+
+	$: endDateIsAfterStartDate = startDate.getTime() < endDate.getTime();
 </script>
 
 <input
@@ -16,5 +20,5 @@
 	type="datetime-local"
 	min={startString}
 	bind:value={endString}
-	on:change={() => (endDate = new Date(endDate + 'Z'))}
+	on:change={() => (endDate = new Date(endString + 'Z'))}
 />

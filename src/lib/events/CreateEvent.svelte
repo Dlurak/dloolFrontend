@@ -22,18 +22,12 @@
 
 	let startDate = new Date();
 	let endDate = new Date();
+	let endDateIsAfterStartDate = false;
 
 	let errorText = '';
 	let successText = '';
 
-	$: disabled =
-		!title ||
-		!subject ||
-		!createDateTime(startDate) ||
-		!description ||
-		!school ||
-		!className ||
-		!(startDate < endDate);
+	$: disabled = !title || !subject || !startDate || !description || !endDateIsAfterStartDate;
 
 	const handleSubmit = (e: SubmitEvent) => {
 		e.preventDefault();
@@ -91,7 +85,7 @@
 
 		<NormalInput bind:value={location} placeholder="Location" />
 
-		<DateTimePicker bind:startDate bind:endDate />
+		<DateTimePicker bind:startDate bind:endDate bind:endDateIsAfterStartDate />
 
 		<SubmitButton {disabled} value="Submit" />
 

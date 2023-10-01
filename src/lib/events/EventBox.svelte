@@ -10,7 +10,7 @@
 
 	const startDate = new Date(
 		event.date.year,
-		event.date.month,
+		event.date.month - 1,
 		event.date.day,
 		event.date.hour,
 		event.date.minute,

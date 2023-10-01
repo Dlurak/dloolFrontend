@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	const date = new Date();
 
 	const month = date.getMonth();
@@ -18,6 +18,15 @@
 		'Samstag',
 		'Sonntag'
 	];
+
+	/**
+	 * Generates the amount of days to pad the calendar with under the condition that the month starts with a monday like in germany
+	 * @param weekdayIndex The index of the first day of the month (0 = sunday, 1 = monday, ...)
+	 */
+	const generatePaddingDays = (weekdayIndex: number): number => {
+		if (weekdayIndex === 0) return 6;
+		return weekdayIndex - 1;
+	};
 </script>
 
 <svelte:head>
@@ -28,8 +37,7 @@
 	{#each weekdays as weekday}
 		<p>{weekday}</p>
 	{/each}
-
-	{#each Array(firstDayWeekday - 1) as _, i}
+	{#each Array(generatePaddingDays(firstDayWeekday)) as _, i}
 		<div />
 	{/each}
 

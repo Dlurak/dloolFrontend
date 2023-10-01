@@ -3,3 +3,10 @@ export interface CustomDate {
 	month: number;
 	day: number;
 }
+
+interface CustomTime {
+	hour: number;
+	minute: number;
+}
+
+export interface CustomDateTime extends CustomDate, CustomTime {}

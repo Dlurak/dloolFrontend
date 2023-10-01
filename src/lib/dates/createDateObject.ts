@@ -1,10 +1,18 @@
-import type { CustomDate } from '../../types/customDate';
+import type { CustomDate, CustomDateTime } from '../../types/customDate';
 
 export function createDate(d: Date): CustomDate {
 	return {
-		day: d.getDate(),
-		month: d.getMonth() + 1,
-		year: d.getFullYear()
+		day: d.getUTCDate(),
+		month: d.getUTCMonth() + 1,
+		year: d.getUTCFullYear()
+	};
+}
+
+export function createDateTime(d: Date): CustomDateTime {
+	return {
+		...createDate(d),
+		hour: d.getUTCHours(),
+		minute: d.getUTCMinutes()
 	};
 }
 

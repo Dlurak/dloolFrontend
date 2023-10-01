@@ -5,3 +5,7 @@ export function getDateInInputFormat(date: Date) {
 		date.getMonth() + 1
 	)}-${leadingZeroDaysAndMonths(date.getDate())}`;
 }
+
+export function getDateTimeInInputFormat(date: Date) {
+	return `${date.toISOString().slice(0, 16)}Z`;
+}

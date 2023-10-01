@@ -8,6 +8,7 @@
 	import Filters from '$lib/homework/Filters.svelte';
 	import { page } from '$app/stores';
 	import { goto, invalidateAll } from '$app/navigation';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: EventResponse | { eventDataAvailable: false };
 
@@ -95,7 +96,7 @@
 			{/if}
 		</ul>
 		{#if !data.eventDataAvailable || data.data.events.length === 0}
-			<p class="text-center">There are no events to show you :/</p>
+			<p class="text-center">{i('events.noData')}</p>
 		{/if}
 	</div>
 

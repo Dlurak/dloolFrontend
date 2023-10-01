@@ -150,5 +150,6 @@
 	"events.create.subject": "Subject",
 	"events.create.description": "Description",
 	"events.create.location": "Location",
-	"events.create.submit": "Create"
+	"events.create.submit": "Create",
+	"events.noData": "There are no events"
 }

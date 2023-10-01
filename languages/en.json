@@ -161,7 +161,6 @@
 	"events.create.success": "Successfully created new event",
 	"events.create.time.start": "Start",
 	"events.create.time.end": "End",
-	
 	"events.create.title": "Title",
 	"events.create.subject": "Subject",
 	"events.create.description": "Description",

@@ -39,18 +39,11 @@
 	const eventsForDay = (day: number, month: number, year: number) => {
 		if (!events) return [];
 		return events.filter((event) => {
-			const eventDate: CustomDate = {
-				year: event.date.year,
-				month: event.date.month,
-				day: event.date.day
-			};
-			const searchDate: CustomDate = {
-				year,
-				month: month + 1,
-				day
-			};
+			const yearMatches = event.date.year === year;
+			const monthMatches = event.date.month === month;
+			const dayMatches = event.date.day === day;
 
-			return JSON.stringify(eventDate) === JSON.stringify(searchDate);
+			return yearMatches && monthMatches && dayMatches;
 		});
 	};
 
@@ -111,6 +104,6 @@
 	{/each}
 
 	{#each Array(daysInMonth) as _, i}
-		<CalendarDay day={i + 1} {month} {year} events={eventsForDay(i + 1, month, year)} />
+		<CalendarDay day={i + 1} {month} {year} events={eventsForDay(i + 1, month + 1, year)} />
 	{/each}
 </div>

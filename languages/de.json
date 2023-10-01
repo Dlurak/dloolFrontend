@@ -163,7 +163,6 @@
 	"events.create.success": "Erfolgreich erstellt",
 	"events.create.time.start": "Start",
 	"events.create.time.end": "Ende",
-
 	"events.create.title": "Titel",
 	"events.create.subject": "Fach",
 	"events.create.description": "Beschreibung",

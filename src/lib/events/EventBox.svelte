@@ -1,8 +1,10 @@
 <script lang="ts">
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import Box from '$lib/homework/Box.svelte';
-	import { i } from '@inlang/sdk-js';
+	import { page } from '$app/stores';
 	import type { Event } from '../../types/events';
+	import QuickActionButton from '$lib/QuickActionButton.svelte';
+	import { onMount } from 'svelte';
 
 	export let event: Event;
 
@@ -19,9 +21,15 @@
 		0
 	);
 	const endDate = new Date(startDate.getTime() + event.duration * 1000);
+
+	let shareEnabled = false;
+
+	onMount(() => {
+		shareEnabled = !!navigator.share;
+	});
 </script>
 
-<Box>
+<Box id={event._id}>
 	<div class="grid grid-cols-1 @sm:grid-cols-2 justify-between gap-2">
 		<h3>{event.title}</h3>
 		<h3 class="@sm:text-right">{event.subject}</h3>
@@ -68,5 +76,28 @@
 				</span>
 			{/if}
 		</div>
+	</div>
+
+	<div class="w-full flex flex-row items-center justify-evenly">
+		{#if shareEnabled}
+			<QuickActionButton
+				iconName="bx-share-alt"
+				focusedIconName="bxs-share-alt"
+				color="text-green-500 dark:text-green-600"
+				on:click={() => {
+					const shareUrl = $page.url.toString() + `#${event._id}`;
+					try {
+						navigator.share({
+							title: 'Dlool',
+							text: 'Check out this event!',
+							url: shareUrl
+						});
+						return;
+					} catch (e) {
+						return;
+					}
+				}}
+			/>
+		{/if}
 	</div>
 </Box>

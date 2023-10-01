@@ -26,14 +26,14 @@
 >
 	<Logo />
 	<div
-		class="md:flex md:flex-row flex-col gap-4 p-0 md:static md:inset-0 fixed top-10 bottom-0 right-0 m-0 md:w-max w-[70%] bg-light-background dark:bg-dark-background md:bg-transparent z-50 {isHamburgerOpened
+		class="lg:flex lg:flex-row flex-col gap-4 p-0 lg:static lg:inset-0 fixed top-10 bottom-0 right-0 m-0 lg:w-max w-[70%] bg-light-background dark:bg-dark-background lg:bg-transparent z-50 {isHamburgerOpened
 			? 'flex'
 			: 'hidden'}"
 	>
-		<ul id="linkList" class="flex flex-col md:flex-row gap-4 p-0">
+		<ul id="linkList" class="flex flex-col lg:flex-row gap-4 p-0">
 			{#each navData as navDataEntry}
 				{#if navDataEntry.showInNav}
-					<li class="w-full md:w-auto">
+					<li class="w-full lg:w-auto">
 						<TextOrIconLink
 							boxIcon={navDataEntry.navBoxIcon}
 							title={i(`nav.${navDataEntry.title}`)}
@@ -47,7 +47,7 @@
 	</div>
 	<div
 		id="hamburgerWrapper"
-		class="p-0 m-0 aspect-square h-full flex items-center justify-center md:hidden"
+		class="p-0 m-0 aspect-square h-full flex items-center justify-center lg:hidden"
 	>
 		<HamburgerButton bind:isOpened={isHamburgerOpened} />
 	</div>

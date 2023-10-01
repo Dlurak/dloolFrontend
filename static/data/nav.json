@@ -32,6 +32,14 @@
 		"footerCategory": "Homework"
 	},
 	{
+		"title": "events",
+		"uri": "/events",
+		"showInNav": true,
+		"navBoxIcon": "bx-calendar",
+		"showInFooter": true,
+		"footerCategory": "events"
+	},
+	{
 		"title": "settings",
 		"uri": "/settings",
 		"showInNav": false,

@@ -5,14 +5,16 @@
 Dlool is the digital version of a homework book. And it is collaborative.
 Classical homework books have a lot of problems, also a lot of people use tablets in school and don't have any folders but still an analog homework book. With Dlool there is a good solution to this problem. There are even more problems here is a table with some problems:
 
-| Problem                                    | Solution                                                                      |
-| ------------------------------------------ | ----------------------------------------------------------------------------- |
-| Everyone in a class writes down the same   | Dlool is collaborative, all entries from one class are available for everyone |
-| They are not very good for the environment | Dlool is digital, no paper is needed.                                         |
-| They are not very practical                | Dlool is available on all devices.                                            |
-| Entries are not very structured            | Dlool has a structured entry system.                                          |
-| When you lose your homework book           | Dlool is digital, you can't lose it.                                          |
-| Every year you need a new homework book    | Dlool can be used for multiple years.                                         |
+| Problem                                    | Solution                                                                                                                    |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Everyone in a class writes down the same   | Dlool is collaborative, all entries from one class are available for everyone                                               |
+| They are not very good for the environment | Dlool is digital, no paper is needed.                                                                                       |
+| They are not very practical                | Dlool is available on all devices.                                                                                          |
+| Entries are not very structured            | Dlool has a structured entry system.                                                                                        |
+| When you lose your homework book           | Dlool is digital, you can't lose it.                                                                                        |
+| Every year you need a new homework book    | Dlool can be used for multiple years.                                                                                       |
+| You are locked into a specific brand       | Dlool is free and open source. With dlool you can export your data to ical or todo.txt.                                     |
+| Homework, tests and notes are not separate | Dlool has a different system for homework, tests and notes. Everything is sperated but still in one place and easy to find. |
 
 ---
 
@@ -29,6 +31,7 @@ Classical homework books have a lot of problems, also a lot of people use tablet
 - Usable for many years
 - Moderation system
 - Private and public notes
+- A calendar for tests
 - And more...
 
 ## Technologies

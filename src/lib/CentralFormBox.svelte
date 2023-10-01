@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CommunicationText from './communicationText.svelte';
+
 	export let linkName = '';
 	export let linkHref = '';
 
@@ -29,6 +31,6 @@
 		<a href={linkHref} class="text-xs">{linkName}</a>
 	</span>
 
-	<p class:hidden={!successText} class="text-light-success dark:text-dark-success">{successText}</p>
-	<p class:hidden={!errorText} class="text-light-error dark:text-dark-error">{errorText}</p>
+	<CommunicationText type="success" text={successText} />
+	<CommunicationText type="error" text={errorText} />
 </div>

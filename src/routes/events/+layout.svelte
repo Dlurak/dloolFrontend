@@ -22,6 +22,16 @@
 	let filteredSchool = '';
 	let filteredClassName = '';
 
+	const reload = () => {
+		invalidateAll();
+		const url = new URL(location.href);
+		url.searchParams.set('school', filteredSchool);
+		url.searchParams.set('class', filteredClassName);
+
+		history.replaceState(null, '', url.toString());
+		data = data;
+	};
+
 	onDestroy(() => {
 		clearInterval(interval);
 	});
@@ -35,23 +45,21 @@
 					bind:className
 					bind:schoolName={school}
 					onFilterSet={() => {
-						invalidateAll();
-						const url = new URL(location.href);
-						url.searchParams.set('school', school);
-						url.searchParams.set('class', className);
-						history.replaceState(null, '', url.toString());
-
 						filteredSchool = school;
 						filteredClassName = className;
 
-						data = data;
+						reload();
 					}}
 				/>
 			</li>
 			{#if data.eventDataAvailable}
 				{#if loggedIn}
 					<li>
-						<CreateEvent className={filteredClassName} school={filteredSchool} />
+						<CreateEvent
+							className={filteredClassName}
+							school={filteredSchool}
+							on:postSubmit={reload}
+						/>
 					</li>
 				{/if}
 				{#each data.data.events as event}

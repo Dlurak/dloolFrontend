@@ -4,7 +4,12 @@
 	import DateTimePicker from '$lib/dates/DateTimePicker.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import NormalInput from '$lib/utils/NormalInput.svelte';
+	import { createEventDispatcher } from 'svelte';
 	import type { CustomDateTime } from '../../types/customDate';
+	import { i } from '@inlang/sdk-js';
+	import CommunicationText from '$lib/communicationText.svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let school = '';
 	export let className = '';
@@ -19,6 +24,9 @@
 	let startTimestamp: number;
 	let endTimestamp: number;
 
+	let errorText = '';
+	let successText = '';
+
 	$: disabled =
 		!title ||
 		!subject ||
@@ -28,8 +36,20 @@
 		!className ||
 		!(startTimestamp < endTimestamp);
 
+	$: console.table({
+		title,
+		subject,
+		description,
+		school,
+		className,
+		startTimestamp,
+		endTimestamp
+	});
+
 	const handleSubmit = (e: SubmitEvent) => {
 		e.preventDefault();
+		dispatch('preSubmit');
+
 		const durationMilliSeconds = endTimestamp - startTimestamp;
 		const durationSeconds = durationMilliSeconds / 1000;
 
@@ -53,10 +73,22 @@
 				Authorization: `Bearer ${token}`,
 				'Content-Type': 'application/json'
 			}
-		});
+		}).then((res) => res.json());
 
-		console.log(res);
-		res.then(console.log);
+		res.then((dat) => {
+			const isError = dat.status === 'error';
+			if (isError) {
+				disabled = false;
+				errorText = i('error');
+			} else {
+				title = description = subject = location = '';
+				successText = i('events.create.success');
+				setTimeout(() => {
+					successText = '';
+				}, 5000);
+			}
+			dispatch('postSubmit', dat);
+		});
 	};
 </script>
 
@@ -74,5 +106,8 @@
 		<DateTimePicker bind:timestamp={endTimestamp} />
 
 		<SubmitButton {disabled} value="Submit" />
+
+		<CommunicationText type="success" text={successText} />
+		<CommunicationText type="error" text={errorText} />
 	</form>
 </Box>

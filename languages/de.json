@@ -143,5 +143,6 @@
 	"time.ago.edited.months": "Vor time Monaten bearbeitet",
 	"time.ago.edited.months.1": "Vor einem Monat bearbeitet",
 	"time.ago.edited.years": "Vor time Jahren bearbeitet",
-	"time.ago.edited.years.1": "Vor einem Jahr bearbeitet"
+	"time.ago.edited.years.1": "Vor einem Jahr bearbeitet",
+	"events.create.success": "Erfolgreich erstellt"
 }

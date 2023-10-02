@@ -17,8 +17,6 @@
 	export let createdAt: number;
 	export let creatorId: string;
 
-	let userData = fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json());
-
 	export let postUpdate: () => void = () => {
 		return;
 	};
@@ -77,8 +75,8 @@
 			{/each}
 		{/if}
 	</ul>
-	{#await userData then uD}
-		<p class="text-xs">{uD.data.user.name || i('error')}</p>
+	{#await fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json()) then userData}
+		<p class="text-xs">{userData.data.user.name || i('error')}</p>
 	{/await}
 	{#if editMode}
 		<SubmitButton

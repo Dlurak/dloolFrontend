@@ -33,7 +33,7 @@
 	};
 	let paddingDays = Array(generatePaddingDays(firstDayWeekday));
 
-	const events = $calendarEvents;
+	let events = $calendarEvents;
 
 	const eventsForDay = (day: number, month: number, year: number) => {
 		if (!events) return [];
@@ -71,6 +71,10 @@
 		}
 		update();
 	};
+
+	calendarEvents.subscribe((value) => {
+		events = value;
+	});
 </script>
 
 <svelte:head>
@@ -103,6 +107,8 @@
 	{/each}
 
 	{#each Array(daysInMonth) as _, i}
-		<CalendarDay day={i + 1} {month} {year} events={eventsForDay(i + 1, month + 1, year)} />
+		{#key events}
+			<CalendarDay day={i + 1} {month} {year} events={eventsForDay(i + 1, month + 1, year)} />
+		{/key}
 	{/each}
 </div>

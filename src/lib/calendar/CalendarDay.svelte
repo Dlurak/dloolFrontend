@@ -7,6 +7,8 @@
 	export let year: number;
 	export let events: Event[] = [];
 
+	export let secondary = false;
+
 	const focusedBg = 'bg-light-primary dark:bg-dark-primary';
 	const unfocusedBg = 'bg-light-box dark:bg-dark-box';
 
@@ -22,6 +24,7 @@
 
 <div
 	class="border border-1 border-gray-600 dark:border-gray-300 p-2 aspect-square overflow-y-scroll"
+	class:opacity-30={secondary}
 >
 	<div
 		class="rounded-full p-1 flex items-center justify-center w-6 h-6 mb-1 {isToday(day, month, year)

@@ -2,6 +2,7 @@
 	import { i } from '@inlang/sdk-js';
 	import { calendarEvents } from '../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
+	import CalendarEvent from '$lib/calendar/CalendarEvent.svelte';
 
 	const date = new Date();
 
@@ -32,6 +33,7 @@
 		return weekdayIndex - 1;
 	};
 	let paddingDays = Array(generatePaddingDays(firstDayWeekday));
+	let lastDayPrevMonth = new Date(year, month, 0).getDate();
 
 	let events = $calendarEvents;
 
@@ -103,7 +105,17 @@
 		<p class="capitalize">{weekday}</p>
 	{/each}
 	{#each paddingDays as _, i}
-		<div />
+		<div>
+			{#key events}
+				<CalendarDay
+					day={lastDayPrevMonth - paddingDays.length + i + 1}
+					{month}
+					{year}
+					events={eventsForDay(lastDayPrevMonth - paddingDays.length + i + 1, month, year)}
+					secondary
+				/>
+			{/key}
+		</div>
 	{/each}
 
 	{#each Array(daysInMonth) as _, i}

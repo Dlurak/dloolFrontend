@@ -9,10 +9,12 @@
 	import { page } from '$app/stores';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { i } from '@inlang/sdk-js';
+	import { isUserMember } from '$lib/homework/isUserMember';
 
 	export let data: EventResponse | { eventDataAvailable: false };
 
 	let loggedIn = false;
+	let userIsMemberOfClass = false;
 
 	const interval = setInterval(() => {
 		if (browser) loggedIn = isLoggedIn();
@@ -24,14 +26,35 @@
 	let filteredSchool = '';
 	let filteredClassName = '';
 
+	const reloadIsUserMember = () => {
+		userIsMemberOfClass = isUserMember(
+			$page.url.searchParams.get('class') as string,
+			$page.url.searchParams.get('school') as string
+		);
+	};
+
 	const reload = () => {
 		const url = new URL(location.href);
 		url.searchParams.set('school', filteredSchool);
 		url.searchParams.set('class', filteredClassName);
 
-		goto(url).then(() => {
+		return goto(url).then(() => {
 			invalidateAll();
 			data = data;
+			return;
+		});
+	};
+
+	const setParameters = (params: { school: string; class: string }) => {
+		filteredSchool = params.school;
+		filteredClassName = params.class;
+
+		reload().then(() => {
+			if (browser) {
+				localStorage.setItem('school', params.school);
+				localStorage.setItem('class', params.class);
+			}
+			reloadIsUserMember();
 		});
 	};
 
@@ -67,19 +90,15 @@
 					bind:className
 					bind:schoolName={school}
 					onFilterSet={() => {
-						filteredSchool = school;
-						filteredClassName = className;
-
-						reload();
-						if (browser) {
-							localStorage.setItem('school', filteredSchool);
-							localStorage.setItem('class', filteredClassName);
-						}
+						setParameters({
+							school,
+							class: className
+						});
 					}}
 				/>
 			</li>
 			{#if data.eventDataAvailable}
-				{#if loggedIn}
+				{#if loggedIn && userIsMemberOfClass}
 					<li>
 						<CreateEvent
 							className={filteredClassName}

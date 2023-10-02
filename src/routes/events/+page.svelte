@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { i } from '@inlang/sdk-js';
-	import type { CustomDate } from '../../types/customDate';
 	import { calendarEvents } from '../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
 

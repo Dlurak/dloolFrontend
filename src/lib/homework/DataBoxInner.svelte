@@ -43,7 +43,7 @@
 	}
 </script>
 
-<div class="w-full h-full">
+<div class="w-full">
 	<div class="flex flex-col">
 		<h3>
 			{#if editMode}

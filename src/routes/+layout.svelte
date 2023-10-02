@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import Navbar from '$lib/Navbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
@@ -6,6 +6,8 @@
 	import '../app.css';
 
 	import { onMount } from 'svelte';
+	import { currentLanguage } from './stores';
+	import type { Languages } from '../languages/i18n';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -19,6 +21,11 @@
 
 	onMount(() => {
 		updateCSSVariables();
+
+		const languageLocalStorage = localStorage.getItem('language');
+		if (languageLocalStorage) {
+			currentLanguage.set(languageLocalStorage as Languages);
+		}
 	});
 
 	$: {

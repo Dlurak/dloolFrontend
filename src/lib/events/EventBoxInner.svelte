@@ -26,7 +26,11 @@
 	{#if showTitle}
 		<h3>{event.title}</h3>
 	{/if}
-	<span class="flex items-center gap-2 justify-end">
+	<span
+		class="flex items-center gap-2"
+		class:justify-end={showTitle}
+		class:justify-start={!showTitle}
+	>
 		{#if iconExistsForSubject(event.subject.toLowerCase())}
 			<i class="bx {getIconForSubject(event.subject.toLowerCase())}" />
 		{/if}

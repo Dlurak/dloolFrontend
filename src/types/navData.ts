@@ -1,8 +1,12 @@
+import type { navData } from '../constants/nav';
+
+type navDataType = (typeof navData)[number];
+
 export interface NavDataEntry {
-	title: string;
-	uri: string;
+	title: navDataType['title'];
+	uri: navDataType['uri'];
 	showInNav: boolean;
-	navBoxIcon: string;
+	navBoxIcon: navDataType['navBoxIcon'];
 	showInFooter: boolean;
-	footerCategory: string;
+	footerCategory: navDataType['footerCategory'];
 }

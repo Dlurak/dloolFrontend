@@ -1,24 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { NavDataEntry } from '../../types/navData';
-	import { loadLocaleJSONData } from '$lib/loadLocalData';
 	import TextOrIconLink from '$lib/navbar/textOrIconLink.svelte';
 	import I18n from '$lib/I18n.svelte';
-	import { i } from '../../languages/i18n';
+	import { navData } from '../../constants/nav';
 
 	interface categories {
 		[key: string]: NavDataEntry[];
 	}
-
-	let navData: NavDataEntry[] = [];
 
 	let entries = [];
 
 	let categories: categories = {};
 
 	onMount(async () => {
-		navData = (await loadLocaleJSONData('nav')) as NavDataEntry[];
-
 		entries = navData.filter((entry) => entry.showInFooter);
 
 		categories = entries.reduce((acc: categories, entry) => {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import I18n from '$lib/I18n.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
+	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
 	import type { Event } from '../../types/events';
 
 	export let event: Event;
@@ -25,7 +26,14 @@
 	{#if showTitle}
 		<h3>{event.title}</h3>
 	{/if}
-	<h3 class="@sm:text-right">{event.subject}</h3>
+	<span class="flex items-center gap-2 justify-end">
+		{#if iconExistsForSubject(event.subject.toLowerCase())}
+			<i class="bx {getIconForSubject(event.subject.toLowerCase())}" />
+		{/if}
+		<h3>
+			{event.subject}
+		</h3>
+	</span>
 </div>
 
 <p>{event.description}</p>

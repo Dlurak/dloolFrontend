@@ -9,8 +9,7 @@
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
-	import { showHomeworkFilter, subjectIcons } from '../stores';
-	import { loadLocaleJSONData } from '$lib/loadLocalData';
+	import { showHomeworkFilter } from '../stores';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 
@@ -86,7 +85,6 @@
 
 		const currentlyValid = currentSchool && currentClass;
 
-		subjectIcons.set(await loadLocaleJSONData('subjectIcons'));
 		await setPage(currentPage);
 		if (schoolLocalStorage && classLocalStorage && !currentlyValid) {
 			setParameters({

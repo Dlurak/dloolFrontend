@@ -1,22 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Logo from './Logo.svelte';
-	import type { NavDataEntry } from '../types/navData';
 
-	import { loadLocaleJSONData } from './loadLocalData';
 	import HamburgerButton from './navbar/hamburgerButton.svelte';
 	import TextOrIconLink from './navbar/textOrIconLink.svelte';
 	import LanguageSwitcher from './LanguageSwitcher.svelte';
-
-	let navData: NavDataEntry[] = [];
+	import { navData } from '../constants/nav';
 
 	let isHamburgerOpened: boolean;
 
 	export let height;
-
-	onMount(async () => {
-		navData = (await loadLocaleJSONData('nav')) as NavDataEntry[];
-	});
 </script>
 
 <nav

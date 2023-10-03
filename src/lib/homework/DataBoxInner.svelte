@@ -3,8 +3,12 @@
 	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
+	import {
+		getIconForSubject,
+		iconExistsForSubject,
+		subjectIconsObject
+	} from '../../constants/subjecticons';
 	import { i } from '../../languages/i18n';
-	import { subjectIcons } from '../../routes/stores';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
@@ -22,17 +26,11 @@
 		return;
 	};
 
-	let subjectIconsObj: Record<string, string> = {};
-
 	// EDIT MODE THINGS //
 
 	let newDate = date;
 	let newAssignments: Assignment[] = assignments;
 	let disabled = false;
-
-	subjectIcons.subscribe((icons) => {
-		subjectIconsObj = icons;
-	});
 
 	$: {
 		const allFilled = newAssignments.every((assignment) => {
@@ -61,8 +59,8 @@
 				<li class="flex flex-row">
 					<div class="w-full">
 						<span class="flex flex-row items-baseline justify-start gap-2 my-2">
-							{#if subjectIconsObj[assignment.subject.toLowerCase()]}
-								<i class="bx {subjectIconsObj[assignment.subject.toLowerCase()]}" />
+							{#if iconExistsForSubject(assignment.subject.toLowerCase())}
+								<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
 							{/if}
 							<h4>{assignment.subject}</h4>
 							<DateLabel date={assignment.due} />

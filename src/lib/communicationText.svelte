@@ -5,14 +5,14 @@
 	export let type: 'success' | 'error' = 'success';
 
 	export let text: Token | undefined = undefined;
+
+	const successClasses = 'text-light-success dark:text-dark-success';
+	const errorClasses = 'text-light-error dark:text-dark-error';
+	const colorClasses = type === 'success' ? successClasses : errorClasses;
 </script>
 
-{#if type === 'success'}
-	<p class:hidden={!text} class="text-light-success dark:text-dark-success text-center">
+{#key text}
+	<p class:hidden={!text} class="{colorClasses} text-center">
 		<I18n key={text} />
 	</p>
-{:else if type === 'error'}
-	<p class:hidden={!text} class="text-light-error dark:text-dark-error text-center">
-		<I18n key={text} />
-	</p>
-{/if}
+{/key}

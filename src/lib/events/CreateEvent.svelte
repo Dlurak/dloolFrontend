@@ -5,9 +5,10 @@
 	import Box from '$lib/homework/Box.svelte';
 	import NormalInput from '$lib/utils/NormalInput.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { i } from '@inlang/sdk-js';
 	import CommunicationText from '$lib/communicationText.svelte';
 	import { createDateTime } from '$lib/dates/createDateObject';
+	import I18n from '$lib/I18n.svelte';
+	import { i, type Token } from '../../languages/i18n';
 
 	const dispatch = createEventDispatcher();
 
@@ -24,8 +25,8 @@
 	let endDate = new Date();
 	let endDateIsAfterStartDate = false;
 
-	let errorText = '';
-	let successText = '';
+	let successText: Token | undefined = undefined;
+	let errorText: Token | undefined = undefined;
 
 	$: disabled = !title || !subject || !startDate || !description || !endDateIsAfterStartDate;
 
@@ -62,12 +63,12 @@
 			const isError = dat.status === 'error';
 			if (isError) {
 				disabled = false;
-				errorText = i('error');
+				errorText = 'error';
 			} else {
 				title = description = subject = location = '';
-				successText = i('events.create.success');
+				successText = 'events.create.success';
 				setTimeout(() => {
-					successText = '';
+					successText = undefined;
 				}, 5000);
 			}
 			dispatch('postSubmit', dat);
@@ -77,24 +78,30 @@
 
 <Box>
 	<form class="flex flex-col gap-2 w-full" on:submit={handleSubmit}>
-		<h3 class="grid grid-cols-1 @md:grid-cols-2 gap-2">
-			<NormalInput bind:value={title} placeholder={i('events.create.title')} />
-			<NormalInput bind:value={subject} placeholder={i('events.create.subject')} />
-		</h3>
-		<NormalInput
-			type="textarea"
-			bind:value={description}
-			placeholder={i('events.create.description')}
-		/>
+		<I18n>
+			<h3 class="grid grid-cols-1 @md:grid-cols-2 gap-2">
+				<NormalInput bind:value={title} placeholder={i('events.create.title')} />
+				<NormalInput bind:value={subject} placeholder={i('events.create.subject')} />
+			</h3>
+			<NormalInput
+				type="textarea"
+				bind:value={description}
+				placeholder={i('events.create.description')}
+			/>
+		</I18n>
 
 		<span class="flex items-center gap-1">
 			<i class="bx bx-map" />
-			<NormalInput bind:value={location} placeholder={i('events.create.location')} />
+			<I18n>
+				<NormalInput bind:value={location} placeholder={i('events.create.location')} />
+			</I18n>
 		</span>
 
 		<DateTimePicker bind:startDate bind:endDate bind:endDateIsAfterStartDate />
 
-		<SubmitButton {disabled} value={i('events.create.submit')} />
+		<I18n>
+			<SubmitButton {disabled} value={i('events.create.submit')} />
+		</I18n>
 
 		<CommunicationText type="success" text={successText} />
 		<CommunicationText type="error" text={errorText} />

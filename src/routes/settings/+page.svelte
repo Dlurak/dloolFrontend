@@ -1,13 +1,14 @@
-<script>
+<script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/auth/Input.svelte';
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
+	import { i, type Token } from '../../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
-	let successText = '';
-	let errorText = '';
+	let successText: Token | undefined = undefined;
+	let errorText: Token | undefined = undefined;
 
 	let username = '';
 	let name = '';
@@ -33,11 +34,13 @@
 </script>
 
 <svelte:head>
-	<title>{i('settings')}</title>
+	<I18n>
+		<title>Dlool | {i('settings')}</title>
+	</I18n>
 </svelte:head>
 
 <CentralFormBox
-	title={i('settings.settings')}
+	title="settings.settings"
 	{errorText}
 	{successText}
 	onSubmit={(e) => {
@@ -59,7 +62,7 @@
 		}).then((res) => {
 			console.log(res);
 			if (res.status === 200) {
-				successText = i('settings.success');
+				successText = 'settings.success';
 				localStorage.removeItem('token');
 				localStorage.removeItem('tokenExpires');
 				deleteDisabled = true;
@@ -68,53 +71,55 @@
 					window.location.href = '/login';
 				}, 5 * 1000);
 			} else {
-				errorText = i('settings.error');
+				errorText = 'settings.error';
 			}
 		});
 	}}
 >
-	<LoginInput
-		name={i('settings.username')}
-		type="text"
-		tooltip={i('settings.username.tooltip')}
-		bind:value={username}
-	/>
-	<LoginInput
-		name={i('settings.name')}
-		type="text"
-		tooltip={i('settings.name.tooltip')}
-		bind:value={name}
-	/>
-	<LoginInput
-		name={i('settings.password')}
-		type="password"
-		newPassword={true}
-		tooltip={i('settings.password.tooltip')}
-		bind:value={password}
-	/>
-	<SubmitButton value={i('settings.save')} {disabled} />
-	<SubmitButton
-		value={i('account.delete')}
-		disabled={deleteDisabled}
-		colour="red"
-		onClick={(e) => {
-			e.preventDefault();
-			const token = localStorage.getItem('token');
+	<I18n>
+		<LoginInput
+			name={i('settings.username')}
+			type="text"
+			tooltip={i('settings.username.tooltip')}
+			bind:value={username}
+		/>
+		<LoginInput
+			name={i('settings.name')}
+			type="text"
+			tooltip={i('settings.name.tooltip')}
+			bind:value={name}
+		/>
+		<LoginInput
+			name={i('settings.password')}
+			type="password"
+			newPassword={true}
+			tooltip={i('settings.password.tooltip')}
+			bind:value={password}
+		/>
+		<SubmitButton value={i('settings.save')} {disabled} />
+		<SubmitButton
+			value={i('account.delete')}
+			disabled={deleteDisabled}
+			colour="red"
+			onClick={(e) => {
+				e.preventDefault();
+				const token = localStorage.getItem('token');
 
-			if (!confirm(i('account.delete.confirm.1'))) return;
-			if (!confirm(i('account.delete.confirm.2'))) return;
+				if (!confirm(i('account.delete.confirm.1'))) return;
+				if (!confirm(i('account.delete.confirm.2'))) return;
 
-			const resPromise = fetch(PUBLIC_API_URL + '/auth/me', {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + token
-				}
-			});
+				const resPromise = fetch(PUBLIC_API_URL + '/auth/me', {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + token
+					}
+				});
 
-			resPromise.then(() => {
-				window.location.href = '/';
-			});
-		}}
-	/>
+				resPromise.then(() => {
+					window.location.href = '/';
+				});
+			}}
+		/>
+	</I18n>
 </CentralFormBox>

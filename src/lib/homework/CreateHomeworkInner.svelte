@@ -3,9 +3,10 @@
 	import DatePicker from '$lib/dates/DatePicker.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
 	import { swapArrayElements } from '$lib/utils/SwapItems';
-	import { i } from '@inlang/sdk-js';
 	import type { Assignment } from '../../types/homework';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	const currentDate = new Date();
 	let date = createDate(currentDate);
@@ -49,23 +50,27 @@
 			<div class="w-full">
 				<span class="flex flex-row items-center justify-start gap-2 my-2">
 					<div class="flex flex-row w-full gap-2">
-						<input
-							type="text"
-							bind:value={assignment.subject}
-							placeholder={i('homework.add.subject')}
-							class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-						/>
+						<I18n>
+							<input
+								type="text"
+								bind:value={assignment.subject}
+								placeholder={i('homework.add.subject')}
+								class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+							/>
+						</I18n>
 						<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
 							<DatePicker bind:dateObj={assignment.due} />
 						</span>
 					</div>
 				</span>
-				<textarea
-					bind:value={assignment.description}
-					placeholder={i('homework.add.description')}
-					class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-					rows="2"
-				/>
+				<I18n>
+					<textarea
+						bind:value={assignment.description}
+						placeholder={i('homework.add.description')}
+						class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+						rows="2"
+					/>
+				</I18n>
 			</div>
 		</li>
 	{/each}

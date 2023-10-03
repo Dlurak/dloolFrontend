@@ -3,7 +3,8 @@
 	import type { NavDataEntry } from '../../types/navData';
 	import { loadLocaleJSONData } from '$lib/loadLocalData';
 	import TextOrIconLink from '$lib/navbar/textOrIconLink.svelte';
-	import { i } from '@inlang/sdk-js';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	interface categories {
 		[key: string]: NavDataEntry[];
@@ -30,21 +31,23 @@
 </script>
 
 <div class="column">
-	<h3>{i('footer.links')}</h3>
+	<h3><I18n key="footer.links" /></h3>
 	<div class="row">
 		{#each Object.keys(categories) as categoriy}
 			<div class="category">
 				<h4 class="text-start md:text-center">
-					{i(`nav.categories.${categoriy.toLowerCase().replaceAll(' ', '-')}`)}
+					<I18n unsaveKey="nav.categories.{categoriy.toLowerCase().replaceAll(' ', '-')}" />
 				</h4>
 				<ul>
 					{#each categories[categoriy] as entry}
 						<li>
-							<TextOrIconLink
-								uri={entry.uri}
-								title={i(`nav.${entry.title}`)}
-								boxIcon={entry.navBoxIcon}
-							/>
+							<I18n>
+								<TextOrIconLink
+									uri={entry.uri}
+									title="nav.{entry.title}"
+									boxIcon={entry.navBoxIcon}
+								/>
+							</I18n>
 						</li>
 					{/each}
 				</ul>

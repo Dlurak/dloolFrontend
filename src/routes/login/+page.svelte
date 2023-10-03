@@ -4,21 +4,22 @@
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import LoginInput from '$lib/auth/Input.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { i } from '@inlang/sdk-js';
+	import { i, type Token } from '../../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
 	let usernameValue: string;
 	let passwordValue: string;
 
-	let errorText = '';
-	let successText = '';
+	let errorText: Token | undefined = undefined;
+	let successText: Token | undefined = undefined;
 
 	let redirectUri = $page.url.searchParams.get('redirect');
 
 	let disabled = false;
 
-	const setError = (text: string) => {
-		errorText = i(text);
-		successText = '';
+	const setError = (text: Token) => {
+		errorText = text;
+		successText = undefined;
 		disabled = false;
 	};
 
@@ -28,15 +29,17 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {i('login')}</title>
+	<I18n>
+		<title>Dlool | {i('login', {}, { transform: 'capitalize' })}</title>
+	</I18n>
 </svelte:head>
 
 <CentralFormBox
 	{errorText}
 	{successText}
-	linkName={i('login.register')}
+	linkName="login.register"
 	linkHref="/register"
-	title={i('login.welcome')}
+	title="login.welcome"
 	onSubmit={async () => {
 		disabled = true;
 		fetch(PUBLIC_API_URL + '/auth/login', {
@@ -56,8 +59,8 @@
 						setError('login.error.wrongCred');
 						break;
 					case 200:
-						errorText = '';
-						successText = i('login.success');
+						errorText = undefined;
+						successText = 'login.success';
 						break;
 					default:
 						setError('login.error.weird');
@@ -89,22 +92,24 @@
 				if (redirectUri) window.location.href = redirectUri;
 			})
 			.catch(() => {
-				errorText = i('error');
-				successText = '';
+				errorText = 'error';
+				successText = undefined;
 			});
 	}}
 >
-	<LoginInput
-		type="text"
-		name={i('username')}
-		bind:value={usernameValue}
-		tooltip={i('login.username.tooltip')}
-	/>
-	<LoginInput
-		type="password"
-		name={i('password')}
-		bind:value={passwordValue}
-		tooltip={i('login.password.tooltip')}
-	/>
-	<SubmitButton value={i('login')} {disabled} />
+	<I18n>
+		<LoginInput
+			type="text"
+			name={i('username')}
+			bind:value={usernameValue}
+			tooltip={i('login.username.tooltip')}
+		/>
+		<LoginInput
+			type="password"
+			name={i('password')}
+			bind:value={passwordValue}
+			tooltip={i('login.password.tooltip')}
+		/>
+		<SubmitButton value={i('login')} {disabled} />
+	</I18n>
 </CentralFormBox>

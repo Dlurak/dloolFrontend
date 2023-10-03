@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
 	import Box from './Box.svelte';
 	import Input from '$lib/auth/Input.svelte';
 	import { loadSchools } from '$lib/auth/loadSchools';
@@ -9,6 +8,8 @@
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { onMount } from 'svelte';
 	import { showHomeworkFilter } from '../../routes/stores';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	export let schoolName = '';
 	export let className = '';
@@ -28,7 +29,7 @@
 
 <Box hideOnPrint>
 	<span class="flex flex-row justify-between items-center">
-		<h3>{i('homework.filters')}</h3>
+		<h3><I18n key="homework.filters" /></h3>
 
 		<QuickActionButton
 			iconName="bx-chevron-down"
@@ -42,27 +43,30 @@
 	</span>
 
 	<div class:hidden={!showFilters}>
-		<Input
-			type="text"
-			name={i('school')}
-			list="schoolsList"
-			bind:value={schoolName}
-			autocomplete="off"
-		/>
+		<I18n>
+			<Input
+				type="text"
+				name={i('school')}
+				list="schoolsList"
+				bind:value={schoolName}
+				autocomplete="off"
+			/>
+			<Input
+				type="text"
+				name={i('class')}
+				list="classesList"
+				bind:value={className}
+				autocomplete="off"
+			/>
+			<SubmitButton
+				value={i('homework.filters.apply')}
+				onClick={() => {
+					onFilterSet(schoolName, className);
+				}}
+			/>
+		</I18n>
+		<!--For performace reasons these list are outside of the I18n tag-->
 		<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={schoolName} />
-		<Input
-			type="text"
-			name={i('class')}
-			list="classesList"
-			bind:value={className}
-			autocomplete="off"
-		/>
 		<SelectDataList id="classesList" loadFunction={loadClasses} searchParam={schoolName} />
-		<SubmitButton
-			value={i('homework.filters.apply')}
-			onClick={() => {
-				onFilterSet(schoolName, className);
-			}}
-		/>
 	</div>
 </Box>

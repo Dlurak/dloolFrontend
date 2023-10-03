@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import Input from '$lib/auth/Input.svelte';
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import { loadSchools } from '$lib/auth/loadSchools';
+	import CommunicationText from '$lib/communicationText.svelte';
 	import Box from '$lib/homework/Box.svelte';
-	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
+	import { i, type Token } from '../../languages/i18n';
 
 	let school = '';
 	let classes = [''];
@@ -16,7 +18,7 @@
 
 	let resultUrl = '';
 
-	let communicationText = '';
+	let communicationText: Token | undefined = undefined;
 
 	let resultType = 'calendar';
 
@@ -33,12 +35,14 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {i('tricks')}</title>
+	<I18n>
+		<title>Dlool | {i('tricks')}</title>
+	</I18n>
 </svelte:head>
 
 <div class="flex gap-4 flex-col">
 	<Box>
-		<h2 id="export">{i('tricks.export')}</h2>
+		<hs id="export"><I18n key="tricks.export" /></hs>
 		<div>
 			<select
 				class="bg-transparent w-full rounded-md border-2 border-gray-400 p-4"
@@ -51,24 +55,28 @@
 		<div class="flex flex-col">
 			<div class="flex flex-row gap-2">
 				<div class="flex flex-col justify-start">
-					<Input
-						type="text"
-						name={i('school')}
-						bind:value={school}
-						autocomplete="off"
-						list="schoolsList"
-					/>
+					<I18n>
+						<Input
+							type="text"
+							name={i('school')}
+							bind:value={school}
+							autocomplete="off"
+							list="schoolsList"
+						/>
+					</I18n>
 					<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
 				</div>
 				<div class="flex flex-col">
 					{#each classes as _, index}
-						<Input
-							type="text"
-							name="{i('class')} {index + 1}"
-							bind:value={_}
-							autocomplete="off"
-							list="classList"
-						/>
+						<I18n>
+							<Input
+								type="text"
+								name="{i('class')} {index + 1}"
+								bind:value={_}
+								autocomplete="off"
+								list="classList"
+							/>
+						</I18n>
 					{/each}
 					<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
 					<button
@@ -83,28 +91,31 @@
 			<div class="flex flex-row justify-between items-center">
 				<!--The clipboard API is only avialable with a secure origin-->
 				{#if clipboardIsAvailable}
-					<SubmitButton
-						value={i('tricks.export.copy')}
-						onClick={(e) => {
-							e.preventDefault();
-							navigator.clipboard.writeText(resultUrl).then(() => {
-								communicationText = i('tricks.export.copy.success');
-							});
-						}}
-						{disabled}
-					/>
+					<I18n>
+						<SubmitButton
+							value={i('tricks.export.copy')}
+							onClick={(e) => {
+								e.preventDefault();
+								navigator.clipboard.writeText(resultUrl).then(() => {
+									communicationText = 'tricks.export.copy.success';
+								});
+							}}
+							{disabled}
+						/>
+					</I18n>
 				{:else}
 					<code class="mt-3">{resultUrl}</code>
 				{/if}
 			</div>
 		</div>
 		<p class="text-light-success dark:text-dark-success text-center mt-3">{communicationText}</p>
+		<CommunicationText type="success" text={communicationText} />
 	</Box>
 	<hr />
 	<div>
-		<h2 id="install">{i('tricks.install')}</h2>
+		<h2 id="install"><I18n key="tricks.install" /></h2>
 		<p>
-			{i('tricks.install.text')}
+			<I18n key="tricks.install.text" />
 		</p>
 	</div>
 </div>

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
-	import { i } from '@inlang/sdk-js';
+	import { i } from '../../languages/i18n';
 	import { subjectIcons } from '../../routes/stores';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
@@ -76,7 +77,9 @@
 		{/if}
 	</ul>
 	{#await fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json()) then userData}
-		<p class="text-xs">{userData.data.user.name || i('error')}</p>
+		<I18n>
+			<p class="text-xs">{userData.data.user.name || i('error')}</p>
+		</I18n>
 	{/await}
 	{#if editMode}
 		<SubmitButton

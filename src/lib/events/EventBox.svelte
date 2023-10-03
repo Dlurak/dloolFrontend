@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import { page } from '$app/stores';
 	import type { Event } from '../../types/events';

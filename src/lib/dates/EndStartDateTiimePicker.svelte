@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
+	import I18n from '$lib/I18n.svelte';
 
 	let startString = '';
 	export let startDate: Date = new Date();
@@ -16,7 +16,7 @@
 	<div class="flex gap-2 items-center w-full">
 		<span class="flex gap-1 items-center">
 			<i class="bx bxs-hourglass-top" />
-			<p>{i('events.create.time.start')}</p>
+			<p><I18n key="events.create.time.start" /></p>
 		</span>
 		<input
 			type="datetime-local"
@@ -29,7 +29,7 @@
 	<div class="flex gap-2 items-center w-full">
 		<span class="flex gap-1 items-center">
 			<i class="bx bxs-hourglass-bottom" />
-			<p>{i('events.create.time.end')}</p>
+			<p><I18n key="events.create.time.end" /></p>
 		</span>
 		<input
 			type="datetime-local"

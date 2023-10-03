@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { createDate } from '$lib/dates/createDateObject';
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
-	import { i } from '@inlang/sdk-js';
 	import DateLabel from './dateLabel.svelte';
 	import type { CustomDate } from '../../types/customDate';
 	import { onMount } from 'svelte';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	const currentDate = new Date();
 
@@ -30,14 +31,16 @@
 	/>
 	{#if !isSafari}
 		<DateLabel date={dateObj} />
-		<button
-			on:click={(e) => {
-				e.preventDefault();
-				dateInput.showPicker();
-			}}
-			class="bx bx-calendar"
-			title={i('datepicker.selectDate')}
-		/>
+		<I18n>
+			<button
+				on:click={(e) => {
+					e.preventDefault();
+					dateInput.showPicker();
+				}}
+				class="bx bx-calendar"
+				title={i('datepicker.selectDate')}
+			/>
+		</I18n>
 	{/if}
 </div>
 

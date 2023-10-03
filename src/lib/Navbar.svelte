@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { i } from '@inlang/sdk-js';
 	import Logo from './Logo.svelte';
 	import type { NavDataEntry } from '../types/navData';
 
@@ -36,7 +35,7 @@
 					<li class="w-full lg:w-auto">
 						<TextOrIconLink
 							boxIcon={navDataEntry.navBoxIcon}
-							title={i(`nav.${navDataEntry.title}`)}
+							title={`nav.${navDataEntry.title}`}
 							uri={navDataEntry.uri}
 						/>
 					</li>

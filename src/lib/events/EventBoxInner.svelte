@@ -1,4 +1,5 @@
 <script lang="ts">
+	import I18n from '$lib/I18n.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import type { Event } from '../../types/events';
 
@@ -61,11 +62,11 @@
 
 	<div class="flex flex-col gap-1">
 		<span>
-			Erstellt von {event.editors[0]}
+			<I18n key="events.created.by" parts={{ name: event.editors[0] }} />
 		</span>
 		{#if hasMultipleVersions}
 			<span class="text-sm text-gray-600 dark:text-gray-300">
-				Zuletzt bearbeitet von {event.editors[editorLength - 1]}
+				<I18n key="events.edited.by" parts={{ name: event.editors[editorLength - 1] }} />
 			</span>
 		{/if}
 	</div>

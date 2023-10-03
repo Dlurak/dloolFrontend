@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
+	import { i } from '../../languages/i18n';
 	import Box from './Box.svelte';
 
 	export let currentPage: number;
@@ -7,10 +7,11 @@
 	export let setPageFunction: (page: number) => void;
 
 	type direction = 'left' | 'right' | 'first' | 'last';
+	type buttonTitle = 'previous' | 'next' | 'first' | 'last';
 
 	interface IButton {
 		direction: direction;
-		title: string;
+		title: buttonTitle;
 		onClick: () => void;
 		disabled: boolean;
 	}
@@ -78,7 +79,6 @@
 		return buttons.map((button) => {
 			return {
 				...button,
-				title: i(`homework.page.${button.title}`),
 				direction: mapDirectionToBoxIcon(button.direction)
 			};
 		});

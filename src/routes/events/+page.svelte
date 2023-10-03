@@ -1,28 +1,24 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
-	import { calendarEvents } from '../stores';
+	import { calendarEvents, currentLanguage } from '../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
 	import CalendarEvent from '$lib/calendar/CalendarEvent.svelte';
+	import { getWeekdays } from '$lib/dates/dataWeekday';
+	import I18n from '$lib/I18n.svelte';
+	import type { IntRange } from '../../types/utils';
+	import { i } from '../../languages/i18n';
 
 	const date = new Date();
 
-	let month = date.getMonth();
+	let month = date.getMonth() as IntRange<0, 12>;
+	let humanMonth = (month + 1) as IntRange<1, 13>;
 	let year = date.getFullYear();
 
-	let daysInMonth = new Date(year, month + 1, 0).getDate();
+	let daysInMonth = new Date(year, humanMonth, 0).getDate();
 	let firstDay = new Date(year, month, 1);
 
 	let firstDayWeekday = firstDay.getDay();
 
-	const weekdays = [
-		i('date.monday'),
-		i('date.tuesday'),
-		i('date.wednesday'),
-		i('date.thursday'),
-		i('date.friday'),
-		i('date.saturday'),
-		i('date.sunday')
-	];
+	let weekdays = getWeekdays();
 
 	/**
 	 * Generates the amount of days to pad the calendar with under the condition that the month starts with a monday like in germany
@@ -49,7 +45,7 @@
 	};
 
 	const update = () => {
-		daysInMonth = new Date(year, month + 1, 0).getDate();
+		daysInMonth = new Date(year, humanMonth, 0).getDate();
 		firstDay = new Date(year, month, 1);
 		firstDayWeekday = firstDay.getDay();
 		paddingDays = Array(generatePaddingDays(firstDayWeekday));
@@ -77,6 +73,9 @@
 	calendarEvents.subscribe((value) => {
 		events = value;
 	});
+	currentLanguage.subscribe((value) => {
+		weekdays = getWeekdays();
+	});
 </script>
 
 <svelte:head>
@@ -84,21 +83,25 @@
 </svelte:head>
 
 <div class="flex justify-between items-center mb-4">
-	<button
-		on:click={prevMonth}
-		title={i('date.month.previous')}
-		class="p-3 rounded-sm aspect-square bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 flex items-center justify-center transition-colors duration-300 ease-in-out"
-	>
-		<i class="bx bx-chevron-left" />
-	</button>
-	<h2>{i('date.month.' + (month + 1))} {year}</h2>
-	<button
-		on:click={nextMonth}
-		title={i('date.month.next')}
-		class="p-3 rounded-sm aspect-square bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 flex items-center justify-center transition-colors duration-300 ease-in-out"
-	>
-		<i class="bx bx-chevron-right" />
-	</button>
+	<I18n>
+		<button
+			on:click={prevMonth}
+			title={i('date.month.previous')}
+			class="p-3 rounded-sm aspect-square bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 flex items-center justify-center transition-colors duration-300 ease-in-out"
+		>
+			<i class="bx bx-chevron-left" />
+		</button>
+	</I18n>
+	<h2><I18n key="date.month.{humanMonth}" /> {year}</h2>
+	<I18n>
+		<button
+			on:click={nextMonth}
+			title={i('date.month.next')}
+			class="p-3 rounded-sm aspect-square bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 flex items-center justify-center transition-colors duration-300 ease-in-out"
+		>
+			<i class="bx bx-chevron-right" />
+		</button>
+	</I18n>
 </div>
 <div class="grid grid-cols-7">
 	{#each weekdays as weekday}

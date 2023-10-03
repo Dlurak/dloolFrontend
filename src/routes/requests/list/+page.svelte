@@ -9,7 +9,8 @@
 	import { getClassById } from '$lib/classes/getClass';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import { invalidateAll } from '$app/navigation';
-	import { i } from '@inlang/sdk-js';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../../languages/i18n';
 
 	export let data: RequestsResponse;
 
@@ -34,13 +35,15 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {i('request.list.title')}</title>
+	<I18n>
+		<title>Dlool | {i('request.list.title')}</title>
+	</I18n>
 </svelte:head>
 
 {#if !data.data}
-	<p>{i('request.list.noData')}</p>
+	<p><I18n key="request.list.noData" /></p>
 {:else if data.data.length === 0}
-	<p>{i('request.list.noData')}</p>
+	<p><I18n key="request.list.noData" /></p>
 {:else}
 	<div class="grid grid-cols-box-list w-full gap-4">
 		{#each data.data as req}
@@ -56,7 +59,7 @@
 						</div>
 						<hr />
 						<div>
-							{i('request.list.wantsToJoin')}
+							<I18n key="request.list.wantsToJoin" />
 							{#await getClassById(req.classId)}
 								...
 							{:then classData}
@@ -66,7 +69,7 @@
 						<hr />
 						<div>
 							{#if req.userDetails.acceptedClasses.length !== 0}
-								<p>{i('request.list.acceptedIn')}</p>
+								<p><I18n key="request.list.acceptedIn" /></p>
 								<ul class="list-disc pl-6">
 									{#each req.userDetails.acceptedClasses as classId}
 										<li>
@@ -79,27 +82,29 @@
 									{/each}
 								</ul>
 							{:else}
-								<p>{i('request.list.accepted.none')}</p>
+								<p><I18n key="request.list.accepted.none" /></p>
 							{/if}
 						</div>
 						<hr />
 					</div>
 					<div>
-						<SubmitButton
-							value={i('request.list.accept')}
-							onClick={(e) => {
-								e.preventDefault();
-								processRequest('accept', req._id);
-							}}
-						/>
-						<SubmitButton
-							value={i('request.list.reject')}
-							onClick={(e) => {
-								e.preventDefault();
-								processRequest('reject', req._id);
-							}}
-							colour="red"
-						/>
+						<I18n>
+							<SubmitButton
+								value={i('request.list.accept')}
+								onClick={(e) => {
+									e.preventDefault();
+									processRequest('accept', req._id);
+								}}
+							/>
+							<SubmitButton
+								value={i('request.list.reject')}
+								onClick={(e) => {
+									e.preventDefault();
+									processRequest('reject', req._id);
+								}}
+								colour="red"
+							/>
+						</I18n>
 					</div>
 				</div>
 			</Box>

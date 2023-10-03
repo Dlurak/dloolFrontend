@@ -5,8 +5,9 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import { loadSchools } from '$lib/auth/loadSchools';
-	import { i } from '@inlang/sdk-js';
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
+	import { i, type Token } from '../../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
 	let username: string;
 	let name: string;
@@ -19,12 +20,12 @@
 	 */
 	let disabled = false;
 
-	let errorText = '';
-	let successText = '';
+	let errorText: Token | undefined = undefined;
+	let successText: Token | undefined = undefined;
 
-	const setErrorText = (text: string) => {
-		errorText = i(text);
-		successText = '';
+	const setErrorText = (text: Token) => {
+		errorText = text;
+		successText = undefined;
 		disabled = false;
 	};
 
@@ -34,14 +35,16 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {i('register')}</title>
+	<I18n>
+		<title>Dlool | {i('register')}</title>
+	</I18n>
 </svelte:head>
 
 <CentralFormBox
 	{errorText}
 	{successText}
-	title={i('registerNow')}
-	linkName={i('register.login')}
+	title="registerNow"
+	linkName="register.login"
 	linkHref="/login"
 	onSubmit={async () => {
 		disabled = true;
@@ -112,10 +115,10 @@
 							setErrorText('error');
 							break;
 					}
-					successText = '';
+					successText = undefined;
 				} else if (obj.message === 'User created') {
-					successText = i('register.userCreated');
-					errorText = '';
+					successText = 'register.userCreated';
+					errorText = undefined;
 
 					// log the user in
 					return fetch(PUBLIC_API_URL + '/auth/login', {
@@ -127,8 +130,8 @@
 						})
 					});
 				} else if (obj.message === 'Successfully created request') {
-					successText = i('register.requestCreated');
-					errorText = '';
+					successText = 'register.requestCreated';
+					errorText = undefined;
 					localStorage.setItem('registerRequest', obj.data.id);
 				} else {
 					setErrorText('error');
@@ -152,45 +155,52 @@
 					localStorage.setItem('token', token);
 					localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
 
-					successText = i('login.success');
+					successText = 'login.success';
 				}
 			});
 	}}
 >
-	<LoginInput
-		type="text"
-		name={i('username')}
-		tooltip={i('register.username.tooltip')}
-		bind:value={username}
-	/>
-	<LoginInput type="text" name={i('name')} tooltip={i('register.name.tooltip')} bind:value={name} />
-	<LoginInput
-		type="text"
-		name={i('school')}
-		tooltip={i('register.school.tooltip')}
-		bind:value={school}
-		list="schoolsList"
-		autocomplete="off"
-	/>
+	<I18n>
+		<LoginInput
+			type="text"
+			name={i('username')}
+			tooltip={i('register.username.tooltip')}
+			bind:value={username}
+		/>
+		<LoginInput
+			type="text"
+			name={i('name')}
+			tooltip={i('register.name.tooltip')}
+			bind:value={name}
+		/>
+		<LoginInput
+			type="text"
+			name={i('school')}
+			tooltip={i('register.school.tooltip')}
+			bind:value={school}
+			list="schoolsList"
+			autocomplete="off"
+		/>
+
+		<LoginInput
+			type="text"
+			name={i('class')}
+			tooltip={i('register.class.tooltip')}
+			bind:value={className}
+			list="classList"
+			autocomplete="off"
+		/>
+
+		<LoginInput
+			type="password"
+			newPassword={true}
+			name={i('password')}
+			tooltip={i('register.password.tooltip')}
+			bind:value={password}
+		/>
+
+		<SubmitButton value={i('register')} {disabled} />
+	</I18n>
 	<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
-
-	<LoginInput
-		type="text"
-		name={i('class')}
-		tooltip={i('register.class.tooltip')}
-		bind:value={className}
-		list="classList"
-		autocomplete="off"
-	/>
 	<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
-
-	<LoginInput
-		type="password"
-		newPassword={true}
-		name={i('password')}
-		tooltip={i('register.password.tooltip')}
-		bind:value={password}
-	/>
-
-	<SubmitButton value={i('register')} {disabled} />
 </CentralFormBox>

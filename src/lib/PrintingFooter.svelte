@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import Logo from './Logo.svelte';
-	import { i } from '@inlang/sdk-js';
+	import I18n from './I18n.svelte';
 
 	let isFirefox = true;
 
@@ -17,6 +17,6 @@
 			<h3>Dlool</h3>
 		</div>
 
-		<p class="text-gray-600">{i('printing.footer')}</p>
+		<p class="text-gray-600"><I18n key="printing.footer" /></p>
 	</div>
 {/if}

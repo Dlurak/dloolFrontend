@@ -42,7 +42,6 @@ Classical homework books have a lot of problems, also a lot of people use tablet
 - [TailwindCSS](https://tailwindcss.com/)
 - [Vercel](https://vercel.com/)
 - [Boxicons](https://boxicons.com/)
-- [inLang](https://inlang.com/)
 
 ### Backend
 

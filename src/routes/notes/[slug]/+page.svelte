@@ -1,7 +1,6 @@
 <script lang="ts">
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
-	import { i } from '@inlang/sdk-js';
 	import type { Note } from '../../../types/notes';
 	import { focusedNote } from '../../stores';
 	import { browser } from '$app/environment';
@@ -9,6 +8,8 @@
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SvelteMarkdown from 'svelte-markdown';
 	import SubmitButton from '$lib/SubmitButton.svelte';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../../languages/i18n';
 
 	let note: Note | null | undefined;
 	let hasEditRights = false;
@@ -38,6 +39,14 @@
 		}
 	});
 
+	const getTitle = (): string => {
+		if (note) {
+			return note.title;
+		} else {
+			return i('notes.selected.none');
+		}
+	};
+
 	$: {
 		const isTitleValid = title.length > 0 && title.length < 64;
 		const isContentValid = content.length > 0 && content.length < 512;
@@ -50,7 +59,9 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {note?.title || i('notes.selected.none')}</title>
+	<I18n>
+		<title>Dlool | {getTitle()}</title>
+	</I18n>
 </svelte:head>
 
 <div class="w-full h-full flex flex-col">
@@ -58,24 +69,28 @@
 		<div class=" w-full h-full">
 			<div class="flex justify-between gap-2 items-baseline">
 				{#if editMode}
-					<textarea
-						maxlength="63"
-						bind:value={title}
-						placeholder={i('notes.create.title')}
-						class="rounded-sm text-2xl font-bold w-full"
-					/>
+					<I18n>
+						<textarea
+							maxlength="63"
+							bind:value={title}
+							placeholder={i('notes.create.title')}
+							class="rounded-sm text-2xl font-bold w-full"
+						/>
+					</I18n>
 				{:else}
 					<h3>{note.title}</h3>
 				{/if}
 				<DateLabel date={note.due} />
 			</div>
 			{#if editMode}
-				<textarea
-					maxlength="511"
-					bind:value={content}
-					placeholder={i('notes.create.content')}
-					class="rounded-sm w-full"
-				/>
+				<I18n>
+					<textarea
+						maxlength="511"
+						bind:value={content}
+						placeholder={i('notes.create.content')}
+						class="rounded-sm w-full"
+					/>
+				</I18n>
 			{:else}
 				<SvelteMarkdown source={note.content} />
 			{/if}
@@ -136,7 +151,7 @@
 			{/if}
 		</div>
 	{:else}
-		<p>{i('error')}</p>
+		<p><I18n key="error" /></p>
 	{/if}
 </div>
 

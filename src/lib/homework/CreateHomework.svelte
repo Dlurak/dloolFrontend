@@ -4,12 +4,13 @@
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { i } from '@inlang/sdk-js';
 	import { createDate } from '$lib/dates/createDateObject';
 	import Box from './Box.svelte';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -79,6 +80,8 @@
 			<DatePicker bind:dateObj={assignedAtDateObj} />
 		</h3>
 		<CreateHomeworkInner bind:assignments />
-		<SubmitButton value={i('homework.add.submit')} disabled={submitButtonDisabled} />
+		<I18n>
+			<SubmitButton value={i('homework.add.submit')} disabled={submitButtonDisabled} />
+		</I18n>
 	</form>
 </Box>

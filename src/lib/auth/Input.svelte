@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
 	import { onMount } from 'svelte';
+	import { i } from '../../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
 	export let type: 'password' | 'text';
 	export let onInput: (e: Event) => void = () => {
@@ -49,29 +50,33 @@
 	<label for={name}>{name}</label>
 
 	{#if type === 'password'}
-		<button
-			title={`${showPassword ? i('input.password.hide') : i('input.password.show')}`}
-			on:click={handleShowPassword}
-			class="showPasswordButton"
-			type="button"
-			on:focus={() => (passwordIconSolidString = 'bxs')}
-			on:blur={() => (passwordIconSolidString = 'bx')}
-		>
-			<i class={`bx ${passwordIconSolidString}-${showPassword ? 'hide' : 'show'}`} />
-		</button>
+		<I18n>
+			<button
+				title={`${showPassword ? i('input.password.hide') : i('input.password.show')}`}
+				on:click={handleShowPassword}
+				class="showPasswordButton"
+				type="button"
+				on:focus={() => (passwordIconSolidString = 'bxs')}
+				on:blur={() => (passwordIconSolidString = 'bx')}
+			>
+				<i class={`bx ${passwordIconSolidString}-${showPassword ? 'hide' : 'show'}`} />
+			</button>
+		</I18n>
 	{/if}
 
 	{#if tooltip}
-		<button
-			title={i('input.explaination')}
-			type="button"
-			on:click={(e) => {
-				e.preventDefault();
-				showTooltip = !showTooltip;
-			}}
-		>
-			<i class="bx bx-question-mark" />
-		</button>
+		<I18n>
+			<button
+				title={i('input.explaination')}
+				type="button"
+				on:click={(e) => {
+					e.preventDefault();
+					showTooltip = !showTooltip;
+				}}
+			>
+				<i class="bx bx-question-mark" />
+			</button>
+		</I18n>
 	{/if}
 </span>
 {#if showTooltip}

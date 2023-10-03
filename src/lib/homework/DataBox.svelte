@@ -2,7 +2,6 @@
 	import DataBoxInner from './DataBoxInner.svelte';
 
 	import { PUBLIC_API_URL } from '$env/static/public';
-	import { i } from '@inlang/sdk-js';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import Box from './Box.svelte';
@@ -10,6 +9,8 @@
 	import { page } from '$app/stores';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import Modal from '$lib/Modal.svelte';
+	import CommunicationText from '$lib/communicationText.svelte';
+	import { i, type Token } from '../../languages/i18n';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -24,8 +25,7 @@
 	let shareEnabled = false;
 	let copyEnabled = false;
 
-	let errorMessage = '';
-	let successMessage = '';
+	let successMessage: Token | undefined = undefined;
 
 	let dialogIsOpen = false;
 
@@ -72,9 +72,9 @@
 						on:click={() => {
 							const shareUrl = $page.url.toString() + `#${id}`;
 							navigator.clipboard.writeText(shareUrl).then(() => {
-								successMessage = i('tricks.export.copy.success');
+								successMessage = 'tricks.export.copy.success';
 								setTimeout(() => {
-									successMessage = '';
+									successMessage = undefined;
 								}, 5000);
 							});
 						}}
@@ -118,12 +118,7 @@
 				{/if}
 			</div>
 			<div class="w-full text-center">
-				<p class:hidden={!successMessage} class="text-light-success dark:text-dark-success">
-					{successMessage}
-				</p>
-				<p class:hidden={!errorMessage} class="text-light-error dark:text-dark-error">
-					{errorMessage}
-				</p>
+				<CommunicationText type="success" text={successMessage} />
 			</div>
 		</div>
 	</div>

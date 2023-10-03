@@ -1,12 +1,12 @@
 <script>
+	import I18n from '$lib/I18n.svelte';
 	import LanguageSwitcher from '$lib/LanguageSwitcher.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import { i } from '@inlang/sdk-js';
 </script>
 
 <div class="column flex-1">
 	<div class="flex flex-nowrap justify-between">
-		<h3>© 2023 Dlurak</h3>
+		<h3><I18n key="footer.liscence" /></h3>
 		<div class="flex justify-end gap-1">
 			<QuickActionButton
 				iconName="bx-printer"
@@ -18,7 +18,7 @@
 			<LanguageSwitcher />
 		</div>
 	</div>
-	<div class="row">{i('footer.liscence.text')}</div>
+	<div class="row"><I18n key="footer.liscence.text" /></div>
 </div>
 
 <style>

@@ -3,7 +3,6 @@
 	import { page } from '$app/stores';
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { isUserMember } from '$lib/homework/isUserMember';
-	import { i } from '@inlang/sdk-js';
 	import { onDestroy, onMount } from 'svelte';
 	import Filters from '$lib/homework/Filters.svelte';
 	import DataBox from '$lib/homework/DataBox.svelte';
@@ -12,6 +11,8 @@
 	import PageSelector from '$lib/homework/pageSelector.svelte';
 	import { showHomeworkFilter, subjectIcons } from '../stores';
 	import { loadLocaleJSONData } from '$lib/loadLocalData';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -118,7 +119,9 @@
 </script>
 
 <svelte:head>
-	<title>Dlool | {i('homework')}</title>
+	<I18n>
+		<title>Dlool | {i('homework', {}, { transform: 'capitalize' })}</title>
+	</I18n>
 </svelte:head>
 
 <div class="grid grid-cols-box-list w-full gap-4">
@@ -185,7 +188,7 @@
 		{/each}
 		{#if data.data.length === 0}
 			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
-				{i('homework.noHomework')}
+				<I18n key="homework.noHomework" />
 			</p>
 		{:else if data.totalPageCount > 1}
 			<PageSelector

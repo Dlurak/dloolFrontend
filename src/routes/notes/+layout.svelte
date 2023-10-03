@@ -8,8 +8,8 @@
 	import { onMount } from 'svelte';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import { i } from '@inlang/sdk-js';
 	import Box from '$lib/homework/Box.svelte';
+	import I18n from '$lib/I18n.svelte';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
 
@@ -80,7 +80,7 @@
 							<Box>
 								<h4 class="flex gap-2 items-center">
 									<i class="bx bxs-note" />
-									<span>{i('notes.create.button')}</span>
+									<span><I18n key="notes.create.button" /></span>
 								</h4>
 							</Box>
 						</a>
@@ -102,7 +102,7 @@
 				{/if}
 			</ul>
 		{:else}
-			<p>{i('error')}</p>
+			<p><I18n key="error" /></p>
 		{/if}
 	</div>
 

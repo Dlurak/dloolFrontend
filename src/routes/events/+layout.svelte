@@ -8,8 +8,8 @@
 	import Filters from '$lib/homework/Filters.svelte';
 	import { page } from '$app/stores';
 	import { goto, invalidateAll } from '$app/navigation';
-	import { i } from '@inlang/sdk-js';
 	import { isUserMember } from '$lib/homework/isUserMember';
+	import I18n from '$lib/I18n.svelte';
 
 	export let data: EventResponse | { eventDataAvailable: false };
 
@@ -115,7 +115,7 @@
 			{/if}
 		</ul>
 		{#if !data.eventDataAvailable || data.data.events.length === 0}
-			<p class="text-center">{i('events.noData')}</p>
+			<p class="text-center"><I18n key="events.noData" /></p>
 		{/if}
 	</div>
 

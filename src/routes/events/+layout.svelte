@@ -75,6 +75,8 @@
 
 		if (schoolLocalStorage) school = schoolLocalStorage;
 		if (classLocalStorage) className = classLocalStorage;
+
+		reloadIsUserMember();
 	});
 
 	onDestroy(() => {

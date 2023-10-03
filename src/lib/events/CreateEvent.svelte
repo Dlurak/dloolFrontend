@@ -9,6 +9,7 @@
 	import { createDateTime } from '$lib/dates/createDateObject';
 	import I18n from '$lib/I18n.svelte';
 	import { i, type Token } from '../../languages/i18n';
+	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
 
 	const dispatch = createEventDispatcher();
 
@@ -81,7 +82,11 @@
 		<I18n>
 			<h3 class="grid grid-cols-1 @md:grid-cols-2 gap-2">
 				<NormalInput bind:value={title} placeholder={i('events.create.title')} />
-				<NormalInput bind:value={subject} placeholder={i('events.create.subject')} />
+				<NormalInput
+					bind:value={subject}
+					placeholder={i('events.create.subject')}
+					list="subjectList"
+				/>
 			</h3>
 			<NormalInput
 				type="textarea"
@@ -89,6 +94,12 @@
 				placeholder={i('events.create.description')}
 			/>
 		</I18n>
+
+		<datalist id="subjectList">
+			{#each subjectsSortetCapitalized as subj}
+				<option value={subj} />
+			{/each}
+		</datalist>
 
 		<span class="flex items-center gap-1">
 			<i class="bx bx-map" />

@@ -48,16 +48,30 @@ export const subjectIconsObject = {
 	russian: 'bx-globe',
 	latin: 'bx-globe'
 } as const;
+export const subjects = Object.keys(subjectIconsObject) as subjectType[];
 
-export type subject = keyof typeof subjectIconsObject;
-export type subjectIcon = (typeof subjectIconsObject)[subject];
-export type iconForSubject<T extends subject> = (typeof subjectIconsObject)[T];
+const subjectSet = new Set(
+	subjects
+		.map((subject) => {
+			const words = subject.split(' ');
+			const capitalizedWords = words.map((word) => {
+				return word.charAt(0).toUpperCase() + word.slice(1);
+			});
+			return capitalizedWords.join(' ');
+		})
+		.sort()
+);
+export const subjectsSortetCapitalized = Array.from(subjectSet);
+
+export type subjectType = keyof typeof subjectIconsObject;
+export type subjectIcon = (typeof subjectIconsObject)[subjectType];
+export type iconForSubject<T extends subjectType> = (typeof subjectIconsObject)[T];
 
 export const iconExistsForSubject = (sub: string): boolean => sub in subjectIconsObject;
 
 export const getIconForSubject = (sub: string): subjectIcon | null => {
 	if (iconExistsForSubject(sub)) {
-		const subj = sub as subject;
+		const subj = sub as subjectType;
 		const icon = subjectIconsObject[subj];
 		return icon;
 	} else return null;

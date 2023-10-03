@@ -7,6 +7,7 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
+	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
 
 	const currentDate = new Date();
 	let date = createDate(currentDate);
@@ -56,8 +57,14 @@
 								bind:value={assignment.subject}
 								placeholder={i('homework.add.subject')}
 								class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+								list="subjects"
 							/>
 						</I18n>
+						<datalist id="subjects">
+							{#each subjectsSortetCapitalized as subj}
+								<option value={subj} />
+							{/each}
+						</datalist>
 						<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
 							<DatePicker bind:dateObj={assignment.due} />
 						</span>

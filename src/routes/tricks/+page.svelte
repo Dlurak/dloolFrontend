@@ -108,7 +108,6 @@
 				{/if}
 			</div>
 		</div>
-		<p class="text-light-success dark:text-dark-success text-center mt-3">{communicationText}</p>
 		<CommunicationText type="success" text={communicationText} />
 	</Box>
 	<hr />

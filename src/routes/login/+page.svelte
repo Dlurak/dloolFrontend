@@ -6,6 +6,7 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
+	import Loader from '$lib/Loader.svelte';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -16,11 +17,13 @@
 	let redirectUri = $page.url.searchParams.get('redirect');
 
 	let disabled = false;
+	let loading = false;
 
 	const setError = (text: Token) => {
 		errorText = text;
 		successText = undefined;
 		disabled = false;
+		loading = false;
 	};
 
 	$: {
@@ -42,6 +45,7 @@
 	title="login.welcome"
 	onSubmit={async () => {
 		disabled = true;
+		loading = true;
 		fetch(PUBLIC_API_URL + '/auth/login', {
 			method: 'POST',
 			headers: new Headers({ 'content-type': 'application/json' }),
@@ -85,6 +89,7 @@
 				return res.json();
 			})
 			.then((data) => {
+				loading = false;
 				if (!data) return;
 				localStorage.setItem('user', JSON.stringify(data));
 				localStorage.setItem('userId', data.data.id);
@@ -92,8 +97,7 @@
 				if (redirectUri) window.location.href = redirectUri;
 			})
 			.catch(() => {
-				errorText = 'error';
-				successText = undefined;
+				setError('error');
 			});
 	}}
 >
@@ -110,6 +114,12 @@
 			bind:value={passwordValue}
 			tooltip={i('login.password.tooltip')}
 		/>
-		<SubmitButton value={i('login')} {disabled} />
 	</I18n>
+	<SubmitButton {disabled}>
+		{#if loading}
+			<Loader />
+		{:else}
+			<I18n key="login" />
+		{/if}
+	</SubmitButton>
 </CentralFormBox>

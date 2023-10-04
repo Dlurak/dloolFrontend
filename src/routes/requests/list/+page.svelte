@@ -11,6 +11,9 @@
 	import { invalidateAll } from '$app/navigation';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
+	import { title } from '../../stores';
+
+	title.set('request.list.title');
 
 	export let data: RequestsResponse;
 
@@ -33,12 +36,6 @@
 		if (!isLoggedIn()) window.location.href = '/login?redirect=/requests/list?status=p';
 	});
 </script>
-
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('request.list.title')}</title>
-	</I18n>
-</svelte:head>
 
 {#if !data.data}
 	<p><I18n key="request.list.noData" /></p>

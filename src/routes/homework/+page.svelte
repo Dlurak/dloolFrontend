@@ -9,7 +9,7 @@
 	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
-	import { showHomeworkFilter } from '../stores';
+	import { showHomeworkFilter, title } from '../stores';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 
@@ -75,6 +75,8 @@
 		reloadIsUserMember();
 	}, 1000);
 
+	title.set('homework');
+
 	onMount(async () => {
 		reloadIsUserMember();
 
@@ -115,12 +117,6 @@
 		showFilters = value;
 	});
 </script>
-
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('homework', {}, { transform: 'capitalize' })}</title>
-	</I18n>
-</svelte:head>
 
 <div class="grid grid-cols-box-list w-full gap-4">
 	{#if showFilters || homeworkAmount === 0}

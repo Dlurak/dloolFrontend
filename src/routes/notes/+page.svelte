@@ -1,12 +1,9 @@
 <script>
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
-</script>
+	import { title } from '../stores';
 
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('notes.selected.none')}</title>
-	</I18n>
-</svelte:head>
+	title.set('notes.selected.none');
+</script>
 
 <I18n key="notes.selected.none" />

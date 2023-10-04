@@ -12,10 +12,11 @@
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
+	import { title } from '../../stores';
 
 	const currentDate = new Date();
 
-	let title = '';
+	let titleString = '';
 	let content = '';
 	let due: CustomDate = createDate(currentDate);
 	let visibility: 'private' | 'public' = 'public';
@@ -24,6 +25,8 @@
 	let className = '';
 
 	let disabled = true;
+
+	title.set('notes.create.documentTitle');
 
 	const getClassId = (schoolName: string, className: string) => {
 		const url = `${PUBLIC_API_URL}/classes/${schoolName}/${className}`;
@@ -52,23 +55,17 @@
 	});
 
 	$: {
-		const isTitleValid = title.length > 0 && title.length < 64;
+		const isTitleValid = titleString.length > 0 && titleString.length < 64;
 		const isContentValid = content.length > 0 && content.length < 512;
 
 		disabled = !isTitleValid || !isContentValid;
 	}
 </script>
 
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('notes.create.documentTitle')}</title>
-	</I18n>
-</svelte:head>
-
 <div class="flex flex-col gap-5 w-full p-5">
 	<div>
 		<I18n>
-			<Input name={i('notes.create.title')} type="text" bind:value={title} />
+			<Input name={i('notes.create.title')} type="text" bind:value={titleString} />
 		</I18n>
 	</div>
 	<div class="flex flex-col md:flex-row gap-3">
@@ -130,7 +127,7 @@
 								Authorization: `Bearer ${localStorage.getItem('token')}`
 							},
 							body: JSON.stringify({
-								title,
+								title: titleString,
 								content,
 								due,
 								visibility,

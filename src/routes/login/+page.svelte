@@ -34,12 +34,6 @@
 	}
 </script>
 
-<svelte:head>
-	<!-- <I18n>
-		<title>Dlool | {i('login', {}, { transform: 'capitalize' })}</title>
-	</I18n> -->
-</svelte:head>
-
 <CentralFormBox
 	{errorText}
 	{successText}

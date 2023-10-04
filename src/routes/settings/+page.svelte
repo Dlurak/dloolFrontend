@@ -6,6 +6,9 @@
 	import { onMount } from 'svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
+	import { title } from '../stores';
+
+	title.set('settings.settings');
 
 	let successText: Token | undefined = undefined;
 	let errorText: Token | undefined = undefined;
@@ -32,12 +35,6 @@
 		}
 	});
 </script>
-
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('settings')}</title>
-	</I18n>
-</svelte:head>
 
 <CentralFormBox
 	title="settings.settings"

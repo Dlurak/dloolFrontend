@@ -8,12 +8,15 @@
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
+	import { title } from '../stores';
 
 	let username: string;
 	let name: string;
 	let school: string;
 	let className: string;
 	let password: string;
+
+	title.set('register');
 
 	/**
 	 * A boolean indicating whether the submit button should be disabled
@@ -33,12 +36,6 @@
 		disabled = !(!!username && !!name && !!school && !!className && !!password); // all fields need to be filled
 	}
 </script>
-
-<svelte:head>
-	<I18n>
-		<title>Dlool | {i('register')}</title>
-	</I18n>
-</svelte:head>
 
 <CentralFormBox
 	{errorText}

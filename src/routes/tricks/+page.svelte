@@ -37,12 +37,6 @@
 	}
 </script>
 
-<svelte:head>
-	<!-- <I18n>
-		<title>Dlool | {i('tricks')}</title>
-	</I18n> -->
-</svelte:head>
-
 <div class="flex gap-4 flex-col">
 	<Box>
 		<hs id="export"><I18n key="tricks.export" /></hs>

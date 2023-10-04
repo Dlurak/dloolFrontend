@@ -49,6 +49,7 @@
 		firstDay = new Date(year, month, 1);
 		firstDayWeekday = firstDay.getDay();
 		paddingDays = Array(generatePaddingDays(firstDayWeekday));
+		humanMonth = (month + 1) as IntRange<1, 13>;
 	};
 
 	const prevMonth = () => {
@@ -92,7 +93,9 @@
 			<i class="bx bx-chevron-left" />
 		</button>
 	</I18n>
-	<h2><I18n key="date.month.{humanMonth}" /> {year}</h2>
+	{#key humanMonth}
+		<h2><I18n key="date.month.{humanMonth}" /> {year}</h2>
+	{/key}
 	<I18n>
 		<button
 			on:click={nextMonth}

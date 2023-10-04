@@ -70,13 +70,11 @@
 			filteredSchool = schoolLocalStorage;
 			filteredClassName = classLocalStorage;
 
-			reload();
+			reload().then(reloadIsUserMember);
 		}
 
 		if (schoolLocalStorage) school = schoolLocalStorage;
 		if (classLocalStorage) className = classLocalStorage;
-
-		reloadIsUserMember();
 	});
 
 	onDestroy(() => {

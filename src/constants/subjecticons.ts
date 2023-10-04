@@ -1,5 +1,3 @@
-import { get } from 'svelte/store';
-
 export const subjectIconsObject = {
 	math: 'bx-math',
 	mathe: 'bx-math',
@@ -8,7 +6,7 @@ export const subjectIconsObject = {
 	kunst: 'bx-palette',
 	musik: 'bx-music',
 	music: 'bx-music',
-	sport: 'bx-basketball',
+	sport: 'bx-football',
 	informatik: 'bx-code',
 	'computer science': 'bx-code',
 	'computer-science': 'bx-code',

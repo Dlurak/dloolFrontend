@@ -3,6 +3,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
+	import html2canvas from 'html2canvas';
 	import {
 		getIconForSubject,
 		iconExistsForSubject,
@@ -22,6 +23,24 @@
 	export let createdAt: number;
 	export let creatorId: string;
 
+	let capturing = false;
+	let container: HTMLDivElement;
+	export const screenshot = () => {
+		capturing = true;
+		// wait 100ms for the html2canvas so the dom can update
+		setTimeout(() => {
+			html2canvas(container).then((canvas) => {
+				const url = canvas.toDataURL();
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = 'Dlool-homework.png';
+				a.click();
+
+				capturing = false;
+			});
+		}, 100);
+	};
+
 	export let postUpdate: () => void = () => {
 		return;
 	};
@@ -40,7 +59,7 @@
 	}
 </script>
 
-<div class="w-full">
+<div class="w-full {capturing ? 'bg-light-box dark:bg-dark-box p-3' : ''}" bind:this={container}>
 	<div class="flex flex-col">
 		<h3>
 			{#if editMode}

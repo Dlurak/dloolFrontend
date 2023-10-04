@@ -7,6 +7,7 @@
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 	import Loader from '$lib/Loader.svelte';
+	import { title } from '../stores';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -18,6 +19,8 @@
 
 	let disabled = false;
 	let loading = false;
+
+	title.set('login');
 
 	const setError = (text: Token) => {
 		errorText = text;
@@ -32,9 +35,9 @@
 </script>
 
 <svelte:head>
-	<I18n>
+	<!-- <I18n>
 		<title>Dlool | {i('login', {}, { transform: 'capitalize' })}</title>
-	</I18n>
+	</I18n> -->
 </svelte:head>
 
 <CentralFormBox

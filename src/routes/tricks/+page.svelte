@@ -10,6 +10,7 @@
 	import Box from '$lib/homework/Box.svelte';
 	import { onMount } from 'svelte';
 	import { i, type Token } from '../../languages/i18n';
+	import { title } from '../stores';
 
 	let school = '';
 	let classes = [''];
@@ -24,6 +25,8 @@
 
 	let disabled = true;
 
+	title.set('tricks');
+
 	onMount(() => {
 		clipboardIsAvailable = navigator.clipboard !== undefined;
 	});
@@ -35,9 +38,9 @@
 </script>
 
 <svelte:head>
-	<I18n>
+	<!-- <I18n>
 		<title>Dlool | {i('tricks')}</title>
-	</I18n>
+	</I18n> -->
 </svelte:head>
 
 <div class="flex gap-4 flex-col">

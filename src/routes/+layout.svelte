@@ -6,11 +6,18 @@
 	import '../app.css';
 
 	import { onMount } from 'svelte';
-	import { currentLanguage } from './stores';
-	import type { Languages } from '../languages/i18n';
+	import { currentLanguage, title } from './stores';
+	import { i, type Languages, type Token } from '../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
+
+	let specificTitle = $title;
+	title.subscribe((v) => (specificTitle = v));
+
+	const genBaseTitle = () =>
+		specificTitle ? `| ${i(specificTitle as Token, {}, { transform: 'capitalize' })} ` : '';
 
 	const updateCSSVariables = () => {
 		if (browser) {
@@ -35,6 +42,14 @@
 		footerHeight && navbarHeight;
 	}
 </script>
+
+<svelte:head>
+	<I18n>
+		{#key $title}
+			<title>Dlool {genBaseTitle()}</title>
+		{/key}
+	</I18n>
+</svelte:head>
 
 <Navbar bind:height={navbarHeight} />
 

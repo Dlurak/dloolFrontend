@@ -7,6 +7,7 @@ const en = {
 	school: 'school',
 	class: 'class',
 	password: 'password',
+	home: 'Home',
 	'register.username.tooltip': 'This is your username, it must be unique',
 	'register.name.tooltip':
 		"This is your name, it doesn't need to be unique. Please don't use your real name.",
@@ -167,6 +168,7 @@ const en = {
 	'time.ago.edited.months.1': 'Edited a Month ago',
 	'time.ago.edited.years': 'Edited time Years ago',
 	'time.ago.edited.years.1': 'Edited a Year ago',
+	events: 'Calendar',
 	'events.create.success': 'Successfully created new event',
 	'events.create.time.start': 'Start',
 	'events.create.time.end': 'End',

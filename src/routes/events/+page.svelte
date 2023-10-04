@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { calendarEvents, currentLanguage } from '../stores';
+	import { calendarEvents, currentLanguage, title } from '../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
 	import CalendarEvent from '$lib/calendar/CalendarEvent.svelte';
 	import { getWeekdays } from '$lib/dates/dataWeekday';
 	import I18n from '$lib/I18n.svelte';
 	import type { IntRange } from '../../types/utils';
 	import { i } from '../../languages/i18n';
+
+	title.set('events');
 
 	const date = new Date();
 
@@ -78,10 +80,6 @@
 		weekdays = getWeekdays();
 	});
 </script>
-
-<svelte:head>
-	<title>Dlool | Events</title>
-</svelte:head>
 
 <div class="flex justify-between items-center mb-4">
 	<I18n>

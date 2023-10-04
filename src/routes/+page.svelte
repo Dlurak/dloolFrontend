@@ -1,10 +1,9 @@
 <script>
 	import I18n from '$lib/I18n.svelte';
-</script>
+	import { title } from './stores';
 
-<svelte:head>
-	<title>Dlool</title>
-</svelte:head>
+	title.set('home');
+</script>
 
 <h1><I18n key="welcome" /></h1>
 <p><I18n key="homeDummytext" /></p>

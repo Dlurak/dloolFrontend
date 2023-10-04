@@ -9,15 +9,26 @@
 	import { currentLanguage, title } from './stores';
 	import { i, type Languages, type Token } from '../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
+	import { page } from '$app/stores';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
 
-	let specificTitle = $title;
-	title.subscribe((v) => (specificTitle = v));
+	let specificTitleToken = $title;
+	title.subscribe((v) => (specificTitleToken = v));
 
-	const genBaseTitle = () =>
-		specificTitle ? `| ${i(specificTitle as Token, {}, { transform: 'capitalize' })} ` : '';
+	let tit = 'Dlool';
+	const setTitle = () => {
+		console.log(specificTitleToken);
+		if (specificTitleToken) {
+			tit = `Dlool | ${i(specificTitleToken, {}, { transform: 'capitalize' })}`;
+		} else {
+			tit = 'Dlool';
+		}
+	};
+
+	page.subscribe(() => setTitle());
+	currentLanguage.subscribe(() => setTitle());
 
 	const updateCSSVariables = () => {
 		if (browser) {
@@ -44,15 +55,18 @@
 </script>
 
 <svelte:head>
-	<I18n>
-		{#key $title}
-			<title>Dlool {genBaseTitle()}</title>
-		{/key}
-	</I18n>
+	<!-- {#key specificTitleToken}
+		<I18n>
+			{#if specificTitleToken}
+				<title>Dlool | {i(specificTitleToken)}</title>
+			{:else}
+				<title>Dlool</title>
+			{/if}
+		</I18n>
+	{/key} -->
+	<title>{tit}</title>
 </svelte:head>
-
 <Navbar bind:height={navbarHeight} />
-
 <main class="flex flex-col items-center mx-2 md:mx-6 my-4">
 	<slot />
 </main>

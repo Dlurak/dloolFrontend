@@ -49,6 +49,6 @@
 	</div>
 </Box>
 
-<Modal bind:open={modalIsOpened}>
-	<EventBoxInner {event} />
+<Modal bind:open={modalIsOpened} title={event.title}>
+	<EventBoxInner {event} showTitle={false} />
 </Modal>

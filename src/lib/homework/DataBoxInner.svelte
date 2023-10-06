@@ -15,6 +15,7 @@
 	import DatePicker from '../dates/DatePicker.svelte';
 	import DateLabel from '../dates/dateLabel.svelte';
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
+	import { addToast } from '$lib/toast/addToast';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -37,6 +38,12 @@
 				a.click();
 
 				capturing = false;
+
+				addToast({
+					type: 'success',
+					content: 'toast.homework.screenshot.success',
+					duration: 5000
+				});
 			});
 		}, 100);
 	};
@@ -93,11 +100,6 @@
 			{/each}
 		{/if}
 	</ul>
-	{#await fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json()) then userData}
-		<I18n>
-			<p class="text-xs">{userData.data.user.name || i('error')}</p>
-		</I18n>
-	{/await}
 	{#if editMode}
 		<SubmitButton
 			value="Update"
@@ -124,8 +126,30 @@
 						from: newDate,
 						assignments: mappedAssignments
 					})
-				}).then(() => postUpdate());
+				})
+					.then((res) => {
+						if (res.ok) {
+							addToast({
+								type: 'success',
+								content: 'toast.homework.edit.success',
+								duration: 5000
+							});
+							postUpdate();
+						} else throw new Error();
+					})
+					.catch(() => {
+						addToast({
+							type: 'error',
+							content: 'toast.homework.edit.error',
+							duration: 5000
+						});
+					});
 			}}
 		/>
 	{/if}
+	{#await fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json()) then userData}
+		<I18n>
+			<p class="text-xs">{userData.data.user.name || i('error')}</p>
+		</I18n>
+	{/await}
 </div>

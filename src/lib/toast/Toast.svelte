@@ -5,18 +5,21 @@
 
 	export let toast: Toast;
 
+	let hovering = false;
 	let doneMs = 0;
 	const doneInterval = setInterval(() => {
-		doneMs += 10;
-		if (!toast.duration || doneMs >= toast.duration) clearInterval(doneInterval);
-	}, 10);
+		if (!hovering) {
+			doneMs += 5;
+			if (!toast.duration || doneMs >= toast.duration) clearInterval(doneInterval);
+		}
+
+		if (toast.duration && doneMs >= toast.duration) removeSelf();
+	}, 5);
 
 	const removeSelf = () => {
 		clearInterval(doneInterval);
 		toasts.update((toasts) => toasts.filter((t) => t.id !== toast.id));
 	};
-
-	if (toast.duration) setTimeout(removeSelf, toast.duration);
 
 	type ToastTypeRecord = Record<ToastType, string>;
 	const icons: ToastTypeRecord = {
@@ -42,6 +45,14 @@
 
 <div
 	class="w-full {color} p-4 rounded-sm shadow-2xl text-base relative flex justify-between items-center"
+	role="alert"
+	aria-atomic="true"
+	aria-live="assertive"
+	on:mouseenter={() => (hovering = true)}
+	on:mouseleave={() => (hovering = false)}
+	on:touchstart={() => (hovering = true)}
+	on:touchend={() => (hovering = false)}
+	on:touchcancel={() => (hovering = false)}
 >
 	<div class="flex gap-1 items-center">
 		<i class="bx {icon}" />

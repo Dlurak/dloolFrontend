@@ -9,9 +9,8 @@
 	import { page } from '$app/stores';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import Modal from '$lib/Modal.svelte';
-	import CommunicationText from '$lib/communicationText.svelte';
-	import { i, type Token } from '../../languages/i18n';
-	import html2canvas from 'html2canvas';
+	import { i } from '../../languages/i18n';
+	import { addToast } from '$lib/toast/addToast';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -25,8 +24,6 @@
 
 	let shareEnabled = false;
 	let copyEnabled = false;
-
-	let successMessage: Token | undefined = undefined;
 
 	let dialogIsOpen = false;
 
@@ -84,10 +81,11 @@
 						on:click={() => {
 							const shareUrl = $page.url.toString() + `#${id}`;
 							navigator.clipboard.writeText(shareUrl).then(() => {
-								successMessage = 'tricks.export.copy.success';
-								setTimeout(() => {
-									successMessage = undefined;
-								}, 5000);
+								addToast({
+									type: 'success',
+									content: 'tricks.export.copy.success',
+									duration: 5000
+								});
 							});
 						}}
 					/>
@@ -122,16 +120,30 @@
 								headers: {
 									Authorization: `Bearer ${localStorage.getItem('token')}`
 								}
-							}).then(() => {
-								postUpdate();
-							});
+							})
+								.then((res) => {
+									if (res.ok) {
+										addToast({
+											type: 'success',
+											content: 'toast.homework.delete.success',
+											duration: 5000
+										});
+										postUpdate();
+									} else {
+										throw new Error();
+									}
+								})
+								.catch(() => {
+									addToast({
+										type: 'error',
+										content: 'toast.homework.delete.error',
+										duration: 5000
+									});
+								});
 						}}
 					/>
 				{/if}
 				<QuickActionButton iconName="bx-image" on:click={screenshot} />
-			</div>
-			<div class="w-full text-center">
-				<CommunicationText type="success" text={successMessage} />
 			</div>
 		</div>
 	</div>

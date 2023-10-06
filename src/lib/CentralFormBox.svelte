@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Token } from '../languages/i18n';
 	import I18n from './I18n.svelte';
-	import CommunicationText from './communicationText.svelte';
+	import { addToast } from './toast/addToast';
 
 	export let linkName: Token | undefined = undefined;
 	export let linkHref = '';
@@ -12,6 +12,22 @@
 	export let errorText: Token | undefined = undefined;
 
 	export let title: Token;
+
+	$: {
+		if (successText) {
+			addToast({
+				type: 'success',
+				content: successText,
+				duration: 5000
+			});
+		} else if (errorText) {
+			addToast({
+				type: 'error',
+				content: errorText,
+				duration: 5000
+			});
+		}
+	}
 </script>
 
 <div
@@ -34,7 +50,4 @@
 			<a href={linkHref} class="text-xs"><I18n key={linkName} /></a>
 		</span>
 	{/if}
-
-	<CommunicationText type="success" text={successText} />
-	<CommunicationText type="error" text={errorText} />
 </div>

@@ -181,7 +181,15 @@ const en = {
 	'events.created.by': 'Created by $name',
 	'events.edited.by': 'Last edited by $name',
 
-	'toast.logout': 'You have been logged out.'
+	'toast.logout': 'You have been logged out.',
+	'toast.homework.add.success': 'Successfully added homework',
+	'toast.homework.add.error': 'Failed to add homework',
+	'toast.homework.delete.success': 'Successfully deleted homework',
+	'toast.homework.delete.error': 'Failed to delete homework',
+	'toast.homework.edit.success': 'Successfully edited',
+	'toast.homework.edit.error': 'Failed to edit',
+	'toast.homework.screenshot.success': 'Successfully downloaded screenshot',
+	'toast.homework.filterSet': 'Successfully set filter'
 } as const;
 
 export type EnToken = keyof typeof en;

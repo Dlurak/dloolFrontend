@@ -185,7 +185,15 @@ const de = {
 	'events.created.by': 'Erstellt von $name',
 	'events.edited.by': 'Zuletzt bearbeitet von $name',
 
-	'toast.logout': 'Du wurdest ausgeloggt.'
+	'toast.logout': 'Du wurdest ausgeloggt.',
+	'toast.homework.add.success': 'Hausaufgabe erfolgreich erstellt.',
+	'toast.homework.add.error': 'Hausaufgabe konnte nicht erstellt werden.',
+	'toast.homework.delete.success': 'Hausaufgabe erfolgreich gelöscht.',
+	'toast.homework.delete.error': 'Hausaufgabe konnte nicht gelöscht werden.',
+	'toast.homework.edit.success': 'Erfolgreich bearbeitet.',
+	'toast.homework.edit.error': 'Konnte nicht bearbeitet werden.',
+	'toast.homework.screenshot.success': 'Screenshot erfolgreich heruntergeladen.',
+	'toast.homework.filterSet': 'Filter erfolgreich gesetzt.'
 } as const;
 
 export type DeToken = keyof typeof de;

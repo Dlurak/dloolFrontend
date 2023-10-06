@@ -11,6 +11,7 @@
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
+	import { addToast } from '$lib/toast/addToast';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -63,17 +64,33 @@
 					'content-type': 'application/json'
 				}),
 				body: JSON.stringify(bodyObj)
-			}).then((res) => res.json());
+			})
+				.then((res) => {
+					if (res.ok) {
+						assignments = [
+							{
+								subject: '',
+								description: '',
+								due: date
+							}
+						];
 
-			assignments = [
-				{
-					subject: '',
-					description: '',
-					due: date
-				}
-			];
+						addToast({
+							content: 'toast.homework.add.success',
+							type: 'success',
+							duration: 5000
+						});
 
-			postSubmit(e);
+						postSubmit(e);
+					} else throw new Error();
+				})
+				.catch(() => {
+					addToast({
+						content: 'toast.homework.add.error',
+						type: 'error',
+						duration: 5000
+					});
+				});
 		}}
 	>
 		<h3 class="mb-4">

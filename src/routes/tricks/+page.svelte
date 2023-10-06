@@ -6,11 +6,11 @@
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import { loadSchools } from '$lib/auth/loadSchools';
-	import CommunicationText from '$lib/communicationText.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import { onMount } from 'svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import { title } from '../stores';
+	import { addToast } from '$lib/toast/addToast';
 
 	let school = '';
 	let classes = [''];
@@ -18,8 +18,6 @@
 	let clipboardIsAvailable = false;
 
 	let resultUrl = '';
-
-	let communicationText: Token | undefined = undefined;
 
 	let resultType = 'calendar';
 
@@ -94,7 +92,11 @@
 							onClick={(e) => {
 								e.preventDefault();
 								navigator.clipboard.writeText(resultUrl).then(() => {
-									communicationText = 'tricks.export.copy.success';
+									addToast({
+										type: 'success',
+										content: 'tricks.export.copy.success',
+										duration: 5000
+									});
 								});
 							}}
 							{disabled}
@@ -105,7 +107,6 @@
 				{/if}
 			</div>
 		</div>
-		<CommunicationText type="success" text={communicationText} />
 	</Box>
 	<hr />
 	<div>

@@ -12,6 +12,7 @@
 	import { showHomeworkFilter, title } from '../stores';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
+	import { addToast } from '$lib/toast/addToast';
 
 	export let data: HomeworkResponse | undefined;
 
@@ -124,6 +125,11 @@
 			bind:className={classInputValue}
 			bind:schoolName={schoolInputValue}
 			onFilterSet={() => {
+				addToast({
+					type: 'info',
+					content: 'toast.homework.filterSet',
+					duration: 5000
+				});
 				setParameters({
 					school: schoolInputValue,
 					class: classInputValue
@@ -140,6 +146,11 @@
 						bind:className={classInputValue}
 						bind:schoolName={schoolInputValue}
 						onFilterSet={() => {
+							addToast({
+								type: 'info',
+								content: 'toast.homework.filterSet',
+								duration: 5000
+							});
 							setParameters({
 								school: schoolInputValue,
 								class: classInputValue
@@ -162,6 +173,11 @@
 						bind:className={classInputValue}
 						bind:schoolName={schoolInputValue}
 						onFilterSet={() => {
+							addToast({
+								type: 'info',
+								content: 'toast.homework.filterSet',
+								duration: 5000
+							});
 							setParameters({
 								school: schoolInputValue,
 								class: classInputValue

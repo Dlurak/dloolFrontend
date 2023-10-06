@@ -2,14 +2,16 @@
 	import { browser } from '$app/environment';
 	import Navbar from '$lib/Navbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
+	import Toasts from '$lib/toast/Toasts.svelte';
 
 	import '../app.css';
 
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { currentLanguage, title } from './stores';
-	import { i, type Languages, type Token } from '../languages/i18n';
-	import I18n from '$lib/I18n.svelte';
+	import { i, type Languages } from '../languages/i18n';
 	import { page } from '$app/stores';
+	import { addToast } from '$lib/toast/addToast';
+	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -37,6 +39,15 @@
 		}
 	};
 
+	let loggedIn = false;
+	let prevLoggedIn = false;
+	const loggedInInterval = setInterval(() => {
+		if (browser) {
+			loggedIn = isLoggedIn();
+			prevLoggedIn = prevLoggedIn || loggedIn;
+		}
+	}, 1500);
+
 	onMount(() => {
 		updateCSSVariables();
 
@@ -44,6 +55,12 @@
 		if (languageLocalStorage) {
 			currentLanguage.set(languageLocalStorage as Languages);
 		}
+
+		loggedIn = isLoggedIn();
+	});
+
+	onDestroy(() => {
+		clearInterval(loggedInInterval);
 	});
 
 	$: {
@@ -52,26 +69,29 @@
 		// just to have some dependencies
 		footerHeight && navbarHeight;
 	}
+
+	$: {
+		if (!loggedIn && prevLoggedIn)
+			addToast({
+				content: 'toast.logout',
+				type: 'info',
+				duration: 5000
+			});
+	}
 </script>
 
 <svelte:head>
-	<!-- {#key specificTitleToken}
-		<I18n>
-			{#if specificTitleToken}
-				<title>Dlool | {i(specificTitleToken)}</title>
-			{:else}
-				<title>Dlool</title>
-			{/if}
-		</I18n>
-	{/key} -->
 	<title>{tit}</title>
 </svelte:head>
+
 <Navbar bind:height={navbarHeight} />
 <main class="flex flex-col items-center mx-2 md:mx-6 my-4">
 	<slot />
 </main>
 
 <Footer bind:height={footerHeight} />
+
+<Toasts />
 
 <style>
 	main {

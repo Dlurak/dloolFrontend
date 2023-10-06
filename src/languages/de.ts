@@ -183,7 +183,9 @@ const de = {
 	'events.create.submit': 'Erstellen',
 	'events.noData': 'Es gibt keine Ereignisse',
 	'events.created.by': 'Erstellt von $name',
-	'events.edited.by': 'Zuletzt bearbeitet von $name'
+	'events.edited.by': 'Zuletzt bearbeitet von $name',
+
+	'toast.logout': 'Du wurdest ausgeloggt.'
 } as const;
 
 export type DeToken = keyof typeof de;

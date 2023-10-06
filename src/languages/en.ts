@@ -179,7 +179,9 @@ const en = {
 	'events.create.submit': 'Create',
 	'events.noData': 'There are no events',
 	'events.created.by': 'Created by $name',
-	'events.edited.by': 'Last edited by $name'
+	'events.edited.by': 'Last edited by $name',
+
+	'toast.logout': 'You have been logged out.'
 } as const;
 
 export type EnToken = keyof typeof en;

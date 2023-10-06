@@ -12,6 +12,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
 	import { title } from '../../stores';
+	import { addToast } from '$lib/toast/addToast';
 
 	title.set('request.list.title');
 
@@ -29,7 +30,25 @@
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			}
-		}).then(reload);
+		})
+			.then((res) => {
+				const type = res.ok ? 'success' : 'error';
+				const token = `toast.request.list.${operation}.${type}` as const;
+				addToast({
+					type,
+					content: token,
+					duration: 5000
+				});
+
+				if (res.ok) reload();
+			})
+			.catch(() => {
+				addToast({
+					type: 'error',
+					content: `toast.request.list.${operation}.error`,
+					duration: 5000
+				});
+			});
 	};
 
 	onMount(() => {
@@ -90,14 +109,14 @@
 								value={i('request.list.accept')}
 								onClick={(e) => {
 									e.preventDefault();
-									processRequest('accept', req._id);
+									if (confirm(i('request.list.accept.confirm'))) processRequest('accept', req._id);
 								}}
 							/>
 							<SubmitButton
 								value={i('request.list.reject')}
 								onClick={(e) => {
 									e.preventDefault();
-									processRequest('reject', req._id);
+									if (confirm(i('request.list.reject.confirm'))) processRequest('reject', req._id);
 								}}
 								colour="red"
 							/>

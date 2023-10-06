@@ -127,7 +127,9 @@ const en = {
 	'request.list.acceptedIn': 'Accepted in:',
 	'request.list.accepted.none': "This user isn't accepted in any class",
 	'request.list.accept': 'Accept',
+	'request.list.accept.confirm': 'Are you sure you want to accept this request?',
 	'request.list.reject': 'Reject',
+	'request.list.reject.confirm': 'Are you sure you want to reject this request?',
 	'account.delete': 'Delete account',
 	'account.delete.confirm.1': "Are you sure you want to delete your account, that can't be undone!",
 	'account.delete.confirm.2':
@@ -189,7 +191,15 @@ const en = {
 	'toast.homework.edit.success': 'Successfully edited',
 	'toast.homework.edit.error': 'Failed to edit',
 	'toast.homework.screenshot.success': 'Successfully downloaded screenshot',
-	'toast.homework.filterSet': 'Successfully set filter'
+	'toast.homework.filterSet': 'Successfully set filter',
+
+	'toast.request.list.accept.success': 'Successfully accepted request',
+	'toast.request.list.accept.error': 'Failed to accept request',
+	'toast.request.list.reject.success': 'Successfully rejected request',
+	'toast.request.list.reject.error': 'Failed to reject request',
+
+	'toast.account.delete.success': 'Successfully deleted account',
+	'toast.account.delete.error': 'Failed to delete account'
 } as const;
 
 export type EnToken = keyof typeof en;

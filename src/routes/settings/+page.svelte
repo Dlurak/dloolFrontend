@@ -7,6 +7,8 @@
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 	import { title } from '../stores';
+	import { addToast } from '$lib/toast/addToast';
+	import { goto } from '$app/navigation';
 
 	title.set('settings.settings');
 
@@ -105,17 +107,33 @@
 				if (!confirm(i('account.delete.confirm.1'))) return;
 				if (!confirm(i('account.delete.confirm.2'))) return;
 
-				const resPromise = fetch(PUBLIC_API_URL + '/auth/me', {
+				fetch(PUBLIC_API_URL + '/auth/me', {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
 						Authorization: 'Bearer ' + token
 					}
-				});
+				})
+					.then((res) => {
+						if (res.ok) {
+							localStorage.removeItem('token');
+							localStorage.removeItem('tokenExpires');
 
-				resPromise.then(() => {
-					window.location.href = '/';
-				});
+							addToast({
+								type: 'success',
+								content: 'toast.account.delete.success',
+								duration: 5000
+							});
+
+							goto('/');
+						} else throw new Error();
+					})
+					.catch(() => {
+						addToast({
+							type: 'error',
+							content: 'toast.account.delete.error'
+						});
+					});
 			}}
 		/>
 	</I18n>

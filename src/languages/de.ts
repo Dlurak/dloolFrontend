@@ -129,7 +129,9 @@ const de = {
 	'request.list.acceptedIn': 'Akzeptiert in:',
 	'request.list.accepted.none': 'Dieser Nutzer ist in keiner Klasse',
 	'request.list.accept': 'Akzeptieren',
+	'request.list.accept.confirm': 'Bist du dir sicher, dass du diese Anfrage akzeptieren möchtest?',
 	'request.list.reject': 'Ablehnen',
+	'request.list.reject.confirm': 'Bist du dir sicher, dass du diese Anfrage ablehnen möchtest?',
 	'account.delete': 'Konto löschen?',
 	'account.delete.confirm.1':
 		'Bist du dir ganz sicher, dass du deinen Account löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!',
@@ -193,7 +195,15 @@ const de = {
 	'toast.homework.edit.success': 'Erfolgreich bearbeitet.',
 	'toast.homework.edit.error': 'Konnte nicht bearbeitet werden.',
 	'toast.homework.screenshot.success': 'Screenshot erfolgreich heruntergeladen.',
-	'toast.homework.filterSet': 'Filter erfolgreich gesetzt.'
+	'toast.homework.filterSet': 'Filter erfolgreich gesetzt.',
+
+	'toast.request.list.accept.success': 'Anfrage erfolgreich akzeptiert.',
+	'toast.request.list.accept.error': 'Anfrage konnte nicht akzeptiert werden.',
+	'toast.request.list.reject.success': 'Anfrage erfolgreich abgelehnt.',
+	'toast.request.list.reject.error': 'Anfrage konnte nicht abgelehnt werden.',
+
+	'toast.account.delete.success': 'Konto erfolgreich gelöscht.',
+	'toast.account.delete.error': 'Konto konnte nicht gelöscht werden.'
 } as const;
 
 export type DeToken = keyof typeof de;

@@ -20,6 +20,7 @@
 		class="lg:flex lg:flex-row flex-col gap-4 p-0 lg:static lg:inset-0 fixed top-10 bottom-0 right-0 m-0 lg:w-max w-[70%] bg-light-background dark:bg-dark-background lg:bg-transparent z-50 {isHamburgerOpened
 			? 'flex'
 			: 'hidden'}"
+		id="sidebar"
 	>
 		<ul id="linkList" class="flex flex-col lg:flex-row gap-4 p-0">
 			{#each navData as navDataEntry}
@@ -43,3 +44,18 @@
 		<HamburgerButton bind:isOpened={isHamburgerOpened} />
 	</div>
 </nav>
+
+<style>
+	#sidebar {
+		animation: slideIn 0.2s ease-in-out;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateX(100%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+</style>

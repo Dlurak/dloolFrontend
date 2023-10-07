@@ -1,9 +1,11 @@
 <script lang="ts">
-	export let type: 'inline' = 'inline'; // this is written like that to make it easier to add more types in the future
+	import { browser } from '$app/environment';
+
+	export let type: 'inline' | 'circle' = 'inline';
 </script>
 
 {#if type === 'inline'}
-	{#if window.matchMedia('(prefers-reduced-motion: reduce)').matches}
+	{#if browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches}
 		<p>...</p>
 	{:else}
 		<p>
@@ -12,6 +14,10 @@
 			<span class="eye">◔</span>
 		</p>
 	{/if}
+{:else if type === 'circle'}
+	<div
+		class="h-20 w-20 border-8 border-light-text dark:border-dark-text rounded-full border-t-light-primary dark:border-t-dark-primary animate-spin"
+	/>
 {/if}
 
 <style>

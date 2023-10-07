@@ -11,10 +11,17 @@
 	import PageSelector from '$lib/homework/pageSelector.svelte';
 	import { showHomeworkFilter, title } from '../stores';
 	import I18n from '$lib/I18n.svelte';
-	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
+	import { loadHomework } from './loadData';
+	import Loader from '$lib/Loader.svelte';
 
-	export let data: HomeworkResponse | undefined;
+	let state: 'loading' | 'loaded' | 'error' = 'loading';
+	let len = 0;
+	let dataPromise = loadHomework().then((data) => {
+		state = 'loaded';
+		len = data?.data?.length || 0;
+		return data;
+	});
 
 	let missingSchool = !$page.url.searchParams.get('school');
 	let missingClass = !$page.url.searchParams.get('class');
@@ -24,8 +31,6 @@
 
 	let showFilters = true;
 
-	let homeworkAmount = 0;
-
 	let userIsMemberOfClass = false;
 
 	const currentPageUrlParamString = $page.url.searchParams.get('page');
@@ -33,9 +38,11 @@
 	let currentPage = currentPageUrlParamInt || 1;
 
 	const reload = () => {
-		invalidateAll();
-		data = data;
-		console.log(data);
+		dataPromise = loadHomework().then((data) => {
+			state = 'loaded';
+			len = data?.data?.length || 0;
+			return data;
+		});
 	};
 
 	const reloadIsUserMember = async () => {
@@ -105,14 +112,6 @@
 
 	$: missingSchool = !$page.url.searchParams.get('school');
 	$: missingClass = !$page.url.searchParams.get('class');
-	$: {
-		const dataList = data?.data;
-		if (dataList) {
-			homeworkAmount = dataList.length;
-		} else {
-			homeworkAmount = 0;
-		}
-	}
 
 	showHomeworkFilter.subscribe((value) => {
 		showFilters = value;
@@ -120,7 +119,7 @@
 </script>
 
 <div class="grid grid-cols-box-list w-full gap-4">
-	{#if showFilters || homeworkAmount === 0}
+	{#if showFilters || state === 'loading' || state === 'error' || len === 0}
 		<Filters
 			bind:className={classInputValue}
 			bind:schoolName={schoolInputValue}
@@ -138,74 +137,80 @@
 		/>
 	{/if}
 
-	{#if !missingClass && !missingSchool && data?.status === 'success'}
-		{#if userIsMemberOfClass}
-			<div class="flex flex-col gap-2">
-				{#if !showFilters}
-					<Filters
-						bind:className={classInputValue}
-						bind:schoolName={schoolInputValue}
-						onFilterSet={() => {
-							addToast({
-								type: 'info',
-								content: 'toast.homework.filterSet',
-								duration: 5000
-							});
-							setParameters({
-								school: schoolInputValue,
-								class: classInputValue
-							});
+	{#await dataPromise}
+		<div class="flex justify-center items-center">
+			<Loader type="circle" />
+		</div>
+	{:then data}
+		{#if !missingClass && !missingSchool && data?.status === 'success'}
+			{#if userIsMemberOfClass}
+				<div class="flex flex-col gap-2">
+					{#if !showFilters}
+						<Filters
+							bind:className={classInputValue}
+							bind:schoolName={schoolInputValue}
+							onFilterSet={() => {
+								addToast({
+									type: 'info',
+									content: 'toast.homework.filterSet',
+									duration: 5000
+								});
+								setParameters({
+									school: schoolInputValue,
+									class: classInputValue
+								});
+							}}
+						/>
+					{/if}
+					<CreateHomework
+						postSubmit={() => {
+							reload();
 						}}
 					/>
-				{/if}
-				<CreateHomework
-					postSubmit={() => {
-						reload();
-					}}
-				/>
-			</div>
-		{/if}
+				</div>
+			{/if}
 
-		{#each data.data as homework, i}
-			<div class="flex flex-col gap-2">
-				{#if !showFilters && !userIsMemberOfClass && i === 0}
-					<Filters
-						bind:className={classInputValue}
-						bind:schoolName={schoolInputValue}
-						onFilterSet={() => {
-							addToast({
-								type: 'info',
-								content: 'toast.homework.filterSet',
-								duration: 5000
-							});
-							setParameters({
-								school: schoolInputValue,
-								class: classInputValue
-							});
-						}}
+			{#each data.data as homework, i}
+				<div class="flex flex-col gap-2">
+					{#if !showFilters && !userIsMemberOfClass && i === 0}
+						<Filters
+							bind:className={classInputValue}
+							bind:schoolName={schoolInputValue}
+							onFilterSet={() => {
+								addToast({
+									type: 'info',
+									content: 'toast.homework.filterSet',
+									duration: 5000
+								});
+								setParameters({
+									school: schoolInputValue,
+									class: classInputValue
+								});
+							}}
+						/>
+					{/if}
+					<DataBox
+						date={homework.from}
+						assignments={homework.assignments}
+						id={homework.id}
+						postUpdate={reload}
+						validUser={userIsMemberOfClass}
+						createdAt={homework.createdAt}
+						creatorId={homework.creator}
 					/>
-				{/if}
-				<DataBox
-					date={homework.from}
-					assignments={homework.assignments}
-					id={homework.id}
-					postUpdate={reload}
-					validUser={userIsMemberOfClass}
-					createdAt={homework.createdAt}
-					creatorId={homework.creator}
+				</div>
+			{/each}
+			{#if data.data.length === 0}
+				<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
+					<I18n key="homework.noHomework" />
+				</p>
+			{:else if data.totalPageCount > 1}
+				<PageSelector
+					bind:currentPage
+					setPageFunction={(pageCount) => setPage(pageCount, true)}
+					totalPageCount={data.totalPageCount}
 				/>
-			</div>
-		{/each}
-		{#if data.data.length === 0}
-			<p class="flex items-center justify-center text-gray-600 dark:text-gray-400">
-				<I18n key="homework.noHomework" />
-			</p>
-		{:else if data.totalPageCount > 1}
-			<PageSelector
-				bind:currentPage
-				setPageFunction={(pageCount) => setPage(pageCount, true)}
-				totalPageCount={data.totalPageCount}
-			/>
+			{/if}
 		{/if}
-	{/if}
+	{/await}
 </div>

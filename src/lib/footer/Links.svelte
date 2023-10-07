@@ -1,28 +1,27 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { NavDataEntry } from '../../types/navData';
+	import type { NavDataEntry, footerCategoryType } from '../../types/navData';
 	import TextOrIconLink from '$lib/navbar/textOrIconLink.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { navData } from '../../constants/nav';
 
-	interface categories {
-		[key: string]: NavDataEntry[];
-	}
+	type categoriesType = Record<footerCategoryType, NavDataEntry[]>;
 
-	let entries = [];
+	// filter
+	let entries = navData.filter((entry) => entry.showInFooter);
 
-	let categories: categories = {};
+	type accType = {
+		[key in footerCategoryType]?: NavDataEntry[];
+	};
 
-	onMount(async () => {
-		entries = navData.filter((entry) => entry.showInFooter);
-
-		categories = entries.reduce((acc: categories, entry) => {
-			return {
-				...acc,
-				[entry.footerCategory]: [...(acc[entry.footerCategory] || []), entry]
-			};
-		}, {});
-	});
+	let categories = entries.reduce((acc: accType, entry) => {
+		const footerCategory = entry.footerCategory;
+		const value = [...(acc[footerCategory] || []), entry];
+		return {
+			...acc,
+			[footerCategory]: value
+		};
+	}, {});
 </script>
 
 <div class="column">

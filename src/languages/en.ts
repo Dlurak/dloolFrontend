@@ -37,12 +37,14 @@ const en = {
 	'nav.requests': 'Sign up requests',
 	'nav.notes': 'Notes',
 	'nav.events': 'Calendar',
+	'nav.contributors': 'Contributors',
 	'nav.categories.authentication': 'Authentication',
 	'nav.categories.homework': 'Homework',
 	'nav.categories.tricks': 'Tricks',
 	'nav.categories.moderation': 'Moderation',
 	'nav.categories.notes': 'Notes',
 	'nav.categories.events': 'Calendar',
+	'nav.categories.contributors': 'Contributors',
 	login: 'Login',
 	'login.welcome': 'Welcome back',
 	'login.error.wrongCred': 'Wrong username or password',
@@ -199,7 +201,13 @@ const en = {
 	'toast.request.list.reject.error': 'Failed to reject request',
 
 	'toast.account.delete.success': 'Successfully deleted account',
-	'toast.account.delete.error': 'Failed to delete account'
+	'toast.account.delete.error': 'Failed to delete account',
+
+	contributors: 'Contributors',
+	'contributors.error': "Could'nt fetch contributors",
+	'contributors.frontend': 'Frontend',
+	'contributors.backend': 'Backend',
+	'contributors.repos': '$amount public repositories'
 } as const;
 
 export type EnToken = keyof typeof en;

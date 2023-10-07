@@ -78,5 +78,13 @@ export const navData = [
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Moderation'
+	},
+	{
+		title: 'contributors',
+		uri: '/contributors',
+		showInNav: false,
+		navBoxIcon: '',
+		showInFooter: true,
+		footerCategory: 'Contributors'
 	}
 ] as const;

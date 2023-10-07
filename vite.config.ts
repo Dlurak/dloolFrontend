@@ -22,6 +22,18 @@ export default defineConfig({
 								maxAgeSeconds: 60 * 60 * 24 * 7
 							}
 						}
+					},
+					{
+						// api.github.com
+						urlPattern: /^https:\/\/api\.github\.com/,
+						handler: 'CacheFirst',
+						method: 'GET',
+						options: {
+							cacheName: 'github',
+							expiration: {
+								maxAgeSeconds: 60 * 60 * 24 * 31
+							}
+						}
 					}
 				]
 			}

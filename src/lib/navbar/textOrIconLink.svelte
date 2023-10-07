@@ -1,6 +1,6 @@
 <script lang="ts">
 	import I18n from '$lib/I18n.svelte';
-	import type { Token } from '../../languages/i18n';
+	import { i, type Token } from '../../languages/i18n';
 
 	export let show = true;
 
@@ -10,16 +10,18 @@
 </script>
 
 {#if show}
-	<a
-		href={uri}
-		{title}
-		class="w-full h-full flex gap-2 capitalize items-center p-3 relative justify-center text-center box-border cursor-pointer no-underline dark:text-dark-text text-light-text textOrIconLink"
-	>
-		<I18n key={title} />
-		{#if boxIcon}
-			<i class="bx {boxIcon}" />
-		{/if}
-	</a>
+	<I18n>
+		<a
+			href={uri}
+			title={i(title)}
+			class="w-full h-full flex gap-2 capitalize items-center p-3 relative justify-center text-center box-border cursor-pointer no-underline dark:text-dark-text text-light-text textOrIconLink"
+		>
+			{i(title)}
+			{#if boxIcon}
+				<i class="bx {boxIcon}" />
+			{/if}
+		</a>
+	</I18n>
 {/if}
 
 <style>

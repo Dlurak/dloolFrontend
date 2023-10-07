@@ -37,12 +37,14 @@ const de = {
 	'nav.requests': 'Registrierungsanfragen',
 	'nav.notes': 'Notizen',
 	'nav.events': 'Kalender',
+	'nav.contributors': 'Mitwirkende',
 	'nav.categories.authentication': 'Authentifizierungen',
 	'nav.categories.homework': 'Hausaufgaben',
 	'nav.categories.tricks': 'Tricks',
 	'nav.categories.moderation': 'Moderation',
 	'nav.categories.notes': 'Notizen',
 	'nav.categories.events': 'Kalender',
+	'nav.categories.contributors': 'Mitwirkende',
 	login: 'Einloggen',
 	'login.welcome': 'Willkommen zurück!',
 	'login.error.wrongCred': 'Falscher Nutzername oder Passwort',
@@ -203,7 +205,13 @@ const de = {
 	'toast.request.list.reject.error': 'Anfrage konnte nicht abgelehnt werden.',
 
 	'toast.account.delete.success': 'Konto erfolgreich gelöscht.',
-	'toast.account.delete.error': 'Konto konnte nicht gelöscht werden.'
+	'toast.account.delete.error': 'Konto konnte nicht gelöscht werden.',
+
+	contributors: 'Mitwirkende',
+	'contributors.error': 'Mitwikende konnten nicht geladen werden.',
+	'contributors.frontend': 'Frontend',
+	'contributors.backend': 'Backend',
+	'contributors.repos': '$amount öffentliche Repositories'
 } as const;
 
 export type DeToken = keyof typeof de;

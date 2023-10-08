@@ -212,6 +212,9 @@ const de = {
 	'toast.account.delete.success': 'Konto erfolgreich gelöscht.',
 	'toast.account.delete.error': 'Konto konnte nicht gelöscht werden.',
 
+	'toast.network.online': 'Du bist wieder online.',
+	'toast.network.offline': 'Du bist offline.',
+
 	contributors: 'Mitwirkende',
 	'contributors.error': 'Mitwikende konnten nicht geladen werden.',
 	'contributors.frontend': 'Frontend',

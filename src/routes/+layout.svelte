@@ -7,7 +7,7 @@
 	import '../app.css';
 
 	import { onDestroy, onMount } from 'svelte';
-	import { currentLanguage, title } from './stores';
+	import { currentLanguage, network, title } from './stores';
 	import { i, type Languages } from '../languages/i18n';
 	import { page } from '$app/stores';
 	import { addToast } from '$lib/toast/addToast';
@@ -21,7 +21,6 @@
 
 	let tit = 'Dlool';
 	const setTitle = () => {
-		console.log(specificTitleToken);
 		if (specificTitleToken) {
 			tit = `Dlool | ${i(specificTitleToken, {}, { transform: 'capitalize' })}`;
 		} else {
@@ -48,6 +47,8 @@
 		}
 	}, 1500);
 
+	network.set('online');
+
 	onMount(() => {
 		updateCSSVariables();
 
@@ -57,6 +58,8 @@
 		}
 
 		loggedIn = isLoggedIn();
+
+		network.set(navigator.onLine ? 'online' : 'offline');
 	});
 
 	onDestroy(() => {
@@ -83,6 +86,25 @@
 <svelte:head>
 	<title>{tit}</title>
 </svelte:head>
+
+<svelte:window
+	on:online={() => {
+		network.set('online');
+		addToast({
+			content: 'toast.network.online',
+			type: 'success',
+			duration: 5000
+		});
+	}}
+	on:offline={() => {
+		network.set('offline');
+		addToast({
+			content: 'toast.network.offline',
+			type: 'warning',
+			duration: 5000
+		});
+	}}
+/>
 
 <Navbar bind:height={navbarHeight} />
 <main class="flex flex-col items-center mx-2 md:mx-6 my-4">

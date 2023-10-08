@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
-	import { title } from '../stores';
+	import { network, title } from '../stores';
 	import { addToast } from '$lib/toast/addToast';
 	import { goto } from '$app/navigation';
 
@@ -24,7 +24,8 @@
 	let deleteDisabled = false;
 
 	// make it true once at least one field is filled
-	$: disabled = !(username || name || password);
+	$: disabled = !(username || name || password) || $network === 'offline';
+	$: deleteDisabled = $network === 'offline';
 
 	onMount(() => {
 		const tokenExpiresString = localStorage.getItem('tokenExpires');
@@ -47,8 +48,11 @@
 
 		let body = {};
 
+		// @ts-ignore
 		if (username) body.username = username;
+		// @ts-ignore
 		if (name) body.name = name;
+		// @ts-ignore
 		if (password) body.password = password;
 
 		fetch(PUBLIC_API_URL + '/auth/me', {

@@ -12,6 +12,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
+	import { network } from '../../routes/stores';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -35,7 +36,8 @@
 		const allFilled = assignments.every((assignment) => {
 			return assignment.subject && assignment.description;
 		});
-		submitButtonDisabled = !allFilled;
+		const isOnline = $network === 'online';
+		submitButtonDisabled = !allFilled || !isOnline;
 	}
 </script>
 

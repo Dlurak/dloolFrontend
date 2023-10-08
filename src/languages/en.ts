@@ -208,6 +208,9 @@ const en = {
 	'toast.account.delete.success': 'Successfully deleted account',
 	'toast.account.delete.error': 'Failed to delete account',
 
+	'toast.network.online': 'Found the internet again',
+	'toast.network.offline': 'Lost the internet',
+
 	contributors: 'Contributors',
 	'contributors.error': "Could'nt fetch contributors",
 	'contributors.frontend': 'Frontend',

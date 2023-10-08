@@ -7,7 +7,7 @@
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 	import Loader from '$lib/Loader.svelte';
-	import { title } from '../stores';
+	import { network, title } from '../stores';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -30,7 +30,7 @@
 	};
 
 	$: {
-		disabled = !(!!usernameValue && !!passwordValue);
+		disabled = !(!!usernameValue && !!passwordValue) || $network === 'offline';
 	}
 </script>
 

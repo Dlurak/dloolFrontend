@@ -11,6 +11,7 @@
 	import Modal from '$lib/Modal.svelte';
 	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
+	import { network } from '../../routes/stores';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -96,7 +97,7 @@
 						dialogIsOpen = true;
 					}}
 				/>
-				{#if validUser}
+				{#if validUser && $network === 'online'}
 					<QuickActionButton
 						iconName="bx-edit"
 						focusedIconName="bxs-edit"

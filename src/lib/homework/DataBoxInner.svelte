@@ -16,6 +16,7 @@
 	import DateLabel from '../dates/dateLabel.svelte';
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 	import { addToast } from '$lib/toast/addToast';
+	import { network } from '../../routes/stores';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -62,7 +63,8 @@
 		const allFilled = newAssignments.every((assignment) => {
 			return assignment.subject && assignment.description;
 		});
-		disabled = !allFilled;
+		const isOnline = $network === 'online';
+		disabled = !allFilled || !isOnline;
 	}
 </script>
 

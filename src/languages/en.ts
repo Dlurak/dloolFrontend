@@ -27,6 +27,11 @@ const en = {
 	'register.requestCreated':
 		'Your request has been created, you will be able to login once your request has been accepted',
 	'register.login': 'You can login here',
+	'register.modal': 'Please think twice if you really need an account',
+	'register.modal.positive': 'I need an account',
+	'register.modal.negative': "I don't need an account",
+	'register.modal.positive.list': 'I want to add data to Dlool\nI want to edit data on Dlool',
+	'register.modal.negative.list': 'I just want to see the data',
 	'nav.login': 'login',
 	'nav.register': 'register',
 	'nav.settings': 'settings',

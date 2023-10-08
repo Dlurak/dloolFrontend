@@ -27,6 +27,11 @@ const de = {
 	'register.requestCreated':
 		'Deine Anfrage wurde erstellt, du kannst dich einloggen sobald sie akzeptiert wurde.',
 	'register.login': 'Du kannst dich hier einloggen',
+	'register.modal': 'Bitte überlege dir, ob du wirklich einen Account brauchst.',
+	'register.modal.positive': 'Ich brauche einen Account:',
+	'register.modal.negative': 'Ich brauche keinen Account:',
+	'register.modal.positive.list': 'Ich möchte selber Daten hinzufügen\nIch möchte Daten editieren',
+	'register.modal.negative.list': 'Ich möchte nur Daten lesen',
 	'nav.login': 'Einloggen',
 	'nav.register': 'Registrieren',
 	'nav.homework': 'Hausaufgaben',

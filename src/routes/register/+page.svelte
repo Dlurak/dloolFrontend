@@ -9,6 +9,8 @@
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 	import { title } from '../stores';
+	import Modal from '$lib/Modal.svelte';
+	import { onMount } from 'svelte';
 
 	let username: string;
 	let name: string;
@@ -26,6 +28,8 @@
 	let errorText: Token | undefined = undefined;
 	let successText: Token | undefined = undefined;
 
+	let showModal = false;
+
 	const setErrorText = (text: Token) => {
 		errorText = text;
 		successText = undefined;
@@ -35,6 +39,8 @@
 	$: {
 		disabled = !(!!username && !!name && !!school && !!className && !!password); // all fields need to be filled
 	}
+
+	onMount(() => (showModal = true));
 </script>
 
 <CentralFormBox
@@ -201,3 +207,26 @@
 	<SelectDataList id="schoolsList" loadFunction={loadSchools} searchParam={school} />
 	<SelectDataList id="classList" loadFunction={loadClasses} searchParam={school} />
 </CentralFormBox>
+
+<I18n>
+	<Modal bind:open={showModal} title={i('register.modal')}>
+		<div class="grid grid-cols-2">
+			<div>
+				<h3>{i('register.modal.positive')}</h3>
+				<ul class="list-disc pl-4">
+					{#each i('register.modal.positive.list').split('\n') as item}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</div>
+			<div>
+				<h3>{i('register.modal.negative')}</h3>
+				<ul class="list-disc pl-4">
+					{#each i('register.modal.negative.list').split('\n') as item}
+						<li>{item}</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
+	</Modal>
+</I18n>

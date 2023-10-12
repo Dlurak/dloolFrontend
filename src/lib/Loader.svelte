@@ -16,7 +16,7 @@
 	{/if}
 {:else if type === 'circle'}
 	<div
-		class="h-20 w-20 border-8 border-light-text dark:border-dark-text rounded-full border-t-light-primary dark:border-t-dark-primary animate-spin"
+		class="h-20 w-20 border-8 border-gray-400 dark:border-dark-gray-700 rounded-full border-t-green-400 dark:border-t-green-700 animate-spin"
 	/>
 {/if}
 

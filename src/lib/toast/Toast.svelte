@@ -44,7 +44,7 @@
 </script>
 
 <div
-	class="w-full {color} p-4 rounded-sm shadow-2xl text-base relative flex justify-between items-center"
+	class="w-full {color} p-4 rounded-sm shadow-2xl text-base relative flex justify-between items-center overflow-hidden"
 	role="alert"
 	aria-atomic="true"
 	aria-live="assertive"

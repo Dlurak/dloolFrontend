@@ -1,5 +1,6 @@
 import { browser } from '$app/environment';
 import { currentLanguage } from '../routes/stores';
+import type { ExtractWordsAfterDollarSign, ReplaceSubstringType, Result } from '../types/i18n';
 import de, { type DeStrings, type DeToken } from './de';
 import type { EnStrings, EnToken } from './en';
 import en from './en';
@@ -22,12 +23,14 @@ export type Translations = EnStrings | DeStrings;
 
 type GermanTranslation<T extends DeToken> = (typeof de)[T];
 type EnglishTranslation<T extends EnToken> = (typeof en)[T];
-export type T<T extends Token> = T extends Token
-	? GermanTranslation<T> | EnglishTranslation<T>
+export type T<Ty extends Token> = Ty extends Token
+	? GermanTranslation<Ty> | EnglishTranslation<Ty>
 	: never;
 
+type Transformations = 'uppercase' | 'lowercase' | 'capitalize';
+
 interface I18nProps {
-	transform?: 'uppercase' | 'lowercase' | 'capitalize';
+	transform?: Transformations;
 }
 
 /**
@@ -35,27 +38,44 @@ interface I18nProps {
  * @param key The key of the translation
  * @returns A translation
  */
-export const i = (key: Token, parts: Record<string, string> = {}, options: I18nProps = {}) => {
+export const i = <
+	Tok extends Token,
+	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>
+>(
+	key: Tok,
+	parts: Par = {} as Par,
+	options: I18nProps = {}
+) => {
+	type LiteralTypes<T> = {
+		[K in keyof T]: T[K];
+	};
+
 	const baseString = languages[lang][key] as T<typeof key>;
 
-	let string: string = baseString;
-	Object.keys(parts).forEach((part) => {
-		string = string.replace(`$${part}`, parts[part]);
+	let unPartedString: string = baseString;
+
+	const partKeys = Object.keys(parts) as ExtractWordsAfterDollarSign<T<typeof key>>[];
+	partKeys.forEach((part) => {
+		unPartedString = unPartedString.replace(`$${part}`, parts[part]);
 	});
+
+	let string = unPartedString as ReplaceSubstringType<T<typeof key>, LiteralTypes<Par>>;
+	type UnTransformed = typeof string;
 
 	if (options.transform) {
 		switch (options.transform) {
 			case 'uppercase':
-				return string.toUpperCase();
+				return string.toUpperCase() as Uppercase<UnTransformed>;
 			case 'lowercase':
-				return string.toLowerCase();
+				return string.toLowerCase() as Lowercase<UnTransformed>;
 			case 'capitalize':
-				return string.charAt(0).toUpperCase() + string.slice(1);
+				return (string.charAt(0).toUpperCase() + string.slice(1)) as Capitalize<UnTransformed>;
 		}
 	}
 
 	return string;
 };
+
 
 export const switchLanguage = (language: Languages) => {
 	currentLanguage.set(language);

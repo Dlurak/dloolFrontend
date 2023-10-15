@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import EventBoxInner from './EventBoxInner.svelte';
 	import Modal from '$lib/Modal.svelte';
+	import { isEventOver } from './isEventOver';
 
 	export let event: Event;
 
@@ -18,7 +19,7 @@
 	});
 </script>
 
-<Box id={event._id}>
+<Box id={event._id} secondary={isEventOver(event)}>
 	<EventBoxInner {event} />
 
 	<div class="w-full flex flex-row items-center justify-evenly">

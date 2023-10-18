@@ -105,6 +105,7 @@ const en = {
 	'footer.contact.apiDocs': 'API-Documentation',
 	'footer.contact.discord': 'Discord',
 	'footer.links': 'Links',
+	'footer.print': 'Print',
 	settings: 'Settings',
 	'settings.settings': 'Profile settings',
 	'settings.success': 'Updated your profile! Redirect to login in 5 seconds',
@@ -215,7 +216,9 @@ const en = {
 	'contributors.error': "Could'nt fetch contributors",
 	'contributors.frontend': 'Frontend',
 	'contributors.backend': 'Backend',
-	'contributors.repos': '$amount public repositories'
+	'contributors.repos': '$amount public repositories',
+
+	'nav.hamburger': 'Hamburger menu'
 } as const;
 
 export type EnToken = keyof typeof en;

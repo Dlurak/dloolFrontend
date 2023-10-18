@@ -105,6 +105,7 @@ const de = {
 	'footer.contact.apiDocs': 'API Dokumentation',
 	'footer.contact.discord': 'Discord',
 	'footer.links': 'Links',
+	'footer.print': 'Drucken',
 	settings: 'Einstellungen',
 	'settings.settings': 'Profil Einstellungen',
 	'settings.success': 'Dein Profil wurde erfolgreich aktualisiert!',
@@ -219,7 +220,9 @@ const de = {
 	'contributors.error': 'Mitwikende konnten nicht geladen werden.',
 	'contributors.frontend': 'Frontend',
 	'contributors.backend': 'Backend',
-	'contributors.repos': '$amount öffentliche Repositories'
+	'contributors.repos': '$amount öffentliche Repositories',
+
+	'nav.hamburger': 'Hamburger Menü'
 } as const;
 
 export type DeToken = keyof typeof de;

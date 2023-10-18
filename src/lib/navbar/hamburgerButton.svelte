@@ -1,4 +1,7 @@
 <script lang="ts">
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../languages/i18n';
+
 	export let isOpened = false;
 
 	$: {
@@ -23,17 +26,20 @@
 	}
 </script>
 
-<button
-	id="hamburgerButton"
-	on:click={() => {
-		isOpened = !isOpened;
-	}}
-	class:open={isOpened}
->
-	<span class="hamburgerLine top" />
-	<span class="hamburgerLine middle" />
-	<span class="hamburgerLine bottom" />
-</button>
+<I18n>
+	<button
+		id="hamburgerButton"
+		title={i('nav.hamburger', {}, { transform: 'capitalize' })}
+		on:click={() => {
+			isOpened = !isOpened;
+		}}
+		class:open={isOpened}
+	>
+		<span class="hamburgerLine top" />
+		<span class="hamburgerLine middle" />
+		<span class="hamburgerLine bottom" />
+	</button>
+</I18n>
 
 <style>
 	/* DEFINE VARIABLES */

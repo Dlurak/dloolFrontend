@@ -22,7 +22,7 @@
 	let tit = 'Dlool';
 	const setTitle = () => {
 		if (specificTitleToken) {
-			tit = `Dlool | ${i(specificTitleToken, {}, { transform: 'capitalize' })}`;
+			tit = `Dlool | ${i(specificTitleToken, {} as any, { transform: 'capitalize' })}`;
 		} else {
 			tit = 'Dlool';
 		}

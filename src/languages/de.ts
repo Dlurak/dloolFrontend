@@ -96,6 +96,9 @@ const de = {
 	'homework.page.next': 'Weiter',
 	'homework.page.first': 'Erste Seite',
 	'homework.page.last': 'Letzte Seite',
+
+	'homework.amount': '$amount Hausaufgaben',
+
 	'datepicker.selectDate': 'Datum auswählen',
 	'footer.liscence': 'Erstellt von Dlurak',
 	'footer.liscence.text': 'Lizensiert unter der GNU General Public License Version 2',

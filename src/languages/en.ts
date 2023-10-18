@@ -96,6 +96,9 @@ const en = {
 	'homework.page.next': 'Next',
 	'homework.page.first': 'First',
 	'homework.page.last': 'Last',
+
+	'homework.amount': '$amount homework',
+
 	'datepicker.selectDate': 'Select date',
 	'footer.liscence': 'Made by Dlurak',
 	'footer.liscence.text': 'Liscenced under the GNU General Public License Version 2',

@@ -29,7 +29,10 @@
 	};
 
 	page.subscribe(() => setTitle());
-	currentLanguage.subscribe(() => setTitle());
+	currentLanguage.subscribe((l) => {
+		setTitle();
+		if (browser) document.getElementsByTagName('html')[0].lang = l;
+	});
 
 	const updateCSSVariables = () => {
 		if (browser) {

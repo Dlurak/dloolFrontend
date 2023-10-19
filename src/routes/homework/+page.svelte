@@ -122,7 +122,9 @@
 <div class="flex w-full h-full flex-col gap-2">
 	<div class="w-full">
 		{#await dataPromise then data}
-			<I18n>{i('homework.amount', { amount: `${data?.data.length}` })}</I18n>
+			{#if data?.data.length}
+				<I18n>{i('homework.amount', { amount: `${data?.data.length}` })}</I18n>
+			{/if}
 		{/await}
 	</div>
 

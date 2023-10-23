@@ -12,21 +12,19 @@
 	title.set('contributors');
 </script>
 
-<section class="w-full">
-	<h2><I18n key="contributors.frontend" /></h2>
-
-	{#if data.frontend}
-		<ContributorGrid data={data.frontend} />
-	{:else}
-		<p><I18n key="contributors.error" /></p>
-	{/if}
-</section>
-<section class="w-full">
-	<h2><I18n key="contributors.backend" /></h2>
-
-	{#if data.backend}
-		<ContributorGrid data={data.backend} />
-	{:else}
-		<p><I18n key="contributors.error" /></p>
-	{/if}
+<section class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+	<section class="w-full">
+		{#if data.frontend}
+			<ContributorGrid data={data.frontend} type="frontend" />
+		{:else}
+			<p><I18n key="contributors.error" /></p>
+		{/if}
+	</section>
+	<section class="w-full">
+		{#if data.backend}
+			<ContributorGrid data={data.backend} type="backend" />
+		{:else}
+			<p><I18n key="contributors.error" /></p>
+		{/if}
+	</section>
 </section>

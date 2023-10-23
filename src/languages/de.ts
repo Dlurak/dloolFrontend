@@ -224,6 +224,7 @@ const de = {
 	'contributors.frontend': 'Frontend',
 	'contributors.backend': 'Backend',
 	'contributors.repos': '$amount öffentliche Repositories',
+	'contributors.more': 'Erfahre mehr auf GitHub',
 
 	'nav.hamburger': 'Hamburger Menü'
 } as const;

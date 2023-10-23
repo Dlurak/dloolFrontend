@@ -220,6 +220,7 @@ const en = {
 	'contributors.frontend': 'Frontend',
 	'contributors.backend': 'Backend',
 	'contributors.repos': '$amount public repositories',
+	'contributors.more': 'Learn more on GitHub',
 
 	'nav.hamburger': 'Hamburger menu'
 } as const;

@@ -10,7 +10,7 @@
 
 <footer
 	bind:clientHeight={height}
-	class="flex flex-col items-stretch gap-7 print:hidden m-0 px-6 py-4 bg-light-secondary dark:bg-dark-secondary pb-[calc(var(--navbar-height)+2rem)] md:pb-4"
+	class="flex flex-col items-stretch gap-7 print:hidden m-0 px-6 py-4 bg-light-secondary dark:bg-dark-secondary pb-[calc(var(--navbar-height)+2rem)] sm:pb-4"
 >
 	<div class="flex flex-col md:flex-row justify-start gap-7">
 		<CopyRight />

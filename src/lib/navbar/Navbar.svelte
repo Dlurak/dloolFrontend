@@ -6,17 +6,17 @@
 </script>
 
 <div
-	class="p-4 md:p-0 fixed w-full bottom-8 z-10 md:sticky md:top-0 md:bottom-auto print:hidden"
+	class="p-4 sm:p-0 fixed w-full bottom-8 z-10 sm:sticky sm:top-0 sm:bottom-auto print:hidden"
 	bind:clientHeight={height}
 >
 	<nav
-		class="bg-light-background dark:bg-dark-background bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg md:backdrop-blur-3xl w-full px-3 py-2 md:px-8 rounded-lg flex justify-between items-center gap-4 shadow-nav md:shadow-none"
+		class="bg-light-background dark:bg-dark-background bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg sm:backdrop-blur-3xl w-full px-3 py-2 sm:px-8 rounded-lg flex justify-between items-center gap-4 shadow-nav sm:shadow-none"
 	>
-		<a href="/" class="h-12 logo hidden md:inline-block">
+		<a href="/" class="h-12 logo hidden sm:inline-block">
 			<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />
 		</a>
 		<div
-			class="flex justify-around items-center gap-4 md:gap-8 w-full md:w-auto flex-wrap md:flex-nowrap"
+			class="flex justify-around items-center gap-4 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
 		>
 			{#each navData as navDataEntry}
 				{#if navDataEntry.showInNav}

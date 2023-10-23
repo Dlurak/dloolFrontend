@@ -4,26 +4,12 @@
 </script>
 
 {#if $toasts}
-	<div id="toast-container">
+	<div
+		id="toast-container"
+		class="fixed bottom-[calc(2rem+var(--navbar-height))] md:bottom-8 right-1/2 translate-x-1/2 w-full max-w-[min(80%,36rem)] flex flex-col gap-3"
+	>
 		{#each $toasts as toastObj}
 			<Toast toast={toastObj} />
 		{/each}
 	</div>
 {/if}
-
-<style>
-	#toast-container {
-		position: fixed;
-		bottom: 2rem;
-		right: 50%;
-		transform: translate(50%);
-
-		max-width: min(80%, 36rem);
-
-		width: 100%;
-
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-	}
-</style>

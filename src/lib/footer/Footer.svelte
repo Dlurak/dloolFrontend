@@ -8,7 +8,10 @@
 	export let height: number;
 </script>
 
-<footer bind:clientHeight={height} class="flex flex-col items-stretch gap-7 print:hidden">
+<footer
+	bind:clientHeight={height}
+	class="flex flex-col items-stretch gap-7 print:hidden m-0 px-6 py-4 bg-light-secondary dark:bg-dark-secondary pb-[calc(var(--navbar-height)+2rem)] md:pb-4"
+>
 	<div class="flex flex-col md:flex-row justify-start gap-7">
 		<CopyRight />
 		{#if $network === 'online'}
@@ -18,14 +21,3 @@
 	<Links />
 </footer>
 <PrintingFooter />
-
-<style>
-	footer {
-		margin: 0;
-
-		padding-inline: 1.5rem;
-		padding-block: 1rem;
-
-		background-color: var(--secondary);
-	}
-</style>

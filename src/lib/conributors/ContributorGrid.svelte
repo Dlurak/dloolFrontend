@@ -11,7 +11,7 @@
 </script>
 
 <h2><I18n key="contributors.{type}" /></h2>
-<a href={insightsUrl}>See more on GitHub directly</a>
+<a href={insightsUrl}><I18n key="contributors.more" /></a>
 <div class="flex gap-2 flex-wrap">
 	{#each data as contri}
 		<Contributor {contri} />

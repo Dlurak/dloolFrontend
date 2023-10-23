@@ -10,7 +10,7 @@ export const navData = [
 	{
 		title: 'register',
 		uri: '/register',
-		showInNav: true,
+		showInNav: false,
 		navBoxIcon: 'bx-user-plus',
 		showInFooter: true,
 		footerCategory: 'Authentication'

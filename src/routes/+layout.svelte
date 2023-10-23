@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Navbar from '$lib/Navbar.svelte';
+	import Navbar from '$lib/navbar/Navbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
 	import Toasts from '$lib/toast/Toasts.svelte';
 

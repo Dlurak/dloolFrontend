@@ -27,7 +27,7 @@
 	{disabled}
 	on:click={onClick}
 	bind:this={buttonElement}
-	class="rounded-md {colour} text-white p-1 cursor-pointer w-full capitalize"
+	class="rounded-md {colour} text-white p-1 cursor-pointer w-full capitalize shadow-nav mt-[{topMargin}]"
 >
 	{value}
 	<slot />
@@ -35,23 +35,17 @@
 
 <style>
 	button {
-		margin-top: var(--margin-top);
-
-		box-shadow: 0 0 2rem black;
-
 		transition: all var(--transition-timing-function) var(--transition-timing);
 	}
 
 	button:not(:disabled):is(:hover, :focus) {
 		translate: 0 -0.25rem;
-		box-shadow: 0 15px 2rem black;
 
 		outline: none;
 	}
 
 	button:active {
 		transform: scale(0.95);
-		box-shadow: 0 0 2.5rem black;
 	}
 
 	button:disabled {

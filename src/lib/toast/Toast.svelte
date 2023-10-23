@@ -36,11 +36,6 @@
 	};
 	let icon = icons[toast.type];
 	let color = colors[toast.type];
-
-	$: {
-		icon = icons[toast.type];
-		color = colors[toast.type];
-	}
 </script>
 
 <div

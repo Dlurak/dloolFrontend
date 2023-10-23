@@ -11,7 +11,9 @@ type ToastWithoutId = Omit<Toast, 'id'>;
  */
 export const addToast = (toast: ToastWithoutId): Promise<void> => {
 	toasts.update((currentToasts) => {
-		const id = currentToasts.length + 1;
+		const biggestToastId = Math.max(...currentToasts.map((toast) => toast.id));
+		const biggestToastIdIsFinite = isFinite(biggestToastId);
+		const id = biggestToastIdIsFinite ? biggestToastId + 1 : 0;
 		return [...currentToasts, { ...toast, id }];
 	});
 

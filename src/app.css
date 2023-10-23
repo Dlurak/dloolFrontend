@@ -9,7 +9,7 @@
 		font-family: 'Roboto', sans-serif;
 
 		@apply p-0 m-0 bg-light-background dark:bg-dark-background
-            text-light-text dark:text-dark-text;
+            text-light-text dark:text-dark-text print:bg-white;
 	}
 
 	h1,

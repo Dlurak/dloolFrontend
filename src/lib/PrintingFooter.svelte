@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import Logo from './Logo.svelte';
 	import I18n from './I18n.svelte';
 
 	let isFirefox = true;
@@ -13,7 +12,7 @@
 {#if !isFirefox}
 	<div class="hidden print:flex h-14 justify-between items-center px-2">
 		<div class="flex flex-row justify-start items-center h-full gap-2">
-			<Logo />
+			<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />
 			<h3>Dlool</h3>
 		</div>
 

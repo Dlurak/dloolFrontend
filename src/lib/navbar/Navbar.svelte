@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="p-4 md:p-0 fixed w-full bottom-8 z-10 md:sticky md:top-0 md:bottom-auto"
+	class="p-4 md:p-0 fixed w-full bottom-8 z-10 md:sticky md:top-0 md:bottom-auto print:hidden"
 	bind:clientHeight={height}
 >
 	<nav

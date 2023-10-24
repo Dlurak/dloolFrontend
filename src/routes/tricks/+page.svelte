@@ -11,6 +11,7 @@
 	import { i, type Token } from '../../languages/i18n';
 	import { title } from '../stores';
 	import { addToast } from '$lib/toast/addToast';
+	import Download from '$lib/tricks/Download.svelte';
 
 	let school = '';
 	let classes = [''];
@@ -37,7 +38,7 @@
 
 <div class="flex gap-4 flex-col">
 	<Box>
-		<hs id="export"><I18n key="tricks.export" /></hs>
+		<h2 id="export"><I18n key="tricks.export" /></h2>
 		<div>
 			<select
 				class="bg-transparent w-full rounded-md border-2 border-gray-400 p-4"
@@ -115,4 +116,6 @@
 			<I18n key="tricks.install.text" />
 		</p>
 	</div>
+	<hr />
+	<Download />
 </div>

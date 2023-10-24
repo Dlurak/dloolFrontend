@@ -12,6 +12,8 @@
 	import { page } from '$app/stores';
 	import { addToast } from '$lib/toast/addToast';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
+	import { getLocalstorageString } from '$lib/localstorage';
+	import type { ThemeProvider } from '../types/settings';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -25,6 +27,20 @@
 			tit = `Dlool | ${i(specificTitleToken, {} as any, { transform: 'capitalize' })}`;
 		} else {
 			tit = 'Dlool';
+		}
+	};
+
+	const setTheme = (themeProvider: ThemeProvider, systemMode: 'light' | 'dark') => {
+		console.log(themeProvider);
+		if (themeProvider === 'dark' || themeProvider === 'light') theme.set(themeProvider);
+		else if (themeProvider === 'system') {
+			if (window) {
+				const darkModeMQ = '(prefers-color-scheme: dark)';
+				const isDarkModeEnabled = window.matchMedia(darkModeMQ).matches;
+				theme.set(isDarkModeEnabled ? 'dark' : 'light');
+			} else {
+				theme.set('light');
+			}
 		}
 	};
 
@@ -66,9 +82,14 @@
 
 		const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
 
-		theme.set(darkModePreference.matches ? 'dark' : 'light');
+		const th = () =>
+			setTheme(
+				getLocalstorageString<ThemeProvider>('themeProvider', 'system'),
+				darkModePreference.matches ? 'dark' : 'light'
+			);
+		th();
 		darkModePreference.addEventListener('change', (e) => {
-			theme.set(e.matches ? 'dark' : 'light');
+			th();
 		});
 	});
 

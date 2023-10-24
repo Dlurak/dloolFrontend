@@ -69,6 +69,22 @@ Eventhough generally there is a type for the parts of the string, the component 
 The I18n component will rerun when the language changes. So you don't have to worry about that, but you have to make sure that you don't put heavy calculations or api calls in the I18n component because it will rerun every time the language changes.
 
 If you can't use the component for any reason there is the `i` function. It takes the key as the first parameter and the parts as the second parameter. Some advanced functionallities are avaliable as a third parameter, currently only text-transformation. The function returns the translated string. It won't rerun when the language changes. So you have to make sure that you rerun it yourself when the language changes, e.g. by putting it into a `I18n` component. The parts of this function **are** typed, so you get autocompletion for them.
+When you use the `i` function you have to mark some things as const for the typesafety. Here is an example:
+
+```typescript
+const test = i(
+	'homework.amount',
+	{
+		amount: '5'
+	} as const,
+	{
+		transform: 'uppercase',
+		maxLength: 5
+	} as const
+); // "5 HOM" | "5 HAU"
+```
+
+You can see how precise the types are.
 
 ## Use this system in your own project
 

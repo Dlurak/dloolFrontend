@@ -1,5 +1,3 @@
-import type { Subtract } from './math/subtractAdd';
-
 type AddSpaces<T extends string> = ` ${T} `;
 type Trimmed<T extends string> = T extends `${' ' | '\t' | '\n'}${infer R}`
 	? Trimmed<R>
@@ -37,26 +35,3 @@ export type ReplaceSubstringType<
 	T extends string,
 	R extends Record<ExtractWordsAfterDollarSign<T>, string>
 > = Trimmed<ReplaceSubstringTypeBase<AddSpaces<T>, R>>;
-
-type Transformations = 'uppercase' | 'lowercase' | 'capitalize' | undefined;
-
-export type FirstNStringCharsBase<T extends string, N extends number> = N extends 0
-	? ''
-	: T extends `${infer Char}${infer Rest}`
-	? `${Char}${FirstNStringChars<Rest, Subtract<N, 1>>}`
-	: never;
-
-export type FirstNStringChars<T extends string, N extends number | undefined> = N extends number
-	? FirstNStringCharsBase<T, N>
-	: T;
-
-export const slice = <T extends string, N extends number>(str: T, n: N): FirstNStringChars<T, N> =>
-	str.slice(0, n) as FirstNStringChars<T, N>;
-
-export type Result<T extends string, Tr extends Transformations> = Tr extends 'uppercase'
-	? Uppercase<T>
-	: Tr extends 'lowercase'
-	? Lowercase<T>
-	: Tr extends 'capitalize'
-	? Capitalize<T>
-	: T;

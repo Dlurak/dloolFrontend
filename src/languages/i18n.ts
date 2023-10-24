@@ -1,11 +1,7 @@
 import { browser } from '$app/environment';
 import { currentLanguage } from '../routes/stores';
-import {
-	slice,
-	type ExtractWordsAfterDollarSign,
-	type ReplaceSubstringType,
-	type FirstNStringChars
-} from '../types/i18n';
+import type { ExtractWordsAfterDollarSign, ReplaceSubstringType } from '../types/i18n';
+import { slice, type FirstNStringChars } from '../types/strings/slice';
 import {
 	transform,
 	type Transformations,
@@ -50,13 +46,13 @@ interface I18nProps {
 export const i = <
 	Tok extends Token,
 	Opt extends I18nProps,
-	Par extends Record<ExtractWordsAfterDollarSign<TransformResult<T<Tok>, Opt['transform']>>, string>
+	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>
 >(
 	key: Tok,
 	parts: Par = {} as Par,
 	options: Opt = {} as Opt
 ): FirstNStringChars<
-	ReplaceSubstringType<TransformResult<T<Tok>, Opt['transform']>, Par>,
+	TransformResult<ReplaceSubstringType<T<Tok>, Par>, Opt['transform']>,
 	Opt['maxLength']
 > => {
 	type LiteralTypes<T> = {

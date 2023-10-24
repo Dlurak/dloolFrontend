@@ -39,8 +39,10 @@ export type ReplaceSubstringType<
 > = Trimmed<ReplaceSubstringTypeBase<AddSpaces<T>, R>>;
 
 type Transformations = 'uppercase' | 'lowercase' | 'capitalize' | undefined;
-export type Result<T extends string, Tr extends Transformations> =
-    Tr extends 'uppercase' ? Uppercase<T> :
-    Tr extends 'lowercase' ? Lowercase<T> :
-    Tr extends 'capitalize' ? Capitalize<T> : T;
-
+export type Result<T extends string, Tr extends Transformations> = Tr extends 'uppercase'
+	? Uppercase<T>
+	: Tr extends 'lowercase'
+	? Lowercase<T>
+	: Tr extends 'capitalize'
+	? Capitalize<T>
+	: T;

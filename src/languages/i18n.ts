@@ -76,7 +76,6 @@ export const i = <
 	return string;
 };
 
-
 export const switchLanguage = (language: Languages) => {
 	currentLanguage.set(language);
 	if (browser) localStorage.setItem('language', language);

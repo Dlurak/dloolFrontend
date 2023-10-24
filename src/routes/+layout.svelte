@@ -7,7 +7,7 @@
 	import '../app.css';
 
 	import { onDestroy, onMount } from 'svelte';
-	import { currentLanguage, network, title } from './stores';
+	import { currentLanguage, network, theme, title } from './stores';
 	import { i, type Languages } from '../languages/i18n';
 	import { page } from '$app/stores';
 	import { addToast } from '$lib/toast/addToast';
@@ -63,10 +63,25 @@
 		loggedIn = isLoggedIn();
 
 		network.set(navigator.onLine ? 'online' : 'offline');
+
+		const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
+
+		theme.set(darkModePreference.matches ? 'dark' : 'light');
+		darkModePreference.addEventListener('change', (e) => {
+			theme.set(e.matches ? 'dark' : 'light');
+		});
 	});
 
 	onDestroy(() => {
 		clearInterval(loggedInInterval);
+	});
+
+	theme.subscribe((t) => {
+		if (browser) {
+			// set a class on the hhtml element itself
+			document.documentElement.classList.remove('light', 'dark');
+			document.documentElement.classList.add(t);
+		}
 	});
 
 	$: {

@@ -35,11 +35,10 @@ export default {
 				print: { raw: 'print' }
 			},
 			boxShadow: {
-				'nav':'0px 0px 10px 0px rgba(0, 0, 0, 0.75)'
+				nav: '0px 0px 10px 0px rgba(0, 0, 0, 0.75)'
 			}
 		}
 	},
-	plugins: [
-		require('@tailwindcss/container-queries')
-	]
+	plugins: [require('@tailwindcss/container-queries')],
+	darkMode: 'class'
 };

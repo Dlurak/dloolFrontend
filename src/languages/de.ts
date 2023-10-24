@@ -125,6 +125,11 @@ const de = {
 	'settings.preferences': 'Einstellungen',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
+	'settings.apperance': 'Aussehen',
+	'settings.apperance.theme': 'Erscheinungsbild',
+	'settings.apperance.theme.system': 'Automatisch',
+	'settings.apperance.theme.light': 'Hell',
+	'settings.apperance.theme.dark': 'Dunkel',
 
 	'printing.footer': 'Dein kollaboratives Hausaufgabenheft',
 	tricks: 'Tricks',

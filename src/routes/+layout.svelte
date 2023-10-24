@@ -14,6 +14,7 @@
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
 	import { getLocalstorageString } from '$lib/localstorage';
 	import type { ThemeProvider } from '../types/settings';
+	import { th } from '$lib/theme';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -27,20 +28,6 @@
 			tit = `Dlool | ${i(specificTitleToken, {} as any, { transform: 'capitalize' })}`;
 		} else {
 			tit = 'Dlool';
-		}
-	};
-
-	const setTheme = (themeProvider: ThemeProvider, systemMode: 'light' | 'dark') => {
-		console.log(themeProvider);
-		if (themeProvider === 'dark' || themeProvider === 'light') theme.set(themeProvider);
-		else if (themeProvider === 'system') {
-			if (window) {
-				const darkModeMQ = '(prefers-color-scheme: dark)';
-				const isDarkModeEnabled = window.matchMedia(darkModeMQ).matches;
-				theme.set(isDarkModeEnabled ? 'dark' : 'light');
-			} else {
-				theme.set('light');
-			}
 		}
 	};
 
@@ -82,15 +69,8 @@
 
 		const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
 
-		const th = () =>
-			setTheme(
-				getLocalstorageString<ThemeProvider>('themeProvider', 'system'),
-				darkModePreference.matches ? 'dark' : 'light'
-			);
 		th();
-		darkModePreference.addEventListener('change', (e) => {
-			th();
-		});
+		darkModePreference.addEventListener('change', (e) => th());
 	});
 
 	onDestroy(() => {
@@ -124,6 +104,12 @@
 
 <svelte:head>
 	<title>{tit}</title>
+
+	{#if $theme === 'light'}
+		<meta name="theme-color" content="#fafafa" />
+	{:else}
+		<meta name="theme-color" content="#1f1f1f" />
+	{/if}
 </svelte:head>
 
 <svelte:window

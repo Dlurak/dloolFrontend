@@ -123,6 +123,11 @@ const en = {
 	'settings.account': 'Account',
 	'settings.preferences': 'Preferences',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
+	'settings.apperance': 'Apperance',
+	'settings.apperance.theme': 'Theme',
+	'settings.apperance.theme.system': 'Automatic',
+	'settings.apperance.theme.light': 'Light',
+	'settings.apperance.theme.dark': 'Dark',
 
 	'printing.footer': 'Your collaborative homework book',
 	tricks: 'Tricks',

@@ -40,20 +40,20 @@ export type ReplaceSubstringType<
 
 type Transformations = 'uppercase' | 'lowercase' | 'capitalize' | undefined;
 
-export type FirstNStringChars<T extends string, N extends number> = N extends 0
+export type FirstNStringCharsBase<T extends string, N extends number> = N extends 0
 	? ''
 	: T extends `${infer Char}${infer Rest}`
 	? `${Char}${FirstNStringChars<Rest, Subtract<N, 1>>}`
 	: never;
 
+export type FirstNStringChars<T extends string, N extends number | undefined> = N extends number
+	? FirstNStringCharsBase<T, N>
+	: T;
+
 export const slice = <T extends string, N extends number>(str: T, n: N): FirstNStringChars<T, N> =>
 	str.slice(0, n) as FirstNStringChars<T, N>;
 
-export type Result<
-	T extends string,
-	Tr extends Transformations,
-	Tml extends number | undefined
-> = Tr extends 'uppercase'
+export type Result<T extends string, Tr extends Transformations> = Tr extends 'uppercase'
 	? Uppercase<T>
 	: Tr extends 'lowercase'
 	? Lowercase<T>

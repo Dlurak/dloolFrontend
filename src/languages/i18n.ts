@@ -4,8 +4,13 @@ import {
 	slice,
 	type ExtractWordsAfterDollarSign,
 	type ReplaceSubstringType,
-	type Result
+	type FirstNStringChars
 } from '../types/i18n';
+import {
+	transform,
+	type Transformations,
+	type TransformResult
+} from '../types/strings/transformations';
 import de, { type DeStrings, type DeToken } from './de';
 import type { EnStrings, EnToken } from './en';
 import en from './en';
@@ -32,8 +37,6 @@ export type T<Ty extends Token> = Ty extends Token
 	? GermanTranslation<Ty> | EnglishTranslation<Ty>
 	: never;
 
-type Transformations = 'uppercase' | 'lowercase' | 'capitalize';
-
 interface I18nProps {
 	transform?: Transformations;
 	maxLength?: number;
@@ -46,13 +49,16 @@ interface I18nProps {
  */
 export const i = <
 	Tok extends Token,
-	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>,
-	Opt extends I18nProps
+	Opt extends I18nProps,
+	Par extends Record<ExtractWordsAfterDollarSign<TransformResult<T<Tok>, Opt['transform']>>, string>
 >(
 	key: Tok,
 	parts: Par = {} as Par,
 	options: Opt = {} as Opt
-) => {
+): FirstNStringChars<
+	ReplaceSubstringType<TransformResult<T<Tok>, Opt['transform']>, Par>,
+	Opt['maxLength']
+> => {
 	type LiteralTypes<T> = {
 		[K in keyof T]: T[K];
 	};
@@ -73,20 +79,10 @@ export const i = <
 	const string = options.maxLength
 		? slice(unTransformedString, options.maxLength)
 		: unTransformedString;
-	type UnTransformed = typeof string;
 
-	if (options.transform) {
-		switch (options.transform) {
-			case 'uppercase':
-				return string.toUpperCase() as Uppercase<UnTransformed>;
-			case 'lowercase':
-				return string.toLowerCase() as Lowercase<UnTransformed>;
-			case 'capitalize':
-				return (string.charAt(0).toUpperCase() + string.slice(1)) as Capitalize<UnTransformed>;
-		}
-	}
+	if (options.transform) return transform(string, options.transform) as any;
 
-	return string;
+	return string as any;
 };
 
 export const switchLanguage = (language: Languages) => {

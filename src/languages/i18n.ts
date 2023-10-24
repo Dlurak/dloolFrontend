@@ -38,23 +38,32 @@ interface I18nProps {
 	maxLength?: number;
 }
 
+type TPar<TT extends Token> = Record<ExtractWordsAfterDollarSign<T<TT>>, string>;
+/* type TRes<Tok extends Token, Par extends TPar<Tok>, Opt extends I18nProps> = FirstNStringChars<
+	TransformResult<ReplaceSubstringType<T<Tok>, Par>, Opt['transform']>,
+	Opt['maxLength']
+>; */
+type TRes<
+	Tok extends Token,
+	Par extends TPar<Tok>,
+	Opt extends I18nProps
+> = Opt['transform'] extends Transformations
+	? FirstNStringChars<
+			TransformResult<ReplaceSubstringType<T<Tok>, Par>, Opt['transform']>,
+			Opt['maxLength']
+	  >
+	: FirstNStringChars<ReplaceSubstringType<T<Tok>, Par>, Opt['maxLength']>;
+
 /**
  * A function to get the i18n version of a string
  * @param key The key of the translation
  * @returns A translation
  */
-export const i = <
-	Tok extends Token,
-	Opt extends I18nProps,
-	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>
->(
+export const i = <Tok extends Token, Opt extends I18nProps, Par extends TPar<Tok>>(
 	key: Tok,
 	parts: Par = {} as Par,
 	options: Opt = {} as Opt
-): FirstNStringChars<
-	TransformResult<ReplaceSubstringType<T<Tok>, Par>, Opt['transform']>,
-	Opt['maxLength']
-> => {
+): TRes<Tok, Par, Opt> => {
 	type LiteralTypes<T> = {
 		[K in keyof T]: T[K];
 	};
@@ -76,9 +85,10 @@ export const i = <
 		? slice(unTransformedString, options.maxLength)
 		: unTransformedString;
 
-	if (options.transform) return transform(string, options.transform) as any;
+	if (options.transform) return transform(string, options.transform) as TRes<Tok, Par, Opt>;
 
-	return string as any;
+	// @ts-expect-error This is fine
+	return string as TRes<Tok, Par, Opt>;
 };
 
 export const switchLanguage = (language: Languages) => {

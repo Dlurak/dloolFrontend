@@ -4,11 +4,7 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import html2canvas from 'html2canvas';
-	import {
-		getIconForSubject,
-		iconExistsForSubject,
-		subjectIconsObject
-	} from '../../constants/subjecticons';
+	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
 	import { i } from '../../languages/i18n';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';

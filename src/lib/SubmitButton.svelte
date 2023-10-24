@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	export let disabled = false;
-	export let value: string = '';
+	export let value = '';
 
 	export let onClick: (e: Event) => void = () => {
 		return;

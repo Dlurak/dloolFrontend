@@ -5,7 +5,7 @@ import type { HomeworkResponse, HomeworkWithId, HomeworkWithMongoId } from '../.
 export const loadHomework = () => {
 	let newUrl = '';
 	page.subscribe((value) => {
-		let urlPage = value.url.searchParams.get('page');
+		const urlPage = value.url.searchParams.get('page');
 		const searchParams = new URLSearchParams(value.url.search);
 		searchParams.set('pageSize', '15');
 		searchParams.set('page', urlPage || '1');

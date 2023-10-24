@@ -10,6 +10,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
+	import type { CustomDateTime } from '../../types/customDate';
 
 	const dispatch = createEventDispatcher();
 
@@ -38,7 +39,7 @@
 		const durationMilliSeconds = endDate.getTime() - startDate.getTime();
 		const durationSeconds = durationMilliSeconds / 1000;
 
-		const eventObj: any = {
+		const eventObj: Record<string, string | number | CustomDateTime> = {
 			title,
 			description,
 			date: createDateTime(startDate),

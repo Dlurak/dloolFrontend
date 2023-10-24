@@ -1,4 +1,4 @@
-import type { ContributorType } from '../../types/Contributors';
+import type { ContributorResponse, ContributorType } from '../../types/Contributors';
 
 export const load = async () => {
 	const frontendUrl = 'https://api.github.com/repos/Dlurak/dloolFrontend/contributors';
@@ -9,10 +9,11 @@ export const load = async () => {
 		fetch(backendUrl).then((r) => r.json())
 	]);
 
-	const filterAndMapRes = (response: unknown[]) => {
+	const filterAndMapRes = (response: ContributorResponse[]) => {
+		console.log(response);
 		return response
-			.filter((contributor: any) => contributor.type === 'User')
-			.map(async (contributor: any): Promise<ContributorType> => {
+			.filter((contributor) => contributor.type === 'User')
+			.map(async (contributor): Promise<ContributorType> => {
 				const userUrl = contributor.url;
 				const user = await fetch(userUrl).then((r) => r.json());
 				return {
@@ -33,7 +34,8 @@ export const load = async () => {
 					followers: user.followers,
 					following: user.following,
 					createdAt: new Date(user.created_at),
-					updatedAt: new Date(user.updated_at)
+					updatedAt: new Date(user.updated_at),
+					contributions: contributor.contributions
 				};
 			});
 	};

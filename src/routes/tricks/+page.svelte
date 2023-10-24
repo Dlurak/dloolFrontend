@@ -8,7 +8,7 @@
 	import { loadSchools } from '$lib/auth/loadSchools';
 	import Box from '$lib/homework/Box.svelte';
 	import { onMount } from 'svelte';
-	import { i, type Token } from '../../languages/i18n';
+	import { i } from '../../languages/i18n';
 	import { title } from '../stores';
 	import { addToast } from '$lib/toast/addToast';
 	import Download from '$lib/tricks/Download.svelte';

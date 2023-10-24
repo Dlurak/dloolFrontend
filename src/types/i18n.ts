@@ -8,6 +8,7 @@ type Trimmed<T extends string> = T extends `${' ' | '\t' | '\n'}${infer R}`
 type ExtractWordsAfterDollarSignBase<
 	T extends string,
 	Acc extends string[] = []
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 > = T extends `${infer _}$${infer Rest} ${infer R}`
 	? ExtractWordsAfterDollarSignBase<R, [...Acc, Rest]>
 	: Acc;

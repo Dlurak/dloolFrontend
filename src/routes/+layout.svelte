@@ -12,8 +12,6 @@
 	import { page } from '$app/stores';
 	import { addToast } from '$lib/toast/addToast';
 	import { isLoggedIn } from '$lib/helpers/isLoggedIn';
-	import { getLocalstorageString } from '$lib/localstorage';
-	import type { ThemeProvider } from '../types/settings';
 	import { th } from '$lib/theme';
 
 	let footerHeight = 0;
@@ -25,7 +23,8 @@
 	let tit = 'Dlool';
 	const setTitle = () => {
 		if (specificTitleToken) {
-			tit = `Dlool | ${i(specificTitleToken, {} as any, { transform: 'capitalize' })}`;
+			// @ts-expect-error The parts can be empty in this case, I can't achieve type-safety here T-T
+			tit = `Dlool | ${i(specificTitleToken, {}, { transform: 'capitalize' })}`;
 		} else {
 			tit = 'Dlool';
 		}
@@ -70,7 +69,7 @@
 		const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
 
 		th();
-		darkModePreference.addEventListener('change', (e) => th());
+		darkModePreference.addEventListener('change', () => th());
 	});
 
 	onDestroy(() => {

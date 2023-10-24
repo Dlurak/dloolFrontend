@@ -2,13 +2,7 @@
 	import { page } from '$app/stores';
 	import I18n from '$lib/I18n.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import { i, type Token } from '../../languages/i18n';
-
-	type Link = {
-		name: Token;
-		uri: string;
-		'box-icon': string;
-	};
+	import { i } from '../../languages/i18n';
 
 	const links = [
 		{

@@ -4,6 +4,7 @@ type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] exte
 	? Acc
 	: Enumerate<N, [...Acc, Acc['length']]>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type LastItem<T extends unknown[]> = T extends [...infer _, infer Last] ? Last : never;
 
 type SubtractOne<N extends number> = LastItem<Enumerate<N>>;

@@ -233,6 +233,7 @@ const en = {
 	'contributors.backend': 'Backend',
 	'contributors.repos': '$amount public repositories',
 	'contributors.more': 'Learn more on GitHub',
+	'contributors.contributions': '$amount contributions',
 
 	'nav.hamburger': 'Hamburger menu',
 

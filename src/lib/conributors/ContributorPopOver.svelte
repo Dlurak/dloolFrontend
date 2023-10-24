@@ -104,9 +104,12 @@
 
 		<hr class="my-2" />
 
-		<I18n>
-			{i('contributors.repos', { amount: `${contributor.publicRepos}` })}
-		</I18n>
+		<div class="flex flex-col gap-1">
+			<I18n>
+				<span>{i('contributors.repos', { amount: `${contributor.publicRepos}` })}</span>
+				<span>{i('contributors.contributions', { amount: `${contributor.contributions}` })}</span>
+			</I18n>
+		</div>
 	</div>
 {/if}
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { calendarEvents, currentLanguage, title } from '../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
-	import CalendarEvent from '$lib/calendar/CalendarEvent.svelte';
 	import { getWeekdays } from '$lib/dates/dataWeekday';
 	import I18n from '$lib/I18n.svelte';
 	import type { IntRange } from '../../types/utils';
@@ -30,7 +29,10 @@
 		if (weekdayIndex === 0) return 6;
 		return weekdayIndex - 1;
 	};
-	let paddingDays = Array(generatePaddingDays(firstDayWeekday));
+	const createListWithIndexes = (length: number): number[] =>
+		Array.from({ length }, (_, index) => index);
+
+	let paddingDays = createListWithIndexes(generatePaddingDays(firstDayWeekday));
 	let lastDayPrevMonth = new Date(year, month, 0).getDate();
 
 	let events = $calendarEvents;
@@ -50,7 +52,7 @@
 		daysInMonth = new Date(year, humanMonth, 0).getDate();
 		firstDay = new Date(year, month, 1);
 		firstDayWeekday = firstDay.getDay();
-		paddingDays = Array(generatePaddingDays(firstDayWeekday));
+		paddingDays = createListWithIndexes(generatePaddingDays(firstDayWeekday));
 		humanMonth = (month + 1) as IntRange<1, 13>;
 	};
 
@@ -76,9 +78,7 @@
 	calendarEvents.subscribe((value) => {
 		events = value;
 	});
-	currentLanguage.subscribe((value) => {
-		weekdays = getWeekdays();
-	});
+	currentLanguage.subscribe(() => (weekdays = getWeekdays()));
 </script>
 
 <div class="flex justify-between items-center mb-4">
@@ -108,7 +108,7 @@
 	{#each weekdays as weekday}
 		<p class="capitalize">{weekday}</p>
 	{/each}
-	{#each paddingDays as _, i}
+	{#each paddingDays as i}
 		<div>
 			{#key events}
 				<CalendarDay
@@ -122,7 +122,7 @@
 		</div>
 	{/each}
 
-	{#each Array(daysInMonth) as _, i}
+	{#each createListWithIndexes(daysInMonth) as i}
 		{#key events}
 			<CalendarDay day={i + 1} {month} {year} events={eventsForDay(i + 1, month + 1, year)} />
 		{/key}

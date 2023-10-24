@@ -1,47 +1,35 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { NavDataEntry, footerCategoryType } from '../../types/navData';
-	import TextOrIconLink from '$lib/navbar/textOrIconLink.svelte';
+	import { removeDuplicates } from '$lib/utils/removeDuplicates';
 	import I18n from '$lib/I18n.svelte';
 	import { navData } from '../../constants/nav';
+	import { lowercase } from '../../types/strings/transformations';
+	import TextOrIconLink from '$lib/navbar/textOrIconLink.svelte';
 
-	type categoriesType = Record<footerCategoryType, NavDataEntry[]>;
+	const entries = navData.filter((entry) => entry.showInFooter);
+	const categories = removeDuplicates(entries.map((entry) => entry.footerCategory));
+	type TCategory = (typeof categories)[number];
 
-	// filter
-	let entries = navData.filter((entry) => entry.showInFooter);
-
-	type accType = {
-		[key in footerCategoryType]?: NavDataEntry[];
-	};
-
-	let categories = entries.reduce((acc: accType, entry) => {
-		const footerCategory = entry.footerCategory;
-		const value = [...(acc[footerCategory] || []), entry];
-		return {
-			...acc,
-			[footerCategory]: value
-		};
-	}, {});
+	const entriesForCategory = (cat: TCategory) =>
+		entries.filter((entry) => entry.footerCategory === cat);
 </script>
 
-<div class="column">
+<div>
 	<h3><I18n key="footer.links" /></h3>
-	<div class="row">
-		{#each Object.keys(categories) as categoriy}
-			<div class="category">
+
+	<div class="grid grid-cols-[repeat(auto-fit,minmax(min(24rem,100%),1fr))] gap-4">
+		{#each categories as category}
+			<div>
 				<h4 class="text-start md:text-center">
-					<I18n unsaveKey="nav.categories.{categoriy.toLowerCase().replaceAll(' ', '-')}" />
+					<I18n key="nav.categories.{lowercase(category)}" />
 				</h4>
-				<ul>
-					{#each categories[categoriy] as entry}
+				<ul class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))]">
+					{#each entriesForCategory(category) as entry}
 						<li>
-							<I18n>
-								<TextOrIconLink
-									uri={entry.uri}
-									title="nav.{entry.title}"
-									boxIcon={entry.navBoxIcon}
-								/>
-							</I18n>
+							<TextOrIconLink
+								uri={entry.uri}
+								title="nav.{entry.title}"
+								boxIcon={entry.navBoxIcon}
+							/>
 						</li>
 					{/each}
 				</ul>
@@ -49,35 +37,3 @@
 		{/each}
 	</div>
 </div>
-
-<style>
-	.row {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
-		gap: 1rem;
-	}
-	ul {
-		list-style: none;
-		padding: 0;
-
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-	}
-
-	.category {
-		position: relative;
-	}
-
-	.category:not(:nth-last-col(0))::after {
-		position: absolute;
-
-		content: '';
-		height: 100%;
-		width: 0.125rem;
-		right: -0.5rem;
-		top: 0;
-
-		border-radius: 100vmax;
-		background-color: gray;
-	}
-</style>

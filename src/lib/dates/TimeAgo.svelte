@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import { i } from '../../languages/i18n';
+	import { i, type Token } from '../../languages/i18n';
 
 	export let timestamp: number;
 	export let classes = '';
@@ -39,7 +39,7 @@
 			unit = 'years';
 		}
 
-		const specificString = i(`time.ago.${type}.${unit}.${time}` as any) as string | undefined;
+		const specificString = i(`time.ago.${type}.${unit}.${time}` as Token) as string | undefined;
 
 		const baseString = specificString || i(`time.ago.${type}.${unit}`);
 		const fullString = baseString.replace('time', time.toString());

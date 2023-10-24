@@ -40,22 +40,14 @@
 			window.location.href = newUrl;
 		}
 	});
-</script>
 
-<CentralFormBox
-	title="settings.settings"
-	{errorText}
-	{successText}
-	onSubmit={(e) => {
+	const handleSubmit = (e: Event) => {
 		e.preventDefault();
 
-		let body = {};
+		let body: Record<string, string> = {};
 
-		// @ts-ignore
 		if (username) body.username = username;
-		// @ts-ignore
 		if (name) body.name = name;
-		// @ts-ignore
 		if (password) body.password = password;
 
 		fetch(PUBLIC_API_URL + '/auth/me', {
@@ -80,8 +72,10 @@
 				errorText = 'settings.error';
 			}
 		});
-	}}
->
+	};
+</script>
+
+<CentralFormBox title="settings.settings" {errorText} {successText} onSubmit={handleSubmit}>
 	<I18n>
 		<LoginInput
 			name={i('settings.username')}

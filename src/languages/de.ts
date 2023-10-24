@@ -238,6 +238,7 @@ const de = {
 	'contributors.backend': 'Backend',
 	'contributors.repos': '$amount öffentliche Repositories',
 	'contributors.more': 'Erfahre mehr auf GitHub',
+	'contributors.contributions': '$amount Beiträge',
 
 	'nav.hamburger': 'Hamburger Menü',
 

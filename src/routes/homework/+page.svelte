@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import CreateHomework from '$lib/homework/CreateHomework.svelte';
 	import { isUserMember } from '$lib/homework/isUserMember';
 	import { onDestroy, onMount } from 'svelte';
 	import Filters from '$lib/homework/Filters.svelte';
 	import DataBox from '$lib/homework/DataBox.svelte';
-	import type { HomeworkResponse } from '../../types/homework';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
 	import { showHomeworkFilter, title } from '../stores';

@@ -1,6 +1,11 @@
 import { browser } from '$app/environment';
 import { currentLanguage } from '../routes/stores';
-import type { ExtractWordsAfterDollarSign, ReplaceSubstringType, Result } from '../types/i18n';
+import {
+	slice,
+	type ExtractWordsAfterDollarSign,
+	type ReplaceSubstringType,
+	type Result
+} from '../types/i18n';
 import de, { type DeStrings, type DeToken } from './de';
 import type { EnStrings, EnToken } from './en';
 import en from './en';
@@ -31,6 +36,7 @@ type Transformations = 'uppercase' | 'lowercase' | 'capitalize';
 
 interface I18nProps {
 	transform?: Transformations;
+	maxLength?: number;
 }
 
 /**
@@ -40,11 +46,12 @@ interface I18nProps {
  */
 export const i = <
 	Tok extends Token,
-	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>
+	Par extends Record<ExtractWordsAfterDollarSign<T<Tok>>, string>,
+	Opt extends I18nProps
 >(
 	key: Tok,
 	parts: Par = {} as Par,
-	options: I18nProps = {}
+	options: Opt = {} as Opt
 ) => {
 	type LiteralTypes<T> = {
 		[K in keyof T]: T[K];
@@ -59,7 +66,13 @@ export const i = <
 		unPartedString = unPartedString.replace(`$${part}`, parts[part]);
 	});
 
-	let string = unPartedString as ReplaceSubstringType<T<typeof key>, LiteralTypes<Par>>;
+	const unTransformedString = unPartedString as ReplaceSubstringType<
+		T<typeof key>,
+		LiteralTypes<Par>
+	>;
+	const string = options.maxLength
+		? slice(unTransformedString, options.maxLength)
+		: unTransformedString;
 	type UnTransformed = typeof string;
 
 	if (options.transform) {

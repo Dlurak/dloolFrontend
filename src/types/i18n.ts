@@ -1,4 +1,4 @@
-import type { T } from '../languages/i18n';
+import type { Subtract } from './math/subtractAdd';
 
 type AddSpaces<T extends string> = ` ${T} `;
 type Trimmed<T extends string> = T extends `${' ' | '\t' | '\n'}${infer R}`
@@ -39,7 +39,21 @@ export type ReplaceSubstringType<
 > = Trimmed<ReplaceSubstringTypeBase<AddSpaces<T>, R>>;
 
 type Transformations = 'uppercase' | 'lowercase' | 'capitalize' | undefined;
-export type Result<T extends string, Tr extends Transformations> = Tr extends 'uppercase'
+
+export type FirstNStringChars<T extends string, N extends number> = N extends 0
+	? ''
+	: T extends `${infer Char}${infer Rest}`
+	? `${Char}${FirstNStringChars<Rest, Subtract<N, 1>>}`
+	: never;
+
+export const slice = <T extends string, N extends number>(str: T, n: N): FirstNStringChars<T, N> =>
+	str.slice(0, n) as FirstNStringChars<T, N>;
+
+export type Result<
+	T extends string,
+	Tr extends Transformations,
+	Tml extends number | undefined
+> = Tr extends 'uppercase'
 	? Uppercase<T>
 	: Tr extends 'lowercase'
 	? Lowercase<T>

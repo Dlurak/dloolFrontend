@@ -51,17 +51,21 @@
 			{/if}
 		{/each}
 	</ul>
-	<div class="w-full inline-block md:inline-block" class:hidden={!isSubpage}>
-		{#if isSubpage}
-			<div class="block md:hidden">
-				<QuickActionButton
-					iconName="bx-arrow-back"
-					on:click={() => {
-						history.back();
-					}}
-				/>
-			</div>
-		{/if}
-		<slot />
+	<div class="w-full flex md:flex gap-2" class:hidden={!isSubpage}>
+		<!--Vertical Line-->
+		<div class="hidden md:block w-[1px] h-full bg-gray-400" />
+		<div class="w-full">
+			{#if isSubpage}
+				<div class="block md:hidden">
+					<QuickActionButton
+						iconName="bx-arrow-back"
+						on:click={() => {
+							history.back();
+						}}
+					/>
+				</div>
+			{/if}
+			<slot />
+		</div>
 	</div>
 </div>

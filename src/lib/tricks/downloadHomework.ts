@@ -1,4 +1,6 @@
 import { PUBLIC_API_URL } from '$env/static/public';
+import { addToast } from '$lib/toast/addToast';
+import { i } from '../../languages/i18n';
 
 export type ResultType = 'text/calendar' | 'text/csv';
 export type Option = {
@@ -31,7 +33,12 @@ export const downloadHomework = (
 			try {
 				const json = JSON.parse(text);
 
-				if (json.status === 'error') return;
+				if (json.status === 'error')
+					return addToast({
+						content: 'toast.download.homework.error',
+						type: 'error',
+						duration: 5000
+					});
 			} catch (e) {
 				// This is the expected behaviour
 
@@ -39,9 +46,15 @@ export const downloadHomework = (
 
 				const link = document.createElement('a');
 				link.href = window.URL.createObjectURL(blob);
-				link.download = `homework.${currentOption.fileExtension}`;
+				link.download = `${i('homework')}.${currentOption.fileExtension}`;
 
 				link.click();
+
+				return addToast({
+					content: 'toast.download.homework.success',
+					type: 'success',
+					duration: 5000
+				});
 			}
 		});
 };

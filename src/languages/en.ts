@@ -215,6 +215,9 @@ const en = {
 	'toast.network.online': 'Found the internet again',
 	'toast.network.offline': 'Lost the internet',
 
+	'toast.download.homework.success': 'Successfully downloaded homework',
+	'toast.download.homework.error': 'Failed to download homework',
+
 	contributors: 'Contributors',
 	'contributors.error': "Could'nt fetch contributors",
 	'contributors.frontend': 'Frontend',
@@ -222,7 +225,10 @@ const en = {
 	'contributors.repos': '$amount public repositories',
 	'contributors.more': 'Learn more on GitHub',
 
-	'nav.hamburger': 'Hamburger menu'
+	'nav.hamburger': 'Hamburger menu',
+
+	'download.homework': 'Download your homework',
+	'download.homework.download': 'Download'
 } as const;
 
 export type EnToken = keyof typeof en;

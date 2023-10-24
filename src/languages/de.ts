@@ -219,6 +219,9 @@ const de = {
 	'toast.network.online': 'Du bist wieder online.',
 	'toast.network.offline': 'Du bist offline.',
 
+	'toast.download.homework.success': 'Hausaufgaben erfolgreich heruntergeladen.',
+	'toast.download.homework.error': 'Hausaufgaben konnten nicht heruntergeladen werden.',
+
 	contributors: 'Mitwirkende',
 	'contributors.error': 'Mitwikende konnten nicht geladen werden.',
 	'contributors.frontend': 'Frontend',
@@ -226,7 +229,10 @@ const de = {
 	'contributors.repos': '$amount öffentliche Repositories',
 	'contributors.more': 'Erfahre mehr auf GitHub',
 
-	'nav.hamburger': 'Hamburger Menü'
+	'nav.hamburger': 'Hamburger Menü',
+
+	'download.homework': 'Download your homework',
+	'download.homework.download': 'Download'
 } as const;
 
 export type DeToken = keyof typeof de;

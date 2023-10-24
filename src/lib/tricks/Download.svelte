@@ -39,7 +39,7 @@
 </script>
 
 <section>
-	<h2>Download your homework</h2>
+	<h2><I18n key="download.homework" /></h2>
 
 	<div class="flex gap-2">
 		<I18n>
@@ -74,13 +74,15 @@
 		</select>
 	</div>
 
-	<SubmitButton
-		value="Dowload"
-		{disabled}
-		onClick={(e) => {
-			e.preventDefault();
+	<I18n>
+		<SubmitButton
+			value={i('download.homework.download')}
+			{disabled}
+			onClick={(e) => {
+				e.preventDefault();
 
-			downloadHomework(school, className, options, resultType);
-		}}
-	/>
+				downloadHomework(school, className, options, resultType);
+			}}
+		/>
+	</I18n>
 </section>

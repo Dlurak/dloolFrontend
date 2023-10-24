@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import Input from '$lib/auth/Input.svelte';
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import { loadSchools } from '$lib/auth/loadSchools';
-	import { addToast } from '$lib/toast/addToast';
 	import { i } from '../../languages/i18n';
 	import { downloadHomework, type Option, type ResultType } from './downloadHomework';
 

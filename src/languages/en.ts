@@ -120,6 +120,10 @@ const en = {
 	'settings.password': 'Password',
 	'settings.password.tooltip': 'This will be your new password, please choose a secure one',
 	'settings.save': 'Save',
+	'settings.account': 'Account',
+	'settings.preferences': 'Preferences',
+	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
+
 	'printing.footer': 'Your collaborative homework book',
 	tricks: 'Tricks',
 	'tricks.export': 'export',

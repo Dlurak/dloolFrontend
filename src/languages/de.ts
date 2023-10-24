@@ -121,6 +121,11 @@ const de = {
 	'settings.password': 'Passwort',
 	'settings.password.tooltip': 'Das wird Dein neues Passwort sein, bitte wähle ein sicheres!',
 	'settings.save': 'Speichern',
+	'settings.account': 'Account',
+	'settings.preferences': 'Einstellungen',
+	'settings.selectSpecificSection':
+		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
+
 	'printing.footer': 'Dein kollaboratives Hausaufgabenheft',
 	tricks: 'Tricks',
 	'tricks.export': 'Export',

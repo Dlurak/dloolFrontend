@@ -106,7 +106,9 @@
 </div>
 <div class="grid grid-cols-7">
 	{#each weekdays as weekday}
-		<p class="capitalize">{weekday}</p>
+		<div class="p-1">
+			<p class="capitalize text-ellipsis overflow-hidden">{weekday}</p>
+		</div>
 	{/each}
 	{#each paddingDays as i}
 		<div>

@@ -25,7 +25,7 @@
 			<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />
 		</a>
 		<div
-			class="flex justify-around items-center gap-4 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
+			class="flex justify-around items-center gap-1 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
 		>
 			{#each navDataEntries as navDataEntry}
 				<a

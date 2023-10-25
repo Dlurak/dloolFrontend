@@ -130,6 +130,7 @@ const de = {
 	'settings.apperance.theme.system': 'Automatisch',
 	'settings.apperance.theme.light': 'Hell',
 	'settings.apperance.theme.dark': 'Dunkel',
+	'settings.apperance.nav.text': 'Titel in der Navigationsleiste anzeigen',
 
 	'printing.footer': 'Dein kollaboratives Hausaufgabenheft',
 	tricks: 'Tricks',

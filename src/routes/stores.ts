@@ -18,3 +18,9 @@ export const toasts = writable<Toast[]>([]);
 export const network = writable<'online' | 'offline'>();
 
 export const theme = writable<'light' | 'dark'>('light');
+
+export const settings = writable<{
+	showTextInNavbar: boolean;
+}>({
+	showTextInNavbar: true
+});

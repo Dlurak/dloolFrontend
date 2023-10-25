@@ -128,6 +128,7 @@ const en = {
 	'settings.apperance.theme.system': 'Automatic',
 	'settings.apperance.theme.light': 'Light',
 	'settings.apperance.theme.dark': 'Dark',
+	'settings.apperance.nav.text': 'Show title in the navigation bar',
 
 	'printing.footer': 'Your collaborative homework book',
 	tricks: 'Tricks',

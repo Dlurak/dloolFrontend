@@ -7,7 +7,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { createDateTime } from '$lib/dates/createDateObject';
 	import I18n from '$lib/I18n.svelte';
-	import { i, type Token } from '../../languages/i18n';
+	import { i } from '../../languages/i18n';
 	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
 	import type { CustomDateTime } from '../../types/customDate';
 	import { addToast } from '$lib/toast/addToast';

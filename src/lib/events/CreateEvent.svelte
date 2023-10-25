@@ -5,12 +5,12 @@
 	import Box from '$lib/homework/Box.svelte';
 	import NormalInput from '$lib/utils/NormalInput.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import CommunicationText from '$lib/communicationText.svelte';
 	import { createDateTime } from '$lib/dates/createDateObject';
 	import I18n from '$lib/I18n.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
 	import type { CustomDateTime } from '../../types/customDate';
+	import { addToast } from '$lib/toast/addToast';
 
 	const dispatch = createEventDispatcher();
 
@@ -26,9 +26,6 @@
 	let startDate = new Date();
 	let endDate = new Date();
 	let endDateIsAfterStartDate = false;
-
-	let successText: Token | undefined = undefined;
-	let errorText: Token | undefined = undefined;
 
 	$: disabled = !title || !subject || !startDate || !description || !endDateIsAfterStartDate;
 
@@ -65,13 +62,19 @@
 			const isError = dat.status === 'error';
 			if (isError) {
 				disabled = false;
-				errorText = 'error';
+				addToast({
+					type: 'error',
+					content: 'error',
+					duration: 5000
+				});
 			} else {
 				title = description = subject = location = '';
-				successText = 'events.create.success';
-				setTimeout(() => {
-					successText = undefined;
-				}, 5000);
+				addToast({
+					type: 'success',
+					content: 'events.create.success',
+
+					duration: 5000
+				});
 			}
 			dispatch('postSubmit', dat);
 		});
@@ -114,8 +117,5 @@
 		<I18n>
 			<SubmitButton {disabled} value={i('events.create.submit')} />
 		</I18n>
-
-		<CommunicationText type="success" text={successText} />
-		<CommunicationText type="error" text={errorText} />
 	</form>
 </Box>

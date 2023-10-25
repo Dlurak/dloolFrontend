@@ -10,8 +10,8 @@
 		const isSaveKeyAvailable = key !== undefined;
 		const isUnsaveKeyAvailable = unsaveKey !== undefined;
 
-		if (isSaveKeyAvailable) return i(key as Token, parts);
-		else if (isUnsaveKeyAvailable) return i(unsaveKey as Token, parts);
+		if (isSaveKeyAvailable) return i(key as Token, parts as any);
+		else if (isUnsaveKeyAvailable) return i(unsaveKey as Token, parts as any);
 		else return '';
 	};
 

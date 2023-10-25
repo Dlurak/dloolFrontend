@@ -86,19 +86,19 @@ When you have any questions, find a bug or have an idea for a feature you can cr
 2. Install the dependencies
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Build from source
 
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 4. Start the server
 
    ```bash
-   npm run preview
+   pnpm run preview
    ```
 
 5. The server runs on [localhost port 4173](http://localhost:4173)

@@ -6,7 +6,6 @@ on:
   pull_request:
     branches:
       - '**'
-
 jobs:
   test:
     timeout-minutes: 60
@@ -15,22 +14,15 @@ jobs:
       PUBLIC_API_URL: https://dlool-backend.onrender.com
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: 'pnpm'
-
+          node-version: 18
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
+        run: pnpm install
       - name: Install Playwright Browsers
-        run: pnpx playwright install
-
+        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: pnpx playwright test
+        run: pnpm exec playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:

@@ -21,7 +21,7 @@ jobs:
       - name: Install Playwright
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: pnpm exec playwright test --workers 2 --headed
+        run: pnpm exec playwright test --workers 2 --headless
         env:
           PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
       - uses: actions/upload-artifact@v3

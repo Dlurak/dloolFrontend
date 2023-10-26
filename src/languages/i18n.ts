@@ -33,16 +33,12 @@ export type T<Ty extends Token> = Ty extends Token
 	? GermanTranslation<Ty> | EnglishTranslation<Ty>
 	: never;
 
-interface I18nProps {
+export interface I18nProps {
 	transform?: Transformations;
 	maxLength?: number;
 }
 
-type TPar<TT extends Token> = Record<ExtractWordsAfterDollarSign<T<TT>>, string>;
-/* type TRes<Tok extends Token, Par extends TPar<Tok>, Opt extends I18nProps> = FirstNStringChars<
-	TransformResult<ReplaceSubstringType<T<Tok>, Par>, Opt['transform']>,
-	Opt['maxLength']
->; */
+export type TPar<TT extends Token> = Record<ExtractWordsAfterDollarSign<T<TT>>, string>;
 type TRes<
 	Tok extends Token,
 	Par extends TPar<Tok>,

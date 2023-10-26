@@ -1,18 +1,19 @@
 <script lang="ts">
-	import { i, type Token } from '../languages/i18n';
+	import { i, type I18nProps, type Token, type TPar } from '../languages/i18n';
 	import { currentLanguage } from '../routes/stores';
 
 	export let key: Token | undefined = undefined;
-	export let unsaveKey: string | undefined = undefined;
-	export let parts: Record<string, string> = {};
+
+	type TPartsSvelte<T extends Token | undefined> = T extends Token ? TPar<T> : never;
+	export let parts: TPartsSvelte<typeof key> = {};
+
+	export let options: I18nProps = {};
 
 	const getTranslation = () => {
-		const isSaveKeyAvailable = key !== undefined;
-		const isUnsaveKeyAvailable = unsaveKey !== undefined;
-
-		if (isSaveKeyAvailable) return i(key as Token, parts as any);
-		else if (isUnsaveKeyAvailable) return i(unsaveKey as Token, parts as any);
-		else return '';
+		if (key === undefined) return '';
+		else {
+			return i(key, parts, options);
+		}
 	};
 
 	let string = getTranslation();
@@ -20,10 +21,8 @@
 	currentLanguage.subscribe(() => (string = getTranslation()));
 </script>
 
-{#if string}
-	{string}
-{:else}
-	{#key $currentLanguage}
-		<slot />
-	{/key}
-{/if}
+{#key $currentLanguage}
+	<slot>
+		{string}
+	</slot>
+{/key}

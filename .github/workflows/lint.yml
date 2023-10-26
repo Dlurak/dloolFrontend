@@ -9,6 +9,8 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_API_URL: https://dlool-backend.onrender.com
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2

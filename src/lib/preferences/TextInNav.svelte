@@ -2,18 +2,14 @@
 	import { setLocalstorage } from '$lib/localstorage';
 	import { settings } from '../../routes/stores';
 	import I18n from '$lib/I18n.svelte';
+	import Switch from '$lib/utils/Switch.svelte';
 
 	let checked = $settings.showTextInNavbar;
 </script>
 
 <div class="flex flex-row gap-2 items-center justify-between">
 	<I18n key="settings.apperance.nav.text" />
-	<input
-		type="checkbox"
-		id="textInNav"
-		name="textInNav"
-		value="textInNav"
-		class="checkbox"
+	<Switch
 		bind:checked
 		on:change={() => {
 			settings.update((s) => {

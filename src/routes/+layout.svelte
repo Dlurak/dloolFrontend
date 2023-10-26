@@ -11,8 +11,8 @@
 	import Network from '$lib/layout/network.svelte';
 	import Title from '$lib/layout/title.svelte';
 	import Language from '$lib/layout/Language.svelte';
-	import Theme from '$lib/preferences/Theme.svelte';
 	import Logout from '$lib/layout/Logout.svelte';
+	import Theme from '$lib/layout/Theme.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;

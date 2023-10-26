@@ -5,6 +5,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_API_URL: https://dlool-backend.onrender.com
     if: github.event.deployment_status.state == 'success'
     steps:
       - uses: actions/checkout@v3

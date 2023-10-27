@@ -24,3 +24,5 @@ export const settings = writable<{
 }>({
 	showTextInNavbar: true
 });
+
+export const subjectColors = writable<Record<string, string>>({});

@@ -5,6 +5,8 @@
 	import Switch from '$lib/utils/Switch.svelte';
 
 	let checked = $settings.showTextInNavbar;
+
+	settings.subscribe((s) => (checked = s.showTextInNavbar));
 </script>
 
 <div class="flex flex-row gap-2 items-center justify-between">

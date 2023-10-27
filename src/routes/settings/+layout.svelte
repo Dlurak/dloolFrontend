@@ -15,6 +15,11 @@
 			name: 'settings.preferences',
 			uri: '/preferences',
 			'box-icon': 'bx-cog'
+		},
+		{
+			name: 'settings.colors',
+			uri: '/colors',
+			'box-icon': 'bx-palette'
 		}
 	] as const;
 

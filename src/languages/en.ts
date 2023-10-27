@@ -122,6 +122,7 @@ const en = {
 	'settings.save': 'Save',
 	'settings.account': 'Account',
 	'settings.preferences': 'Preferences',
+	'settings.colors': 'Colors',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
 	'settings.apperance': 'Apperance',
 	'settings.apperance.theme': 'Theme',

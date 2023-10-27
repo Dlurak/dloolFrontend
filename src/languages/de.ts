@@ -123,6 +123,7 @@ const de = {
 	'settings.save': 'Speichern',
 	'settings.account': 'Account',
 	'settings.preferences': 'Einstellungen',
+	'settings.colors': 'Farben',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',

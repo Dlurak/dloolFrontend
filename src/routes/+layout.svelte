@@ -54,6 +54,7 @@
 <Theme />
 <Logout />
 <SubjectColors />
+
 <!--Those apply settings, update stores...-->
 
 <style>

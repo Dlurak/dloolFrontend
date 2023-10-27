@@ -1,38 +1,15 @@
 <script lang="ts">
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import ColorPicker from '$lib/colors/ColorPicker.svelte';
-	import { hexToRgb, rgbToHex } from '$lib/colors/hexToRgb';
-	import type { IntRange } from '../../../types/utils';
 	import { subjectColors } from '../../stores';
 
-	let data: {
-		subject: string;
-		color: {
-			r: IntRange<0, 255>;
-			g: IntRange<0, 255>;
-			b: IntRange<0, 255>;
-		};
-	}[] = Object.keys($subjectColors).map((subject) => ({
-		subject,
-		color: hexToRgb($subjectColors[subject])
-	}));
+	let data = $subjectColors;
 
-    subjectColors.subscribe((colors) => {
-        data = Object.keys(colors).map((subject) => ({
-            subject,
-            color: hexToRgb(colors[subject])
-        }));
-    })
+	subjectColors.subscribe((colors) => {
+		data = colors;
+	});
 
-	const save = () => {
-		const colors: Record<string, string> = {};
-
-		data.forEach((entry) => {
-			colors[entry.subject.toLowerCase()] = rgbToHex(entry.color.r, entry.color.g, entry.color.b);
-		});
-
-		subjectColors.set(colors);
-	};
+	const save = () => subjectColors.set(data);
 
 	$: {
 		save();

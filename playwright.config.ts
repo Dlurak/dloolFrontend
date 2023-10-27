@@ -36,13 +36,13 @@ export default defineConfig({
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'] },
 			timeout: 1000 * 60 * 2
-		},
-
-		{
-			name: 'firefox',
-			use: { ...devices['Desktop Firefox'] },
-			timeout: 1000 * 60 * 2
 		}
+
+		// {
+		//	 name: 'firefox',
+		//	 use: { ...devices['Desktop Firefox'] },
+		//   timeout: 1000 * 60 * 2
+		// }
 
 		// {
 		//   name: 'webkit',

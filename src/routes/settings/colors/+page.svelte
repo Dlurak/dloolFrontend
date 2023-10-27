@@ -1,7 +1,7 @@
 <script lang="ts">
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import ColorPicker from '$lib/colors/ColorPicker.svelte';
-	import { hexToRgb } from '$lib/colors/hexToRgb';
+	import { hexToRgb, rgbToHex } from '$lib/colors/hexToRgb';
 	import type { IntRange } from '../../../types/utils';
 	import { subjectColors } from '../../stores';
 
@@ -16,6 +16,29 @@
 		subject,
 		color: hexToRgb($subjectColors[subject])
 	}));
+
+    subjectColors.subscribe((colors) => {
+        data = Object.keys(colors).map((subject) => ({
+            subject,
+            color: hexToRgb(colors[subject])
+        }));
+    })
+
+	const save = () => {
+		const colors: Record<string, string> = {};
+
+		data.forEach((entry) => {
+			colors[entry.subject.toLowerCase()] = rgbToHex(entry.color.r, entry.color.g, entry.color.b);
+		});
+
+		subjectColors.set(colors);
+	};
+
+	$: {
+		save();
+
+		data;
+	}
 </script>
 
 <div>
@@ -27,7 +50,11 @@
 					<ColorPicker bind:r={entry.color.r} bind:g={entry.color.g} bind:b={entry.color.b} />
 
 					<div class="flex flex-row items-center">
-						<input bind:value={entry.subject} class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5" placeholder="Fach" />
+						<input
+							bind:value={entry.subject}
+							class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5"
+							placeholder="Fach"
+						/>
 						<QuickActionButton
 							iconName="bx-trash"
 							focusedIconName="bx-trash"
@@ -42,6 +69,7 @@
 					</div>
 				</div>
 			{/each}
+
 			<button
 				on:click={() => {
 					data = [

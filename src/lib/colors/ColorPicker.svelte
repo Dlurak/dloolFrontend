@@ -63,7 +63,6 @@
 
 		<SubmitButton
 			onClick={() => {
-				console.log(`rgb(${r},${g},${b})`);
 				open = false;
 			}}
 		>

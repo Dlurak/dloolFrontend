@@ -13,6 +13,7 @@
 	import Language from '$lib/layout/Language.svelte';
 	import Logout from '$lib/layout/Logout.svelte';
 	import Theme from '$lib/layout/Theme.svelte';
+	import SubjectColors from '$lib/layout/SubjectColors.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -52,6 +53,8 @@
 <Language />
 <Theme />
 <Logout />
+<SubjectColors />
+<!--Those apply settings, update stores...-->
 
 <style>
 	main {

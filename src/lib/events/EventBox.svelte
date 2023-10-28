@@ -7,6 +7,8 @@
 	import EventBoxInner from './EventBoxInner.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import { isEventOver } from './isEventOver';
+	import { subjectColors } from '../../routes/stores';
+	import { rgbToHex } from '$lib/colors/hexToRgb';
 
 	export let event: Event;
 
@@ -14,13 +16,29 @@
 
 	let shareEnabled = false;
 
+	let color = $subjectColors.find(
+		(color) => color.subject.toLowerCase() === event.subject.toLowerCase()
+	)?.color;
+
 	onMount(() => {
 		shareEnabled = !!navigator.share;
 	});
 </script>
 
 <Box id={event._id} secondary={isEventOver(event)}>
-	<EventBoxInner {event} />
+	<div class="flex gap-1">
+		{#if color}
+			<div class="py-1 w-1">
+				<div
+					style="--color: {rgbToHex(color.r, color.g, color.b)}"
+					class="bg-[var(--color)] h-full w-full rounded-full"
+				/>
+			</div>
+		{/if}
+		<div class="w-full">
+			<EventBoxInner {event} />
+		</div>
+	</div>
 
 	<div class="w-full flex flex-row items-center justify-evenly">
 		{#if shareEnabled}

@@ -2,8 +2,10 @@
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import ColorPicker from '$lib/colors/ColorPicker.svelte';
 	import { checkIfValid, parseContent, readFileContent } from '$lib/colors/downloadSubjectColors';
-	import { subjectColors } from '../../stores';
+	import { subjectColors, title } from '../../stores';
 	import { addToast } from '$lib/toast/addToast';
+	import I18n from '$lib/I18n.svelte';
+	import { i } from '../../../languages/i18n';
 
 	let data = $subjectColors;
 
@@ -12,6 +14,8 @@
 	});
 
 	const save = () => subjectColors.set(data);
+
+	title.set('settings.subjectColors');
 
 	$: {
 		save();
@@ -23,97 +27,109 @@
 <div>
 	<section>
 		<div class="flex justify-between">
-			<h3>Farben für Fächer</h3>
+			<h3><I18n key="settings.subjectColors" /></h3>
 
 			<div class="flex items-center gap-1">
-				<QuickActionButton
-					iconName="bxs-file-import"
-					color="text-green-500 dark:text-green-400"
-					title="Importiere die Farben von einer JSON-Datei"
-					on:click={() => {
-						if (
-							!confirm(
-								'Bist du sicher, dass du die Farben importieren möchtest? Die aktuellen Farben werden überschrieben.'
-							)
-						)
-							return;
+				<I18n>
+					<QuickActionButton
+						iconName="bxs-file-import"
+						color="text-green-500 dark:text-green-400"
+						title={i('settings.subjectColors.import')}
+						on:click={() => {
+							if (data.length > 0 && !confirm(i('settings.subjectColors.import.confirm'))) return;
 
-						const input = document.createElement('input');
-						input.type = 'file';
-						input.accept = '.json';
+							const input = document.createElement('input');
+							input.type = 'file';
+							input.accept = '.json';
 
-						input.onchange = async () => {
-							const files = input.files;
-							if (!files) return;
-							const file = files[0];
-							if (!file) return;
+							input.onchange = async () => {
+								const files = input.files;
+								if (!files) {
+									addToast({
+										type: 'error',
+										content: 'toast.colors.import.error',
+										duration: 5000
+									});
+									return;
+								}
+								const file = files[0];
+								if (!file) {
+									addToast({
+										type: 'error',
+										content: 'toast.colors.import.error',
+										duration: 5000
+									});
+									return;
+								}
 
-							const content = await readFileContent(file);
-							const isValid = checkIfValid(content);
+								const content = await readFileContent(file);
+								const isValid = checkIfValid(content);
 
-							if (!isValid) {
+								if (!isValid) {
+									addToast({
+										type: 'error',
+										content: 'toast.colors.import.invalidFile',
+										duration: 5000
+									});
+									return;
+								}
+
+								const parsed = parseContent(content);
+								data = parsed;
 								addToast({
-									type: 'error',
-									content: 'error',
-									// content: 'toast.colors.import.error',
+									type: 'success',
+									content: 'toast.colors.import.success',
 									duration: 5000
 								});
-								return;
-							}
+							};
 
-							const parsed = parseContent(content);
-							data = parsed;
-							addToast({
-								type: 'success',
-								// content: 'toast.colors.import.success',
-								content: 'class',
-								duration: 5000
-							});
-						};
+							input.click();
+						}}
+					/>
 
-						input.click();
-					}}
-				/>
+					<QuickActionButton
+						iconName="bx-cloud-download"
+						focusedIconName="bxs-cloud-download"
+						color="text-blue-500 dark:text-blue-400"
+						title={i('settings.subjectColors.export')}
+						on:click={() => {
+							const encodedPart = encodeURIComponent(JSON.stringify(data));
+							const dataStr = 'data:text/json;charset=utf-8,' + encodedPart;
+							const downloadAnchorNode = document.createElement('a');
+							downloadAnchorNode.setAttribute('href', dataStr);
+							downloadAnchorNode.download = 'subjectColors.json';
 
-				<QuickActionButton
-					iconName="bx-cloud-download"
-					focusedIconName="bxs-cloud-download"
-					color="text-blue-500 dark:text-blue-400"
-					title="Downloade die Farben als JSON"
-					on:click={() => {
-						const dataStr =
-							'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-						const downloadAnchorNode = document.createElement('a');
-						downloadAnchorNode.setAttribute('href', dataStr);
-						downloadAnchorNode.download = 'subjectColors.json';
-
-						downloadAnchorNode.click();
-					}}
-				/>
+							downloadAnchorNode.click();
+						}}
+					/>
+				</I18n>
 			</div>
 		</div>
+
 		<div class="flex flex-col gap-4">
 			{#each data as entry}
 				<div class="flex flex-row gap-2 items-center justify-between">
 					<ColorPicker bind:r={entry.color.r} bind:g={entry.color.g} bind:b={entry.color.b} />
 
 					<div class="flex flex-row items-center">
-						<input
-							bind:value={entry.subject}
-							class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5"
-							placeholder="Fach"
-						/>
-						<QuickActionButton
-							iconName="bx-trash"
-							focusedIconName="bx-trash"
-							color="text-red-500 dark:text-red-400"
-							title="Farbe entfernen"
-							on:click={() => {
-								const index = data.indexOf(entry);
-								data.splice(index, 1);
-								data = [...data];
-							}}
-						/>
+						<I18n>
+							<input
+								bind:value={entry.subject}
+								class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5"
+								placeholder={i('settings.subjectColors.subject')}
+							/>
+							<QuickActionButton
+								iconName="bx-trash"
+								focusedIconName="bx-trash"
+								color="text-red-500 dark:text-red-400"
+								title={i('settings.subjectColors.subject.remove')}
+								on:click={() => {
+									const index = data.indexOf(entry);
+									data.splice(index, 1);
+									data = [...data];
+								}}
+							/>
+						</I18n>
 					</div>
 				</div>
 			{/each}
@@ -132,8 +148,10 @@
 						}
 					];
 				}}
+				class="flex flex-row items-center gap-2 justify-center rounded-md hover:bg-light-box focus:bg-light-box dark:focus:bg-dark-box dark:hover:bg-dark-box p-2"
 			>
-				Neues Fach hinzufügen
+				<i class="bx bx-plus" />
+				<I18n key="settings.subjectColors.subject.add" />
 			</button>
 		</div>
 	</section>

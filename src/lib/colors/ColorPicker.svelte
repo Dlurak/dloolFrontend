@@ -1,11 +1,13 @@
 <script lang="ts">
+	import I18n from '$lib/I18n.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import type { IntRange } from '../../types/utils';
+	import { rgbToHex } from './hexToRgb';
 
-	export let r: IntRange<0, 256> = 0;
-	export let g: IntRange<0, 256> = 0;
-	export let b: IntRange<0, 256> = 0;
+	export let r: IntRange<0, 255> = 0;
+	export let g: IntRange<0, 255> = 0;
+	export let b: IntRange<0, 255> = 0;
 
 	export let open = false;
 
@@ -28,35 +30,43 @@
 			open = !open;
 		}}
 	>
-		Select
+		<slot>
+			{rgbToHex(r, g, b)}
+		</slot>
 	</button>
 
 	<Modal bind:open>
-		<div class="grid grid-cols-[1fr,3fr]">
-			Rot
-			<input
-				type="range"
-				bind:value={r}
-				min="0"
-				max="255"
-				class="w-full h-2 bg-[rgb(var(--red),0,0)] rounded-lg appearance-none cursor-pointer"
-			/>
-			Grün
-			<input
-				type="range"
-				bind:value={g}
-				min="0"
-				max="255"
-				class="w-full h-2 bg-[rgb(0,var(--green),0)] rounded-lg appearance-none cursor-pointer"
-			/>
-			Blau
-			<input
-				type="range"
-				bind:value={b}
-				min="0"
-				max="255"
-				class="w-full h-2 bg-[rgb(0,0,var(--blue))] rounded-lg appearance-none cursor-pointer"
-			/>
+		<div class="flex flex-col gap-2 py-2">
+			<div class="flex items-center gap-1">
+				<I18n key="colors.red" />
+				<input
+					type="range"
+					bind:value={r}
+					min="0"
+					max="255"
+					class="w-full h-2 bg-[rgb(var(--red),0,0)] rounded-lg appearance-none cursor-pointer"
+				/>
+			</div>
+			<div class="flex items-center gap-1">
+				<I18n key="colors.green" />
+				<input
+					type="range"
+					bind:value={g}
+					min="0"
+					max="255"
+					class="w-full h-2 bg-[rgb(0,var(--green),0)] rounded-lg appearance-none cursor-pointer"
+				/>
+			</div>
+			<div class="flex items-center gap-1">
+				<I18n key="colors.blue" />
+				<input
+					type="range"
+					bind:value={b}
+					min="0"
+					max="255"
+					class="w-full h-2 bg-[rgb(0,0,var(--blue))] rounded-lg appearance-none cursor-pointer"
+				/>
+			</div>
 		</div>
 
 		<div class="bg-[rgb(var(--red),var(--green),var(--blue))] w-full h-32 rounded-lg" />
@@ -66,7 +76,7 @@
 				open = false;
 			}}
 		>
-			Select
+			<I18n key="colors.select" />
 		</SubmitButton>
 	</Modal>
 </div>

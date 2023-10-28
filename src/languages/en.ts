@@ -131,6 +131,21 @@ const en = {
 	'settings.apperance.theme.dark': 'Dark',
 	'settings.apperance.nav.text': 'Show title in the navigation bar',
 
+	'settings.subjectColors': 'Colors for subjects',
+	'settings.subjectColors.import': 'Import colors from a JSON file',
+	'settings.subjectColors.import.confirm':
+		'Are you sure you want to import these colors? This will overwrite your current colors!',
+	'settings.subjectColors.export': 'Export colors to a JSON file',
+	'settings.subjectColors.subject': 'Subject',
+	'settings.subjectColors.subject.remove': 'Remove subject',
+	'settings.subjectColors.subject.add': 'Add subject',
+
+	'colors.red': 'Red',
+	'colors.green': 'Green',
+	'colors.blue': 'Blue',
+
+	'colors.select': 'Select color',
+
 	'printing.footer': 'Your collaborative homework book',
 	tricks: 'Tricks',
 	'tricks.export': 'export',
@@ -228,6 +243,10 @@ const en = {
 
 	'toast.download.homework.success': 'Successfully downloaded homework',
 	'toast.download.homework.error': 'Failed to download homework',
+
+	'toast.colors.import.success': 'Farben erfolgreich importiert.',
+	'toast.colors.import.invalidFile': 'Die Datei ist ungültig :(',
+	'toast.colors.import.error': 'Farben konnten nicht importiert werden.',
 
 	contributors: 'Contributors',
 	'contributors.error': "Could'nt fetch contributors",

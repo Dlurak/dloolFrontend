@@ -14,6 +14,7 @@
 	import Logout from '$lib/layout/Logout.svelte';
 	import Theme from '$lib/layout/Theme.svelte';
 	import SubjectColors from '$lib/layout/SubjectColors.svelte';
+	import Launcher from '$lib/layout/launcher/launcher.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -45,6 +46,7 @@
 <Footer bind:height={footerHeight} />
 
 <Toasts />
+<Launcher />
 
 <!--These apply settings, update stores...-->
 <Network />

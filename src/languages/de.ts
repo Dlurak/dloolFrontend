@@ -141,6 +141,8 @@ const de = {
 	'settings.subjectColors.subject': 'Fach',
 	'settings.subjectColors.subject.remove': 'Fach entfernen',
 	'settings.subjectColors.subject.add': 'Neues Fach hinzufügen',
+	'settings.subjectColors.explaination':
+		'Diese Farben werden bei den Hausaufgaben und dem Kalendar verwendet, sie ermöglichen es dir die Hausaufgaben noch schneller einem Fach zuzuordnen. Du kannst soviele Fächer hinzufügen wie du möchtest.',
 
 	'colors.red': 'Rot',
 	'colors.green': 'Grün',

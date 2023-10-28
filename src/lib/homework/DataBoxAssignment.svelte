@@ -39,12 +39,9 @@
 
 <div class="w-full flex flex-row gap-2" class:opacity-50={isOverdue}>
 	{#if colorHex}
-	<div class="py-2 w-1">
-		<div
-			style="--color: {colorHex}"
-			class="bg-[var(--color)] h-full w-full rounded-full"
-		/>
-	</div>
+		<div class="py-2 w-1">
+			<div style="--color: {colorHex}" class="bg-[var(--color)] h-full w-full rounded-full" />
+		</div>
 	{/if}
 	<div>
 		<span class="flex flex-row items-baseline justify-start gap-2 my-2">

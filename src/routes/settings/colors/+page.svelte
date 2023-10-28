@@ -107,6 +107,8 @@
 			</div>
 		</div>
 
+		<p><I18n key="settings.subjectColors.explaination" /></p>
+
 		<div class="flex flex-col gap-4">
 			{#each data as entry}
 				<div class="flex flex-row gap-2 items-center justify-between">

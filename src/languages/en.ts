@@ -139,6 +139,8 @@ const en = {
 	'settings.subjectColors.subject': 'Subject',
 	'settings.subjectColors.subject.remove': 'Remove subject',
 	'settings.subjectColors.subject.add': 'Add subject',
+	'settings.subjectColors.explaination':
+		'These colors are used in the homework and calendar view. You can add as many subjects as you want.',
 
 	'colors.red': 'Red',
 	'colors.green': 'Green',

@@ -2,12 +2,12 @@
 	import I18n from '$lib/I18n.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import type { IntRange } from '../../types/utils';
+	import type { RangeRGB } from '../../types/subjectColors';
 	import { rgbToHex } from './hexToRgb';
 
-	export let r: IntRange<0, 255> = 0;
-	export let g: IntRange<0, 255> = 0;
-	export let b: IntRange<0, 255> = 0;
+	export let r: RangeRGB = 0;
+	export let g: RangeRGB = 0;
+	export let b: RangeRGB = 0;
 
 	export let open = false;
 

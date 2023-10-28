@@ -1,6 +1,6 @@
 import type { IntRange } from './utils';
 
-type RangeRGB = IntRange<0, 255>;
+export type RangeRGB = IntRange<0, 256>;
 
 export type RGB = {
 	r: RangeRGB;

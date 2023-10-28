@@ -3,6 +3,7 @@ import type { Note } from '../types/notes';
 import type { Event } from '../types/events';
 import type { Languages, Token } from '../languages/i18n';
 import type { Toast } from '../types/toast';
+import type { SubjectColor } from '../types/subjectColors';
 
 export const focusedNote = writable<Note | null>(null);
 export const showHomeworkFilter = writable<boolean>(false);
@@ -24,3 +25,5 @@ export const settings = writable<{
 }>({
 	showTextInNavbar: true
 });
+
+export const subjectColors = writable<SubjectColor[]>([]);

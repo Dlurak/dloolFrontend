@@ -123,6 +123,7 @@ const de = {
 	'settings.save': 'Speichern',
 	'settings.account': 'Account',
 	'settings.preferences': 'Einstellungen',
+	'settings.colors': 'Farben',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',
@@ -131,6 +132,23 @@ const de = {
 	'settings.apperance.theme.light': 'Hell',
 	'settings.apperance.theme.dark': 'Dunkel',
 	'settings.apperance.nav.text': 'Titel in der Navigationsleiste anzeigen',
+
+	'settings.subjectColors': 'Farben für Fächer',
+	'settings.subjectColors.import': 'Importiere die Farben von einer JSON-Datei',
+	'settings.subjectColors.import.confirm':
+		'Bist du sicher, dass du die Farben importieren möchtest? Die aktuellen Farben werden überschrieben.',
+	'settings.subjectColors.export': 'Exportiere die Farben als JSON-Datei',
+	'settings.subjectColors.subject': 'Fach',
+	'settings.subjectColors.subject.remove': 'Fach entfernen',
+	'settings.subjectColors.subject.add': 'Neues Fach hinzufügen',
+	'settings.subjectColors.explaination':
+		'Diese Farben werden bei den Hausaufgaben und dem Kalendar verwendet, sie ermöglichen es dir die Hausaufgaben noch schneller einem Fach zuzuordnen. Du kannst soviele Fächer hinzufügen wie du möchtest.',
+
+	'colors.red': 'Rot',
+	'colors.green': 'Grün',
+	'colors.blue': 'Blau',
+
+	'colors.select': 'Farbe auswählen',
 
 	'printing.footer': 'Dein kollaboratives Hausaufgabenheft',
 	tricks: 'Tricks',
@@ -232,6 +250,10 @@ const de = {
 
 	'toast.download.homework.success': 'Hausaufgaben erfolgreich heruntergeladen.',
 	'toast.download.homework.error': 'Hausaufgaben konnten nicht heruntergeladen werden.',
+
+	'toast.colors.import.success': 'Farben erfolgreich importiert.',
+	'toast.colors.import.invalidFile': 'Die Datei ist ungültig :(',
+	'toast.colors.import.error': 'Farben konnten nicht importiert werden.',
 
 	contributors: 'Mitwirkende',
 	'contributors.error': 'Mitwikende konnten nicht geladen werden.',

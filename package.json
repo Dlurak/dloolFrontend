@@ -32,7 +32,8 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2",
-		"vite-plugin-pwa": "^0.16.5"
+		"vite-plugin-pwa": "^0.16.5",
+		"zod": "^3.22.4"
 	},
 	"type": "module",
 	"dependencies": {

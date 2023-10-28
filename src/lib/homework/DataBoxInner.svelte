@@ -4,7 +4,6 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import html2canvas from 'html2canvas';
-	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
 	import { i } from '../../languages/i18n';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
@@ -13,6 +12,7 @@
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 	import { addToast } from '$lib/toast/addToast';
 	import { network } from '../../routes/stores';
+	import DataBoxAssignment from './DataBoxAssignment.svelte';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -75,29 +75,17 @@
 		</h3>
 		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited" />
 	</div>
-	<ul class="list-none p-0">
-		{#if editMode}
-			<CreateHomeworkInner bind:assignments={newAssignments} />
-		{:else}
+	{#if editMode}
+		<CreateHomeworkInner bind:assignments={newAssignments} />
+	{:else}
+		<ul class="list-none p-0 flex flex-col gap-3">
 			{#each assignments as assignment}
-				<li class="flex flex-row">
-					<div class="w-full">
-						<span class="flex flex-row items-baseline justify-start gap-2 my-2">
-							{#if iconExistsForSubject(assignment.subject.toLowerCase())}
-								<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
-							{/if}
-							<h4>{assignment.subject}</h4>
-							<DateLabel date={assignment.due} />
-						</span>
-						<p class="my-2 whitespace-pre-line">{assignment.description}</p>
-					</div>
-					<div class="hidden print:flex items-start">
-						<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
-					</div>
+				<li>
+					<DataBoxAssignment {assignment} />
 				</li>
 			{/each}
-		{/if}
-	</ul>
+		</ul>
+	{/if}
 	{#if editMode}
 		<SubmitButton
 			value="Update"

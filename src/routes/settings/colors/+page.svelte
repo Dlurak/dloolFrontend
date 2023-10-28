@@ -6,6 +6,7 @@
 	import { addToast } from '$lib/toast/addToast';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
+	import { subjectsSortetCapitalized } from '../../../constants/subjecticons';
 
 	let data = $subjectColors;
 
@@ -117,6 +118,7 @@
 								bind:value={entry.subject}
 								class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5"
 								placeholder={i('settings.subjectColors.subject')}
+								list="subjects"
 							/>
 							<QuickActionButton
 								iconName="bx-trash"
@@ -133,7 +135,11 @@
 					</div>
 				</div>
 			{/each}
-
+			<datalist id="subjects">
+				{#each subjectsSortetCapitalized as subj}
+					<option value={subj} />
+				{/each}
+			</datalist>
 			<button
 				on:click={() => {
 					data = [

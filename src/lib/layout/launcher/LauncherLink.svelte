@@ -18,7 +18,7 @@
 
 <a
 	href={link.path}
-	class="outline flex items-center gap-2 px-3 py-1 text-light-text dark:text-dark-text focus:outline-none focus:border-none"
+	class=" flex items-center gap-2 px-3 py-1 text-light-text dark:text-dark-text focus:outline-none focus:border-none"
 	class:bg-gray-400={isFocused}
 	class:dark:bg-gray-500={isFocused}
 	class:shadow-sm={isFocused}

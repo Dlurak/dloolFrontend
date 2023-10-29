@@ -12,8 +12,6 @@
 
 	onMount(() => {
 		const locRes = getLocalstorage<SubjectColor[]>('subjectColors', []);
-		console.log(locRes);
-		console.log(localStorage.getItem('subjectColors'));
 		subjectColors.set(locRes);
 		readFromLocalstorage = true;
 	});

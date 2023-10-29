@@ -11,7 +11,6 @@ export const loadHomework = () => {
 		searchParams.set('page', urlPage || '1');
 		newUrl = PUBLIC_API_URL + '/homework?' + searchParams.toString();
 	});
-	console.log(newUrl);
 
 	return fetch(newUrl)
 		.then((r) => r.json())

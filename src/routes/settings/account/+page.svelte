@@ -58,7 +58,6 @@
 			},
 			body: JSON.stringify(body)
 		}).then((res) => {
-			console.log(res);
 			if (res.status === 200) {
 				successText = 'settings.success';
 				localStorage.removeItem('token');

@@ -3,7 +3,6 @@ import type { ThemeProvider } from '../types/settings';
 import { getLocalstorageString } from './localstorage';
 
 export const setTheme = (themeProvider: ThemeProvider) => {
-	console.log(themeProvider);
 	if (themeProvider === 'dark' || themeProvider === 'light') theme.set(themeProvider);
 	else if (themeProvider === 'system') {
 		if (window) {

@@ -10,7 +10,6 @@ export const load = async () => {
 	]);
 
 	const filterAndMapRes = (response: ContributorResponse[]) => {
-		console.log(response);
 		return response
 			.filter((contributor) => contributor.type === 'User')
 			.map(async (contributor): Promise<ContributorType> => {

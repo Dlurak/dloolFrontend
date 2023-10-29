@@ -41,13 +41,10 @@
 			matches[id] = matchingWord;
 		});
 
-		console.log(matches);
-
 		const newLauncherLinks: LauncherLink[] = [];
 
 		for (const linkId of linkIds) {
 			const link = rawLauncherLinks.find((link) => link.id === linkId);
-			console.log(rawLauncherLinks.filter((link) => link.id === 0));
 			if (link)
 				newLauncherLinks.push({
 					...link,
@@ -58,7 +55,6 @@
 		launcherLinks = newLauncherLinks;
 		focusedId = launcherLinks.length > 0 ? launcherLinks[0].id : NaN;
 		launcherIds = launcherLinks.map((link) => link.id);
-		console.log(launcherIds);
 	};
 
 	const close = () => {

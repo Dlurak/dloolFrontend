@@ -50,7 +50,6 @@
 		isLoggedInBool = isLoggedIn();
 
 		const currentUrlPage = $page.url.searchParams.get('page');
-		console.log(currentUrlPage);
 		const currentPage = parseInt(currentUrlPage ?? '1');
 		let totalPageCount = 1;
 		if (data.noteDataAvailable) {

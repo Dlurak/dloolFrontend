@@ -103,15 +103,15 @@
 		>
 			<ul class="w-full flex flex-col gap-2">
 				{#each launcherLinks as link}
-				{#key launcherLinks}
-					<li bind:this={entriesObj[link.id]}>
-						<LauncherLink
-							{link}
-							isFocused={link.id === focusedId}
-							on:focus={() => (focusedId = link.id)}
-							on:close={() => close()}
-						/>
-					</li>
+					{#key launcherLinks}
+						<li bind:this={entriesObj[link.id]}>
+							<LauncherLink
+								{link}
+								isFocused={link.id === focusedId}
+								on:focus={() => (focusedId = link.id)}
+								on:close={() => close()}
+							/>
+						</li>
 					{/key}
 					{#if link.id !== launcherIds.at(-1)}
 						<hr class="border-gray-400 dark:border-gray-700" />

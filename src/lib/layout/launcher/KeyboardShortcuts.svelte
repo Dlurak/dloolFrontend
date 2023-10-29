@@ -5,8 +5,9 @@
 
 	export let show: boolean;
 	export let focusedId: number;
+	export let linkIds: number[];
+	export let close: VoidFunction;
 	export let inputElement: HTMLInputElement;
-	export let highesId: number;
 	export let entriesObj: Record<number, HTMLLIElement>;
 	export let linkListDiv: HTMLDivElement;
 	export let linkList: {
@@ -21,12 +22,14 @@
 <svelte:window
 	on:keydown={async (e) => {
 		if (e.key === 'Escape') {
-			show = false;
+			close();
 			return;
 		} else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
 			e.preventDefault();
-			show = !show;
 			if (show) {
+				close();
+			} else {
+				show = true;
 				await tick();
 				inputElement.focus();
 			}
@@ -36,14 +39,13 @@
 		if (show) {
 			if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
 				e.preventDefault();
-				focusedId =
-					e.key === 'ArrowDown'
-						? focusedId === highesId
-							? 0
-							: focusedId + 1
-						: focusedId === 0
-						? highesId
-						: focusedId - 1;
+				const index = linkIds.indexOf(focusedId);
+
+				if (e.key === 'ArrowDown') {
+					focusedId = index === linkIds.length - 1 ? linkIds[0] : linkIds[index + 1];
+				} else {
+					focusedId = index === 0 ? linkIds[linkIds.length - 1] : linkIds[index - 1];
+				}
 
 				const element = entriesObj[focusedId];
 				if (!element) return;
@@ -54,12 +56,13 @@
 						block: 'nearest',
 						inline: 'start'
 					});
+				return;
 			} else if (e.key === 'Enter') {
 				e.preventDefault();
 				const link = linkList.find((link) => link.id === focusedId);
 
 				if (link) {
-					goto(link.path).then(() => (show = false));
+					goto(link.path).then(() => close());
 					return;
 				}
 			}

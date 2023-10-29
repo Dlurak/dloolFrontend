@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Token } from '../../../languages/i18n';
 
 	const dispatch = createEventDispatcher();
-
 
 	export let link: {
 		id: number;

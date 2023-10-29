@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { launcherLinks } from '../../../constants/launcher';
+	import { launcherLinks as rawLauncherLinks } from '../../../constants/launcher';
 	import LauncherLink from './LauncherLink.svelte';
 	import KeyboardShortcuts from './KeyboardShortcuts.svelte';
+	import { findLinks } from './findLinks';
 
 	let show = false;
+
+	let searchTerm = '';
+
 	let inputElement: HTMLInputElement;
 
 	let entriesObj: Record<number, HTMLLIElement> = {};
@@ -11,17 +15,57 @@
 
 	let focusedId = 0;
 
-	const highesId = launcherLinks.reduce((acc, curr) => {
-		if (curr.id > acc) return curr.id;
-		return acc;
-	}, 0);
+	let launcherLinks = rawLauncherLinks;
+	let launcherIds = launcherLinks.map((link) => link.id);
+	type LauncherLink = (typeof launcherLinks)[number];
+
+
+
+	const handleInput = () => {
+		const queryObj: Record<number, string[]> = {};
+		rawLauncherLinks.forEach((link) => {
+			queryObj[link.id] = link.query;
+		});
+
+		if (searchTerm.trim() === '') {
+			launcherLinks = rawLauncherLinks;
+			launcherIds = launcherLinks.map((link) => link.id);
+			return;
+		}
+
+		const linkIds = findLinks(searchTerm, queryObj)
+			.filter(([_, score]) => score > 0.2)
+			.map(([id, _]) => Number(id));
+
+		const newLauncherLinks: LauncherLink[] = [];
+
+		for (const linkId of linkIds) {
+			const link = rawLauncherLinks.find((link) => link.id === linkId);
+			console.log(rawLauncherLinks.filter((link) => link.id === 0));
+			if (link) newLauncherLinks.push(link);
+		}
+
+		launcherLinks = newLauncherLinks;
+		focusedId = launcherLinks.length > 0 ? launcherLinks[0].id : NaN;
+		launcherIds = launcherLinks.map((link) => link.id);
+		console.log(launcherIds);
+	};
+
+	const close = () => {
+		show = false;
+		focusedId = 0;
+		searchTerm = '';
+		launcherLinks = rawLauncherLinks;
+		launcherIds = launcherLinks.map((link) => link.id);
+	};
 </script>
 
 <KeyboardShortcuts
 	bind:show
 	bind:focusedId
+	bind:linkIds={launcherIds}
+	{close}
 	{inputElement}
-	{highesId}
 	{entriesObj}
 	{linkListDiv}
 	linkList={launcherLinks}
@@ -32,7 +76,7 @@
 	class:hidden={!show}
 	class:inline-block={show}
 	on:click={(e) => {
-		if (e.currentTarget === e.target) show = false;
+		if (e.currentTarget === e.target) close();
 	}}
 	aria-hidden={show}
 >
@@ -46,9 +90,11 @@
 				<i class="bx bx-search text-xl" />
 				<input
 					type="search"
-					placeholder="Type a search (doesn't work yet; stay tuned!)"
+					placeholder="Type a search"
 					class="bg-transparent w-full focus:outline-none focus:border-b-light-secondary dark:focus:border-b-dark-secondary focus:border-b-2 text-xl"
 					bind:this={inputElement}
+					bind:value={searchTerm}
+					on:input={handleInput}
 				/>
 			</div>
 		</div>
@@ -64,10 +110,10 @@
 							{link}
 							isFocused={link.id === focusedId}
 							on:focus={() => (focusedId = link.id)}
-							on:close={() => (show = false)}
+							on:close={() => close()}
 						/>
 					</li>
-					{#if link.id !== highesId}
+					{#if link.id!==launcherIds.at(-1)}
 						<hr class="border-gray-400 dark:border-gray-700" />
 					{/if}
 				{/each}

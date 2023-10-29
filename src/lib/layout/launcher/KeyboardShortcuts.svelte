@@ -6,7 +6,7 @@
 	export let show: boolean;
 	export let focusedId: number;
 	export let linkIds: number[];
-	export let close: VoidFunction;
+	export let close: () => void;
 	export let inputElement: HTMLInputElement;
 	export let entriesObj: Record<number, HTMLLIElement>;
 	export let linkListDiv: HTMLDivElement;

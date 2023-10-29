@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import type { Token } from '../../../languages/i18n';
+	import I18n from '$lib/I18n.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let link: {
 		id: number;
-		title: string;
-		description: string;
+		title: Token;
+		description: Token;
 		path: string;
 		bxIcon: string;
 	};
@@ -25,13 +27,13 @@
 >
 	<i class="bx {link.bxIcon}  flex text-xl" />
 	<div>
-		<h4 class="line-clamp-1">{link.title}</h4>
+		<h4 class="line-clamp-1"><I18n key={link.title} /></h4>
 		<p
 			class="line-clamp-1 text-sm"
 			class:text-gray-600={!isFocused}
 			class:dark:text-gray-400={!isFocused}
 		>
-			{link.description}
+			<I18n key={link.description} />
 		</p>
 	</div>
 </a>

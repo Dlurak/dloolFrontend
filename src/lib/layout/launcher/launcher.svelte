@@ -19,8 +19,6 @@
 	let launcherIds = launcherLinks.map((link) => link.id);
 	type LauncherLink = (typeof launcherLinks)[number];
 
-
-
 	const handleInput = () => {
 		const queryObj: Record<number, string[]> = {};
 		rawLauncherLinks.forEach((link) => {
@@ -34,8 +32,8 @@
 		}
 
 		const linkIds = findLinks(searchTerm, queryObj)
-			.filter(([_, score]) => score > 0.2)
-			.map(([id, _]) => Number(id));
+			.filter((v) => v[1] > 0.2)
+			.map((v) => Number(v[0]));
 
 		const newLauncherLinks: LauncherLink[] = [];
 
@@ -113,7 +111,7 @@
 							on:close={() => close()}
 						/>
 					</li>
-					{#if link.id!==launcherIds.at(-1)}
+					{#if link.id !== launcherIds.at(-1)}
 						<hr class="border-gray-400 dark:border-gray-700" />
 					{/if}
 				{/each}

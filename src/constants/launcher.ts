@@ -195,5 +195,6 @@ const rawLauncherLinks: {
 let id = 0;
 export const launcherLinks = rawLauncherLinks.map((link) => ({
 	...link,
-	id: id++
+	id: id++,
+	matchingWord: ''
 }));

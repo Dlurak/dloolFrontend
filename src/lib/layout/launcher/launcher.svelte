@@ -31,16 +31,28 @@
 			return;
 		}
 
-		const linkIds = findLinks(searchTerm, queryObj)
-			.filter((v) => v[1] > 0.2)
-			.map((v) => Number(v[0]));
+		const filteredLinks = findLinks(searchTerm, queryObj).filter((v) => v[1] > 0.3);
+
+		const linkIds = filteredLinks.map((v) => v[0]);
+		const matches: Record<number, string> = {};
+		filteredLinks.forEach((v) => {
+			const id = v[0];
+			const matchingWord = v[2];
+			matches[id] = matchingWord;
+		});
+
+		console.log(matches);
 
 		const newLauncherLinks: LauncherLink[] = [];
 
 		for (const linkId of linkIds) {
 			const link = rawLauncherLinks.find((link) => link.id === linkId);
 			console.log(rawLauncherLinks.filter((link) => link.id === 0));
-			if (link) newLauncherLinks.push(link);
+			if (link)
+				newLauncherLinks.push({
+					...link,
+					matchingWord: matches[link.id]
+				});
 		}
 
 		launcherLinks = newLauncherLinks;

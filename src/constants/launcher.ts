@@ -86,6 +86,109 @@ const rawLauncherLinks: {
 			'optionen',
 			'options'
 		]
+	},
+
+	{
+		title: 'nav.register',
+		path: '/register',
+		bxIcon: 'bx-user-plus',
+		description: 'nav.register.description',
+		query: ['register', 'signup', 'anmelden', 'registrieren']
+	},
+	{
+		title: 'nav.status',
+		path: '/requests/',
+		bxIcon: 'bx-user-plus',
+		description: 'nav.status.description',
+		query: ['stauts', 'anfrage', 'moderation']
+	},
+	{
+		title: 'nav.tricks',
+		path: '/tricks',
+		bxIcon: 'bx-bulb',
+		description: 'nav.tricks.description',
+		query: [
+			'tricks',
+			'tricks',
+			'tricks',
+			'installation',
+			'installieren',
+			'pwa',
+			'app',
+			'download',
+			'csv',
+			'ics',
+			'ical',
+			'download',
+			'export'
+		]
+	},
+	{
+		title: 'nav.settings.colors',
+		path: '/settings/colors',
+		bxIcon: 'bx-palette',
+		description: 'nav.settings.colors.description',
+		query: ['colors', 'farben', 'fach', 'fächer', 'subject', 'bunt', 'colorfull']
+	},
+	{
+		title: 'nav.settings.preferences',
+		path: '/settings/preferences',
+		bxIcon: 'bx-cog',
+		description: 'nav.settings.preferences.description',
+		query: [
+			'preferences',
+			'präferenzen',
+			'einstellungen',
+			'settings',
+			'options',
+			'optionen',
+			'dark',
+			'dunkel',
+			'light',
+			'hell',
+			'theme',
+			'erscheinungsbild',
+			'navigation'
+		]
+	},
+	{
+		title: 'nav.contributors',
+		path: '/contributors',
+		bxIcon: 'bx-group',
+		description: 'nav.contributors.description',
+		query: ['contributors', 'beiträger', 'mitwirkende', 'mitarbeiter', 'contributors']
+	},
+
+	{
+		title: 'nav.github.frontend',
+		description: 'nav.github.frontend.description',
+		path: '/redirect?redirect=https://github.com/dlurak/dloolFrontend',
+		bxIcon: 'bxl-github',
+		query: ['github', 'frontend', 'source', 'code', 'svelte', 'programming', 'programmieren']
+	},
+	{
+		title: 'nav.github.backend',
+		description: 'nav.github.backend.description',
+		path: '/redirect?redirect=https://github.com/dlurak/dloolBackend',
+		bxIcon: 'bxl-github',
+		query: [
+			'github',
+			'backend',
+			'source',
+			'code',
+			'express',
+			'programming',
+			'programmieren',
+			'rest',
+			'api'
+		]
+	},
+	{
+		title: 'nav.discord',
+		description: 'nav.discord.description',
+		path: '/redirect?redirect=https://discord.gg/Kp2BCyR33q',
+		bxIcon: 'bxl-discord-alt',
+		query: ['discord', 'chat', 'server', 'community', 'support']
 	}
 ];
 

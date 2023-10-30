@@ -16,12 +16,6 @@ export interface RequestData {
 	processedBy: string | null;
 }
 
-export interface RequestResponse {
-	status: 'success' | 'error';
-	message: 'Request found' | 'Invalid id' | 'Request not found';
-	data?: RequestData;
-}
-
 export interface RequestsData extends RequestData {
 	_id: string;
 }

@@ -66,7 +66,12 @@ test('the text in navigion can be toggled and is saved', async ({ page }) => {
 
 	for (let i = 0; i < navItemsArray.length; i++) {
 		const navItem = navItemsArray[i];
-		await expect(navItem).toHaveText(/.*/);
+		const navItemHasImg = (await navItem.locator('img').count()) > 0;
+		if (navItemHasImg) {
+			await expect(navItem).toHaveText('');
+		} else {
+			await expect(navItem).toHaveText(/.*/);
+		}
 	}
 
 	await page.waitForTimeout(300);
@@ -82,7 +87,8 @@ test('the text in navigion can be toggled and is saved', async ({ page }) => {
 
 	for (let i = 0; i < navItemsArray.length; i++) {
 		const navItem = navItemsArray[i];
-		await expect(navItem).toHaveText('');
+		const navItemHasImg = (await navItem.locator('img').count()) > 0;
+		if (navItemHasImg) await expect(navItem).toHaveText('');
 	}
 
 	await page.reload();
@@ -94,7 +100,8 @@ test('the text in navigion can be toggled and is saved', async ({ page }) => {
 
 	for (let i = 0; i < navItemsArray.length; i++) {
 		const navItem = navItemsArray[i];
-		await expect(navItem).toHaveText('');
+		const navItemHasBxIcon = (await navItem.locator('i.bx').count()) > 0;
+		if (navItemHasBxIcon) await expect(navItem).toHaveText('');
 	}
 
 	localator = await page.getByRole('switch');

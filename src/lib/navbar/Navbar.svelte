@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import HalloweenLogo from '$lib/seasons/halloween/halloweenLogo.svelte';
+	import { isSpecialDate } from '$lib/specialDates/isInRange';
 	import { navData } from '../../constants/nav';
 	import NavItem from './NavItem.svelte';
 
@@ -21,9 +23,15 @@
 	<nav
 		class="bg-light-background dark:bg-dark-background bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg sm:backdrop-blur-3xl w-full px-3 py-2 sm:px-8 rounded-lg flex justify-between items-center gap-4 shadow-nav sm:shadow-none"
 	>
-		<a href="/" class="h-12 logo hidden sm:inline-block">
-			<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />
-		</a>
+		<div class="h-12 hidden sm:inline-block">
+			{#if isSpecialDate('helloween')}
+				<HalloweenLogo />
+			{:else}
+				<a href="/">
+					<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />
+				</a>
+			{/if}
+		</div>
 		<div
 			class="flex justify-around items-center gap-1 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
 		>

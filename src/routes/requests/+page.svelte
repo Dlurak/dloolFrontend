@@ -6,7 +6,6 @@
 
 	let data: RequestData | null = null;
 
-
 	let colorObj: {
 		[key in RequestStatus]: string;
 	} = {
@@ -19,13 +18,13 @@
 	onMount(() => {
 		const reqId = localStorage.getItem('registerRequest');
 		if (!reqId) return;
-		const eventSource = new EventSource(`${PUBLIC_API_URL}/auth/requests/${reqId}/sse`)
+		const eventSource = new EventSource(`${PUBLIC_API_URL}/auth/requests/${reqId}/sse`);
 
 		eventSource.onmessage = (event) => {
 			data = JSON.parse(event.data);
 			color = colorObj[data?.status || 'pending'];
-		}
-	})
+		};
+	});
 </script>
 
 <div class="flex flex-col gap-3">

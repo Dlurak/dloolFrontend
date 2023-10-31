@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Geist';
+	src: url('/fonts/Geist/Geist-Regular.otf') format('opentype');
+}
+
 @layer base {
 	body {
-		font-family: 'Roboto', sans-serif;
-
 		@apply p-0 m-0 bg-light-background dark:bg-dark-background
-            text-light-text dark:text-dark-text print:bg-white;
+            text-light-text dark:text-dark-text print:bg-white font-geist;
 	}
 
 	h1,

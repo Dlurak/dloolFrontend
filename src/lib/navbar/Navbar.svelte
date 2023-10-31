@@ -21,7 +21,7 @@
 	bind:clientHeight={height}
 >
 	<nav
-		class="bg-light-background dark:bg-dark-background bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg sm:backdrop-blur-3xl w-full px-3 py-2 sm:px-8 rounded-lg flex justify-between items-center gap-4 shadow-nav sm:shadow-none"
+		class="bg-light-background dark:bg-dark-background bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg sm:backdrop-blur-3xl w-full px-3 py-2 sm:px-8 rounded-lg sm:rounded-none flex justify-between items-center gap-4 shadow-nav sm:shadow-none"
 	>
 		<div class="h-12 hidden sm:inline-block">
 			{#if isSpecialDate('helloween')}

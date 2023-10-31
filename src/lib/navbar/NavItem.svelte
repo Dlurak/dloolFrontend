@@ -19,6 +19,10 @@
 	settings.subscribe((s) => {
 		showText = s.showTextInNavbar;
 	});
+
+	const text = i(`nav.${title}`, {}, {
+		transform: 'capitalize'
+	} as const);
 </script>
 
 <a
@@ -29,8 +33,8 @@
 		<i class="bx {navBoxIcon} text-lg z-10" />
 	</div>
 	{#if showText}
-		<span class="text-xs">
-			{i(`nav.${title}`, {}, { transform: 'capitalize' })}
+		<span class="text-xs text-ellipsis max-w-[5ch] sm:max-w-full overflow-hidden">
+			{text}
 		</span>
 	{/if}
 </a>

@@ -3,13 +3,19 @@
 	import HalloweenLogo from '$lib/seasons/halloween/halloweenLogo.svelte';
 	import { isSpecialDate } from '$lib/specialDates/isInRange';
 	import { navData } from '../../constants/nav';
+	import { settings } from '../../routes/stores';
 	import NavItem from './NavItem.svelte';
+	import NavSearchButton from './NavSearchButton.svelte';
 
 	export let height;
 
 	const navDataEntries = navData.filter((navDataEntry) => navDataEntry.showInNav);
 
 	let currentUri = $page.url.pathname as string;
+
+	let showSearch = $settings.showSearchInNavbar;
+
+	settings.subscribe((s) => (showSearch = s.showSearchInNavbar));
 
 	page.subscribe(() => {
 		currentUri = $page.url.pathname;
@@ -43,6 +49,9 @@
 					title={navDataEntry.title}
 				/>
 			{/each}
+			{#if showSearch}
+				<NavSearchButton />
+			{/if}
 		</div>
 	</nav>
 </div>

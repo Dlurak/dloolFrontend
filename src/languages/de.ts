@@ -70,6 +70,7 @@ const de = {
 	'nav.settings.preferences': 'Präferenzen',
 	'nav.settings.preferences.description':
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',
+	'nav.search': 'Suche',
 
 	'nav.categories.authentication': 'Authentifizierungen',
 	'nav.categories.homework': 'Hausaufgaben',
@@ -159,7 +160,9 @@ const de = {
 	'settings.apperance.theme.system': 'Automatisch',
 	'settings.apperance.theme.light': 'Hell',
 	'settings.apperance.theme.dark': 'Dunkel',
+	'settings.apperance.nav': 'Navigation',
 	'settings.apperance.nav.text': 'Titel in der Navigationsleiste anzeigen',
+	'settings.apperance.nav.search': 'Suche in der Navigationsleiste anzeigen',
 
 	'settings.subjectColors': 'Farben für Fächer',
 	'settings.subjectColors.import': 'Importiere die Farben von einer JSON-Datei',

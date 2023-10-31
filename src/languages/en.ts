@@ -67,6 +67,7 @@ const en = {
 	'nav.settings.colors.description': 'Here you can change the colors for your subjects',
 	'nav.settings.preferences': 'Preferences',
 	'nav.settings.preferences.description': 'Here you can change your preferences like the theme.',
+	'nav.search': 'Search',
 
 	'nav.categories.authentication': 'Authentication',
 	'nav.categories.homework': 'Homework',
@@ -154,7 +155,9 @@ const en = {
 	'settings.apperance.theme.system': 'Automatic',
 	'settings.apperance.theme.light': 'Light',
 	'settings.apperance.theme.dark': 'Dark',
+	'settings.apperance.nav': 'Navigation bar',
 	'settings.apperance.nav.text': 'Show title in the navigation bar',
+	'settings.apperance.nav.search': 'Show search in the navigation bar',
 
 	'settings.subjectColors': 'Colors for subjects',
 	'settings.subjectColors.import': 'Import colors from a JSON file',

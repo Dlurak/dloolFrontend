@@ -55,7 +55,7 @@ test('the theme can be changed and adapts and is saved', async ({ page }) => {
 test('the text in navigion can be toggled and is saved', async ({ page }) => {
 	await page.goto('/settings/preferences');
 
-	let localator = await page.getByRole('switch');
+	let localator = await page.getByRole('switch').first();
 
 	await expect(localator).toBeChecked();
 
@@ -76,7 +76,7 @@ test('the text in navigion can be toggled and is saved', async ({ page }) => {
 
 	await page.waitForTimeout(300);
 
-	localator = await page.getByRole('switch');
+	localator = await page.getByRole('switch').first();
 	await localator.click();
 	await page.waitForTimeout(300);
 	await expect(localator).not.toBeChecked();
@@ -104,7 +104,7 @@ test('the text in navigion can be toggled and is saved', async ({ page }) => {
 		if (navItemHasBxIcon) await expect(navItem).toHaveText('');
 	}
 
-	localator = await page.getByRole('switch');
+	localator = await page.getByRole('switch').first();
 	await localator.click();
 	await expect(localator).toBeChecked();
 	await page.reload();

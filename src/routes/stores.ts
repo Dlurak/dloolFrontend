@@ -22,8 +22,12 @@ export const theme = writable<'light' | 'dark'>('light');
 
 export const settings = writable<{
 	showTextInNavbar: boolean;
+	showSearchInNavbar: boolean;
 }>({
-	showTextInNavbar: true
+	showTextInNavbar: true,
+	showSearchInNavbar: false
 });
 
 export const subjectColors = writable<SubjectColor[]>([]);
+
+export const showLauncher = writable(false);

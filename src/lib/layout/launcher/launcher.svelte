@@ -1,8 +1,10 @@
+<!--TODO Rewrite all to the store currently it is a working combination-->
 <script lang="ts">
 	import { launcherLinks as rawLauncherLinks } from '../../../constants/launcher';
 	import LauncherLink from './LauncherLink.svelte';
 	import KeyboardShortcuts from './KeyboardShortcuts.svelte';
 	import { findLinks } from './findLinks';
+	import { showLauncher } from '../../../routes/stores';
 
 	let show = false;
 
@@ -59,11 +61,21 @@
 
 	const close = () => {
 		show = false;
+		showLauncher.set(false);
 		focusedId = 0;
 		searchTerm = '';
 		launcherLinks = rawLauncherLinks;
 		launcherIds = launcherLinks.map((link) => link.id);
 	};
+
+	showLauncher.subscribe((v) => {
+		console.log('Hello');
+		if (v) {
+			show = true;
+		} else {
+			close();
+		}
+	});
 </script>
 
 <KeyboardShortcuts

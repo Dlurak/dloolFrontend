@@ -9,12 +9,16 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<div bind:clientHeight={height} bind:clientWidth={width} class="w-14 h-7">
+<div
+	bind:clientHeight={height}
+	bind:clientWidth={width}
+	class="w-14 h-7 switch-parent"
+	style="--parent-height: {height || 28}px; --parent-width: {width || 56}px;"
+>
 	<input
 		type="checkbox"
 		role="switch"
 		bind:checked
-		style="--parent-height: {height}px; --parent-width: {width}px;"
 		class="appearance-none w-full h-full rounded-full relative bg-gray-400 dark:bg-gray-500 checked:bg-green-500 dark:checked:bg-green-400"
 		on:change={() => {
 			dispatch('change', checked);

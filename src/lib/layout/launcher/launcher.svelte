@@ -69,7 +69,6 @@
 	};
 
 	showLauncher.subscribe((v) => {
-		console.log('Hello');
 		if (v) {
 			show = true;
 		} else {

@@ -3,10 +3,10 @@
 	import { isElementVisible } from './elementIsVisible';
 	import { goto } from '$app/navigation';
 
-	export let show: boolean;
+	import { showLauncher } from '../../../routes/stores';
+
 	export let focusedId: number;
 	export let linkIds: number[];
-	export let close: () => void;
 	export let inputElement: HTMLInputElement;
 	export let entriesObj: Record<number, HTMLLIElement>;
 	export let linkListDiv: HTMLDivElement;
@@ -22,21 +22,21 @@
 <svelte:window
 	on:keydown={async (e) => {
 		if (e.key === 'Escape') {
-			close();
+			showLauncher.set(false);
 			return;
 		} else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
 			e.preventDefault();
-			if (show) {
-				close();
+			if ($showLauncher) {
+				showLauncher.set(false);
 			} else {
-				show = true;
+				showLauncher.set(true);
 				await tick();
 				inputElement.focus();
 			}
 			return;
 		}
 
-		if (show) {
+		if ($showLauncher) {
 			if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
 				e.preventDefault();
 				const index = linkIds.indexOf(focusedId);
@@ -62,7 +62,7 @@
 				const link = linkList.find((link) => link.id === focusedId);
 
 				if (link) {
-					goto(link.path).then(() => close());
+					goto(link.path).then(() => showLauncher.set(false));
 					return;
 				}
 			}

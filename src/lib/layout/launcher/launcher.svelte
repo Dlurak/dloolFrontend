@@ -1,4 +1,3 @@
-<!--TODO Rewrite all to the store currently it is a working combination-->
 <script lang="ts">
 	import { launcherLinks as rawLauncherLinks } from '../../../constants/launcher';
 	import LauncherLink from './LauncherLink.svelte';
@@ -59,29 +58,22 @@
 		launcherIds = launcherLinks.map((link) => link.id);
 	};
 
-	const close = () => {
-		show = false;
-		showLauncher.set(false);
-		focusedId = 0;
-		searchTerm = '';
-		launcherLinks = rawLauncherLinks;
-		launcherIds = launcherLinks.map((link) => link.id);
-	};
-
 	showLauncher.subscribe((v) => {
 		if (v) {
 			show = true;
 		} else {
-			close();
+			show = false;
+			focusedId = 0;
+			searchTerm = '';
+			launcherLinks = rawLauncherLinks;
+			launcherIds = launcherLinks.map((link) => link.id);
 		}
 	});
 </script>
 
 <KeyboardShortcuts
-	bind:show
 	bind:focusedId
 	bind:linkIds={launcherIds}
-	{close}
 	{inputElement}
 	{entriesObj}
 	{linkListDiv}
@@ -93,7 +85,7 @@
 	class:hidden={!show}
 	class:inline-block={show}
 	on:click={(e) => {
-		if (e.currentTarget === e.target) close();
+		if (e.currentTarget === e.target) showLauncher.set(false);
 	}}
 	aria-hidden={show}
 >
@@ -128,7 +120,7 @@
 								{link}
 								isFocused={link.id === focusedId}
 								on:focus={() => (focusedId = link.id)}
-								on:close={() => close()}
+								on:close={() => showLauncher.set(false)}
 							/>
 						</li>
 					{/key}

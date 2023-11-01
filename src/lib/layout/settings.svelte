@@ -6,7 +6,7 @@
 	onMount(() => {
 		settings.update((s) => {
 			s.showTextInNavbar = getLocalstorage('textInNav', true);
-			s.showSearchInNavbar = getLocalstorage('searchInNav', true);
+			s.showSearchInNavbar = getLocalstorage('searchInNav', false);
 			return s;
 		});
 	});

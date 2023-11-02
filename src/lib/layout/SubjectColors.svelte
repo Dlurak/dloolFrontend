@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getLocalstorage, setLocalstorage } from '$lib/localstorage';
 	import { onMount } from 'svelte';
-	import { subjectColors } from '../../routes/stores';
+	import { subjectColors } from '../../stores';
 	import type { SubjectColor } from '../../types/subjectColors';
 
 	let readFromLocalstorage = false;

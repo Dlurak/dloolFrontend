@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { calendarEvents, currentLanguage, title } from '../stores';
+	import { calendarEvents, currentLanguage, title } from '../../stores';
 	import CalendarDay from '$lib/calendar/CalendarDay.svelte';
 	import { getWeekdays } from '$lib/dates/dataWeekday';
 	import I18n from '$lib/I18n.svelte';

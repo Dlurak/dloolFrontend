@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { navData } from '../../constants/nav';
 	import { i } from '../../languages/i18n';
-	import { settings } from '../../routes/stores';
+	import { settings } from '../../stores';
 
 	export let uri: string;
 	export let currentUri: string;

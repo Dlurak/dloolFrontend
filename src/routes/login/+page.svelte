@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import LoginInput from '$lib/auth/Input.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 	import Loader from '$lib/Loader.svelte';
-	import { network, title } from '../stores';
+	import { network, title } from '../../stores';
+	import { backendUrl } from '$lib/../stores';
 
 	let usernameValue: string;
 	let passwordValue: string;
@@ -43,7 +43,7 @@
 	onSubmit={async () => {
 		disabled = true;
 		loading = true;
-		fetch(PUBLIC_API_URL + '/auth/login', {
+		fetch($backendUrl + '/auth/login', {
 			method: 'POST',
 			headers: new Headers({ 'content-type': 'application/json' }),
 			body: JSON.stringify({
@@ -75,7 +75,7 @@
 				localStorage.setItem('token', obj.token);
 				localStorage.setItem('tokenExpires', `${new Date().getTime() + 60 * 60 * 1000}`);
 
-				return fetch(`${PUBLIC_API_URL}/auth/me`, {
+				return fetch(`${$backendUrl}/auth/me`, {
 					headers: {
 						Authorization: `Bearer ${obj.token}`
 					}

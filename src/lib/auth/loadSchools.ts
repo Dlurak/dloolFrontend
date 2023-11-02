@@ -1,10 +1,13 @@
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export const loadSchools = async (query: string) => {
 	const page = 1;
 	const pageSize = 25;
 
-	const data = fetch(`${PUBLIC_API_URL}/schools?page=${page}&pageSize=${pageSize}&q=${query}`).then(
+	const data = fetch(`${backendUrl}/schools?page=${page}&pageSize=${pageSize}&q=${query}`).then(
 		(res) => res.json()
 	);
 

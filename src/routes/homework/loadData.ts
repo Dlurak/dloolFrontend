@@ -1,6 +1,9 @@
 import { page } from '$app/stores';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
 import type { HomeworkResponse, HomeworkWithId, HomeworkWithMongoId } from '../../types/homework';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export const loadHomework = () => {
 	let newUrl = '';
@@ -9,7 +12,7 @@ export const loadHomework = () => {
 		const searchParams = new URLSearchParams(value.url.search);
 		searchParams.set('pageSize', '15');
 		searchParams.set('page', urlPage || '1');
-		newUrl = PUBLIC_API_URL + '/homework?' + searchParams.toString();
+		newUrl = backendUrl + '/homework?' + searchParams.toString();
 	});
 
 	return fetch(newUrl)

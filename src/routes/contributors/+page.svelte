@@ -2,7 +2,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import ContributorGrid from '$lib/conributors/ContributorGrid.svelte';
 	import type { ContributorType } from '../../types/Contributors';
-	import { title } from '../stores';
+	import { title } from '../../stores';
 
 	export let data: {
 		frontend: ContributorType[] | null;

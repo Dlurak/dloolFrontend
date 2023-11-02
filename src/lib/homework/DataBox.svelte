@@ -1,7 +1,6 @@
 <script lang="ts">
 	import DataBoxInner from './DataBoxInner.svelte';
 
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import Box from './Box.svelte';
@@ -11,7 +10,8 @@
 	import Modal from '$lib/Modal.svelte';
 	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
-	import { network } from '../../routes/stores';
+	import { network } from '../../stores';
+	import { backendUrl } from '$lib/../stores';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -115,7 +115,7 @@
 							const confirmed = confirm(i('homework.delete.confirm'));
 							if (!confirmed) return;
 							const uri = `/homework/${id}`;
-							const url = PUBLIC_API_URL + uri;
+							const url = $backendUrl + uri;
 							fetch(url, {
 								method: 'DELETE',
 								headers: {

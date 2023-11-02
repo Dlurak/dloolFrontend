@@ -1,6 +1,6 @@
 <script>
 	import { setLocalstorage } from '$lib/localstorage';
-	import { settings } from '../../routes/stores';
+	import { settings } from '../../stores';
 	import I18n from '$lib/I18n.svelte';
 	import Switch from '$lib/utils/Switch.svelte';
 

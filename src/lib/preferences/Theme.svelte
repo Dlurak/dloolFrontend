@@ -4,7 +4,7 @@
 	import { th } from '$lib/theme';
 	import { onMount } from 'svelte';
 	import type { ThemeProvider } from '../../types/settings';
-	import { theme } from '../../routes/stores';
+	import { theme } from '../../stores';
 
 	let themeSelectValue: ThemeProvider = 'dark';
 

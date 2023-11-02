@@ -20,6 +20,11 @@
 			name: 'settings.colors',
 			uri: '/colors',
 			'box-icon': 'bx-palette'
+		},
+		{
+			name: 'settings.api',
+			uri: '/api',
+			'box-icon': 'bx-server'
 		}
 	] as const;
 
@@ -64,7 +69,9 @@
 					/>
 				</div>
 			{/if}
-			<slot />
+			<div class="@container/settings-slot h-full w-full">
+				<slot />
+			</div>
 		</div>
 	</div>
 </div>

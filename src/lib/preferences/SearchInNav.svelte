@@ -2,7 +2,7 @@
 	import I18n from '$lib/I18n.svelte';
 	import { setLocalstorage } from '$lib/localstorage';
 	import Switch from '$lib/utils/Switch.svelte';
-	import { settings } from '../../routes/stores';
+	import { settings } from '../../stores';
 
 	let checked = $settings.showSearchInNavbar;
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { i, type I18nProps, type Token, type TPar } from '../languages/i18n';
-	import { currentLanguage } from '../routes/stores';
+	import { currentLanguage } from '../stores';
 
 	export let key: Token | undefined = undefined;
 

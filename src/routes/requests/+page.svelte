@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import I18n from '$lib/I18n.svelte';
 	import { onMount } from 'svelte';
 	import type { RequestData, RequestStatus } from '../../types/request';
+	import { backendUrl } from '$lib/../stores';
 
 	let data: RequestData | null = null;
 
@@ -18,7 +18,7 @@
 	onMount(() => {
 		const reqId = localStorage.getItem('registerRequest');
 		if (!reqId) return;
-		const eventSource = new EventSource(`${PUBLIC_API_URL}/auth/requests/${reqId}/sse`);
+		const eventSource = new EventSource(`${$backendUrl}/auth/requests/${reqId}/sse`);
 
 		eventSource.onmessage = (event) => {
 			data = JSON.parse(event.data);

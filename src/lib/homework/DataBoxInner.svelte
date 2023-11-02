@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
@@ -11,8 +10,9 @@
 	import DateLabel from '../dates/dateLabel.svelte';
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 	import { addToast } from '$lib/toast/addToast';
-	import { network } from '../../routes/stores';
+	import { network } from '../../stores';
 	import DataBoxAssignment from './DataBoxAssignment.svelte';
+	import { backendUrl } from '$lib/../stores';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -92,7 +92,7 @@
 			{disabled}
 			onClick={() => {
 				editMode = false;
-				const url = `${PUBLIC_API_URL}/homework/${id}`;
+				const url = `${$backendUrl}/homework/${id}`;
 
 				const mappedAssignments = newAssignments.map((assignment) => {
 					return {
@@ -133,7 +133,7 @@
 			}}
 		/>
 	{/if}
-	{#await fetch(`${PUBLIC_API_URL}/auth/${creatorId}`).then((res) => res.json()) then userData}
+	{#await fetch(`${$backendUrl}/auth/${creatorId}`).then((res) => res.json()) then userData}
 		<I18n>
 			<p class="text-xs">{userData.data.user.name || i('error')}</p>
 		</I18n>

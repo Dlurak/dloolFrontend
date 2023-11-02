@@ -3,7 +3,7 @@
 	import { dateIsInPast } from '$lib/dates/dateIsInPast';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
-	import { subjectColors } from '../../routes/stores';
+	import { subjectColors } from '../../stores';
 	import type { Assignment } from '../../types/homework';
 
 	export let assignment: Assignment;

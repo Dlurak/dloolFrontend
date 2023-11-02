@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { currentLanguage } from '../routes/stores';
+	import { currentLanguage } from '../stores';
 	import { languageShortcuts, type Languages, switchLanguage } from '../languages/i18n';
 
 	let languagesObj: Record<Languages, string> = {

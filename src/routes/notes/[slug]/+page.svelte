@@ -2,14 +2,14 @@
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import type { Note } from '../../../types/notes';
-	import { focusedNote } from '../../stores';
+	import { focusedNote } from '../../../stores';
 	import { browser } from '$app/environment';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import SvelteMarkdown from 'svelte-markdown';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
+	import { backendUrl } from '$lib/../stores';
 
 	let note: Note | null | undefined;
 	let hasEditRights = false;
@@ -105,7 +105,7 @@
 					value="Update"
 					{disabled}
 					onClick={() => {
-						fetch(`${PUBLIC_API_URL}/notes/${note?._id}`, {
+						fetch(`${$backendUrl}/notes/${note?._id}`, {
 							method: 'PATCH',
 							headers: {
 								Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -129,7 +129,7 @@
 						color="text-red-500 dark:text-red-400"
 						on:click={() => {
 							if (!confirm('Are you sure you want to delete this note?')) return;
-							fetch(`${PUBLIC_API_URL}/notes/${note?._id}`, {
+							fetch(`${$backendUrl}/notes/${note?._id}`, {
 								method: 'DELETE',
 								headers: {
 									Authorization: `Bearer ${localStorage.getItem('token')}`

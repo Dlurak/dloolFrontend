@@ -7,8 +7,8 @@
 	import { loadSchools } from '$lib/auth/loadSchools';
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import { addToast } from '$lib/toast/addToast';
+	import { backendUrl } from '$lib/../stores';
 
 	let school = '';
 	let classes = [''];
@@ -25,7 +25,7 @@
 		clipboardIsAvailable = navigator.clipboard !== undefined;
 	});
 
-	$: resultUrl = `${PUBLIC_API_URL}/homework/${resultType}/${school}?classes=${classes.join(',')}`;
+	$: resultUrl = `${$backendUrl}/homework/${resultType}/${school}?classes=${classes.join(',')}`;
 	$: {
 		disabled = school === '' || classes.some((c) => c === '');
 	}

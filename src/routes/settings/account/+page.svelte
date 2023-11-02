@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import LoginInput from '$lib/auth/Input.svelte';
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { onMount } from 'svelte';
 	import { i, type Token } from '../../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
-	import { network, title } from '../../stores';
+	import { network, title } from '../../../stores';
 	import { addToast } from '$lib/toast/addToast';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { backendUrl } from '$lib/../stores';
 
 	title.set('settings.settings');
 
@@ -50,7 +50,7 @@
 		if (name) body.name = name;
 		if (password) body.password = password;
 
-		fetch(PUBLIC_API_URL + '/auth/me', {
+		fetch($backendUrl + '/auth/me', {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -107,7 +107,7 @@
 				if (!confirm(i('account.delete.confirm.1'))) return;
 				if (!confirm(i('account.delete.confirm.2'))) return;
 
-				fetch(PUBLIC_API_URL + '/auth/me', {
+				fetch($backendUrl + '/auth/me', {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',

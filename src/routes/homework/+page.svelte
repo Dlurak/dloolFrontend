@@ -8,7 +8,7 @@
 	import DataBox from '$lib/homework/DataBox.svelte';
 	import { browser } from '$app/environment';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
-	import { showHomeworkFilter, title } from '../stores';
+	import { backendUrl, showHomeworkFilter, title } from '../../stores';
 	import I18n from '$lib/I18n.svelte';
 	import { addToast } from '$lib/toast/addToast';
 	import { loadHomework } from './loadData';
@@ -116,6 +116,8 @@
 	showHomeworkFilter.subscribe((value) => {
 		showFilters = value;
 	});
+
+	backendUrl.subscribe(() => reload());
 </script>
 
 <div class="flex w-full h-full flex-col gap-2">

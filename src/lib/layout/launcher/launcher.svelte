@@ -3,7 +3,7 @@
 	import LauncherLink from './LauncherLink.svelte';
 	import KeyboardShortcuts from './KeyboardShortcuts.svelte';
 	import { findLinks } from './findLinks';
-	import { showLauncher } from '../../../routes/stores';
+	import { showLauncher } from '../../../stores';
 
 	let show = false;
 

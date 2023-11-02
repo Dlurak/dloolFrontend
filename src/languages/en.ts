@@ -149,6 +149,7 @@ const en = {
 	'settings.account': 'Account',
 	'settings.preferences': 'Preferences',
 	'settings.colors': 'Colors',
+	'settings.api': 'API-Settings',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
 	'settings.apperance': 'Apperance',
 	'settings.apperance.theme': 'Theme',
@@ -169,6 +170,16 @@ const en = {
 	'settings.subjectColors.subject.add': 'Add subject',
 	'settings.subjectColors.explaination':
 		'These colors are used in the homework and calendar view. You can add as many subjects as you want.',
+
+	'settings.api.warning':
+		"If you don't know what this is, you probably shouldn't change it and don't need to bother with it. It is primarilly for developers.",
+	'settings.api.base': 'API URL',
+	'settings.api.placeholder': 'https://dlool-backend.onrender.com',
+	'settings.api.preset.offical': 'Official API',
+	'settings.api.preset.dev': 'Development Server',
+	'settings.api.submit': 'Save',
+	'settings.api.toast.success': 'Successfully changed API URL',
+	'settings.api.toast.error': "This URL is'nt a valid Dlool API",
 
 	'colors.red': 'Red',
 	'colors.green': 'Green',

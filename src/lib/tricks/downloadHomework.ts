@@ -1,6 +1,9 @@
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
 import { addToast } from '$lib/toast/addToast';
 import { i } from '../../languages/i18n';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export type ResultType = 'text/calendar' | 'text/csv';
 export type Option = {
@@ -20,7 +23,7 @@ export const downloadHomework = (
 		return;
 	}
 
-	const url = `${PUBLIC_API_URL}/homework/all?school=${school}&class=${className}`;
+	const url = `${backendUrl}/homework/all?school=${school}&class=${className}`;
 
 	fetch(url, {
 		headers: {

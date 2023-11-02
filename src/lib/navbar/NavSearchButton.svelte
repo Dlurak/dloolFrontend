@@ -1,6 +1,6 @@
 <script>
 	import I18n from '$lib/I18n.svelte';
-	import { settings, showLauncher } from '../../routes/stores';
+	import { settings, showLauncher } from '../../stores';
 
 	let showText = true;
 

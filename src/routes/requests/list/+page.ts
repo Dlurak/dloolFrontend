@@ -1,7 +1,10 @@
 import { browser } from '$app/environment';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
 import { isLoggedIn } from '$lib/helpers/isLoggedIn.js';
 import type { RequestsResponse } from '../../../types/request.js';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export const load = async ({ fetch }) => {
 	if (browser) {
@@ -11,7 +14,7 @@ export const load = async ({ fetch }) => {
 		if (!loggedIn) return null;
 
 		const uri = '/auth/requests?status=p';
-		const url = PUBLIC_API_URL + uri;
+		const url = backendUrl + uri;
 		const response: RequestsResponse = await fetch(url, {
 			headers: {
 				Authorization: 'Bearer ' + localStorage.getItem('token')

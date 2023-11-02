@@ -1,9 +1,12 @@
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
 import type { ClassResponse } from '../../types/classes';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export async function getClassById(id: string) {
 	const uri = `/classes/${id}`;
-	const url = PUBLIC_API_URL + uri;
+	const url = backendUrl + uri;
 
 	const res = await fetch(url);
 	const response: ClassResponse = await res.json();

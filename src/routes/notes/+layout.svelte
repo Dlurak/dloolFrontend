@@ -2,7 +2,7 @@
 	import NoteBox from '$lib/notes/NoteBox.svelte';
 	import type { Note, NoteResponse } from '../../types/notes';
 	import { page } from '$app/stores';
-	import { focusedNote } from '../stores';
+	import { focusedNote } from '../../stores';
 	import PageSelector from '$lib/homework/pageSelector.svelte';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { onMount } from 'svelte';

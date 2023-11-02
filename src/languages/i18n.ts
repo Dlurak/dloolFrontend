@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { currentLanguage } from '../routes/stores';
+import { currentLanguage } from '../stores';
 import type { ExtractWordsAfterDollarSign, ReplaceSubstringType } from '../types/i18n';
 import { slice, type FirstNStringChars } from '../types/strings/slice';
 import {

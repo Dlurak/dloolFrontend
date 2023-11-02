@@ -1,7 +1,7 @@
 <script>
 	import { th } from '$lib/theme';
 	import { onMount } from 'svelte';
-	import { theme } from '../../routes/stores';
+	import { theme } from '../../stores';
 	import { browser } from '$app/environment';
 
 	theme.subscribe((t) => {

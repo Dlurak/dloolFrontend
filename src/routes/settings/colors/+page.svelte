@@ -2,7 +2,7 @@
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import ColorPicker from '$lib/colors/ColorPicker.svelte';
 	import { checkIfValid, parseContent, readFileContent } from '$lib/colors/downloadSubjectColors';
-	import { subjectColors, title } from '../../stores';
+	import { subjectColors, title } from '../../../stores';
 	import { addToast } from '$lib/toast/addToast';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';

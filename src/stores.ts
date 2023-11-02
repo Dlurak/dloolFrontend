@@ -1,9 +1,10 @@
 import { writable } from 'svelte/store';
-import type { Note } from '../types/notes';
-import type { Event } from '../types/events';
-import type { Languages, Token } from '../languages/i18n';
-import type { Toast } from '../types/toast';
-import type { SubjectColor } from '../types/subjectColors';
+import type { Note } from './types/notes';
+import type { Event } from './types/events';
+import type { Languages, Token } from './languages/i18n';
+import type { Toast } from './types/toast';
+import type { SubjectColor } from './types/subjectColors';
+import { PUBLIC_API_URL } from '$env/static/public';
 
 export const focusedNote = writable<Note | null>(null);
 export const showHomeworkFilter = writable<boolean>(false);
@@ -31,3 +32,5 @@ export const settings = writable<{
 export const subjectColors = writable<SubjectColor[]>([]);
 
 export const showLauncher = writable(false);
+
+export const backendUrl = writable(PUBLIC_API_URL);

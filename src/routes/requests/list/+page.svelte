@@ -7,12 +7,12 @@
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import { createDateFromTimestamp } from '$lib/dates/createDateObject';
 	import { getClassById } from '$lib/classes/getClass';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import { invalidateAll } from '$app/navigation';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
-	import { title } from '../../stores';
+	import { title } from '../../../stores';
 	import { addToast } from '$lib/toast/addToast';
+	import { backendUrl } from '$lib/../stores';
 
 	title.set('request.list.title');
 
@@ -25,7 +25,7 @@
 
 	const processRequest = (operation: 'accept' | 'reject', id: string) => {
 		const uri = `/auth/requests/${id}/${operation}`;
-		fetch(PUBLIC_API_URL + uri, {
+		fetch($backendUrl + uri, {
 			method: 'PATCH',
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`

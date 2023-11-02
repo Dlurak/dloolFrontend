@@ -3,7 +3,7 @@
 	import HalloweenLogo from '$lib/seasons/halloween/halloweenLogo.svelte';
 	import { isSpecialDate } from '$lib/specialDates/isInRange';
 	import { navData } from '../../constants/nav';
-	import { settings } from '../../routes/stores';
+	import { settings } from '../../stores';
 	import NavItem from './NavItem.svelte';
 	import NavSearchButton from './NavSearchButton.svelte';
 

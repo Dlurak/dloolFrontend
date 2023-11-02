@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import DateTimePicker from '$lib/dates/EndStartDateTiimePicker.svelte';
 	import Box from '$lib/homework/Box.svelte';
@@ -11,6 +10,7 @@
 	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
 	import type { CustomDateTime } from '../../types/customDate';
 	import { addToast } from '$lib/toast/addToast';
+	import { backendUrl } from '$lib/../stores';
 
 	const dispatch = createEventDispatcher();
 
@@ -49,7 +49,7 @@
 		if (isLocation) eventObj.location = location;
 
 		const token = localStorage.getItem('token') as string;
-		const res = fetch(`${PUBLIC_API_URL}/events`, {
+		const res = fetch(`${$backendUrl}/events`, {
 			method: 'POST',
 			body: JSON.stringify(eventObj),
 			headers: {

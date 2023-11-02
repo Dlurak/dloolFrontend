@@ -2,7 +2,6 @@
 	import DatePicker from '../dates/DatePicker.svelte';
 
 	import { page } from '$app/stores';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
 	import Box from './Box.svelte';
@@ -12,7 +11,8 @@
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
-	import { network } from '../../routes/stores';
+	import { network } from '../../stores';
+	import { backendUrl } from '$lib/../stores';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -59,7 +59,7 @@
 				assignments: mappedAssignments
 			};
 
-			fetch(PUBLIC_API_URL + '/homework', {
+			fetch($backendUrl + '/homework', {
 				method: 'POST',
 				headers: new Headers({
 					authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -7,7 +7,7 @@
 	import EventBoxInner from './EventBoxInner.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import { isEventOver } from './isEventOver';
-	import { subjectColors } from '../../routes/stores';
+	import { subjectColors } from '../../stores';
 	import { rgbToHex } from '$lib/colors/hexToRgb';
 
 	export let event: Event;

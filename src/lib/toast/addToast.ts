@@ -1,4 +1,4 @@
-import { toasts } from '../../routes/stores';
+import { toasts } from '../../stores';
 import type { Toast } from '../../types/toast';
 
 type ToastWithoutId = Omit<Toast, 'id'>;

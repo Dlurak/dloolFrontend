@@ -1,9 +1,11 @@
-import { PUBLIC_API_URL } from '$env/static/public';
-import { calendarEvents } from '../stores.js';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
+import { calendarEvents } from '../../stores.js';
+
+let backendUrl = '';
+backendUrlStore.subscribe((url) => (backendUrl = url));
 
 export const load = async ({ fetch, url }) => {
 	// TODO: Replace with real pagination data
-	// TODO: Replace with real school and class
 
 	const originalQuery = url.searchParams;
 
@@ -19,7 +21,7 @@ export const load = async ({ fetch, url }) => {
 		pageSize: pageSizeUrl
 	});
 
-	const reqUrl = `${PUBLIC_API_URL}/events?${searchParams.toString()}`;
+	const reqUrl = `${backendUrl}/events?${searchParams.toString()}`;
 	const res = await fetch(reqUrl);
 	const data = await res.json();
 	if (data.status === 'error') return { dataAvailable: false };

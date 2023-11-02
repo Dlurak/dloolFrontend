@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import DatePicker from '$lib/dates/DatePicker.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
@@ -12,7 +11,8 @@
 	import { loadClasses } from '$lib/auth/loadClasses';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
-	import { title } from '../../stores';
+	import { title } from '../../../stores';
+	import { backendUrl } from '$lib/../stores';
 
 	const currentDate = new Date();
 
@@ -29,7 +29,7 @@
 	title.set('notes.create.documentTitle');
 
 	const getClassId = (schoolName: string, className: string) => {
-		const url = `${PUBLIC_API_URL}/classes/${schoolName}/${className}`;
+		const url = `${$backendUrl}/classes/${schoolName}/${className}`;
 
 		const rawResPromise = fetch(url).then((res) => {
 			if (res.ok) {
@@ -118,7 +118,7 @@
 
 						const classId = await getClassId(schoolName, className);
 
-						const url = `${PUBLIC_API_URL}/notes`;
+						const url = `${$backendUrl}/notes`;
 
 						fetch(url, {
 							method: 'POST',

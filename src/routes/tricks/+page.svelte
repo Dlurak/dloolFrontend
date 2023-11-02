@@ -1,6 +1,6 @@
 <script lang="ts">
 	import I18n from '$lib/I18n.svelte';
-	import { title } from '../stores';
+	import { title } from '../../stores';
 	import Download from '$lib/tricks/Download.svelte';
 	import Export from '$lib/tricks/Export.svelte';
 

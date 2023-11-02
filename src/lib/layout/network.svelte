@@ -2,7 +2,7 @@
 	import { addToast } from '$lib/toast/addToast';
 	import { onMount } from 'svelte';
 
-	import { network } from '../../routes/stores';
+	import { network } from '../../stores';
 
 	network.set('online');
 

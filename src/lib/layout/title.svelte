@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { i } from '../../languages/i18n';
-	import { currentLanguage, title } from '../../routes/stores';
+	import { currentLanguage, title } from '../../stores';
 
 	let tit = 'Dlool';
 

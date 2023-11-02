@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import CentralFormBox from '$lib/CentralFormBox.svelte';
 	import LoginInput from '$lib/auth/Input.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
@@ -8,9 +7,10 @@
 	import SelectDataList from '$lib/auth/SelectDataList.svelte';
 	import { i, type Token } from '../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
-	import { title } from '../stores';
+	import { title } from '../../stores';
 	import Modal from '$lib/Modal.svelte';
 	import { onMount } from 'svelte';
+	import { backendUrl } from '$lib/../stores';
 
 	let username: string;
 	let name: string;
@@ -52,13 +52,11 @@
 	onSubmit={async () => {
 		disabled = true;
 		// check if the school exists
-		const schoolDetails = await fetch(`${PUBLIC_API_URL}/schools/${school}`).then((res) =>
-			res.json()
-		);
+		const schoolDetails = await fetch(`${$backendUrl}/schools/${school}`).then((res) => res.json());
 
 		if (!schoolDetails.data) {
 			// create the school
-			await fetch(`${PUBLIC_API_URL}/schools`, {
+			await fetch(`${$backendUrl}/schools`, {
 				method: 'POST',
 				headers: new Headers({ 'content-type': 'application/json' }),
 				body: JSON.stringify({
@@ -77,12 +75,12 @@
 		// Now the school exists either newly created or old
 
 		const classDetails = await fetch(
-			`${PUBLIC_API_URL}/classes/${school}/${className.toLowerCase()}`
+			`${$backendUrl}/classes/${school}/${className.toLowerCase()}`
 		).then((res) => res.json());
 
 		if (!classDetails.data) {
 			// create the class
-			await fetch(`${PUBLIC_API_URL}/classes`, {
+			await fetch(`${$backendUrl}/classes`, {
 				method: 'POST',
 				headers: new Headers({ 'content-type': 'application/json' }),
 				body: JSON.stringify({
@@ -96,7 +94,7 @@
 			});
 		}
 
-		fetch(PUBLIC_API_URL + '/auth/register', {
+		fetch($backendUrl + '/auth/register', {
 			method: 'POST',
 			headers: new Headers({ 'content-type': 'application/json' }),
 			body: JSON.stringify({
@@ -124,7 +122,7 @@
 					errorText = undefined;
 
 					// log the user in
-					return fetch(PUBLIC_API_URL + '/auth/login', {
+					return fetch($backendUrl + '/auth/login', {
 						method: 'POST',
 						headers: new Headers({ 'content-type': 'application/json' }),
 						body: JSON.stringify({

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import { currentLanguage } from '../../routes/stores';
+	import { currentLanguage } from '../../stores';
 	import type { Languages } from '../../languages/i18n';
 
 	currentLanguage.subscribe((l) => {

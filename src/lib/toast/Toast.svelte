@@ -1,6 +1,6 @@
 <script lang="ts">
 	import I18n from '$lib/I18n.svelte';
-	import { toasts } from '../../routes/stores';
+	import { toasts } from '../../stores';
 	import type { Toast, ToastType } from '../../types/toast';
 
 	export let toast: Toast;

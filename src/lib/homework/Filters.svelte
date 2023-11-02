@@ -7,7 +7,7 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import { onMount } from 'svelte';
-	import { showHomeworkFilter } from '../../routes/stores';
+	import { showHomeworkFilter } from '../../stores';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 

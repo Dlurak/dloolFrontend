@@ -153,6 +153,7 @@ const de = {
 	'settings.account': 'Account',
 	'settings.preferences': 'Einstellungen',
 	'settings.colors': 'Farben',
+	'settings.api': 'API Einstellungen',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',
@@ -174,6 +175,16 @@ const de = {
 	'settings.subjectColors.subject.add': 'Neues Fach hinzufügen',
 	'settings.subjectColors.explaination':
 		'Diese Farben werden bei den Hausaufgaben und dem Kalendar verwendet, sie ermöglichen es dir die Hausaufgaben noch schneller einem Fach zuzuordnen. Du kannst soviele Fächer hinzufügen wie du möchtest.',
+
+	'settings.api.warning':
+		'Wenn du nicht genau weißt, was diese Einstellung bedeutet, solltest du sie nicht ändern. Du brauchst sie aber auch nicht :)',
+	'settings.api.base': 'API URL',
+	'settings.api.placeholder': 'https://dlool-backend.onrender.com',
+	'settings.api.preset.offical': 'Offizielle API',
+	'settings.api.preset.dev': 'Development Server',
+	'settings.api.submit': 'Speichern',
+	'settings.api.toast.success': 'API URL erfolgreich gespeichert.',
+	'settings.api.toast.error': 'Diese URL ist kein gültiger Dlool Server.',
 
 	'colors.red': 'Rot',
 	'colors.green': 'Grün',

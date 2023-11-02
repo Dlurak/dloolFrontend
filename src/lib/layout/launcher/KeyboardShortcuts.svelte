@@ -3,7 +3,7 @@
 	import { isElementVisible } from './elementIsVisible';
 	import { goto } from '$app/navigation';
 
-	import { showLauncher } from '../../../routes/stores';
+	import { showLauncher } from '../../../stores';
 
 	export let focusedId: number;
 	export let linkIds: number[];

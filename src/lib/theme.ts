@@ -1,4 +1,4 @@
-import { theme } from '../routes/stores';
+import { theme } from '../stores';
 import type { ThemeProvider } from '../types/settings';
 import { getLocalstorageString } from './localstorage';
 

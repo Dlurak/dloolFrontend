@@ -1,9 +1,16 @@
 import { browser } from '$app/environment';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { backendUrl as backendUrlStore } from '$lib/../stores';
 import type { Note, NoteResponse } from '../../types/notes.js';
 
+let backendUrl = '';
+backendUrlStore.subscribe((url) => {
+	backendUrl = url;
+});
+
 const getNameOfClass = (classId: string) => {
-	const url = `${PUBLIC_API_URL}/classes/${classId}`;
+	// extract the value of the svelte store
+
+	const url = `${backendUrl}/classes/${classId}`;
 	const rawDataPromise = fetch(url).then((res) => res.json());
 	const className = rawDataPromise.then((data) => data.data.name as string);
 	return className;
@@ -25,7 +32,7 @@ export const load = async ({ fetch, url }) => {
 	const searchParams = new URLSearchParams(url.search);
 	searchParams.set('pageSize', '15');
 	searchParams.set('page', urlPage || '1');
-	const newUrl = `${PUBLIC_API_URL}/notes?${searchParams.toString()}`;
+	const newUrl = `${backendUrl}/notes?${searchParams.toString()}`;
 
 	const token = browser ? localStorage.getItem('token') : null;
 

@@ -74,67 +74,69 @@
 	};
 </script>
 
-<CentralFormBox title="settings.settings" {errorText} {successText} onSubmit={handleSubmit}>
-	<I18n>
-		<LoginInput
-			name={i('settings.username')}
-			type="text"
-			tooltip={i('settings.username.tooltip')}
-			bind:value={username}
-		/>
-		<LoginInput
-			name={i('settings.name')}
-			type="text"
-			tooltip={i('settings.name.tooltip')}
-			bind:value={name}
-		/>
-		<LoginInput
-			name={i('settings.password')}
-			type="password"
-			newPassword={true}
-			tooltip={i('settings.password.tooltip')}
-			bind:value={password}
-		/>
-		<SubmitButton value={i('settings.save')} {disabled} />
-		<SubmitButton
-			value={i('account.delete')}
-			disabled={deleteDisabled}
-			colour="red"
-			onClick={(e) => {
-				e.preventDefault();
-				const token = localStorage.getItem('token');
+<div class="flex justify-center">
+	<CentralFormBox title="settings.settings" {errorText} {successText} onSubmit={handleSubmit}>
+		<I18n>
+			<LoginInput
+				name={i('settings.username')}
+				type="text"
+				tooltip={i('settings.username.tooltip')}
+				bind:value={username}
+			/>
+			<LoginInput
+				name={i('settings.name')}
+				type="text"
+				tooltip={i('settings.name.tooltip')}
+				bind:value={name}
+			/>
+			<LoginInput
+				name={i('settings.password')}
+				type="password"
+				newPassword={true}
+				tooltip={i('settings.password.tooltip')}
+				bind:value={password}
+			/>
+			<SubmitButton value={i('settings.save')} {disabled} />
+			<SubmitButton
+				value={i('account.delete')}
+				disabled={deleteDisabled}
+				colour="red"
+				onClick={(e) => {
+					e.preventDefault();
+					const token = localStorage.getItem('token');
 
-				if (!confirm(i('account.delete.confirm.1'))) return;
-				if (!confirm(i('account.delete.confirm.2'))) return;
+					if (!confirm(i('account.delete.confirm.1'))) return;
+					if (!confirm(i('account.delete.confirm.2'))) return;
 
-				fetch($backendUrl + '/auth/me', {
-					method: 'DELETE',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + token
-					}
-				})
-					.then((res) => {
-						if (res.ok) {
-							localStorage.removeItem('token');
-							localStorage.removeItem('tokenExpires');
-
-							addToast({
-								type: 'success',
-								content: 'toast.account.delete.success',
-								duration: 5000
-							});
-
-							goto('/');
-						} else throw new Error();
+					fetch($backendUrl + '/auth/me', {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + token
+						}
 					})
-					.catch(() => {
-						addToast({
-							type: 'error',
-							content: 'toast.account.delete.error'
+						.then((res) => {
+							if (res.ok) {
+								localStorage.removeItem('token');
+								localStorage.removeItem('tokenExpires');
+
+								addToast({
+									type: 'success',
+									content: 'toast.account.delete.success',
+									duration: 5000
+								});
+
+								goto('/');
+							} else throw new Error();
+						})
+						.catch(() => {
+							addToast({
+								type: 'error',
+								content: 'toast.account.delete.error'
+							});
 						});
-					});
-			}}
-		/>
-	</I18n>
-</CentralFormBox>
+				}}
+			/>
+		</I18n>
+	</CentralFormBox>
+</div>

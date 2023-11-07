@@ -34,7 +34,7 @@
 </script>
 
 <div class="w-full grid md:grid-cols-[1fr,2fr] gap-2 grid-cols-1">
-	<ul class="flex flex-col gap-2 w-full px-3 md:flex" class:hidden={isSubpage}>
+	<ul class="flex flex-col gap-2 w-full px-3 md:flex list-none" class:hidden={isSubpage}>
 		{#each links as link}
 			{#if link === 'hr'}
 				<hr class="border-gray-400 rounded-full" />

@@ -112,7 +112,7 @@
 			class="shadow-nav rounded-md w-full bg-light-box dark:bg-dark-box py-2 max-h-[min(50vh,40rem)] overflow-y-scroll"
 			bind:this={linkListDiv}
 		>
-			<ul class="w-full flex flex-col gap-2">
+			<ul class="w-full flex flex-col gap-2 list-none">
 				{#each launcherLinks as link}
 					{#key launcherLinks}
 						<li bind:this={entriesObj[link.id]}>

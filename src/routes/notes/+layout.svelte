@@ -69,7 +69,7 @@
 <div class="w-full md:grid md:grid-cols-[1fr,2fr] gap-2 parent">
 	<div class:hidden={isNoteFocused} class="w-full md:flex overflow-y-scroll">
 		{#if data.noteDataAvailable}
-			<ul class="flex flex-col gap-2 items-stretch w-full">
+			<ul class="flex flex-col gap-2 items-stretch w-full list-none">
 				{#if isLoggedInBool}
 					<li>
 						<a

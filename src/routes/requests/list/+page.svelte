@@ -86,7 +86,7 @@
 						<div>
 							{#if req.userDetails.acceptedClasses.length !== 0}
 								<p><I18n key="request.list.acceptedIn" /></p>
-								<ul class="list-disc pl-6">
+								<ul class="list-disc">
 									{#each req.userDetails.acceptedClasses as classId}
 										<li>
 											{#await getClassById(classId)}

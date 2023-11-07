@@ -21,7 +21,7 @@
 	];
 </script>
 
-<ul>
+<ul class="list-none">
 	{#each assignments as assignment}
 		<li class="flex flex-row">
 			<div class="flex flex-col justify-evenly items-center">

@@ -5,7 +5,7 @@
 <div class="column flex-1">
 	<div class="row">
 		<h3><I18n key="footer.contact" /></h3>
-		<ul class="grid grid-cols-2 gap-2">
+		<ul class="grid grid-cols-2 gap-2 list-none">
 			<li>
 				<a href="https://www.github.com/dlurak/dloolBackend">
 					<i class="bx bxl-github" />

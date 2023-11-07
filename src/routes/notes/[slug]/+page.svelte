@@ -5,7 +5,6 @@
 	import { focusedNote } from '../../../stores';
 	import { browser } from '$app/environment';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import SvelteMarkdown from 'svelte-markdown';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../../languages/i18n';
@@ -92,7 +91,9 @@
 					/>
 				</I18n>
 			{:else}
-				<SvelteMarkdown source={note.content} />
+				<p class="whitespace-pre-line">
+					{note.content}
+				</p>
 			{/if}
 			<div class="flex justify-between items-baseline gap-2">
 				<TimeAgo timestamp={note.createdAt} />

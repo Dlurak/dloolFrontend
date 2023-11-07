@@ -22,7 +22,7 @@
 				<h4 class="text-start md:text-center">
 					<I18n key="nav.categories.{lowercase(category)}" />
 				</h4>
-				<ul class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))]">
+				<ul class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] list-none">
 					{#each entriesForCategory(category) as entry}
 						<li>
 							<TextOrIconLink

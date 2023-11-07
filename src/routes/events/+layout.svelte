@@ -84,7 +84,7 @@
 
 <div class="w-full md:grid md:grid-cols-[1fr,2fr] gap-2 parent">
 	<div class="w-full h-full md:flex overflow-y-scroll flex flex-col gap-2 items-stretch">
-		<ul class="flex flex-col gap-2 items-stretch w-full">
+		<ul class="flex flex-col gap-2 items-stretch w-full list-none">
 			<li>
 				<Filters
 					bind:className

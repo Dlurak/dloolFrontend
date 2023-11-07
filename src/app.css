@@ -45,4 +45,8 @@
 	a {
 		@apply text-light-link dark:text-dark-link;
 	}
+
+	ul {
+		@apply list-disc list-inside;
+	}
 }

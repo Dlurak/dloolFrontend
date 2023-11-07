@@ -211,7 +211,7 @@
 		<div class="grid grid-cols-2">
 			<div>
 				<h3>{i('register.modal.positive')}</h3>
-				<ul class="list-disc pl-4">
+				<ul class="list-disc">
 					{#each i('register.modal.positive.list').split('\n') as item}
 						<li>{item}</li>
 					{/each}
@@ -219,7 +219,7 @@
 			</div>
 			<div>
 				<h3>{i('register.modal.negative')}</h3>
-				<ul class="list-disc pl-4">
+				<ul class="list-disc">
 					{#each i('register.modal.negative.list').split('\n') as item}
 						<li>{item}</li>
 					{/each}

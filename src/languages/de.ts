@@ -71,6 +71,8 @@ const de = {
 	'nav.settings.preferences.description':
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',
 	'nav.search': 'Suche',
+	'nav.documentation': 'Dokumentation',
+	'nav.documentation.description': 'Die Dokumentation erklärt dir gesamt Dlool.',
 
 	'nav.categories.authentication': 'Authentifizierungen',
 	'nav.categories.homework': 'Hausaufgaben',
@@ -78,7 +80,7 @@ const de = {
 	'nav.categories.moderation': 'Moderation',
 	'nav.categories.notes': 'Notizen',
 	'nav.categories.events': 'Kalender',
-	'nav.categories.contributors': 'Mitwirkende',
+	'nav.categories.else': 'Sonstige',
 	login: 'Einloggen',
 	'login.welcome': 'Willkommen zurück!',
 	'login.error.wrongCred': 'Falscher Nutzername oder Passwort',

@@ -68,6 +68,8 @@ const en = {
 	'nav.settings.preferences': 'Preferences',
 	'nav.settings.preferences.description': 'Here you can change your preferences like the theme.',
 	'nav.search': 'Search',
+	'nav.documentation': 'Documentation',
+	'nav.documentation.description': 'The documentation aims to explain everything about Dlool',
 
 	'nav.categories.authentication': 'Authentication',
 	'nav.categories.homework': 'Homework',
@@ -75,7 +77,7 @@ const en = {
 	'nav.categories.moderation': 'Moderation',
 	'nav.categories.notes': 'Notes',
 	'nav.categories.events': 'Calendar',
-	'nav.categories.contributors': 'Contributors',
+	'nav.categories.else': 'Else',
 	login: 'Login',
 	'login.welcome': 'Welcome back',
 	'login.error.wrongCred': 'Wrong username or password',

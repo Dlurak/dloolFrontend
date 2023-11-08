@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let directoryTree: Record<string, unknown>;
-	export let finalPath: any = true;
+	export let finalPath: unknown = true;
 
 	export let currentPath = '/';
 </script>

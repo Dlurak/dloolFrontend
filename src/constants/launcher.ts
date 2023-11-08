@@ -158,6 +158,13 @@ const rawLauncherLinks: {
 		description: 'nav.contributors.description',
 		query: ['contributors', 'beiträger', 'mitwirkende', 'mitarbeiter', 'contributors']
 	},
+	{
+		title: 'nav.documentation',
+		path: '/documentation',
+		bxIcon: 'bx-book-open',
+		description: 'nav.documentation.description',
+		query: ['documentation', 'dokumentation', 'erklärung', 'explaination', 'docs', 'doku']
+	},
 
 	{
 		title: 'nav.github.frontend',

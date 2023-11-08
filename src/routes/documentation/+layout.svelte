@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Toc from '$lib/documentation/TOC.svelte';
 	import { mergeObjects } from '$lib/utils/mergeObjects';
 	import { setNestedProperty } from '$lib/utils/setMultipleKeys';
 
@@ -10,10 +11,17 @@
 	const directoryTree = mergeObjects(directoryPaths);
 </script>
 
-<div>
-	<slot />
-</div>
+<div class="grid grid-cols-[1fr,4fr] w-full gap-2">
+	<div class="flex gap-2 justify-between">
+		<aside>
+			<h3>Table of contents</h3>
+			<Toc {directoryTree} />
+		</aside>
 
-<aside>
-	{JSON.stringify(directoryTree, null, 3)}
-</aside>
+		<div class="bg-gray-400 rounded-full w-0.5" />
+	</div>
+
+	<div>
+		<slot />
+	</div>
+</div>

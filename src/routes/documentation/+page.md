@@ -4,3 +4,5 @@ This is the start of the documentation for Dlool. It is a work in progress. Help
 
 The documentation is written in [Markdown](https://www.markdownguide.org/cheat-sheet/).
 It aims to cover everything, from the very technical parts to easy to understand examples of how to use Dlool.
+
+For the beginning it is only available in English, but we hope to add more languages in the future.

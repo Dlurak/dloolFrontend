@@ -13,13 +13,11 @@
 	import { addToast } from '$lib/toast/addToast';
 	import { network } from '../../stores';
 	import { backendUrl } from '$lib/../stores';
+	import { getOneWeekFromNow } from '../../constants/generateDates';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
 	};
-
-	const currentDate = new Date();
-	let date = createDate(currentDate);
 
 	let assignedAtDateObj: CustomDate;
 
@@ -27,7 +25,7 @@
 		{
 			subject: '',
 			description: '',
-			due: date
+			due: createDate(getOneWeekFromNow())
 		}
 	];
 
@@ -73,7 +71,7 @@
 							{
 								subject: '',
 								description: '',
-								due: date
+								due: createDate(getOneWeekFromNow())
 							}
 						];
 

@@ -8,17 +8,17 @@
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 	import { subjectsSortetCapitalized } from '../../constants/subjecticons';
+	import { getOneWeekFromNow } from '../../constants/generateDates';
 
-	const currentDate = new Date();
-	let date = createDate(currentDate);
+	let date = createDate(getOneWeekFromNow());
 
-	export let assignments: Assignment[] = [
-		{
-			subject: '',
-			description: '',
-			due: date
-		}
-	];
+	const emptyAssignment: Assignment = {
+		subject: '',
+		description: '',
+		due: date
+	};
+
+	export let assignments: Assignment[] = [emptyAssignment];
 </script>
 
 <ul class="list-none">
@@ -99,14 +99,7 @@
 		colour="yellow"
 		onClick={(e) => {
 			e.preventDefault();
-			assignments = [
-				...assignments,
-				{
-					subject: '',
-					description: '',
-					due: date
-				}
-			];
+			assignments = [...assignments, emptyAssignment];
 		}}
 	/>
 </div>

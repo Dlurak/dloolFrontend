@@ -11,7 +11,8 @@
 
 	function getTimeDifference() {
 		const currentTime = Date.now();
-		const timeDifference = Math.floor((currentTime - timestamp) / 1000);
+		const rawTimeDifference = Math.floor((currentTime - timestamp) / 1000);
+		const timeDifference = rawTimeDifference <= 1 ? 1 : rawTimeDifference;
 
 		let unit: 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years';
 		let time: number;

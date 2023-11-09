@@ -302,7 +302,11 @@ const en = {
 	'nav.hamburger': 'Hamburger menu',
 
 	'download.homework': 'Download your homework',
-	'download.homework.download': 'Download'
+	'download.homework.download': 'Download',
+
+	toc: 'Table of contents',
+	'toc.collapse': 'Collapse table of contents',
+	'toc.expand': 'Expand table of contents'
 } as const;
 
 export type EnToken = keyof typeof en;

@@ -310,7 +310,11 @@ const de = {
 	'nav.hamburger': 'Hamburger Menü',
 
 	'download.homework': 'Download your homework',
-	'download.homework.download': 'Download'
+	'download.homework.download': 'Download',
+
+	toc: 'Inhaltsverzeichnis',
+	'toc.collapse': 'Inhaltsverzeichnis verstecken',
+	'toc.expand': 'Inhaltsverzeichnis anzeigen'
 } as const;
 
 export type DeToken = keyof typeof de;

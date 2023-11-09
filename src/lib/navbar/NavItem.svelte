@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { navData } from '../../constants/nav';
 	import { i } from '../../languages/i18n';
-	import { settings } from '../../stores';
+	import { currentLanguage, settings } from '../../stores';
 
 	export let uri: string;
 	export let currentUri: string;
@@ -20,9 +20,15 @@
 		showText = s.showTextInNavbar;
 	});
 
-	const text = i(`nav.${title}`, {}, {
+	let text = i(`nav.${title}`, {}, {
 		transform: 'capitalize'
 	} as const);
+
+	currentLanguage.subscribe(() => {
+		text = i(`nav.${title}`, {}, {
+			transform: 'capitalize'
+		} as const);
+	});
 </script>
 
 <a

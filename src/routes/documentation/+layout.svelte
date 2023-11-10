@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import I18n from '$lib/I18n.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import Toc from '$lib/documentation/TOC.svelte';
@@ -15,22 +14,6 @@
 	const directoryTree = mergeObjects(directoryPaths);
 
 	let collapsed = false;
-
-	let currentPath = $page.route.id?.split('/').slice(2);
-	const genImportPath = () => `./${currentPath?.join('/')}/+page.md`;
-
-	let data = import(
-		/* @vite-ignore */
-		genImportPath()
-	).then((d) => d.metadata);
-
-	page.subscribe(() => {
-		currentPath = $page.route.id?.split('/').slice(2);
-		data = import(
-			/* @vite-ignore */
-			genImportPath()
-		).then((d) => d.metadata);
-	});
 </script>
 
 <svelte:window
@@ -66,17 +49,6 @@
 	</aside>
 
 	<div>
-		<div class="pb-6">
-			<slot />
-		</div>
-
-		<div class="text-xs">
-			{#await data then d}
-				{#if d.author}
-					<i class="bx bx-user" />
-					{d.author}
-				{/if}
-			{/await}
-		</div>
+		<slot />
 	</div>
 </div>

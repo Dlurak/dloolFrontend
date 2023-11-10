@@ -1,3 +1,7 @@
+---
+author: Dlurak
+---
+
 ## Getting Started
 
 To get started with Dlool, we recommend you read the [What is Dlool?](/documentation/getting-started/what-is-dlool) page. It will give you a quick overview of what Dlool is and what it can do for you.

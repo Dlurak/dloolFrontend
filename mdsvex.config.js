@@ -7,7 +7,7 @@ const config = defineConfig({
 		dashes: 'oldschool'
 	},
 
-	layout: './src/lib/MarkdownLayout.svelte',
+	layout: './src/lib/markdown/layout/Docs.svelte',
 
 	remarkPlugins: [],
 	rehypePlugins: []

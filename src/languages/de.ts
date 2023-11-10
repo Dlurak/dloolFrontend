@@ -314,7 +314,9 @@ const de = {
 
 	toc: 'Inhaltsverzeichnis',
 	'toc.collapse': 'Inhaltsverzeichnis verstecken',
-	'toc.expand': 'Inhaltsverzeichnis anzeigen'
+	'toc.expand': 'Inhaltsverzeichnis anzeigen',
+
+	'documentation.editOnGitHub': 'Bearbeite diese Seite auf GitHub'
 } as const;
 
 export type DeToken = keyof typeof de;

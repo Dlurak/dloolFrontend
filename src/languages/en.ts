@@ -306,7 +306,9 @@ const en = {
 
 	toc: 'Table of contents',
 	'toc.collapse': 'Collapse table of contents',
-	'toc.expand': 'Expand table of contents'
+	'toc.expand': 'Expand table of contents',
+
+	'documentation.editOnGitHub': 'Edit this page on GitHub'
 } as const;
 
 export type EnToken = keyof typeof en;

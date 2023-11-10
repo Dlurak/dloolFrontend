@@ -1,5 +1,9 @@
 ---
-author: Dlurak
+title: Documentation
+author:
+  name: Dlurak
+  link: https://github.com/Dlurak
+date: 2023-11-10
 ---
 
 ## API

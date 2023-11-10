@@ -1,5 +1,9 @@
 ---
-author: Dlurak
+title: What is Dlool?
+author:
+  name: Dlurak
+  link: https://github.com/Dlurak
+date: 2023-11-10
 ---
 
 ## What is Dlool?

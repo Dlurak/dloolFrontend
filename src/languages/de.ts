@@ -312,6 +312,10 @@ const de = {
 	'download.homework': 'Download your homework',
 	'download.homework.download': 'Download',
 
+	toc: 'Inhaltsverzeichnis',
+	'toc.collapse': 'Inhaltsverzeichnis verstecken',
+	'toc.expand': 'Inhaltsverzeichnis anzeigen',
+
 	'documentation.editOnGitHub': 'Bearbeite diese Seite auf GitHub'
 } as const;
 

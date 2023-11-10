@@ -304,6 +304,10 @@ const en = {
 	'download.homework': 'Download your homework',
 	'download.homework.download': 'Download',
 
+	toc: 'Table of contents',
+	'toc.collapse': 'Collapse table of contents',
+	'toc.expand': 'Expand table of contents',
+
 	'documentation.editOnGitHub': 'Edit this page on GitHub'
 } as const;
 

@@ -1,3 +1,11 @@
+---
+title: What is Dlool?
+author:
+  name: Dlurak
+  link: https://github.com/Dlurak
+date: 2023-11-10
+---
+
 ## What is Dlool?
 
 Dlool is a web application to manage your entire school life. It is meant as an easy to use tool for students. While it can be used by teachers and parents, it meant to be used by students. Dlool is highly optimized for exactly that use case.

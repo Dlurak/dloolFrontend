@@ -1,3 +1,11 @@
+---
+title: Documentation
+author:
+  name: Dlurak
+  link: https://github.com/Dlurak
+date: 2023-11-10
+---
+
 ## Documentation
 
 This is the start of the documentation for Dlool. It is a work in progress. Help via [GitHub](https://github.com/Dlurak/dloolFrontend) is welcome.

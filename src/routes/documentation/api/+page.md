@@ -1,3 +1,11 @@
+---
+title: Documentation
+author:
+  name: Dlurak
+  link: https://github.com/Dlurak
+date: 2023-11-10
+---
+
 ## API
 
 Dlool has a REST API. It is completely open and can be used by anyone. The API is documented using [ApiDoc](https://apidocjs.com/). You can find the documentation [here](https://dlurak.github.io/dloolBackend/). I plan to migrate the documentation to this site in the future.

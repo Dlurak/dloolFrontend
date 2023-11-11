@@ -1,0 +1,11 @@
+#wrapper > table {
+	@apply border-collapse border-slate-500 border;
+}
+
+#wrapper > table th {
+	@apply border-slate-500 border py-0.5 px-4;
+}
+
+#wrapper > table td {
+	@apply border-slate-500 border py-0.5 pr-4;
+}

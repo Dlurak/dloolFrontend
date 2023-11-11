@@ -1,4 +1,5 @@
 <script>
+	import './Docs.css';
 	import { page } from '$app/stores';
 	import I18n from '$lib/I18n.svelte';
 
@@ -21,7 +22,7 @@
 	<title>Dlool | Documentation{title ? ` | ${title}` : ''}</title>
 </svelte:head>
 
-<div>
+<div id="wrapper">
 	<slot />
 </div>
 

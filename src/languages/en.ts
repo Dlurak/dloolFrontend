@@ -308,7 +308,13 @@ const en = {
 	'toc.collapse': 'Collapse table of contents',
 	'toc.expand': 'Expand table of contents',
 
-	'documentation.editOnGitHub': 'Edit this page on GitHub'
+	'documentation.editOnGitHub': 'Edit this page on GitHub',
+
+	'documentation.client.method': 'HTTP Methode',
+	'documentation.client.send': 'Send',
+	'documentation.client.query.table.header.key': 'Key',
+	'documentation.client.query.table.header.value': 'Value',
+	'documentation.client.query.table.header.active': 'Active'
 } as const;
 
 export type EnToken = keyof typeof en;

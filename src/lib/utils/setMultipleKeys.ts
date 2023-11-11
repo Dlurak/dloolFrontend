@@ -1,6 +1,4 @@
-type Primitives = string | boolean | number;
-
-type NestedObject<FinalValue extends Primitives, Keys extends string[]> = Keys extends [
+type NestedObject<FinalValue, Keys extends string[]> = Keys extends [
 	infer FirstKey,
 	...infer RestKeys
 ]
@@ -11,10 +9,7 @@ type NestedObject<FinalValue extends Primitives, Keys extends string[]> = Keys e
 		: never
 	: Record<string, unknown>;
 
-export const setNestedProperty = <V extends Primitives, K extends string[]>(
-	keys: K,
-	value: V
-): NestedObject<V, K> => {
+export const setNestedProperty = <V, K extends string[]>(keys: K, value: V): NestedObject<V, K> => {
 	// any makes it waaaaaay easier to work with
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const obj: Record<string, any> = {};

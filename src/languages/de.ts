@@ -316,7 +316,13 @@ const de = {
 	'toc.collapse': 'Inhaltsverzeichnis verstecken',
 	'toc.expand': 'Inhaltsverzeichnis anzeigen',
 
-	'documentation.editOnGitHub': 'Bearbeite diese Seite auf GitHub'
+	'documentation.editOnGitHub': 'Bearbeite diese Seite auf GitHub',
+
+	'documentation.client.method': 'HTTP Methode',
+	'documentation.client.send': 'Senden',
+	'documentation.client.query.table.header.key': 'Schlüssel',
+	'documentation.client.query.table.header.value': 'Wert',
+	'documentation.client.query.table.header.active': 'Aktiv'
 } as const;
 
 export type DeToken = keyof typeof de;

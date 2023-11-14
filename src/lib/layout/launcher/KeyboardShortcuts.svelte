@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { isElementVisible } from './elementIsVisible';
-	import { goto } from '$app/navigation';
 
 	import { showLauncher } from '../../../stores';
 
@@ -16,6 +15,7 @@
 		description: string;
 		action: () => void | Promise<void>;
 		bxIcon: string;
+		closeManually?: boolean;
 	}[];
 </script>
 
@@ -63,7 +63,10 @@
 
 				if (link) {
 					link.action();
-					showLauncher.set(false);
+					const closeManually = link.closeManually ?? false;
+					if (!closeManually) {
+						showLauncher.set(false);
+					}
 					return;
 				}
 			}

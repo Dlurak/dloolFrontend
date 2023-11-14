@@ -1,5 +1,14 @@
 import { goto } from '$app/navigation';
+import { setLocalstorageString } from '$lib/localstorage';
+import { th } from '$lib/theme';
 import type { Token } from '../languages/i18n';
+import {
+	launcherLinks as linksStore,
+	showLauncher,
+	theme,
+	unfilteredLauncherLinks
+} from '../stores';
+import type { launcherLink } from '../types/launcher';
 
 type VoidFunction = () => void | Promise<void>;
 
@@ -9,6 +18,7 @@ const rawLauncherLinks: {
 	bxIcon: string;
 	description: Token;
 	query: string[];
+	closeManually?: boolean;
 }[] = [
 	{
 		title: 'nav.home',
@@ -145,12 +155,6 @@ const rawLauncherLinks: {
 			'settings',
 			'options',
 			'optionen',
-			'dark',
-			'dunkel',
-			'light',
-			'hell',
-			'theme',
-			'erscheinungsbild',
 			'navigation'
 		]
 	},
@@ -167,6 +171,59 @@ const rawLauncherLinks: {
 		bxIcon: 'bx-book-open',
 		description: 'nav.documentation.description',
 		query: ['documentation', 'dokumentation', 'erklärung', 'explaination', 'docs', 'doku']
+	},
+
+	{
+		title: 'settings.apperance.theme',
+		action: () => {
+			const newActions: launcherLink[] = [
+				{
+					title: 'settings.apperance.theme.light',
+					action: () => {
+						setLocalstorageString('themeProvider', 'light');
+						theme.set('light');
+						showLauncher.set(false);
+					},
+					bxIcon: 'bx-sun',
+					description: 'settings.apperance.theme.light',
+					query: ['light', 'hell'],
+					id: 0,
+					matchingWord: ''
+				},
+				{
+					title: 'settings.apperance.theme.dark',
+					action: () => {
+						setLocalstorageString('themeProvider', 'dark');
+						theme.set('dark');
+						showLauncher.set(false);
+					},
+					bxIcon: 'bx-moon',
+					description: 'settings.apperance.theme.dark',
+					query: ['dark', 'dunkel'],
+					id: 1,
+					matchingWord: ''
+				},
+				{
+					title: 'settings.apperance.theme.system',
+					action: () => {
+						setLocalstorageString('themeProvider', 'system');
+						th();
+						showLauncher.set(false);
+					},
+					bxIcon: 'bx-sun',
+					description: 'settings.apperance.theme.system',
+					query: ['system', 'systemeinstellung', 'auto', 'automatisch', 'automatic', 'default'],
+					id: 2,
+					matchingWord: ''
+				}
+			];
+			unfilteredLauncherLinks.set(newActions);
+			linksStore.set(newActions);
+		},
+		bxIcon: 'bx-palette',
+		description: 'settings.apperance.theme',
+		query: ['theme', 'dark', 'light', 'erscheinungsbild', 'farben', 'colors'],
+		closeManually: true
 	},
 
 	{

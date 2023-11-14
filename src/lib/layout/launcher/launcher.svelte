@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { launcherLinks as rawLauncherLinks } from '../../../constants/launcher';
 	import LauncherLink from './LauncherLink.svelte';
 	import KeyboardShortcuts from './KeyboardShortcuts.svelte';
 	import { findLinks } from './findLinks';
-	import { showLauncher } from '../../../stores';
+	import { launcherLinks, showLauncher, unfilteredLauncherLinks } from '../../../stores';
+	import { launcherLinks as launcherLinksConst } from '../../../constants/launcher';
+	import type { launcherLink } from '../../../types/launcher';
 
 	let show = false;
 
@@ -16,19 +17,17 @@
 
 	let focusedId = 0;
 
-	let launcherLinks = rawLauncherLinks;
-	let launcherIds = launcherLinks.map((link) => link.id);
-	type LauncherLink = (typeof launcherLinks)[number];
+	let launcherIds = $launcherLinks.map((link) => link.id);
 
 	const handleInput = () => {
 		const queryObj: Record<number, string[]> = {};
-		rawLauncherLinks.forEach((link) => {
+		$unfilteredLauncherLinks.forEach((link) => {
 			queryObj[link.id] = link.query;
 		});
 
 		if (searchTerm.trim() === '') {
-			launcherLinks = rawLauncherLinks;
-			launcherIds = launcherLinks.map((link) => link.id);
+			launcherLinks.set($unfilteredLauncherLinks);
+			launcherIds = $unfilteredLauncherLinks.map((link) => link.id);
 			return;
 		}
 
@@ -42,10 +41,10 @@
 			matches[id] = matchingWord;
 		});
 
-		const newLauncherLinks: LauncherLink[] = [];
+		const newLauncherLinks: launcherLink[] = [];
 
 		for (const linkId of linkIds) {
-			const link = rawLauncherLinks.find((link) => link.id === linkId);
+			const link = $unfilteredLauncherLinks.find((link) => link.id === linkId);
 			if (link)
 				newLauncherLinks.push({
 					...link,
@@ -53,9 +52,10 @@
 				});
 		}
 
-		launcherLinks = newLauncherLinks;
-		focusedId = launcherLinks.length > 0 ? launcherLinks[0].id : NaN;
-		launcherIds = launcherLinks.map((link) => link.id);
+		focusedId = $launcherLinks.length > 0 ? $launcherLinks[0].id : NaN;
+		launcherIds = $launcherLinks.map((link) => link.id);
+
+		launcherLinks.set(newLauncherLinks);
 	};
 
 	showLauncher.subscribe((v) => {
@@ -65,8 +65,10 @@
 			show = false;
 			focusedId = 0;
 			searchTerm = '';
-			launcherLinks = rawLauncherLinks;
-			launcherIds = launcherLinks.map((link) => link.id);
+			launcherLinks.set(launcherLinksConst);
+			unfilteredLauncherLinks.set(launcherLinksConst);
+
+			launcherIds = $launcherLinks.map((link) => link.id);
 		}
 	});
 </script>
@@ -77,7 +79,7 @@
 	{inputElement}
 	{entriesObj}
 	{linkListDiv}
-	linkList={launcherLinks}
+	linkList={$launcherLinks}
 />
 
 <div
@@ -113,8 +115,8 @@
 			bind:this={linkListDiv}
 		>
 			<ul class="w-full flex flex-col gap-2 list-none">
-				{#each launcherLinks as link}
-					{#key launcherLinks}
+				{#each $launcherLinks as link}
+					{#key $launcherLinks}
 						<li bind:this={entriesObj[link.id]}>
 							<LauncherLink
 								{link}

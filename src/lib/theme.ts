@@ -1,6 +1,6 @@
 import { theme } from '../stores';
 import type { ThemeProvider } from '../types/settings';
-import { getLocalstorageString } from './localstorage';
+import { getLocalstorageString, setLocalstorageString } from './localstorage';
 
 export const setTheme = (themeProvider: ThemeProvider) => {
 	if (themeProvider === 'dark' || themeProvider === 'light') theme.set(themeProvider);
@@ -16,3 +16,8 @@ export const setTheme = (themeProvider: ThemeProvider) => {
 };
 
 export const th = () => setTheme(getLocalstorageString<ThemeProvider>('themeProvider', 'system'));
+
+export const setAndStoreTheme = (themeProvider: ThemeProvider) => {
+	setTheme(themeProvider);
+	setLocalstorageString('themeProvider', themeProvider);
+};

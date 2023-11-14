@@ -27,7 +27,6 @@
 
 		if (searchTerm.trim() === '') {
 			launcherLinks.set($unfilteredLauncherLinks);
-			launcherIds = $unfilteredLauncherLinks.map((link) => link.id);
 			return;
 		}
 
@@ -51,10 +50,6 @@
 					matchingWord: matches[link.id]
 				});
 		}
-
-		focusedId = $launcherLinks.length > 0 ? $launcherLinks[0].id : NaN;
-		launcherIds = $launcherLinks.map((link) => link.id);
-
 		launcherLinks.set(newLauncherLinks);
 	};
 
@@ -68,8 +63,13 @@
 			launcherLinks.set(launcherLinksConst);
 			unfilteredLauncherLinks.set(launcherLinksConst);
 
-			launcherIds = $launcherLinks.map((link) => link.id);
+			launcherIds = launcherLinksConst.map((link) => link.id);
 		}
+	});
+
+	launcherLinks.subscribe((v) => {
+		launcherIds = v.map((link) => link.id);
+		focusedId = v.length > 0 ? v[0].id : NaN;
 	});
 </script>
 
@@ -107,6 +107,8 @@
 					bind:value={searchTerm}
 					on:input={handleInput}
 				/>
+				{focusedId}
+				{launcherIds}
 			</div>
 		</div>
 

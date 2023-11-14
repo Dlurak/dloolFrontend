@@ -1,43 +1,46 @@
+import { goto } from '$app/navigation';
 import type { Token } from '../languages/i18n';
+
+type VoidFunction = () => void | Promise<void>;
 
 const rawLauncherLinks: {
 	title: Token;
-	path: string;
+	action: VoidFunction;
 	bxIcon: string;
 	description: Token;
 	query: string[];
 }[] = [
 	{
 		title: 'nav.home',
-		path: '/',
+		action: () => goto('/'),
 		bxIcon: 'bx-home',
 		description: 'nav.home.description',
 		query: ['home', 'homepage', 'main', 'main page', 'startseite']
 	},
 	{
 		title: 'nav.login',
-		path: '/login',
+		action: () => goto('/login'),
 		bxIcon: 'bx-user',
 		description: 'nav.login.description',
 		query: ['login', 'signin', 'anmelden', 'einloggen']
 	},
 	{
 		title: 'nav.homework',
-		path: '/homework',
+		action: () => goto('/homework'),
 		bxIcon: 'bx-book',
 		description: 'nav.homework.description',
 		query: ['homework', 'tasks', 'assignments', 'aufgaben', 'hausaufgaben', 'hausaufgabenheft']
 	},
 	{
 		title: 'nav.notes',
-		path: '/notes',
+		action: () => goto('/notes'),
 		bxIcon: 'bx-notepad',
 		description: 'nav.notes.description',
 		query: ['notes', 'notizen', 'notitzbuch']
 	},
 	{
 		title: 'nav.events',
-		path: '/events',
+		action: () => goto('/events'),
 		bxIcon: 'bx-calendar',
 		description: 'nav.events.description',
 		query: [
@@ -58,7 +61,7 @@ const rawLauncherLinks: {
 	},
 	{
 		title: 'nav.requests',
-		path: '/requests/list',
+		action: () => goto('/requests/list'),
 		bxIcon: 'bx-user-plus',
 		description: 'nav.requests.description',
 		query: [
@@ -73,7 +76,7 @@ const rawLauncherLinks: {
 	},
 	{
 		title: 'nav.settings',
-		path: '/settings',
+		action: () => goto('/settings'),
 		bxIcon: 'bx-cog',
 		description: 'nav.settings.description',
 		query: [
@@ -90,21 +93,21 @@ const rawLauncherLinks: {
 
 	{
 		title: 'nav.register',
-		path: '/register',
+		action: () => goto('/register'),
 		bxIcon: 'bx-user-plus',
 		description: 'nav.register.description',
 		query: ['register', 'signup', 'anmelden', 'registrieren']
 	},
 	{
 		title: 'nav.status',
-		path: '/requests/',
+		action: () => goto('/requests/list'),
 		bxIcon: 'bx-user-plus',
 		description: 'nav.status.description',
 		query: ['stauts', 'anfrage', 'moderation']
 	},
 	{
 		title: 'nav.tricks',
-		path: '/tricks',
+		action: () => goto('/tricks'),
 		bxIcon: 'bx-bulb',
 		description: 'nav.tricks.description',
 		query: [
@@ -125,14 +128,14 @@ const rawLauncherLinks: {
 	},
 	{
 		title: 'nav.settings.colors',
-		path: '/settings/colors',
+		action: () => goto('/settings/colors'),
 		bxIcon: 'bx-palette',
 		description: 'nav.settings.colors.description',
 		query: ['colors', 'farben', 'fach', 'fächer', 'subject', 'bunt', 'colorfull']
 	},
 	{
 		title: 'nav.settings.preferences',
-		path: '/settings/preferences',
+		action: () => goto('/settings/preferences'),
 		bxIcon: 'bx-cog',
 		description: 'nav.settings.preferences.description',
 		query: [
@@ -153,14 +156,14 @@ const rawLauncherLinks: {
 	},
 	{
 		title: 'nav.contributors',
-		path: '/contributors',
+		action: () => goto('/contributors'),
 		bxIcon: 'bx-group',
 		description: 'nav.contributors.description',
 		query: ['contributors', 'beiträger', 'mitwirkende', 'mitarbeiter', 'contributors']
 	},
 	{
 		title: 'nav.documentation',
-		path: '/documentation',
+		action: () => goto('/documentation'),
 		bxIcon: 'bx-book-open',
 		description: 'nav.documentation.description',
 		query: ['documentation', 'dokumentation', 'erklärung', 'explaination', 'docs', 'doku']
@@ -169,14 +172,14 @@ const rawLauncherLinks: {
 	{
 		title: 'nav.github.frontend',
 		description: 'nav.github.frontend.description',
-		path: '/redirect?redirect=https://github.com/dlurak/dloolFrontend',
+		action: () => goto('/redirect?redirect=https://github.com/dlurak/dloolFrontend'),
 		bxIcon: 'bxl-github',
 		query: ['github', 'frontend', 'source', 'code', 'svelte', 'programming', 'programmieren']
 	},
 	{
 		title: 'nav.github.backend',
 		description: 'nav.github.backend.description',
-		path: '/redirect?redirect=https://github.com/dlurak/dloolBackend',
+		action: () => goto('/redirect?redirect=https://github.com/dlurak/dloolBackend'),
 		bxIcon: 'bxl-github',
 		query: [
 			'github',
@@ -193,7 +196,7 @@ const rawLauncherLinks: {
 	{
 		title: 'nav.discord',
 		description: 'nav.discord.description',
-		path: '/redirect?redirect=https://discord.gg/Kp2BCyR33q',
+		action: () => goto('/redirect?redirect=https://discord.gg/Kp2BCyR33q'),
 		bxIcon: 'bxl-discord-alt',
 		query: ['discord', 'chat', 'server', 'community', 'support']
 	}

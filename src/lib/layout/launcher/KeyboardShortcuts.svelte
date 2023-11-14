@@ -14,7 +14,7 @@
 		id: number;
 		title: string;
 		description: string;
-		path: string;
+		action: () => void | Promise<void>;
 		bxIcon: string;
 	}[];
 </script>
@@ -62,7 +62,8 @@
 				const link = linkList.find((link) => link.id === focusedId);
 
 				if (link) {
-					goto(link.path).then(() => showLauncher.set(false));
+					link.action();
+					showLauncher.set(false);
 					return;
 				}
 			}

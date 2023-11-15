@@ -107,8 +107,6 @@
 					bind:value={searchTerm}
 					on:input={handleInput}
 				/>
-				{focusedId}
-				{launcherIds}
 			</div>
 		</div>
 

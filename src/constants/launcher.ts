@@ -245,5 +245,6 @@ let id = 0;
 export const launcherLinks = rawLauncherLinks.map((link) => ({
 	...link,
 	id: id++,
-	matchingWord: ''
+	matchingWord: '',
+	showSimpelfied: false
 }));

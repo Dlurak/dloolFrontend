@@ -8,4 +8,5 @@ export type launcherLink = {
 	query: string[];
 	id: number;
 	matchingWord: string;
+	showSimpelfied: boolean;
 };

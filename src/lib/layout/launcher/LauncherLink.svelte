@@ -13,6 +13,7 @@
 		bxIcon: string;
 		matchingWord: string;
 		closeManually?: boolean;
+		showSimpelfied: boolean;
 	};
 	export let isFocused: boolean;
 </script>
@@ -34,13 +35,15 @@
 		<i class="bx {link.bxIcon}  flex text-xl" />
 		<div class="w-full flex flex-col items-start">
 			<h4 class="line-clamp-1"><I18n key={link.title} /></h4>
-			<p
-				class="line-clamp-1 text-sm"
-				class:text-gray-600={!isFocused}
-				class:dark:text-gray-400={!isFocused}
-			>
-				<I18n key={link.description} />
-			</p>
+			{#if !link.showSimpelfied}
+				<p
+					class="line-clamp-1 text-sm"
+					class:text-gray-600={!isFocused}
+					class:dark:text-gray-400={!isFocused}
+				>
+					<I18n key={link.description} />
+				</p>
+			{/if}
 		</div>
 		<span class="rounded-sm bg-gray-300 dark:bg-gray-600 px-2 py-1 capitalize empty:hidden">
 			{link.matchingWord}

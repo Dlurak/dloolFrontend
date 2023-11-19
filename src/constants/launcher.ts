@@ -40,7 +40,7 @@ const rawLauncherLinks: {
 		action: () => goto('/notes'),
 		bxIcon: 'bx-notepad',
 		description: 'nav.notes.description',
-		query: ['notes', 'notizen', 'notitzbuch']
+		query: ['notes', 'notizen', 'notizbuch']
 	},
 	{
 		title: 'nav.events',

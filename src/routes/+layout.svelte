@@ -15,9 +15,16 @@
 	import Theme from '$lib/layout/Theme.svelte';
 	import SubjectColors from '$lib/layout/SubjectColors.svelte';
 	import Launcher from '$lib/layout/launcher/launcher.svelte';
+	import type { Languages } from '../languages/i18n';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
+
+	interface DataInterface {
+		requestLanguage: Languages;
+	}
+
+	export let data: DataInterface;
 
 	const updateCSSVariables = () => {
 		if (browser) {
@@ -52,7 +59,7 @@
 <Network />
 <Settings />
 <Title />
-<Language />
+<Language defaultLanguage={data.requestLanguage} />
 <Theme />
 <Logout />
 <SubjectColors />

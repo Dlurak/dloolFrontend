@@ -18,7 +18,8 @@ export const languages = {
 export const languageShortcuts = Object.keys(languages) as (keyof typeof languages)[];
 export type Languages = keyof typeof languages;
 
-export let lang: Languages = 'de';
+// export let lang: Languages = 'de';
+export let lang: Languages;
 
 currentLanguage.subscribe((value) => {
 	lang = value;

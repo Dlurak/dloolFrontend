@@ -4,6 +4,9 @@
 	import { currentLanguage } from '../../stores';
 	import type { Languages } from '../../languages/i18n';
 
+	export let defaultLanguage: Languages;
+	currentLanguage.set(defaultLanguage);
+
 	currentLanguage.subscribe((l) => {
 		if (browser) document.getElementsByTagName('html')[0].lang = l;
 	});

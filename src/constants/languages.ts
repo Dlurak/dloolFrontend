@@ -57,11 +57,11 @@ const languageShortcuts: Record<string, TranslationRecord> = {
 	},
 	sl: {
 		de: 'Slowenisch',
-		en: 'Slovenian',
+		en: 'Slovenian'
 	},
 	af: {
 		de: 'Afrikaans',
-		en: 'Afrikaans',
+		en: 'Afrikaans'
 	},
 	la: {
 		de: 'Latein',
@@ -69,23 +69,23 @@ const languageShortcuts: Record<string, TranslationRecord> = {
 	},
 	da: {
 		de: 'Dänisch',
-		en: 'Danish',
+		en: 'Danish'
 	},
 	eo: {
 		de: 'Esperanto',
-		en: 'Esperanto',
+		en: 'Esperanto'
 	},
 	et: {
 		de: 'Estnisch',
-		en: 'Estonian',
+		en: 'Estonian'
 	},
 	el: {
 		de: 'Griechisch',
-		en: 'Greek',
+		en: 'Greek'
 	},
 	is: {
 		de: 'Isländisch',
-		en: 'Icelandic',
+		en: 'Icelandic'
 	}
 } as const;
 

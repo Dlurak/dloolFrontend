@@ -291,6 +291,9 @@ const en = {
 	'toast.colors.import.invalidFile': 'Die Datei ist ungültig :(',
 	'toast.colors.import.error': 'Farben konnten nicht importiert werden.',
 
+	'toast.language.not.specific': "The language $lang isn't available on Dlool.",
+	'toast.language.not.general': "Your preffered language isn't available on Dlool",
+
 	contributors: 'Contributors',
 	'contributors.error': "Could'nt fetch contributors",
 	'contributors.frontend': 'Frontend',

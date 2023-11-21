@@ -17,7 +17,7 @@ export const currentLanguage = writable<Languages>('de');
 
 export const title = writable<Token | null>(null);
 
-export const toasts = writable<Toast[]>([]);
+export const toasts = writable<Toast<Token>[]>([]);
 
 export const network = writable<'online' | 'offline'>();
 

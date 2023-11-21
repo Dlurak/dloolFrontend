@@ -16,15 +16,41 @@
 	import SubjectColors from '$lib/layout/SubjectColors.svelte';
 	import Launcher from '$lib/layout/launcher/launcher.svelte';
 	import type { Languages } from '../languages/i18n';
+	import { getLanguageShortcut } from '../constants/languages';
+	import { addToast } from '$lib/toast/addToast';
+	import { currentLanguage } from '../stores';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
 
 	interface DataInterface {
 		requestLanguage: Languages;
+		favouriteLanguage: string;
+		preferedLanguageAvaliable: boolean;
 	}
 
 	export let data: DataInterface;
+
+	if (!data.preferedLanguageAvaliable) {
+		const longLang = getLanguageShortcut(data.favouriteLanguage, $currentLanguage);
+		if (longLang)
+			addToast({
+				content: 'toast.language.not.specific',
+				type: 'info',
+				duration: 5e3,
+				contentOptions: {
+					parts: {
+						lang: longLang
+					}
+				}
+			});
+		else
+			addToast({
+				content: 'toast.language.not.general',
+				type: 'info',
+				duration: 5e3
+			});
+	}
 
 	const updateCSSVariables = () => {
 		if (browser) {
@@ -48,6 +74,7 @@
 <Navbar bind:height={navbarHeight} />
 <main class="flex flex-col items-center mx-2 md:mx-6 my-4">
 	<slot />
+	{data.favouriteLanguage}
 </main>
 
 <Footer bind:height={footerHeight} />

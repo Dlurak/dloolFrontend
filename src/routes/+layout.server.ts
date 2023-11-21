@@ -14,13 +14,24 @@ export const load = ({ request }) => {
 		return indexA - indexB;
 	});
 
+	const preferedLanguageAvaliable = sortedPossibilities.length > 0;
+
 	/**
 	 * The language that should be used if no lang is specified in localstorage
 	 * Defaults to German
 	 */
-	const lang = sortedPossibilities.length > 0 ? sortedPossibilities[0] : defaultLanguage;
+	const lang = preferedLanguageAvaliable ? sortedPossibilities[0] : defaultLanguage;
+
+	const favLang = accpetedLanguages
+		.split(';')
+		.map((x) => x.split(','))
+		.flat()
+		.map((x) => x.split('-'))
+		.flat()[0];
 
 	return {
-		requestLanguage: lang
+		requestLanguage: lang,
+		favouriteLanguage: favLang,
+		preferedLanguageAvaliable
 	} as const;
 };

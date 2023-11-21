@@ -1,9 +1,10 @@
 <script lang="ts">
 	import I18n from '$lib/I18n.svelte';
+	import type { Token } from '../../languages/i18n';
 	import { toasts } from '../../stores';
 	import type { Toast, ToastType } from '../../types/toast';
 
-	export let toast: Toast;
+	export let toast: Toast<Token>;
 
 	let hovering = false;
 	let doneMs = 0;
@@ -60,7 +61,11 @@
 	<div class="w-full h-full flex justify-between items-center">
 		<div class="flex gap-1 items-center">
 			<i class="bx {icon}" />
-			<I18n key={toast.content} />
+			{#if toast.contentOptions?.parts}
+				<I18n key={toast.content} parts={toast.contentOptions.parts} />
+			{:else}
+				<I18n key={toast.content} />
+			{/if}
 		</div>
 		<div class="aspect-square h-full">
 			<i class="bx bx-x" />

@@ -74,7 +74,6 @@
 <Navbar bind:height={navbarHeight} />
 <main class="flex flex-col items-center mx-2 md:mx-6 my-4">
 	<slot />
-	{data.favouriteLanguage}
 </main>
 
 <Footer bind:height={footerHeight} />

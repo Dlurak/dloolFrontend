@@ -160,6 +160,8 @@ const en = {
 	'settings.apperance.theme.dark': 'Dark',
 	'settings.apperance.nav': 'Navigation bar',
 	'settings.apperance.nav.text': 'Show title in the navigation bar',
+	'settins.apperance.nav.text.show': 'Show title in the navigation bar',
+	'settins.apperance.nav.text.hide': 'Hide title in the navigation bar',
 	'settings.apperance.nav.search': 'Show search in the navigation bar',
 
 	'settings.subjectColors': 'Colors for subjects',

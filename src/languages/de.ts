@@ -165,6 +165,8 @@ const de = {
 	'settings.apperance.theme.dark': 'Dunkel',
 	'settings.apperance.nav': 'Navigation',
 	'settings.apperance.nav.text': 'Titel in der Navigationsleiste anzeigen',
+	'settins.apperance.nav.text.show': 'Zeige Titel in der Navigationsleiste an',
+	'settins.apperance.nav.text.hide': 'Verstecke Titel in der Navigationsleiste',
 	'settings.apperance.nav.search': 'Suche in der Navigationsleiste anzeigen',
 
 	'settings.subjectColors': 'Farben für Fächer',

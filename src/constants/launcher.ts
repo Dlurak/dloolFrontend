@@ -1,8 +1,9 @@
 import { goto } from '$app/navigation';
 import { setNewList } from '$lib/layout/launcher/setNewList';
+import { setLocalstorage } from '$lib/localstorage';
 import { setAndStoreTheme } from '$lib/theme';
 import type { Token } from '../languages/i18n';
-import { showLauncher } from '../stores';
+import { settings, showLauncher } from '../stores';
 
 type VoidFunction = () => void | Promise<void>;
 
@@ -206,6 +207,44 @@ const rawLauncherLinks: {
 		description: 'settings.apperance.theme',
 		query: ['theme', 'dark', 'light', 'erscheinungsbild', 'farben', 'colors'],
 		closeManually: true
+	},
+	{
+		title: 'settings.apperance.nav.text',
+		action: () =>
+			setNewList([
+				{
+					title: 'settins.apperance.nav.text.show',
+					action: () => {
+						settings.update((s) => {
+							s.showTextInNavbar = true;
+							return s;
+						});
+						setLocalstorage('textInNav', true);
+						showLauncher.set(false);
+					},
+					bxIcon: 'bx-check',
+					description: 'settins.apperance.nav.text.show',
+					query: []
+				},
+				{
+					title: 'settins.apperance.nav.text.hide',
+					action: () => {
+						settings.update((s) => {
+							s.showTextInNavbar = false;
+							return s;
+						});
+						setLocalstorage('textInNav', false);
+						showLauncher.set(false);
+					},
+					bxIcon: 'bx-minus',
+					description: 'settins.apperance.nav.text.hide',
+					query: []
+				}
+			]),
+		bxIcon: 'bx-text',
+		closeManually: true,
+		query: ['text', 'beschreibung', 'description', 'navigation', 'label'],
+		description: 'settings.apperance.nav.text'
 	},
 
 	{

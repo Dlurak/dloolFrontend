@@ -32,6 +32,13 @@ const en = {
 	'register.modal.negative': "I don't need an account",
 	'register.modal.positive.list': 'I want to add data to Dlool\nI want to edit data on Dlool',
 	'register.modal.negative.list': 'I just want to see the data',
+
+	'register.pwd.length': 'The password must be at least 8 charachtars long.',
+	'register.pwd.number': 'The password must contain at least one number.',
+	'register.pwd.special': 'The password must contain at least one special charachter.',
+	'register.pwd.uppercase': 'The password must contain at least one uppercase letter.',
+	'register.pwd.lowercase': 'The password must contain at least one lowercase letter.',
+
 	'nav.home': 'Home',
 	'nav.home.description': 'The homepage of Dlool has nearly no content, but it looks cool',
 	'nav.login': 'login',

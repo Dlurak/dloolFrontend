@@ -17,7 +17,7 @@
 		<i class="bx bxs-server" />
 		<I18n key="settings.api.base" />
 	</span>
-	<div class="flex gap-2 flex-col @[32rem]:flex-row w-full">
+	<div class="flex gap-2 flex-col @[32rem]:flex-row @[32rem]:w-min w-full">
 		<I18n>
 			<input
 				type="url"

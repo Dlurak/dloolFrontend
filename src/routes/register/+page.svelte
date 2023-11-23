@@ -11,6 +11,7 @@
 	import Modal from '$lib/Modal.svelte';
 	import { onMount } from 'svelte';
 	import { backendUrl } from '$lib/../stores';
+	import { passwordSchema, type PwdErrorMessage } from '../../zod/password';
 
 	let username: string;
 	let name: string;
@@ -36,8 +37,32 @@
 		disabled = false;
 	};
 
+	let passwordMessages: Token[] = [];
+
 	$: {
-		disabled = !(!!username && !!name && !!school && !!className && !!password); // all fields need to be filled
+		const result = passwordSchema.safeParse(password);
+		(() => {
+			passwordMessages = [];
+			if (result.success || (password || '').trim() === '') return;
+
+			const messages = result.error.errors.map((o) => o.message) as PwdErrorMessage[];
+
+			for (const message of messages) passwordMessages.push(`register.pwd.${message}`);
+
+			// For Svelte to register the update
+			passwordMessages = passwordMessages;
+		})();
+	}
+
+	$: {
+		disabled = !(
+			!!username &&
+			!!name &&
+			!!school &&
+			!!className &&
+			!!password &&
+			passwordMessages.length === 0
+		); // all fields need to be filled
 	}
 
 	onMount(() => (showModal = true));
@@ -199,6 +224,16 @@
 			tooltip={i('register.password.tooltip')}
 			bind:value={password}
 		/>
+
+		<div>
+			<ul class="flex flex-col gap-2">
+				{#key passwordMessages}
+					{#each passwordMessages as msg}
+						<li class="text-start"><I18n key={msg} /></li>
+					{/each}
+				{/key}
+			</ul>
+		</div>
 
 		<SubmitButton value={i('register')} {disabled} />
 	</I18n>

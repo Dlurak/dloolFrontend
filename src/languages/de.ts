@@ -32,6 +32,13 @@ const de = {
 	'register.modal.negative': 'Ich brauche keinen Account:',
 	'register.modal.positive.list': 'Ich möchte selber Daten hinzufügen\nIch möchte Daten editieren',
 	'register.modal.negative.list': 'Ich möchte nur Daten lesen',
+
+	'register.pwd.length': 'Das Passwort muss mindestens 8 Zeichen lang sein',
+	'register.pwd.number': 'Das Passwort muss mindestens eine Ziffer enthalten',
+	'register.pwd.special': 'Das Passwort muss mindestens ein Sonderzeichen enthalten',
+	'register.pwd.uppercase': 'Das Passwort muss mindestens einen Großbuchstaben enthalten',
+	'register.pwd.lowercase': 'Das Passwort muss mindestens einen Kleinbuchstaben enthalten',
+
 	'nav.home': 'Startseite',
 	'nav.home.description': 'Die Startseite von Dlool bietet kaum Funktionen.',
 	'nav.login': 'Einloggen',

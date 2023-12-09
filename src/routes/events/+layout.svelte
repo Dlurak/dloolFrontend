@@ -125,10 +125,8 @@
 </div>
 
 <style>
-	@media (min-width: 768px) {
-		.parent {
-			--basic-height: calc(100vh - var(--navbar-height) - var(--footer-height) - 2rem);
-			max-height: calc(3 * var(--basic-height)); /* copied from the main +layout.svelte */
-		}
+	.parent {
+		min-height: 20rem;
+		max-height: min(250vh, 32rem);
 	}
 </style>

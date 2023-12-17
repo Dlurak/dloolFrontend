@@ -38,3 +38,4 @@ export const launcherLinks = writable<launcherLink[]>(launcherLinksConst);
 export const unfilteredLauncherLinks = writable<launcherLink[]>(launcherLinksConst);
 
 export const backendUrl = writable(PUBLIC_API_URL);
+export const backendHasResponse = writable(false);

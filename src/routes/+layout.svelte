@@ -19,6 +19,7 @@
 	import { getLanguageShortcut } from '../constants/languages';
 	import { addToast } from '$lib/toast/addToast';
 	import { currentLanguage } from '../stores';
+	import SendRootReq from '$lib/layout/SendRootReq.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -89,6 +90,7 @@
 <Theme />
 <Logout />
 <SubjectColors />
+<SendRootReq />
 
 <!--Those apply settings, update stores...-->
 

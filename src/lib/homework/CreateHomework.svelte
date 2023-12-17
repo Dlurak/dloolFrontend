@@ -12,7 +12,7 @@
 	import { i } from '../../languages/i18n';
 	import { addToast } from '$lib/toast/addToast';
 	import { network } from '../../stores';
-	import { backendUrl } from '$lib/../stores';
+	import { backendUrl, backendHasResponse } from '$lib/../stores';
 	import { getOneWeekFromNow } from '../../constants/generateDates';
 
 	export let postSubmit: (e: Event) => void = () => {
@@ -34,7 +34,7 @@
 		const allFilled = assignments.every((assignment) => {
 			return assignment.subject && assignment.description;
 		});
-		const isOnline = $network === 'online';
+		const isOnline = $network === 'online' && $backendHasResponse;
 		submitButtonDisabled = !allFilled || !isOnline;
 	}
 </script>

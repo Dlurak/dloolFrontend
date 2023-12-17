@@ -141,10 +141,8 @@
 							setErrorText('error');
 							break;
 					}
-					successText = undefined;
 				} else if (obj.message === 'User created') {
 					successText = 'register.userCreated';
-					errorText = undefined;
 
 					// log the user in
 					return fetch($backendUrl + '/auth/login', {

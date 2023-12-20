@@ -10,8 +10,17 @@
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import Box from '$lib/homework/Box.svelte';
 	import I18n from '$lib/I18n.svelte';
+	import Filters from '$lib/homework/Filters.svelte';
+	import { isUserMember } from '$lib/homework/isUserMember';
+	import { browser } from '$app/environment';
 
 	export let data: NoteResponse | { noteDataAvailable: false };
+
+	let className = '';
+	let school = '';
+
+	let filteredSchool = '';
+	let filteredClassName = '';
 
 	let currentPage = 1;
 	const isSubPage = () => {
@@ -38,7 +47,7 @@
 	let { slug } = $page.params;
 	let isNoteFocused = isSubPage();
 
-	let isLoggedInBool = false;
+	let userIsMemberOfClass = false;
 
 	$: {
 		slug = $page.params.slug;
@@ -46,8 +55,40 @@
 		focusedNote.set(getFocusedNote());
 	}
 
-	onMount(() => {
-		isLoggedInBool = isLoggedIn();
+	const reloadIsUserMember = () => {
+		userIsMemberOfClass = isUserMember(
+			$page.url.searchParams.get('class') as string,
+			$page.url.searchParams.get('school') as string
+		);
+	};
+
+	const reload = async () => {
+		const url = new URL(location.href);
+		url.searchParams.set('school', filteredSchool);
+		url.searchParams.set('class', filteredClassName);
+
+		return goto(url).then(() => {
+			invalidateAll();
+			data = data;
+			return;
+		});
+	};
+
+	const setParameters = (params: { school: string; class: string }) => {
+		filteredSchool = params.school;
+		filteredClassName = params.class;
+
+		reload().then(() => {
+			if (browser) {
+				localStorage.setItem('school', params.school);
+				localStorage.setItem('class', params.class);
+			}
+			reloadIsUserMember();
+		});
+	};
+
+	onMount(async () => {
+		reloadIsUserMember();
 
 		const currentUrlPage = $page.url.searchParams.get('page');
 		const currentPage = parseInt(currentUrlPage ?? '1');
@@ -67,10 +108,20 @@
 </script>
 
 <div class="w-full md:grid md:grid-cols-[1fr,2fr] gap-2 parent">
-	<div class:hidden={isNoteFocused} class="w-full md:flex overflow-y-scroll">
+	<div class:hidden={isNoteFocused} class="w-full md:flex flex-col gap-2 overflow-y-scroll">
+		<Filters
+			bind:className
+			bind:schoolName={school}
+			onFilterSet={() => {
+				setParameters({
+					school,
+					class: className
+				});
+			}}
+		/>
 		{#if data.noteDataAvailable}
 			<ul class="flex flex-col gap-2 items-stretch w-full list-none">
-				{#if isLoggedInBool}
+				{#if userIsMemberOfClass}
 					<li>
 						<a
 							href="/notes/new"

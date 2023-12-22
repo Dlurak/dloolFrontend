@@ -3,13 +3,15 @@ title: Getting Started
 author:
   name: Dlurak
   link: https://github.com/Dlurak
-date: 2023-11-10
+date: 2023-12-27
 ---
 
 ## Getting Started
 
-To get started with Dlool, we recommend you read the [What is Dlool?](/documentation/getting-started/what-is-dlool) page. It will give you a quick overview of what Dlool is and what it can do for you.
+Dlool is a school planer for the digital era.
+Dlool, the colloborative Open-Source school planner, reforms the organization of your school life.
+With structured entries, cross-plattform accessibility, and a colloborative mindset,
+Dlool provides a modern alternative to proprietary apps or analog homework planners.
 
-Later this page will be updated with more information on how to get started with Dlool.
-
-If you are already familiar with Dlool, a Pull Request to improve this page is always welcome.
+Dlool provides a structured way to write down what your homework are, some simple notes
+and calendaric events.

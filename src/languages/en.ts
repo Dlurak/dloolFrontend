@@ -3,7 +3,7 @@ const en = {
 	homeDummytext: 'Dlool is a colloborative and open homeworkbook.',
 	error: 'Something went wrong',
 	username: 'Username',
-	name: 'name',
+	name: 'Display name',
 	school: 'school',
 	class: 'class',
 	password: 'password',

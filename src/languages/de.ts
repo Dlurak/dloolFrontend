@@ -3,7 +3,7 @@ const de = {
 	homeDummytext: 'Dlool ist ein kollaboratives und offenes Hausaufgabenheft.',
 	error: 'Etwas ist schiefgelaufen',
 	username: 'Nutzername',
-	name: 'Name',
+	name: 'Anzeigename',
 	school: 'Schule',
 	class: 'Klasse',
 	password: 'Passwort',

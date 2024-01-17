@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { rgbToHex } from '$lib/colors/hexToRgb';
+	import SvelteMarkdown from 'svelte-markdown';
 	import { dateIsInPast } from '$lib/dates/dateIsInPast';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
@@ -51,7 +52,7 @@
 			<h4>{assignment.subject}</h4>
 			<DateLabel date={assignment.due} />
 		</span>
-		<p class="my-2 whitespace-pre-line">{assignment.description}</p>
+		<SvelteMarkdown source={assignment.description} />
 	</div>
 </div>
 <div class="hidden print:flex items-start">

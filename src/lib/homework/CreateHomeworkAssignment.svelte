@@ -8,15 +8,21 @@
 	import type { Assignment } from '../../types/homework';
 	import { nextCustomDateForWeekday, nextWeekdayForSubject } from '$lib/timetable';
 	import { getCurrentWeekdayAbbreviation } from '$lib/dates/dataWeekday';
+	import { settings, timetable } from '../../stores';
 
 	export let assignment: Assignment;
 	export let allAssignments: Assignment[];
 
-	let dueWeekday = nextWeekdayForSubject(getCurrentWeekdayAbbreviation(), assignment.subject);
+	const todayAbbr = getCurrentWeekdayAbbreviation();
+	let dueWeekday = nextWeekdayForSubject(todayAbbr, assignment.subject);
 	$: {
-		dueWeekday = nextWeekdayForSubject(getCurrentWeekdayAbbreviation(), assignment.subject);
+		dueWeekday = nextWeekdayForSubject(todayAbbr, assignment.subject);
 		assignment.due = nextCustomDateForWeekday(dueWeekday);
 	}
+
+	let autocompleteSubjects = $settings.useTimeTableForAutcomplete
+		? $timetable[getCurrentWeekdayAbbreviation()]
+		: subjectsSortetCapitalized;
 </script>
 
 <div class="flex flex-col justify-evenly items-center">
@@ -56,7 +62,7 @@
 				/>
 			</I18n>
 			<datalist id="subjects">
-				{#each subjectsSortetCapitalized as subj}
+				{#each autocompleteSubjects as subj}
 					<option value={subj} />
 				{/each}
 			</datalist>

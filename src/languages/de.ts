@@ -165,6 +165,7 @@ const de = {
 	'settings.api': 'API Einstellungen',
 	'settings.timetable': 'Stundenplan',
 	'settings.timetable.reset': 'Zurücksetzen',
+	'settings.timetable.useForAutoComplete': 'Nutze den Stundenplan für die Autovervollständigung',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',

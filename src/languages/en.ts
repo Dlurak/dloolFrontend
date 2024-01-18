@@ -161,6 +161,7 @@ const en = {
 	'settings.api': 'API-Settings',
 	'settings.timetable': 'Timetable',
 	'settings.timetable.reset': 'Reset',
+	'settings.timetable.useForAutoComplete': 'Use this timetable for auto complete',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
 	'settings.apperance': 'Apperance',
 	'settings.apperance.theme': 'Theme',

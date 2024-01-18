@@ -5,6 +5,7 @@
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { subjectsSortetCapitalized } from '../../../constants/subjecticons';
+	import UseTimeTableForAutcompletion from '$lib/preferences/UseTimeTableForAutocompletion.svelte';
 
 	const getWeekdays = () =>
 		(Object.keys($timetable) as WeekDay[]).map((abbr) => ({
@@ -149,3 +150,7 @@
 		</tbody>
 	</table>
 </div>
+
+<hr class="my-3" />
+
+<UseTimeTableForAutcompletion />

@@ -7,22 +7,33 @@
 	import { swapArrayElements } from '$lib/utils/SwapItems';
 	import type { Assignment } from '../../types/homework';
 	import { nextCustomDateForWeekday, nextWeekdayForSubject } from '$lib/timetable';
-	import { getCurrentWeekdayAbbreviation } from '$lib/dates/dataWeekday';
+	import { getWeekdayAbbreviationByDate } from '$lib/dates/dataWeekday';
 	import { settings, timetable } from '../../stores';
+	import type { CustomDate } from '../../types/customDate';
+	import type { WeekDay } from '../../constants/weekDays';
 
 	export let assignment: Assignment;
 	export let allAssignments: Assignment[];
+	export let fromDate: CustomDate;
 
-	const todayAbbr = getCurrentWeekdayAbbreviation();
-	let dueWeekday = nextWeekdayForSubject(todayAbbr, assignment.subject);
+	let fromAbbr: WeekDay = getWeekdayAbbreviationByDate(fromDate);
+	let dueWeekday = nextWeekdayForSubject(fromAbbr, assignment.subject);
+
 	$: {
-		dueWeekday = nextWeekdayForSubject(todayAbbr, assignment.subject);
-		assignment.due = nextCustomDateForWeekday(dueWeekday);
+		fromAbbr = getWeekdayAbbreviationByDate(fromDate);
+		dueWeekday = nextWeekdayForSubject(fromAbbr, assignment.subject);
+		assignment.due = nextCustomDateForWeekday(dueWeekday, fromDate);
 	}
 
 	let autocompleteSubjects = $settings.useTimeTableForAutcomplete
-		? $timetable[getCurrentWeekdayAbbreviation()]
+		? $timetable[fromAbbr]
 		: subjectsSortetCapitalized;
+
+	$: {
+		autocompleteSubjects = $settings.useTimeTableForAutcomplete
+			? $timetable[fromAbbr]
+			: subjectsSortetCapitalized;
+	}
 </script>
 
 <div class="flex flex-col justify-evenly items-center">
@@ -58,10 +69,10 @@
 					bind:value={assignment.subject}
 					placeholder={i('homework.add.subject')}
 					class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-					list="subjects"
+					list={`subjects-${fromAbbr}`}
 				/>
 			</I18n>
-			<datalist id="subjects">
+			<datalist id={`subjects-${fromAbbr}`}>
 				{#each autocompleteSubjects as subj}
 					<option value={subj} />
 				{/each}

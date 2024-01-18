@@ -1,5 +1,6 @@
 import type { WeekDay } from '../../constants/weekDays';
 import { i, type T, type Token } from '../../languages/i18n';
+import type { CustomDate } from '../../types/customDate';
 
 const token = [
 	'date.sunday',
@@ -49,8 +50,9 @@ export function getWeekdayByAbbreviation(abbreviation: WeekDay) {
 	} as const);
 }
 
-export const getCurrentWeekdayAbbreviation = () => {
-	const weekdayIndex = new Date().getDay();
+export const getWeekdayAbbreviationByDate = (date: CustomDate) => {
+	const dateObj = new Date(date.year, date.month - 1, date.day);
+	const weekdayIndex = dateObj.getDay();
 
 	switch (weekdayIndex) {
 		case 0:

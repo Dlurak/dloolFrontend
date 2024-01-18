@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { createDate } from '$lib/dates/createDateObject';
 	import type { Assignment } from '../../types/homework';
 	import SubmitButton from '$lib/SubmitButton.svelte';
-	import { getOneWeekFromNow } from '../../constants/generateDates';
 	import CreateHomeworkAssignment from './CreateHomeworkAssignment.svelte';
+	import type { CustomDate } from '../../types/customDate';
 
-	let date = createDate(getOneWeekFromNow());
+	export let date: CustomDate;
 
 	const emptyAssignment: Assignment = {
 		subject: '',
@@ -19,7 +18,7 @@
 <ul class="list-none">
 	{#each assignments as assignment}
 		<li class="flex flex-row">
-			<CreateHomeworkAssignment bind:assignment bind:allAssignments={assignments} />
+			<CreateHomeworkAssignment bind:assignment bind:allAssignments={assignments} fromDate={date} />
 		</li>
 	{/each}
 </ul>

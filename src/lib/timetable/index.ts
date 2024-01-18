@@ -1,8 +1,9 @@
 import { createDate } from '$lib/dates/createDateObject';
-import { getCurrentWeekdayAbbreviation } from '$lib/dates/dataWeekday';
+import { getWeekdayAbbreviationByDate } from '$lib/dates/dataWeekday';
 import { mapValues } from '$lib/helpers/mapValues';
 import { emptyTimeTable, type WeekDay } from '../../constants/weekDays';
 import { timetable } from '../../stores';
+import type { CustomDate } from '../../types/customDate';
 
 let times = emptyTimeTable;
 
@@ -27,20 +28,22 @@ export const nextWeekdayForSubject = (day: WeekDay, subject: string) => {
 	return day;
 };
 
-export const nextCustomDateForWeekday = (day: WeekDay) => {
+export const nextCustomDateForWeekday = (day: WeekDay, start: CustomDate) => {
 	const weekdays = Object.keys(times);
 
-	const todayIndex = weekdays.indexOf(getCurrentWeekdayAbbreviation());
+	const todayIndex = weekdays.indexOf(getWeekdayAbbreviationByDate(start));
 	const dayIndex = weekdays.indexOf(day);
 
 	const daysToNext = dayIndex - todayIndex;
 
+	const endDate = new Date(start.year, start.month - 1, start.day);
+	endDate.setDate(endDate.getDate() + daysToNext);
+
 	const currently = new Date();
-	currently.setDate(currently.getDate() + daysToNext);
+	currently.setHours(0, 0, 0, 0);
 
-	if (currently <= new Date()) {
-		currently.setDate(currently.getDate() + 7);
+	if (endDate <= currently) {
+		endDate.setDate(endDate.getDate() + 7);
 	}
-
-	return createDate(currently);
+	return createDate(endDate);
 };

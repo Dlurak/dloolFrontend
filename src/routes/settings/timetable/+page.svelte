@@ -4,6 +4,7 @@
 	import { getWeekdayByAbbreviation } from '$lib/dates/dataWeekday';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
 	import I18n from '$lib/I18n.svelte';
+	import { subjectsSortetCapitalized } from '../../../constants/subjecticons';
 
 	const getWeekdays = () =>
 		(Object.keys($timetable) as WeekDay[]).map((abbr) => ({
@@ -108,17 +109,25 @@
 											sanitizeTimetable();
 										}}
 										class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5 bg-gray-200"
+										list="subjects"
 									/>
-									<QuickActionButton
-										iconName="bx bx-trash"
-										color="text-red-500"
-										on:click={() => {
-											const lessons = $timetable[weekdays[j].abbr];
-											const splicedLessons = lessons.toSpliced(i, 1);
+									<datalist id="subjects">
+										{#each subjectsSortetCapitalized as subj}
+											<option value={subj} />
+										{/each}
+									</datalist>
+									{#if lesson.trim()}
+										<QuickActionButton
+											iconName="bx bx-trash"
+											color="text-red-500"
+											on:click={() => {
+												const lessons = $timetable[weekdays[j].abbr];
+												const splicedLessons = lessons.toSpliced(i, 1);
 
-											timetable.update((t) => ({ ...t, [weekdays[j].abbr]: splicedLessons }));
-										}}
-									/>
+												timetable.update((t) => ({ ...t, [weekdays[j].abbr]: splicedLessons }));
+											}}
+										/>
+									{/if}
 								</div>
 							</td>
 						{/each}

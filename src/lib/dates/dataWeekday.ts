@@ -1,3 +1,4 @@
+import type { WeekDay } from '../../constants/weekDays';
 import { i, type T, type Token } from '../../languages/i18n';
 
 const token = [
@@ -23,6 +24,29 @@ export function getWeekdayByDate(date: { day: number; month: number; year: numbe
 	const weekdays = token.map((key) => i(key));
 
 	return weekdays[dateObj.getDay()] as WeekdayTranslation;
+}
+
+/**
+ * A function to give a weekday by abbreviation.
+ * @param abbreviation The abbreviation of the weekday
+ * @returns A translation of the weekday
+ */
+export function getWeekdayByAbbreviation(abbreviation: WeekDay) {
+	const longWeekdayToken = (
+		{
+			mo: 'date.monday',
+			tu: 'date.tuesday',
+			we: 'date.wednesday',
+			th: 'date.thursday',
+			fr: 'date.friday',
+			sa: 'date.saturday',
+			su: 'date.sunday'
+		} satisfies Record<WeekDay, Token>
+	)[abbreviation];
+
+	return i(longWeekdayToken, {}, {
+		transform: 'capitalize'
+	} as const);
 }
 
 export const getWeekdays = () => token.map((key) => i(key)) as WeekdayTranslation[];

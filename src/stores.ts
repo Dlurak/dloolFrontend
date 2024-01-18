@@ -7,6 +7,7 @@ import type { SubjectColor } from './types/subjectColors';
 import { PUBLIC_API_URL } from '$env/static/public';
 import type { launcherLink } from './types/launcher';
 import { launcherLinks as launcherLinksConst } from './constants/launcher';
+import { emptyTimeTable, type TimeTable } from './constants/weekDays';
 
 export const focusedNote = writable<Note | null>(null);
 export const showHomeworkFilter = writable<boolean>(false);
@@ -32,6 +33,7 @@ export const settings = writable<{
 });
 
 export const subjectColors = writable<SubjectColor[]>([]);
+export const timetable = writable<TimeTable>(emptyTimeTable);
 
 export const showLauncher = writable(false);
 export const launcherLinks = writable<launcherLink[]>(launcherLinksConst);

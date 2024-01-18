@@ -159,6 +159,8 @@ const en = {
 	'settings.preferences': 'Preferences',
 	'settings.colors': 'Colors',
 	'settings.api': 'API-Settings',
+	'settings.timetable': 'Timetable',
+	'settings.timetable.reset': 'Reset',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
 	'settings.apperance': 'Apperance',
 	'settings.apperance.theme': 'Theme',

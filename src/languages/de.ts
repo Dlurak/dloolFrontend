@@ -163,6 +163,8 @@ const de = {
 	'settings.preferences': 'Einstellungen',
 	'settings.colors': 'Farben',
 	'settings.api': 'API Einstellungen',
+	'settings.timetable': 'Stundenplan',
+	'settings.timetable.reset': 'Zurücksetzen',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',

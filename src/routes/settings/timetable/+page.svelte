@@ -102,11 +102,11 @@
 									<input
 										type="text"
 										value={lesson}
-										on:input={(e) => {
+										on:blur={(e) => {
 											$timetable[weekdays[j].abbr][i] = e.currentTarget.value;
 											$timetable = $timetable;
+											sanitizeTimetable();
 										}}
-										on:blur={sanitizeTimetable}
 										class="rounded-sm text-light-text dark:text-light-text px-2 py-0.5 bg-gray-200"
 									/>
 									<QuickActionButton

@@ -7,7 +7,7 @@ export const emptyTimeTable = {
 	fr: [],
 	sa: [],
 	su: []
-} satisfies TimeTable;
+} as TimeTable;
 
 export type WeekDay = (typeof weekdays)[number];
 

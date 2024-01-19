@@ -18,6 +18,7 @@
 				s.useTimeTableForAutcomplete = checked;
 				return s;
 			});
+
 			setLocalstorage('useTimeTable', checked);
 		}}
 	/>

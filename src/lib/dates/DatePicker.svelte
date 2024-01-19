@@ -24,6 +24,15 @@
 	$: {
 		dateObj = createDate(new Date(date));
 	}
+
+	const setDate = () => {
+		date = getDateInInputFormat(new Date(dateObj.year, dateObj.month - 1, dateObj.day));
+	};
+
+	$: {
+		dateObj;
+		setDate();
+	}
 </script>
 
 <div class="row">

@@ -54,6 +54,7 @@
 	const generateFullAssignment: () => Assignment = () => ({ subject, description, due });
 </script>
 
+{fromAbbr}
 <div class="flex flex-col justify-evenly items-center">
 	<QuickActionButton
 		iconName="bx-up-arrow"
@@ -78,6 +79,7 @@
 		disabled={allAssignments.indexOf(generateFullAssignment()) === allAssignments.length - 1}
 	/>
 </div>
+
 <div class="w-full">
 	<span class="flex flex-row items-center justify-start gap-2 my-2">
 		<div class="flex flex-row w-full gap-2">

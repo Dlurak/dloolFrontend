@@ -143,7 +143,16 @@ const rawLauncherLinks: {
 		action: () => goto('/settings/timetable'),
 		bxIcon: 'bx-calendar',
 		description: 'nav.settings.timetable.description',
-		query: ['timetable', 'stundenplan', 'fächer', 'fach', 'subjects', 'subject', 'autocomplete', 'autovervollständigung']
+		query: [
+			'timetable',
+			'stundenplan',
+			'fächer',
+			'fach',
+			'subjects',
+			'subject',
+			'autocomplete',
+			'autovervollständigung'
+		]
 	},
 	{
 		title: 'nav.settings.preferences',

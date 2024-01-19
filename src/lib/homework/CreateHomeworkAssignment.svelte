@@ -12,17 +12,33 @@
 	import type { CustomDate } from '../../types/customDate';
 	import type { WeekDay } from '../../constants/weekDays';
 
-	export let assignment: Assignment;
+	// export let assignment: Assignment;
+	export let subject: string;
+	export let description: string;
+	export let due: CustomDate;
 	export let allAssignments: Assignment[];
 	export let fromDate: CustomDate;
 
 	let fromAbbr: WeekDay = getWeekdayAbbreviationByDate(fromDate);
-	let dueWeekday = nextWeekdayForSubject(fromAbbr, assignment.subject);
+	let dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
+
+	let inputModified = false;
+	const inputModifiedFalse = () => (inputModified = false);
+
+	$: {
+		fromAbbr;
+		inputModifiedFalse();
+	}
 
 	$: {
 		fromAbbr = getWeekdayAbbreviationByDate(fromDate);
-		dueWeekday = nextWeekdayForSubject(fromAbbr, assignment.subject);
-		assignment.due = nextCustomDateForWeekday(dueWeekday, fromDate);
+		dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
+
+		if (!inputModified) {
+			due = nextCustomDateForWeekday(dueWeekday, fromDate);
+		} else {
+			inputModifiedFalse();
+		}
 	}
 
 	let autocompleteSubjects = $settings.useTimeTableForAutcomplete
@@ -34,6 +50,8 @@
 			? $timetable[fromAbbr]
 			: subjectsSortetCapitalized;
 	}
+
+	const generateFullAssignment: () => Assignment = () => ({ subject, description, due });
 </script>
 
 <div class="flex flex-col justify-evenly items-center">
@@ -41,23 +59,23 @@
 		iconName="bx-up-arrow"
 		focusedIconName="bxs-up-arrow"
 		on:click={() => {
-			const index = allAssignments.indexOf(assignment);
+			const index = allAssignments.indexOf(generateFullAssignment());
 			const newIndex = index - 1;
 
 			allAssignments = swapArrayElements(allAssignments, index, newIndex);
 		}}
-		disabled={allAssignments.indexOf(assignment) === 0}
+		disabled={allAssignments.indexOf(generateFullAssignment()) === 0}
 	/>
 	<QuickActionButton
 		iconName="bx-down-arrow"
 		focusedIconName="bxs-down-arrow"
 		on:click={() => {
-			const index = allAssignments.indexOf(assignment);
+			const index = allAssignments.indexOf(generateFullAssignment());
 			const newIndex = index + 1;
 
 			allAssignments = swapArrayElements(allAssignments, index, newIndex);
 		}}
-		disabled={allAssignments.indexOf(assignment) === allAssignments.length - 1}
+		disabled={allAssignments.indexOf(generateFullAssignment()) === allAssignments.length - 1}
 	/>
 </div>
 <div class="w-full">
@@ -66,7 +84,7 @@
 			<I18n>
 				<input
 					type="text"
-					bind:value={assignment.subject}
+					bind:value={subject}
 					placeholder={i('homework.add.subject')}
 					class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
 					list={`subjects-${fromAbbr}`}
@@ -78,13 +96,18 @@
 				{/each}
 			</datalist>
 			<span class="min-w-max outline-1 outline-gray-400 outline rounded-sm p-1">
-				<DatePicker bind:dateObj={assignment.due} />
+				<DatePicker
+					bind:dateObj={due}
+					on:input={() => {
+						inputModified = true;
+					}}
+				/>
 			</span>
 		</div>
 	</span>
 	<I18n>
 		<textarea
-			bind:value={assignment.description}
+			bind:value={description}
 			placeholder={i('homework.add.description')}
 			class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
 			rows="2"

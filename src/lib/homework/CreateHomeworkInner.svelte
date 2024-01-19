@@ -18,7 +18,13 @@
 <ul class="list-none">
 	{#each assignments as assignment}
 		<li class="flex flex-row">
-			<CreateHomeworkAssignment bind:assignment bind:allAssignments={assignments} fromDate={date} />
+			<CreateHomeworkAssignment
+				bind:subject={assignment.subject}
+				bind:description={assignment.description}
+				bind:due={assignment.due}
+				bind:allAssignments={assignments}
+				fromDate={date}
+			/>
 		</li>
 	{/each}
 </ul>

@@ -2,17 +2,17 @@ import type { CustomDate, CustomDateTime } from '../../types/customDate';
 
 export function createDate(d: Date): CustomDate {
 	return {
-		day: d.getUTCDate(),
-		month: d.getUTCMonth() + 1,
-		year: d.getUTCFullYear()
+		day: d.getDate(),
+		month: d.getMonth() + 1,
+		year: d.getFullYear()
 	};
 }
 
 export function createDateTime(d: Date): CustomDateTime {
 	return {
 		...createDate(d),
-		hour: d.getUTCHours(),
-		minute: d.getUTCMinutes()
+		hour: d.getHours(),
+		minute: d.getMinutes()
 	};
 }
 

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@svelte-plugins/datepicker':
+    specifier: ^1.0.2
+    version: 1.0.2
   '@tailwindcss/container-queries':
     specifier: ^0.1.1
     version: 0.1.1(tailwindcss@3.3.4)
@@ -2008,6 +2011,10 @@ packages:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.10
     dev: true
+
+  /@svelte-plugins/datepicker@1.0.2:
+    resolution: {integrity: sha512-38JWdXzoGuSfknXop5pPDrguCmNJ1lQtzUBoyav7CjdLjRrwBoPiisMEiHDXioxRlmRhvvkIvOZHX9TNj3gPRA==}
+    dev: false
 
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.27.0):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}

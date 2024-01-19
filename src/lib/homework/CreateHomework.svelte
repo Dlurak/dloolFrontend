@@ -5,7 +5,6 @@
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { createDate } from '$lib/dates/createDateObject';
 	import Box from './Box.svelte';
-	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import CreateHomeworkInner from './CreateHomeworkInner.svelte';
 	import I18n from '$lib/I18n.svelte';
@@ -19,7 +18,7 @@
 		return;
 	};
 
-	let assignedAtDateObj: CustomDate;
+	let assignedAtDateObj = createDate(new Date());
 
 	let assignments: Assignment[] = [
 		{
@@ -96,7 +95,7 @@
 		<h3 class="mb-4">
 			<DatePicker bind:dateObj={assignedAtDateObj} />
 		</h3>
-		<CreateHomeworkInner bind:assignments />
+		<CreateHomeworkInner bind:assignments bind:date={assignedAtDateObj} />
 		<I18n>
 			<SubmitButton value={i('homework.add.submit')} disabled={submitButtonDisabled} />
 		</I18n>

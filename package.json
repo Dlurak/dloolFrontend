@@ -45,6 +45,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@svelte-plugins/datepicker": "^1.0.2",
 		"@tailwindcss/container-queries": "^0.1.1",
 		"html2canvas": "^1.4.1",
 		"svelte-markdown": "^0.4.1"

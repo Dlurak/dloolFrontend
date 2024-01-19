@@ -20,6 +20,7 @@
 	import { addToast } from '$lib/toast/addToast';
 	import { currentLanguage } from '../stores';
 	import SendRootReq from '$lib/layout/SendRootReq.svelte';
+	import TimeTable from '$lib/layout/TimeTable.svelte';
 
 	let footerHeight = 0;
 	let navbarHeight = 0;
@@ -90,6 +91,7 @@
 <Theme />
 <Logout />
 <SubjectColors />
+<TimeTable />
 <SendRootReq />
 
 <!--Those apply settings, update stores...-->

@@ -74,6 +74,8 @@ const de = {
 		'Hier kannst du ein paar Tricks sehen. Sie sind aufjedenfall einen Blick Wert ;)',
 	'nav.settings.colors': 'Farben für Fächer',
 	'nav.settings.colors.description': 'Hier kannst du die Farben für deine Fächer ändern.',
+	'nav.settings.timetable': 'Stundenplan',
+	'nav.settings.timetable.description': 'Hier kannst du deinen Stundenplan ändern.',
 	'nav.settings.preferences': 'Präferenzen',
 	'nav.settings.preferences.description':
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',
@@ -163,6 +165,13 @@ const de = {
 	'settings.preferences': 'Einstellungen',
 	'settings.colors': 'Farben',
 	'settings.api': 'API Einstellungen',
+	'settings.timetable': 'Stundenplan',
+	'settings.timetable.reset': 'Zurücksetzen',
+	'settings.timetable.useForAutoComplete': 'Nutze den Stundenplan für die Autovervollständigung',
+	'settings.timetable.export': 'Exportieren',
+	'settings.timetable.import': 'Importieren',
+	'settings.timetable.import.confirm':
+		'Bist du sicher, dass du den Stundenplan importieren möchtest? Der aktuelle Stundenplan wird überschrieben!',
 	'settings.selectSpecificSection':
 		'Wähle links eine spezifische Sektion aus, um die Einstellungen zu ändern.',
 	'settings.apperance': 'Aussehen',
@@ -303,6 +312,9 @@ const de = {
 
 	'toast.download.homework.success': 'Hausaufgaben erfolgreich heruntergeladen.',
 	'toast.download.homework.error': 'Hausaufgaben konnten nicht heruntergeladen werden.',
+
+	'toast.file.InvalidFile': 'Die Datei ist ungültig :(',
+	'toast.file.ReadError': 'Die Datei konnte nicht gelesen werden :(',
 
 	'toast.colors.import.success': 'Farben erfolgreich importiert.',
 	'toast.colors.import.invalidFile': 'Die Datei ist ungültig :(',

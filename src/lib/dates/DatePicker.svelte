@@ -3,7 +3,7 @@
 	import { getDateInInputFormat } from '$lib/dates/getDateInInputFormat';
 	import DateLabel from './dateLabel.svelte';
 	import type { CustomDate } from '../../types/customDate';
-	import { onMount } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import I18n from '$lib/I18n.svelte';
 	import { i } from '../../languages/i18n';
 
@@ -15,11 +15,15 @@
 	let dateInput: HTMLInputElement;
 	let isSafari = false;
 
+	const dispatcher = createEventDispatcher();
+
 	onMount(() => {
 		isSafari = navigator.userAgent.toLocaleLowerCase().includes('safari');
 	});
 
-	$: dateObj = createDate(new Date(date));
+	$: {
+		dateObj = createDate(new Date(date));
+	}
 </script>
 
 <div class="row">
@@ -28,6 +32,9 @@
 		bind:value={date}
 		id={isSafari ? 'safari-date-picker' : 'heading-input'}
 		bind:this={dateInput}
+		on:input={() => {
+			dispatcher('input', dateObj);
+		}}
 	/>
 	{#if !isSafari}
 		<DateLabel date={dateObj} />

@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import I18n from '$lib/I18n.svelte';
 	import QuickActionButton from '$lib/QuickActionButton.svelte';
-	import { i } from '../../languages/i18n';
+	import { i, type Token } from '../../languages/i18n';
 
 	const links = [
 		{
@@ -17,6 +17,11 @@
 			'box-icon': 'bx-cog'
 		},
 		{
+			name: 'settings.timetable',
+			uri: '/timetable',
+			'box-icon': 'bxs-calendar'
+		},
+		{
 			name: 'settings.colors',
 			uri: '/colors',
 			'box-icon': 'bx-palette'
@@ -26,7 +31,7 @@
 			uri: '/api',
 			'box-icon': 'bx-server'
 		}
-	] as const;
+	] satisfies ({ name: Token; uri: string; 'box-icon': string } | 'hr')[];
 
 	let isSubpage = false;
 

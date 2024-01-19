@@ -139,6 +139,22 @@ const rawLauncherLinks: {
 		query: ['colors', 'farben', 'fach', 'fächer', 'subject', 'bunt', 'colorfull']
 	},
 	{
+		title: 'nav.settings.timetable',
+		action: () => goto('/settings/timetable'),
+		bxIcon: 'bx-calendar',
+		description: 'nav.settings.timetable.description',
+		query: [
+			'timetable',
+			'stundenplan',
+			'fächer',
+			'fach',
+			'subjects',
+			'subject',
+			'autocomplete',
+			'autovervollständigung'
+		]
+	},
+	{
 		title: 'nav.settings.preferences',
 		action: () => goto('/settings/preferences'),
 		bxIcon: 'bx-cog',

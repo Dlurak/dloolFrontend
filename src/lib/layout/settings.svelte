@@ -8,6 +8,7 @@
 		settings.update((s) => {
 			s.showTextInNavbar = getLocalstorage('textInNav', true);
 			s.showSearchInNavbar = getLocalstorage('searchInNav', false);
+			s.useTimeTableForAutcomplete = getLocalstorage('useTimeTable', false);
 			return s;
 		});
 

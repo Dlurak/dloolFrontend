@@ -76,7 +76,7 @@
 		<TimeAgo classes="text-xs" timestamp={createdAt} type="edited" />
 	</div>
 	{#if editMode}
-		<CreateHomeworkInner bind:assignments={newAssignments} />
+		<CreateHomeworkInner bind:assignments={newAssignments} bind:date={newDate} />
 	{:else}
 		<ul class="list-none p-0 flex flex-col gap-3">
 			{#each assignments as assignment}

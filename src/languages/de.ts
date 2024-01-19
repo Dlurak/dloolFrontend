@@ -74,6 +74,8 @@ const de = {
 		'Hier kannst du ein paar Tricks sehen. Sie sind aufjedenfall einen Blick Wert ;)',
 	'nav.settings.colors': 'Farben für Fächer',
 	'nav.settings.colors.description': 'Hier kannst du die Farben für deine Fächer ändern.',
+	'nav.settings.timetable': 'Stundenplan',
+	'nav.settings.timetable.description': 'Hier kannst du deinen Stundenplan ändern.',
 	'nav.settings.preferences': 'Präferenzen',
 	'nav.settings.preferences.description':
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',

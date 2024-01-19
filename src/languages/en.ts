@@ -72,6 +72,8 @@ const en = {
 	'nav.tricks.description': 'Here you can see some tricks, defeniately worth a look!',
 	'nav.settings.colors': 'Colors for subjects',
 	'nav.settings.colors.description': 'Here you can change the colors for your subjects',
+	'nav.settings.timetable': 'Timetable',
+	'nav.settings.timetable.description': 'Here you can edit your timetable',
 	'nav.settings.preferences': 'Preferences',
 	'nav.settings.preferences.description': 'Here you can change your preferences like the theme.',
 	'nav.search': 'Search',

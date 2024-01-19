@@ -6,6 +6,10 @@
 	import I18n from '$lib/I18n.svelte';
 	import { subjectsSortetCapitalized } from '../../../constants/subjecticons';
 	import UseTimeTableForAutcompletion from '$lib/preferences/UseTimeTableForAutocompletion.svelte';
+	import { getFile } from '$lib/files/readFile';
+	import { addToast } from '$lib/toast/addToast';
+	import { timetableSchema } from '../../../zod/timetable';
+	import { i } from '../../../languages/i18n';
 
 	const getWeekdays = () =>
 		(Object.keys($timetable) as WeekDay[]).map((abbr) => ({
@@ -71,7 +75,7 @@
 	}));
 </script>
 
-<div class="flex justify-end pb-2">
+<div class="flex justify-end pb-2 gap-3">
 	<button
 		class="px-3 py-1 rounded-md bg-red-500 text-white"
 		on:click={() => {
@@ -80,6 +84,55 @@
 	>
 		<i class="bx bx-trash" />
 		<I18n key="settings.timetable.reset" />
+	</button>
+	<button
+		class="px-3 py-1 rounded-md text-white bg-green-500"
+		on:click={() => {
+			const data = JSON.stringify($timetable);
+			const blob = new Blob([data], { type: 'application/json' });
+			const url = URL.createObjectURL(blob);
+
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = 'timetable.json';
+			a.click();
+		}}
+	>
+		<i class="bx bx-download" />
+		<I18n key="settings.timetable.export" />
+	</button>
+	<button
+		class="px-3 py-1 rounded-md text-white bg-blue-500"
+		on:click={async () => {
+			if (maxLessons > 0 && !confirm(i('settings.timetable.import.confirm'))) return;
+
+			const raw = await getFile('.json');
+			if (!raw) {
+				addToast({
+					type: 'error',
+					content: 'toast.file.ReadError',
+					duration: 5000
+				});
+				return;
+			}
+
+			try {
+				const data = JSON.parse(raw.content);
+				const parsed = timetableSchema.parse(data);
+				// @ts-expect-error zod scheme is partitial which is ok
+				timetable.set(parsed);
+			} catch (e) {
+				addToast({
+					type: 'error',
+					content: 'toast.file.InvalidFile',
+					duration: 5000
+				});
+				return;
+			}
+		}}
+	>
+		<i class="bx bx-upload" />
+		<I18n key="settings.timetable.import" />
 	</button>
 </div>
 

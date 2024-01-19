@@ -164,6 +164,10 @@ const en = {
 	'settings.timetable': 'Timetable',
 	'settings.timetable.reset': 'Reset',
 	'settings.timetable.useForAutoComplete': 'Use this timetable for auto complete',
+	'settings.timetable.export': 'Export',
+	'settings.timetable.import': 'Import',
+	'settings.timetable.import.confirm':
+		'Are you sure you want to import this timetable? This will overwrite your current timetable!',
 	'settings.selectSpecificSection': 'Select a specific section on the left to change its settings',
 	'settings.apperance': 'Apperance',
 	'settings.apperance.theme': 'Theme',
@@ -300,6 +304,9 @@ const en = {
 
 	'toast.download.homework.success': 'Successfully downloaded homework',
 	'toast.download.homework.error': 'Failed to download homework',
+
+	'toast.file.InvalidFile': 'Invalid file :(',
+	'toast.file.ReadError': 'This file could not be read :(',
 
 	'toast.colors.import.success': 'Farben erfolgreich importiert.',
 	'toast.colors.import.invalidFile': 'Die Datei ist ungültig :(',

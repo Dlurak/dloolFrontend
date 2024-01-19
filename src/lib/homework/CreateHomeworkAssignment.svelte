@@ -54,7 +54,6 @@
 	const generateFullAssignment: () => Assignment = () => ({ subject, description, due });
 </script>
 
-{fromAbbr}
 <div class="flex flex-col justify-evenly items-center">
 	<QuickActionButton
 		iconName="bx-up-arrow"

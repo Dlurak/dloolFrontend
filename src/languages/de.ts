@@ -276,6 +276,8 @@ const de = {
 	'time.ago.edited.months.1': 'Vor einem Monat bearbeitet',
 	'time.ago.edited.years': 'Vor time Jahren bearbeitet',
 	'time.ago.edited.years.1': 'Vor einem Jahr bearbeitet',
+	'time.ago.absolute.created': 'Am $date um $time erstellt',
+	'time.ago.absolute.edited': 'Am $date um $time bearbeitet',
 	events: 'Kalender',
 	'events.create.success': 'Erfolgreich erstellt',
 	'events.create.time.start': 'Start',

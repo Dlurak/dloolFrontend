@@ -10,6 +10,17 @@
 	export let type: 'edited' | 'created' = 'created';
 
 	let timeDifference: string = getTimeDifference();
+	let absoluteString = i(`time.ago.absolute.${type}`, {
+		time: new Date(timestamp).toLocaleTimeString($currentLanguage),
+		date: new Date(timestamp).toLocaleDateString($currentLanguage)
+	});
+
+	currentLanguage.subscribe(() => {
+		absoluteString = i(`time.ago.absolute.${type}`, {
+			time: new Date(timestamp).toLocaleTimeString($currentLanguage),
+			date: new Date(timestamp).toLocaleDateString($currentLanguage)
+		});
+	});
 
 	function getTimeDifference() {
 		const currentTime = Date.now();
@@ -60,7 +71,7 @@
 
 <button on:click={() => (fullDate = !fullDate)} class="w-max">
 	{#if fullDate}
-		<p class={classes}>{new Date(timestamp).toLocaleString($currentLanguage)}</p>
+		<p class={classes}>{absoluteString}</p>
 	{:else}
 		<!-- It's ok that this isn't in a I18n tag due to the interval-->
 		<p class={classes}>{timeDifference}</p>

@@ -268,6 +268,8 @@ const en = {
 	'time.ago.edited.months.1': 'Edited a Month ago',
 	'time.ago.edited.years': 'Edited time Years ago',
 	'time.ago.edited.years.1': 'Edited a Year ago',
+	'time.ago.absolute.created': 'Created on the $date at $time',
+	'time.ago.absolute.edited': 'Edited on the $date at $time',
 	events: 'Calendar',
 	'events.create.success': 'Successfully created new event',
 	'events.create.time.start': 'Start',

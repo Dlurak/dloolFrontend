@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 	import { i, type Token } from '../../languages/i18n';
+	import { currentLanguage } from '../../stores';
 
 	export let timestamp: number;
 	export let classes = '';
+	export let fullDate = false;
 
 	export let type: 'edited' | 'created' = 'created';
 
@@ -56,5 +58,11 @@
 	});
 </script>
 
-<!-- It's ok that this isn't in a I18n tag due to the interval-->
-<p class={classes}>{timeDifference}</p>
+<button on:click={() => (fullDate = !fullDate)} class="w-max">
+	{#if fullDate}
+		<p class={classes}>{new Date(timestamp).toLocaleString($currentLanguage)}</p>
+	{:else}
+		<!-- It's ok that this isn't in a I18n tag due to the interval-->
+		<p class={classes}>{timeDifference}</p>
+	{/if}
+</button>

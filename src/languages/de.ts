@@ -211,6 +211,12 @@ const de = {
 
 	'settings.language': 'Sprach-Einstellungen',
 	'settings.language.language': 'Sprache',
+	'settings.language.url': 'URL',
+	'settings.language.url.base': 'Libretranslate URL',
+	'settings.language.token': 'Token',
+	'settings.language.token.tipp': 'Teile dieses token mit niemanden',
+	'settings.language.token.base': 'Libretranslate API-Token',
+	'settings.language.libretranslate.enable': 'Nutze LibreTranslate',
 
 	'colors.red': 'Rot',
 	'colors.green': 'Grün',

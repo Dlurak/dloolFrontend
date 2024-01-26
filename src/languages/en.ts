@@ -206,6 +206,12 @@ const en = {
 
 	'settings.language': 'Language-Settings',
 	'settings.language.language': 'Language',
+	'settings.language.url': 'URL',
+	'settings.language.url.base': 'Libretranslate URL',
+	'settings.language.token': 'Token',
+	'settings.language.token.tipp': "Don't share this token with anybody!",
+	'settings.language.token.base': 'Libretranslate API-Token',
+	'settings.language.libretranslate.enable': 'Use LibreTranslate',
 
 	'colors.red': 'Red',
 	'colors.green': 'Green',

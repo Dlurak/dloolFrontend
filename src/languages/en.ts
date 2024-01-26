@@ -76,6 +76,9 @@ const en = {
 	'nav.settings.timetable.description': 'Here you can edit your timetable',
 	'nav.settings.preferences': 'Preferences',
 	'nav.settings.preferences.description': 'Here you can change your preferences like the theme.',
+	'nav.settings.language': 'Language-Settings',
+	'nav.settings.language.description': 'Here you can switch your language',
+
 	'nav.search': 'Search',
 	'nav.documentation': 'Documentation',
 	'nav.documentation.description': 'The documentation aims to explain everything about Dlool',
@@ -200,6 +203,9 @@ const en = {
 	'settings.api.submit': 'Save',
 	'settings.api.toast.success': 'Successfully changed API URL',
 	'settings.api.toast.error': "This URL is'nt a valid Dlool API",
+
+	'settings.language': 'Language-Settings',
+	'settings.language.language': 'Language',
 
 	'colors.red': 'Red',
 	'colors.green': 'Green',

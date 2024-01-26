@@ -79,6 +79,9 @@ const de = {
 	'nav.settings.preferences': 'Präferenzen',
 	'nav.settings.preferences.description':
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',
+	'nav.settings.language': 'Sprach-Einstellungen',
+	'nav.settings.language.description': 'Hier kannst du deine Sprache ändern',
+
 	'nav.search': 'Suche',
 	'nav.documentation': 'Dokumentation',
 	'nav.documentation.description': 'Die Dokumentation erklärt dir gesamt Dlool.',
@@ -205,6 +208,9 @@ const de = {
 	'settings.api.submit': 'Speichern',
 	'settings.api.toast.success': 'API URL erfolgreich gespeichert.',
 	'settings.api.toast.error': 'Diese URL ist kein gültiger Dlool Server.',
+
+	'settings.language': 'Sprach-Einstellungen',
+	'settings.language.language': 'Sprache',
 
 	'colors.red': 'Rot',
 	'colors.green': 'Grün',

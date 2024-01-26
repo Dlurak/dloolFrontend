@@ -27,6 +27,11 @@
 			'box-icon': 'bx-palette'
 		},
 		{
+			name: 'settings.language',
+			uri: '/language',
+			'box-icon': 'bx-globe'
+		},
+		{
 			name: 'settings.api',
 			uri: '/api',
 			'box-icon': 'bx-server'

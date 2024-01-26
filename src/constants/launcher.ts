@@ -155,6 +155,22 @@ const rawLauncherLinks: {
 		]
 	},
 	{
+		title: 'nav.settings.language',
+		action: () => goto('/settings/language'),
+		bxIcon: 'bx-globe',
+		description: 'nav.settings.language.description',
+		query: [
+			'language',
+			'Sprache',
+			'international',
+			'i18n',
+			'Deutsch',
+			'Englisch',
+			'German',
+			'English'
+		]
+	},
+	{
 		title: 'nav.settings.preferences',
 		action: () => goto('/settings/preferences'),
 		bxIcon: 'bx-cog',

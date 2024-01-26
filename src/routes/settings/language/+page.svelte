@@ -22,13 +22,7 @@
 		</section>
 		<hr />
 		<section class="flex flex-col gap-3">
-			<div>
-				<h4>LibreTranslate</h4>
-				<p>
-					Die obere Einstellung betrifft alles außer Nutzer-generierte inhalte.<br />
-					Diese können via <a href="https://libretranslate.com/">LibreTranslate</a> übersetzt werden.
-				</p>
-			</div>
+			<h4>LibreTranslate</h4>
 
 			<div class="flex items-center justify-between">
 				<I18n key="settings.language.libretranslate.enable" />

@@ -4,7 +4,7 @@
 	import { i } from '../../languages/i18n';
 	import { SvocalKeys } from '../../enums/svocal';
 
-	let url = localstorage(SvocalKeys.LIBRETRANSLATE_URL, '')
+	let url = localstorage(SvocalKeys.LIBRETRANSLATE_URL, '');
 </script>
 
 <div

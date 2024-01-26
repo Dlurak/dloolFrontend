@@ -167,7 +167,10 @@ const rawLauncherLinks: {
 			'Deutsch',
 			'Englisch',
 			'German',
-			'English'
+			'English',
+			'LibreTranslate',
+			'Übersetzen',
+			'Translate'
 		]
 	},
 	{

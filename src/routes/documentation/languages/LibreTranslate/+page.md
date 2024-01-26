@@ -9,14 +9,14 @@ date: 2024-01-27
 # Translating User Generated Content
 
 Dlool can use [LibreTranslate](https://libretranslate.com/) to translate some user generated content.  
-You will need to use a own API-Token or self host libretranslate. 
+You will need to use a own API-Token or self host libretranslate.
 Selfhosting, which I chose, is free but requires to run a server with LibreTranslate. You can use [this image from docker hub](https://hub.docker.com/r/libretranslate/libretranslate).  
-Using the official API will cost you 30$/month but you won't need to manage so much yourself.  
+Using the official API will cost you 30$/month but you won't need to manage so much yourself.
 
 ## Enabling LibreTranslate integration on Dlool
 
 1. Visit [this site of the settings](/settings/language).
-2. Enable *"Use LibreTranslate"*
+2. Enable _"Use LibreTranslate"_
 3. Set the URL, for the official deployment this will be `https://libretranslate.com/`  
    When self hosting you will need to figure it out yourself
 4. Set a token if needed.

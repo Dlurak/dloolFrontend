@@ -8,7 +8,7 @@ date: 2024-01-27
 
 # Multi-languag-support
 
-Dlool has excellent multi language support. 
+Dlool has excellent multi language support.
 Execpt for these docs the entirity of Dlool is available in multiple languages.
 
 ## Supported languages
@@ -20,12 +20,12 @@ I (author of the docs and maintainer of Dlool) speak German and English, so I ca
 
 ## Auto-Detection
 
-Dlool tries to use your preffered language by utilizing your request headers. 
+Dlool tries to use your preffered language by utilizing your request headers.
 
 ## Changing the language manually
 
 You can still change the language manually by scrolling to the top of the footer and clicking on the switcher.  
-Alternativly you can also open [these settings](/settings/language) and change it there.  
+Alternativly you can also open [these settings](/settings/language) and change it there.
 
 ## Translating User Generated Content
 

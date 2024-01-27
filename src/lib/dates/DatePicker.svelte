@@ -11,6 +11,7 @@
 	} from '$lib/calendar/utils';
 	import I18n from '$lib/I18n.svelte';
 	import type { IntRange } from '../../types/utils';
+	import { createEventDispatcher } from 'svelte';
 
 	const currentDate = new Date();
 
@@ -28,6 +29,8 @@
 		month: displayMonth,
 		year: displayYear
 	});
+
+	const dispatch = createEventDispatcher();
 </script>
 
 <button on:click={() => (isPicking = !isPicking)} type="button">
@@ -72,6 +75,7 @@
 						on:click={() => {
 							dateObj = getDisplayObj(i + 1);
 							isPicking = false;
+							dispatch('input', dateObj);
 						}}
 						class={JSON.stringify(getDisplayObj(i + 1)) === JSON.stringify(dateObj)
 							? 'rounded-full bg-light-secondary dark:bg-dark-secondary p-1'

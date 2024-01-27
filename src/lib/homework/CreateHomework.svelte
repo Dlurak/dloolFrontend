@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DatePicker from '../dates/DatePicker.svelte';
-
 	import { page } from '$app/stores';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import { createDate } from '$lib/dates/createDateObject';

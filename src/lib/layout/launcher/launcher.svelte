@@ -92,7 +92,7 @@
 	aria-hidden={show}
 >
 	<div
-		class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90%,38rem)] flex-col gap-4"
+		class="fixed top-[12.5%] left-1/2 -translate-x-1/2 w-[min(90%,38rem)] flex-col gap-4"
 		class:hidden={!show}
 		class:flex={show}
 	>
@@ -102,35 +102,33 @@
 				<input
 					type="search"
 					placeholder="Type a search"
-					class="bg-transparent w-full focus:outline-none focus:border-b-light-secondary dark:focus:border-b-dark-secondary focus:border-b-2 text-xl"
+					class="bg-transparent w-full focus:outline-none border-b-transparent pb-0.5 focus:border-b-light-secondary dark:focus:border-b-dark-secondary border-b-2 text-xl"
 					bind:this={inputElement}
 					bind:value={searchTerm}
 					on:input={handleInput}
 				/>
 			</div>
-		</div>
-
-		<div
-			class="shadow-nav rounded-md w-full bg-light-box dark:bg-dark-box py-2 max-h-[min(50vh,40rem)] overflow-y-scroll"
-			bind:this={linkListDiv}
-		>
-			<ul class="w-full flex flex-col gap-2 list-none">
-				{#each $launcherLinks as link}
-					{#key $launcherLinks}
-						<li bind:this={entriesObj[link.id]}>
-							<LauncherLink
-								{link}
-								isFocused={link.id === focusedId}
-								on:focus={() => (focusedId = link.id)}
-								on:close={() => showLauncher.set(false)}
-							/>
-						</li>
-					{/key}
-					{#if link.id !== launcherIds.at(-1)}
-						<hr class="border-gray-400 dark:border-gray-700" />
-					{/if}
-				{/each}
-			</ul>
+			{#if $launcherLinks.length}
+				<div class="w-full py-2 max-h-[min(50vh,40rem)] overflow-y-scroll" bind:this={linkListDiv}>
+					<ul class="w-full flex flex-col gap-2 list-none">
+						{#each $launcherLinks as link}
+							{#key $launcherLinks}
+								<li bind:this={entriesObj[link.id]}>
+									<LauncherLink
+										{link}
+										isFocused={link.id === focusedId}
+										on:focus={() => (focusedId = link.id)}
+										on:close={() => showLauncher.set(false)}
+									/>
+								</li>
+							{/key}
+							{#if link.id !== launcherIds.at(-1)}
+								<hr class="border-gray-400 dark:border-gray-700" />
+							{/if}
+						{/each}
+					</ul>
+				</div>
+			{/if}
 		</div>
 	</div>
 </div>

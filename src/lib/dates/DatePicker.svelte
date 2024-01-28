@@ -44,7 +44,7 @@
 	const displayPrevMonth = () =>
 		({ year: displayYear, month: displayMonth } = getPrevMonth(getDisplayObj()));
 	const displayNextMonth = () =>
-		({ year: displayYear, month: displayMonth } = getPrevMonth(getDisplayObj()));
+		({ year: displayYear, month: displayMonth } = getNextMonth(getDisplayObj()));
 </script>
 
 <svelte:window

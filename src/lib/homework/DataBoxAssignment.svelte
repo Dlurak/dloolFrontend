@@ -4,15 +4,14 @@
 	import { dateIsInPast } from '$lib/dates/dateIsInPast';
 	import DateLabel from '$lib/dates/dateLabel.svelte';
 	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
-	import { currentLanguage, subjectColors } from '../../stores';
+	import { subjectColors } from '../../stores';
 	import type { Assignment } from '../../types/homework';
 	import { localstorage } from 'svocal';
 	import { SvocalKeys } from '../../enums/svocal';
-	import { translate } from 'libretranslate';
+	import { translate } from '$lib/translate/index';
+	import Loader from '$lib/Loader.svelte';
 
 	export let assignment: Assignment;
-
-	let { description } = assignment;
 
 	let isOverdue = dateIsInPast(assignment.due);
 	let subjColor = $subjectColors.filter(
@@ -36,19 +35,7 @@
 		'https://libretranslate.com/'
 	);
 	let libretranslateToken = localstorage(SvocalKeys.LIBRETRANSLATE_TOKEN, '');
-	localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false).subscribe(async (useLibreTranslate) => {
-		description = assignment.description;
-		if (!useLibreTranslate) return;
-
-		description = await translate({
-			query: assignment.description,
-			target: $currentLanguage,
-			apiurl: $libretranslateUrl,
-			apiKey: $libretranslateToken
-		}).catch(() => {
-			description = assignment.description;
-		});
-	});
+	let useLibreTranslate = localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false);
 
 	$: isOverdue = dateIsInPast(assignment.due);
 	$: {
@@ -76,7 +63,20 @@
 			<h4>{assignment.subject}</h4>
 			<DateLabel date={assignment.due} />
 		</span>
-		<SvelteMarkdown source={description} />
+		{#if $useLibreTranslate}
+			{#await translate(assignment.description)}
+				<span class="flex gap-1">
+					<Loader type="inline" />
+					<SvelteMarkdown source={assignment.description} />
+				</span>
+			{:then d}
+				<SvelteMarkdown source={d} />
+			{:catch}
+				<SvelteMarkdown source={assignment.description} />
+			{/await}
+		{:else}
+			<SvelteMarkdown source={assignment.description} />
+		{/if}
 	</div>
 </div>
 <div class="hidden print:flex items-start">

@@ -31,7 +31,50 @@
 	});
 
 	const dispatch = createEventDispatcher();
+
+	// Keyboard shortcuts
+	let lastPressedKeys: number[] = [];
+
+	const setDate = (day: number) => {
+		dateObj = getDisplayObj(day);
+		isPicking = false;
+		lastPressedKeys = [];
+		dispatch('input', dateObj);
+	};
+	const displayPrevMonth = () =>
+		({ year: displayYear, month: displayMonth } = getPrevMonth(getDisplayObj()));
+	const displayNextMonth = () =>
+		({ year: displayYear, month: displayMonth } = getPrevMonth(getDisplayObj()));
 </script>
+
+<svelte:window
+	on:keydown={(e) => {
+		if (!isPicking) return;
+		if (e.repeat) return;
+
+		if (e.key === 'h' || e.key === 'ArrowLeft') {
+			displayPrevMonth();
+			return;
+		} else if (e.key === 'l' || e.key === 'ArrowRight') {
+			displayNextMonth();
+			return;
+		} else if (/^\d$/.test(e.key)) {
+			lastPressedKeys.push(parseInt(e.key));
+			if (lastPressedKeys.length < 2) return;
+
+			const currentNumber = lastPressedKeys[0] * 10 + lastPressedKeys[1];
+
+			const isTooBig = currentNumber > getMonthLength(getDisplayObj());
+			const isTooSmall = currentNumber === 0;
+			if (isTooBig || isTooSmall) {
+				lastPressedKeys = [];
+				return;
+			}
+
+			setDate(currentNumber);
+		}
+	}}
+/>
 
 <button on:click={() => (isPicking = !isPicking)} type="button">
 	<DateLabel date={dateObj} />
@@ -40,12 +83,7 @@
 <Modal bind:open={isPicking}>
 	<div class="flex flex-col gap-2">
 		<div class="flex justify-between">
-			<button
-				on:click={() =>
-					({ year: displayYear, month: displayMonth } = getPrevMonth(getDisplayObj()))}
-				type="button"
-				class="bx bx-chevron-left"
-			/>
+			<button on:click={displayPrevMonth} type="button" class="bx bx-chevron-left" />
 			<span>
 				{#key displayMonth}
 					<I18n
@@ -57,12 +95,7 @@
 				{/key}
 				{displayYear}
 			</span>
-			<button
-				on:click={() =>
-					({ year: displayYear, month: displayMonth } = getNextMonth(getDisplayObj()))}
-				type="button"
-				class="bx bx-chevron-right"
-			/>
+			<button on:click={displayNextMonth} type="button" class="bx bx-chevron-right" />
 		</div>
 		<div class="grid grid-cols-7 gap-0.5">
 			{#key [displayMonth, displayYear]}
@@ -73,9 +106,7 @@
 					<button
 						type="button"
 						on:click={() => {
-							dateObj = getDisplayObj(i + 1);
-							isPicking = false;
-							dispatch('input', dateObj);
+							setDate(i + 1);
 						}}
 						class={JSON.stringify(getDisplayObj(i + 1)) === JSON.stringify(dateObj)
 							? 'rounded-full bg-light-secondary dark:bg-dark-secondary p-1'

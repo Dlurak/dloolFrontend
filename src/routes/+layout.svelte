@@ -13,7 +13,6 @@
 	import Language from '$lib/layout/Language.svelte';
 	import Logout from '$lib/layout/Logout.svelte';
 	import Theme from '$lib/layout/Theme.svelte';
-	import SubjectColors from '$lib/layout/SubjectColors.svelte';
 	import Launcher from '$lib/layout/launcher/launcher.svelte';
 	import type { Languages } from '../languages/i18n';
 	import { getLanguageShortcut } from '../constants/languages';
@@ -90,7 +89,6 @@
 <Language defaultLanguage={data.requestLanguage} />
 <Theme />
 <Logout />
-<SubjectColors />
 <TimeTable />
 <SendRootReq />
 

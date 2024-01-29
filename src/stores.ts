@@ -8,6 +8,7 @@ import { PUBLIC_API_URL } from '$env/static/public';
 import type { launcherLink } from './types/launcher';
 import { launcherLinks as launcherLinksConst } from './constants/launcher';
 import { emptyTimeTable, type TimeTable } from './constants/weekDays';
+import { localstorage } from 'svocal';
 
 export const focusedNote = writable<Note | null>(null);
 export const showHomeworkFilter = writable<boolean>(false);
@@ -34,7 +35,7 @@ export const settings = writable<{
 	useTimeTableForAutcomplete: false
 });
 
-export const subjectColors = writable<SubjectColor[]>([]);
+export const subjectColors = localstorage<SubjectColor[]>('subjectColors', []);
 export const timetable = writable<TimeTable>(emptyTimeTable);
 
 export const showLauncher = writable(false);

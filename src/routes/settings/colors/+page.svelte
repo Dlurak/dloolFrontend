@@ -8,21 +8,7 @@
 	import { i } from '../../../languages/i18n';
 	import { subjectsSortetCapitalized } from '../../../constants/subjecticons';
 
-	let data = $subjectColors;
-
-	subjectColors.subscribe((colors) => {
-		data = colors;
-	});
-
-	const save = () => subjectColors.set(data);
-
 	title.set('settings.subjectColors');
-
-	$: {
-		save();
-
-		data;
-	}
 </script>
 
 <div>
@@ -37,7 +23,8 @@
 						color="text-green-500 dark:text-green-400"
 						title={i('settings.subjectColors.import')}
 						on:click={() => {
-							if (data.length > 0 && !confirm(i('settings.subjectColors.import.confirm'))) return;
+							if ($subjectColors.length > 0 && !confirm(i('settings.subjectColors.import.confirm')))
+								return;
 
 							const input = document.createElement('input');
 							input.type = 'file';
@@ -76,7 +63,7 @@
 								}
 
 								const parsed = parseContent(content);
-								data = parsed;
+								$subjectColors = parsed;
 								addToast({
 									type: 'success',
 									content: 'toast.colors.import.success',
@@ -94,7 +81,7 @@
 						color="text-blue-500 dark:text-blue-400"
 						title={i('settings.subjectColors.export')}
 						on:click={() => {
-							const encodedPart = encodeURIComponent(JSON.stringify(data));
+							const encodedPart = encodeURIComponent(JSON.stringify($subjectColors));
 							const dataStr = 'data:text/json;charset=utf-8,' + encodedPart;
 							const downloadAnchorNode = document.createElement('a');
 							downloadAnchorNode.setAttribute('href', dataStr);
@@ -110,7 +97,7 @@
 		<p><I18n key="settings.subjectColors.explaination" /></p>
 
 		<div class="flex flex-col gap-4">
-			{#each data as entry}
+			{#each $subjectColors as entry}
 				<div class="flex flex-row gap-2 items-center justify-between">
 					<ColorPicker bind:r={entry.color.r} bind:g={entry.color.g} bind:b={entry.color.b} />
 
@@ -128,9 +115,9 @@
 								color="text-red-500 dark:text-red-400"
 								title={i('settings.subjectColors.subject.remove')}
 								on:click={() => {
-									const index = data.indexOf(entry);
-									data.splice(index, 1);
-									data = [...data];
+									const index = $subjectColors.indexOf(entry);
+									$subjectColors.splice(index, 1);
+									$subjectColors = [...$subjectColors];
 								}}
 							/>
 						</I18n>
@@ -144,8 +131,8 @@
 			</datalist>
 			<button
 				on:click={() => {
-					data = [
-						...data,
+					$subjectColors = [
+						...$subjectColors,
 						{
 							subject: '',
 							color: {

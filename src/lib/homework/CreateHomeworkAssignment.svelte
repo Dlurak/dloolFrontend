@@ -19,10 +19,12 @@
 	export let allAssignments: Assignment[];
 	export let fromDate: CustomDate;
 
+	export let canUseTimetable = true;
+
 	let fromAbbr: WeekDay = getWeekdayAbbreviationByDate(fromDate);
 	let dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
 
-	let inputModified = false;
+	let inputModified = true;
 	const inputModifiedFalse = () => (inputModified = false);
 
 	$: {
@@ -31,14 +33,17 @@
 	}
 
 	$: {
-		fromAbbr = getWeekdayAbbreviationByDate(fromDate);
-		dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
+		(() => {
+			if (!canUseTimetable) return;
+			fromAbbr = getWeekdayAbbreviationByDate(fromDate);
+			dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
 
-		if (!inputModified) {
-			due = nextCustomDateForWeekday(dueWeekday, fromDate);
-		} else {
-			inputModifiedFalse();
-		}
+			if (!inputModified) {
+				due = nextCustomDateForWeekday(dueWeekday, fromDate);
+			} else {
+				inputModifiedFalse();
+			}
+		})();
 	}
 
 	let autocompleteSubjects = $settings.useTimeTableForAutcomplete
@@ -51,7 +56,8 @@
 			: subjectsSortetCapitalized;
 	}
 
-	const generateFullAssignment: () => Assignment = () => ({ subject, description, due });
+	type ReturnAssignment = () => Assignment;
+	const generateFullAssignment: ReturnAssignment = () => ({ subject, description, due });
 </script>
 
 <div class="flex flex-col justify-evenly items-center">
@@ -86,6 +92,9 @@
 				<input
 					type="text"
 					bind:value={subject}
+					on:input={() => {
+						canUseTimetable = true;
+					}}
 					placeholder={i('homework.add.subject')}
 					class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
 					list={`subjects-${fromAbbr}`}

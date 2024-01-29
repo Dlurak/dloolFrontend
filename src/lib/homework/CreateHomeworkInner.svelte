@@ -6,6 +6,8 @@
 
 	export let date: CustomDate;
 
+	export let canUseTimetable = true;
+
 	const emptyAssignment: Assignment = {
 		subject: '',
 		description: '',
@@ -23,6 +25,7 @@
 				bind:description={assignment.description}
 				bind:due={assignment.due}
 				bind:allAssignments={assignments}
+				{canUseTimetable}
 				fromDate={date}
 			/>
 		</li>

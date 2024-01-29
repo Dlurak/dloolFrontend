@@ -6,10 +6,11 @@
 	import { getIconForSubject, iconExistsForSubject } from '../../constants/subjecticons';
 	import { subjectColors } from '../../stores';
 	import type { Assignment } from '../../types/homework';
-	import { localstorage } from 'svocal';
-	import { SvocalKeys } from '../../enums/svocal';
-	import { translate } from '$lib/translate/index';
 	import Loader from '$lib/Loader.svelte';
+	import { translate } from '$lib/translate/index';
+	import { SvocalKeys } from '../../enums/svocal';
+	import { localstorage } from 'svocal';
+	import { get } from 'svelte/store';
 
 	export let assignment: Assignment;
 
@@ -29,13 +30,6 @@
 				? rgbToHex(subjColor[0].color.r, subjColor[0].color.g, subjColor[0].color.b)
 				: '';
 	});
-
-	let libretranslateUrl = localstorage(
-		SvocalKeys.LIBRETRANSLATE_URL,
-		'https://libretranslate.com/'
-	);
-	let libretranslateToken = localstorage(SvocalKeys.LIBRETRANSLATE_TOKEN, '');
-	let useLibreTranslate = localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false);
 
 	$: isOverdue = dateIsInPast(assignment.due);
 	$: {
@@ -63,7 +57,7 @@
 			<h4>{assignment.subject}</h4>
 			<DateLabel date={assignment.due} />
 		</span>
-		{#if $useLibreTranslate}
+		{#if get(localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false))}
 			{#await translate(assignment.description)}
 				<span class="flex gap-1">
 					<Loader type="inline" />

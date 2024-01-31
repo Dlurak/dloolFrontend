@@ -40,7 +40,7 @@ export interface I18nProps {
 }
 
 export type TPar<TT extends Token> = Record<ExtractWordsAfterDollarSign<T<TT>>, string>;
-type TRes<
+export type TRes<
 	Tok extends Token,
 	Par extends TPar<Tok>,
 	Opt extends I18nProps

@@ -31,6 +31,8 @@
 				: '';
 	});
 
+	const homeworkOpacityValue = localstorage(SvocalKeys.PREFRENCES_HOMEWORK_OPACITY, 0.5);
+
 	$: isOverdue = dateIsInPast(assignment.due);
 	$: {
 		subjColor = $subjectColors.filter(
@@ -43,36 +45,43 @@
 	}
 </script>
 
-<div class="w-full flex flex-row gap-2" class:opacity-50={isOverdue}>
-	{#if colorHex}
-		<div class="py-2 w-1">
-			<div style="--color: {colorHex}" class="bg-[var(--color)] h-full w-full rounded-full" />
-		</div>
-	{/if}
-	<div>
-		<span class="flex flex-row items-baseline justify-start gap-2 my-2">
-			{#if iconExistsForSubject(assignment.subject.toLowerCase())}
-				<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
+{#if !(isOverdue && !$homeworkOpacityValue)}
+	<li>
+		<div
+			class="w-full flex flex-row gap-2 opacity-[var(--opac)]"
+			style:--opac={isOverdue ? $homeworkOpacityValue : 100}
+		>
+			{#if colorHex}
+				<div class="py-2 w-1">
+					<div style="--color: {colorHex}" class="bg-[var(--color)] h-full w-full rounded-full" />
+				</div>
 			{/if}
-			<h4>{assignment.subject}</h4>
-			<DateLabel date={assignment.due} />
-		</span>
-		{#if get(localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false))}
-			{#await translate(assignment.description)}
-				<span class="flex gap-1">
-					<Loader type="inline" />
-					<SvelteMarkdown source={assignment.description} />
+			<div>
+				<span class="flex flex-row items-baseline justify-start gap-2 my-2">
+					{#if iconExistsForSubject(assignment.subject.toLowerCase())}
+						<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
+					{/if}
+					<h4>{assignment.subject}</h4>
+					<DateLabel date={assignment.due} />
 				</span>
-			{:then d}
-				<SvelteMarkdown source={d} />
-			{:catch}
-				<SvelteMarkdown source={assignment.description} />
-			{/await}
-		{:else}
-			<SvelteMarkdown source={assignment.description} />
-		{/if}
-	</div>
-</div>
-<div class="hidden print:flex items-start">
-	<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
-</div>
+				{#if get(localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false))}
+					{#await translate(assignment.description)}
+						<span class="flex gap-1">
+							<Loader type="inline" />
+							<SvelteMarkdown source={assignment.description} />
+						</span>
+					{:then d}
+						<SvelteMarkdown source={d} />
+					{:catch}
+						<SvelteMarkdown source={assignment.description} />
+					{/await}
+				{:else}
+					<SvelteMarkdown source={assignment.description} />
+				{/if}
+			</div>
+		</div>
+		<div class="hidden print:flex items-start">
+			<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
+		</div>
+	</li>
+{/if}

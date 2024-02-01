@@ -84,9 +84,7 @@
 	{:else}
 		<ul class="list-none p-0 flex flex-col gap-3">
 			{#each assignments as assignment}
-				<li>
-					<DataBoxAssignment {assignment} />
-				</li>
+				<DataBoxAssignment {assignment} />
 			{/each}
 		</ul>
 	{/if}

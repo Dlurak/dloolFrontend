@@ -14,5 +14,10 @@ export enum SvocalKeys {
 	/**
 	 * Default: false
 	 */
-	LIBRETRANSLATE_ENABLE = 'libretranslate.enable'
+	LIBRETRANSLATE_ENABLE = 'libretranslate.enable',
+
+	/**
+	 * Default: 0.5
+	 */
+	PREFRENCES_HOMEWORK_OPACITY = 'prefrences.homework.opacity'
 }

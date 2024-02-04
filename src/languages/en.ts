@@ -183,6 +183,7 @@ const en = {
 	'settins.apperance.nav.text.hide': 'Hide title in the navigation bar',
 	'settings.apperance.nav.search': 'Show search in the navigation bar',
 	'settings.apperance.homework.opacity': 'Transparency of finished homework',
+	'settings.homework.amount': 'Homework per page',
 
 	'settings.subjectColors': 'Colors for subjects',
 	'settings.subjectColors.import': 'Import colors from a JSON file',

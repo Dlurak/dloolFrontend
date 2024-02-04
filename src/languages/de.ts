@@ -188,6 +188,7 @@ const de = {
 	'settins.apperance.nav.text.hide': 'Verstecke Titel in der Navigationsleiste',
 	'settings.apperance.nav.search': 'Suche in der Navigationsleiste anzeigen',
 	'settings.apperance.homework.opacity': 'Transparenz abgelaufener Hausaufgaben',
+	'settings.homework.amount': 'Hausaufgaben pro Seite',
 
 	'settings.subjectColors': 'Farben für Fächer',
 	'settings.subjectColors.import': 'Importiere die Farben von einer JSON-Datei',

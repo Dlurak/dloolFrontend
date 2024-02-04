@@ -4,6 +4,7 @@
 	import TextInNav from '$lib/preferences/TextInNav.svelte';
 	import Theme from '$lib/preferences/Theme.svelte';
 	import ChangeHomeworkOpacity from '$lib/preferences/ChangeHomeworkOpacity.svelte';
+	import HomeworkPerPage from '$lib/preferences/HomeworkPerPage.svelte';
 </script>
 
 <div>
@@ -19,6 +20,7 @@
 			<section class="flex flex-col gap-4">
 				<h4><I18n key="homework" /></h4>
 				<ChangeHomeworkOpacity />
+				<HomeworkPerPage />
 			</section>
 		</div>
 	</section>

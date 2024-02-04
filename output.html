@@ -1,0 +1,223 @@
+<h1 id="dlool">Dlool</h1>
+<h2 id="a-digital-and-collaborative-homework-book">A digital and collaborative homework book</h2>
+<p>
+	Dlool is a digital and colloborative homework book.<br />
+	Classical homework books have a lot of problems. These are some of them and how dlool solves them.
+</p>
+<table>
+	<colgroup>
+		<col style="width: 28%" />
+		<col style="width: 71%" />
+	</colgroup>
+	<thead>
+		<tr class="header">
+			<th>Problem</th>
+			<th>Solution</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="odd">
+			<td>Some students work only digitally but still use a classical, analog homework book</td>
+			<td>Dlool is digital and a highly optimized drop in replacement.</td>
+		</tr>
+		<tr class="even">
+			<td>Everyone in a class writes down the same</td>
+			<td>Dlool is collaborative, all entries from one class are available for everyone</td>
+		</tr>
+		<tr class="odd">
+			<td>
+				They are not very good for the environment, as it will be thrown away after just one year
+			</td>
+			<td>Dlool is digital, no paper is needed.</td>
+		</tr>
+		<tr class="even">
+			<td>They are not very practical</td>
+			<td>Dlool is available on all devices.</td>
+		</tr>
+		<tr class="odd">
+			<td>Entries are not very structured</td>
+			<td>Dlool has a structured entry system.</td>
+		</tr>
+		<tr class="even">
+			<td>When you lose your homework book, all your data is lost forever</td>
+			<td>Dlool is digital, you can’t lose it.</td>
+		</tr>
+		<tr class="odd">
+			<td>Every year you need a new homework book</td>
+			<td>Dlool can be used for multiple years.</td>
+		</tr>
+		<tr class="even">
+			<td>You are locked into a specific brand</td>
+			<td>
+				Dlool is free and open source. With dlool you can export your data to ical or todo.txt. Also
+				there is
+				<a href="https://github.com/Dlurak/dlool-scriptable/blob/main/reminders/README.md">a way</a>
+				to sync Dlool with Apple Reminders.
+			</td>
+		</tr>
+		<tr class="odd">
+			<td>Homework, tests and notes are not separate</td>
+			<td>
+				Dlool has a different system for homework, tests and notes. Everything is sperated but still
+				in one place and easy to find.
+			</td>
+		</tr>
+	</tbody>
+</table>
+<hr />
+<h2 id="features">Features</h2>
+<p>Dlool offers a lot of features to enhance your homework management experience.</p>
+<ul>
+	<li><strong>Collaborative</strong>: All entries from one class are available for everyone.</li>
+	<li>
+		<strong>Structured</strong>: Dlool has a structured entry system. It is still easy to use but
+		also very powerful.
+	</li>
+	<li>
+		<strong>Exportable</strong>: You can export your data to ical or todo.txt, using
+		<a href="https://github.com/Dlurak/dlool-scriptable/blob/main/reminders/README.md">this</a>
+		script you can also sync Dlool with Apple Reminders.
+	</li>
+	<li><strong>Cross-Platform</strong>: Access Dlool on all devices with a browser.</li>
+	<li>
+		<strong>Offline Support</strong>: Most of Dlool works offline, so you can even use it in schools
+		with bad or no WLAN.
+	</li>
+	<li>
+		<strong>Dark mode</strong>: Dlool automatically adapts to your system settings. Dlool also
+		respects reduced motion settings.
+	</li>
+	<li>
+		<strong>REST API</strong>: Extensive and well
+		<a href="https://dlurak.github.io/dloolBackend/">documented</a> REST API to write your own
+		scripts.
+	</li>
+	<li><strong>No Account required</strong>: Even without an account you can use Dlool.</li>
+	<li><strong>Long-Term Usability</strong>: Keep your data organized for years to come.</li>
+	<li><strong>Moderation system</strong>: Maintain a positive, welcoming and safe environment.</li>
+	<li><strong>Notes</strong>: Write short notes for yourself or your class.</li>
+	<li>
+		<strong>Calendar</strong>: Keep track of tests and deadlines using Dlool’s gorgeous calendar.
+	</li>
+	<li>A lot of small things to make your life easier.</li>
+</ul>
+<hr />
+<h2 id="technologies">Technologies</h2>
+<h3 id="frontend">Frontend</h3>
+<p>Dlool is a progressive web app (PWA) and is powered by the following technologies:</p>
+<ul>
+	<li><a href="https://kit.svelte.dev/">SvelteKit</a></li>
+	<li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+	<li><a href="https://vercel.com/">Vercel</a></li>
+	<li><a href="https://boxicons.com/">Boxicons</a></li>
+</ul>
+<h3 id="backend">Backend</h3>
+<p>Dlool’s backend is powered by the following technologies:</p>
+<ul>
+	<li><a href="https://nodejs.org/">Node.js</a></li>
+	<li><a href="https://expressjs.com/">Express</a></li>
+	<li><a href="https://www.mongodb.com/">MongoDB</a></li>
+	<li><a href="https://render.com/">Render</a></li>
+</ul>
+<hr />
+<h2 id="getting-started">Getting started</h2>
+<p>
+	The easiest way to try Dlool is to visit
+	<a href="https://dlool-frontend.vercel.app/">the official deployment</a>.
+</p>
+<p>If you want to run it locally e.g. for development you can follow the instructions below.</p>
+<p>
+	Homeworks will be publicly visible for everyone, this isn’t a bug but to prevent bullying. But if
+	you want to create, update or delete homeworks you will need an account for a specific class. You
+	can create one <a href="https://dlool-frontend.vercel.app/register">here</a>. It may happen that
+	somebody from your class is already using Dlool, then they will need to accept your request to
+	sign up for the class. This can be done by going to
+	<a href="https://dlool-frontend.vercel.app/requests/list">this page</a> and clicking on the accept
+	button.
+</p>
+<p>
+	Once you have your account you can login
+	<a href="https://dlool-frontend.vercel.app/login">here</a> and create a homework
+	<a href="https://dlool-frontend.vercel.app/homework/">here</a>. You can also export your homework
+	as ical <a href="https://dlool-frontend.vercel.app/tricks#ical">here</a>.
+</p>
+<p>
+	When you have any questions, find a bug or have an idea for a feature you can create an issue.
+</p>
+<h2 id="running-locally">Running locally</h2>
+<ol type="1">
+	<li>
+		<p>Clone this repository</p>
+		<div class="sourceCode" id="cb1">
+			<pre
+				class="sourceCode bash"
+			><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:Dlurak/dloolFrontend.git</span></code></pre>
+		</div>
+	</li>
+	<li>
+		<p>Install the dependencies</p>
+		<div class="sourceCode" id="cb2">
+			<pre
+				class="sourceCode bash"
+			><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pnpm</span> install</span></code></pre>
+		</div>
+	</li>
+	<li>
+		<p>Build from source</p>
+		<div class="sourceCode" id="cb3">
+			<pre
+				class="sourceCode bash"
+			><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pnpm</span> run build</span></code></pre>
+		</div>
+	</li>
+	<li>
+		<p>Start the server</p>
+		<div class="sourceCode" id="cb4">
+			<pre
+				class="sourceCode bash"
+			><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pnpm</span> run preview</span></code></pre>
+		</div>
+	</li>
+	<li>
+		<p>The server runs on <a href="http://localhost:4173">localhost port 4173</a></p>
+	</li>
+</ol>
+<p>
+	For full functionality, ensure you set up the backend as well. Detailed backend setup instructions
+	can be found here. Don’t forget to create a <code>.env</code> file in the frontend’s root
+	directory with this variable:
+</p>
+<table>
+	<colgroup>
+		<col style="width: 11%" />
+		<col style="width: 40%" />
+		<col style="width: 47%" />
+	</colgroup>
+	<thead>
+		<tr class="header">
+			<th>Variable</th>
+			<th>Recommended value</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="odd">
+			<td>PUBLIC_API_URL</td>
+			<td>PUBLIC_API_URL=https://dlool-backend.onrender.com</td>
+			<td>The url of the backend. <strong>Do not put a slash at the end!</strong></td>
+		</tr>
+	</tbody>
+</table>
+<p>You can create the <code>.env</code> file with this command:</p>
+<div class="sourceCode" id="cb5">
+	<pre
+		class="sourceCode bash"
+	><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;PUBLIC_API_URL=https://dlool-backend.onrender.com&quot;</span> <span class="op">&gt;</span> .env</span></code></pre>
+</div>
+<h2 id="license">License</h2>
+<p>Every of mine repositories for Dlool is licensed under the <a href="/LICENSE">GPL</a>.</p>
+<hr />
+<p>
+	Feel free to reach out, report issues, or share your ideas by creating an issue here on GitHub.<br />
+	Enjoy using Dlool!
+</p>

@@ -19,5 +19,10 @@ export enum SvocalKeys {
 	/**
 	 * Default: 0.5
 	 */
-	PREFRENCES_HOMEWORK_OPACITY = 'prefrences.homework.opacity'
+	PREFRENCES_HOMEWORK_OPACITY = 'prefrences.homework.opacity',
+
+	/**
+	 * Default: 15
+	 */
+	PREFERENCES_HOMEWORK_PER_PAGE = 'prefrences.homework.perPage'
 }

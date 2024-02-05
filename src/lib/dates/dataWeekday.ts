@@ -13,18 +13,36 @@ const token = [
 ] satisfies Token[];
 type WeekdayTranslation = T<(typeof token)[number]>;
 
+const tokenShort = [
+	'date.sunday.short',
+	'date.monday.short',
+	'date.tuesday.short',
+	'date.wednesday.short',
+	'date.thursday.short',
+	'date.friday.short',
+	'date.saturday.short'
+] satisfies Token[];
+type WeekdayTranslationShort = T<(typeof tokenShort)[number]>;
+
+type WeekdayTrans<short extends boolean> = short extends true
+	? WeekdayTranslation
+	: WeekdayTranslationShort;
+
 /**
  * A function to give a weekday by name from a date.
  * It's important to use this function inside of an <I18n> component so that the language switches correctly.
  * @param date The date to get the weekday from
  * @returns A translation of the weekday
  */
-export function getWeekdayByDate(date: { day: number; month: number; year: number }) {
+export function getWeekdayByDate<Tshort extends boolean>(
+	date: { day: number; month: number; year: number },
+	isShort: Tshort = false as Tshort
+) {
 	const dateObj = new Date(date.year, date.month - 1, date.day);
 
-	const weekdays = token.map((key) => i(key));
+	const weekdays = (isShort ? tokenShort : token).map((key) => i(key));
 
-	return weekdays[dateObj.getDay()] as WeekdayTranslation;
+	return weekdays[dateObj.getDay()] as WeekdayTrans<Tshort>;
 }
 
 /**

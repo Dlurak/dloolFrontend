@@ -77,7 +77,7 @@
 />
 
 <button on:click={() => (isPicking = !isPicking)} type="button">
-	<DateLabel date={dateObj} />
+	<DateLabel date={dateObj} short />
 </button>
 
 <Modal bind:open={isPicking}>
@@ -98,6 +98,14 @@
 			<button on:click={displayNextMonth} type="button" class="bx bx-chevron-right" />
 		</div>
 		<div class="grid grid-cols-7 gap-0.5">
+			<span> <I18n key="date.monday.short" /> </span>
+			<span> <I18n key="date.tuesday.short" /> </span>
+			<span> <I18n key="date.wednesday.short" /> </span>
+			<span> <I18n key="date.thursday.short" /> </span>
+			<span> <I18n key="date.friday.short" /> </span>
+			<span> <I18n key="date.saturday.short" /> </span>
+			<span> <I18n key="date.sunday.short" /> </span>
+
 			{#key [displayMonth, displayYear]}
 				{#each { length: getAmountOfPaddingDays(getDisplayObj()) } as _}
 					<div />

@@ -4,11 +4,12 @@
 	import type { CustomDate } from '../../types/customDate';
 
 	export let date: CustomDate;
+	export let short = false;
 </script>
 
 <p class="capitalize">
 	<I18n>
-		{getWeekdayByDate(date)}
+		{getWeekdayByDate(date, short)}
 	</I18n>
 	{date.day}.{date.month}.{date.year}
 </p>

@@ -1,4 +1,4 @@
-import { launcherLinks, unfilteredLauncherLinks } from '../../../stores';
+import { launcherLinks, launcherSearchTerm, unfilteredLauncherLinks } from '../../../stores';
 import type { launcherLink } from '../../../types/launcher';
 
 type LauncherLinkWithoutIdOrMatchingword = Omit<
@@ -15,4 +15,6 @@ export const setNewList = (list: LauncherLinkWithoutIdOrMatchingword[]) => {
 	}));
 	unfilteredLauncherLinks.set(newList);
 	launcherLinks.set(newList);
+
+	launcherSearchTerm.set('');
 };

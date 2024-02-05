@@ -2,13 +2,16 @@
 	import LauncherLink from './LauncherLink.svelte';
 	import KeyboardShortcuts from './KeyboardShortcuts.svelte';
 	import { findLinks } from './findLinks';
-	import { launcherLinks, showLauncher, unfilteredLauncherLinks } from '../../../stores';
+	import {
+		launcherLinks,
+		launcherSearchTerm,
+		showLauncher,
+		unfilteredLauncherLinks
+	} from '../../../stores';
 	import { launcherLinks as launcherLinksConst } from '../../../constants/launcher';
 	import type { launcherLink } from '../../../types/launcher';
 
 	let show = false;
-
-	let searchTerm = '';
 
 	let inputElement: HTMLInputElement;
 
@@ -25,12 +28,12 @@
 			queryObj[link.id] = link.query;
 		});
 
-		if (searchTerm.trim() === '') {
+		if ($launcherSearchTerm.trim() === '') {
 			launcherLinks.set($unfilteredLauncherLinks);
 			return;
 		}
 
-		const filteredLinks = findLinks(searchTerm, queryObj).filter((v) => v[1] > 0.3);
+		const filteredLinks = findLinks($launcherSearchTerm, queryObj).filter((v) => v[1] > 0.3);
 
 		const linkIds = filteredLinks.map((v) => v[0]);
 		const matches: Record<number, string> = {};
@@ -59,7 +62,7 @@
 		} else {
 			show = false;
 			focusedId = 0;
-			searchTerm = '';
+			$launcherSearchTerm = '';
 			launcherLinks.set(launcherLinksConst);
 			unfilteredLauncherLinks.set(launcherLinksConst);
 
@@ -104,7 +107,7 @@
 					placeholder="Type a search"
 					class="bg-transparent w-full focus:outline-none border-b-transparent pb-0.5 focus:border-b-light-secondary dark:focus:border-b-dark-secondary border-b-2 text-xl"
 					bind:this={inputElement}
-					bind:value={searchTerm}
+					bind:value={$launcherSearchTerm}
 					on:input={handleInput}
 				/>
 			</div>

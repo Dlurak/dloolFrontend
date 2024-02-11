@@ -27,14 +27,20 @@
 			'box-icon': 'bx-palette'
 		},
 		{
+			name: 'settings.api',
+			uri: '/api',
+			'box-icon': 'bx-server'
+		},
+		'hr',
+		{
 			name: 'settings.language',
 			uri: '/language',
 			'box-icon': 'bx-globe'
 		},
 		{
-			name: 'settings.api',
-			uri: '/api',
-			'box-icon': 'bx-server'
+			name: 'settings.local',
+			uri: '/local',
+			'box-icon': 'bx-globe'
 		}
 	] satisfies ({ name: Token; uri: string; 'box-icon': string } | 'hr')[];
 

@@ -94,5 +94,13 @@ export const navData = [
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Else'
+	},
+	{
+		title: 'holiday',
+		uri: '/holidays',
+		showInNav: false,
+		navBoxIcon: '',
+		showInFooter: true,
+		footerCategory: 'Else'
 	}
 ] as const;

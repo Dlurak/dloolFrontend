@@ -24,5 +24,15 @@ export enum SvocalKeys {
 	/**
 	 * Default: 15
 	 */
-	PREFERENCES_HOMEWORK_PER_PAGE = 'prefrences.homework.perPage'
+	PREFERENCES_HOMEWORK_PER_PAGE = 'prefrences.homework.perPage',
+
+	/**
+	 * Default: DE
+	 */
+	HOLIDAYS_COUNTRY = 'holidays.country',
+
+	/**
+	 * Default: HE
+	 */
+	HOLIDAYS_STATE = 'holidays.state'
 }

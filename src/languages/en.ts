@@ -78,6 +78,8 @@ const en = {
 	'nav.settings.preferences.description': 'Here you can change your preferences like the theme.',
 	'nav.settings.language': 'Language-Settings',
 	'nav.settings.language.description': 'Here you can switch your language',
+	'nav.holiday': 'Holiday',
+	'nav.holiday.description': 'Here you can see your holidays',
 
 	'nav.search': 'Search',
 	'nav.documentation': 'Documentation',
@@ -222,6 +224,10 @@ const en = {
 	'settings.language.token.base': 'Libretranslate API-Token',
 	'settings.language.libretranslate.enable': 'Use LibreTranslate',
 
+	'settings.local': 'Localization-Settings',
+	'settings.local.country': 'Country',
+	'settings.local.subdivision': 'State',
+
 	'colors.red': 'Red',
 	'colors.green': 'Green',
 	'colors.blue': 'Blue',
@@ -361,7 +367,12 @@ const en = {
 	'documentation.client.send': 'Send',
 	'documentation.client.query.table.header.key': 'Key',
 	'documentation.client.query.table.header.value': 'Value',
-	'documentation.client.query.table.header.active': 'Active'
+	'documentation.client.query.table.header.active': 'Active',
+
+	holiday: 'Holidays',
+	'holiday.warning': 'This data may be incorrect or miss some holiday',
+
+	'warning.dissmiss': 'Understood'
 } as const;
 
 export type EnToken = keyof typeof en;

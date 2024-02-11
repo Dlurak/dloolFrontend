@@ -189,6 +189,13 @@ const rawLauncherLinks: {
 		]
 	},
 	{
+		title: 'nav.holiday',
+		action: () => goto('/holidays'),
+		bxIcon: 'bx-calendar',
+		description: 'nav.holiday.description',
+		query: ['ferien', 'urlaub', 'feiertage', 'schulfrei', 'holiday']
+	},
+	{
 		title: 'nav.contributors',
 		action: () => goto('/contributors'),
 		bxIcon: 'bx-group',
@@ -305,13 +312,6 @@ const rawLauncherLinks: {
 			'rest',
 			'api'
 		]
-	},
-	{
-		title: 'nav.discord',
-		description: 'nav.discord.description',
-		action: () => goto('/redirect?redirect=https://discord.gg/Kp2BCyR33q'),
-		bxIcon: 'bxl-discord-alt',
-		query: ['discord', 'chat', 'server', 'community', 'support']
 	}
 ];
 

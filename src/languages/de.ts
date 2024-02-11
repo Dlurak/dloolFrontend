@@ -81,6 +81,8 @@ const de = {
 		'Hier kannst du deine Präferenzen ändern. Wie z.B. das Erscheinungsbild.',
 	'nav.settings.language': 'Sprach-Einstellungen',
 	'nav.settings.language.description': 'Hier kannst du deine Sprache ändern',
+	'nav.holiday': 'Ferien',
+	'nav.holiday.description': 'Hier kannst du deine Ferien und Feiertage sehen',
 
 	'nav.search': 'Suche',
 	'nav.documentation': 'Dokumentation',
@@ -227,6 +229,10 @@ const de = {
 	'settings.language.token.base': 'Libretranslate API-Token',
 	'settings.language.libretranslate.enable': 'Nutze LibreTranslate',
 
+	'settings.local': 'Lokalisierungs-Einsellungen',
+	'settings.local.country': 'Staat',
+	'settings.local.subdivision': 'Bundesland',
+
 	'colors.red': 'Rot',
 	'colors.green': 'Grün',
 	'colors.blue': 'Blau',
@@ -369,7 +375,12 @@ const de = {
 	'documentation.client.send': 'Senden',
 	'documentation.client.query.table.header.key': 'Schlüssel',
 	'documentation.client.query.table.header.value': 'Wert',
-	'documentation.client.query.table.header.active': 'Aktiv'
+	'documentation.client.query.table.header.active': 'Aktiv',
+
+	holiday: 'Ferien & Feiertage',
+	'holiday.warning': 'Diese Daten könnten Fehler beinhalten oder unvollständig seien!',
+
+	'warning.dissmiss': 'Verstanden'
 } as const;
 
 export type DeToken = keyof typeof de;

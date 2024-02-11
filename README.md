@@ -36,6 +36,8 @@ Dlool offers a lot of features to enhance your homework management experience.
 - **Moderation system**: Maintain a positive, welcoming and safe environment.
 - **Notes**: Write short notes for yourself or your class.
 - **Calendar**: Keep track of tests and deadlines using Dlool's gorgeous calendar.
+- **Timetable**: Easily know which subjects are when and write down the homework correctly using the timetable support
+- **Holidays**: Look up when holidays are in your area, the data is provided by [the OpenHoliday API](https://www.openholidaysapi.org/en/)
 - A lot of small things to make your life easier.
 
 ---

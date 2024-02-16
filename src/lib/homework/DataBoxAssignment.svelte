@@ -1,4 +1,4 @@
-<script lang="ts">
+=<script lang="ts">
 	import { rgbToHex } from '$lib/colors/hexToRgb';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { dateIsInPast } from '$lib/dates/dateIsInPast';
@@ -62,7 +62,7 @@
 						<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
 					{/if}
 					<h4>{assignment.subject}</h4>
-					<DateLabel date={assignment.due} />
+					<DateLabel date={assignment.due} short />
 				</span>
 				{#if get(localstorage(SvocalKeys.LIBRETRANSLATE_ENABLE, false))}
 					{#await translate(assignment.description)}

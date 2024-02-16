@@ -1,4 +1,4 @@
-=<script lang="ts">
+<script lang="ts">
 	import { rgbToHex } from '$lib/colors/hexToRgb';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { dateIsInPast } from '$lib/dates/dateIsInPast';

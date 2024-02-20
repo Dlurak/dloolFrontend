@@ -11,6 +11,7 @@
 	import { settings, timetable } from '../../stores';
 	import type { CustomDate } from '../../types/customDate';
 	import type { WeekDay } from '../../constants/weekDays';
+	import deepEqual from 'deep-equal';
 
 	// export let assignment: Assignment;
 	export let subject: string;
@@ -65,7 +66,8 @@
 		iconName="bx-up-arrow"
 		focusedIconName="bxs-up-arrow"
 		on:click={() => {
-			const index = allAssignments.indexOf(generateFullAssignment());
+			const index = allAssignments.findIndex((a) => deepEqual(generateFullAssignment(), a));
+
 			const newIndex = index - 1;
 
 			allAssignments = swapArrayElements(allAssignments, index, newIndex);
@@ -76,7 +78,7 @@
 		iconName="bx-down-arrow"
 		focusedIconName="bxs-down-arrow"
 		on:click={() => {
-			const index = allAssignments.indexOf(generateFullAssignment());
+			const index = allAssignments.findIndex((a) => deepEqual(generateFullAssignment(), a));
 			const newIndex = index + 1;
 
 			allAssignments = swapArrayElements(allAssignments, index, newIndex);

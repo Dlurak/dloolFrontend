@@ -34,5 +34,10 @@ export enum SvocalKeys {
 	/**
 	 * Default: HE
 	 */
-	HOLIDAYS_STATE = 'holidays.state'
+	HOLIDAYS_STATE = 'holidays.state',
+
+	/**
+	 * Default: true
+	 */
+	TIMETABLE_AUT_SORT = 'timetable.autosort'
 }

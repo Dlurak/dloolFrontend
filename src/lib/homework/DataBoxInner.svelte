@@ -13,6 +13,8 @@
 	import { network } from '../../stores';
 	import DataBoxAssignment from './DataBoxAssignment.svelte';
 	import { backendUrl } from '$lib/../stores';
+	import { updateHomework } from './updateHomework';
+	import { Status } from '../../enums/status';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
@@ -92,46 +94,16 @@
 		<SubmitButton
 			value="Update"
 			{disabled}
-			onClick={() => {
+			onClick={async () => {
 				editMode = false;
-				const url = `${$backendUrl}/homework/${id}`;
 
-				const mappedAssignments = newAssignments.map((assignment) => {
-					return {
-						subject: assignment.subject.trim(),
-						description: assignment.description.trim(),
-						due: assignment.due
-					};
+				const status = await updateHomework({
+					id,
+					newDate,
+					assignments: newAssignments
 				});
 
-				fetch(url, {
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${localStorage.getItem('token')}`
-					},
-					body: JSON.stringify({
-						from: newDate,
-						assignments: mappedAssignments
-					})
-				})
-					.then((res) => {
-						if (res.ok) {
-							addToast({
-								type: 'success',
-								content: 'toast.homework.edit.success',
-								duration: 5000
-							});
-							postUpdate();
-						} else throw new Error();
-					})
-					.catch(() => {
-						addToast({
-							type: 'error',
-							content: 'toast.homework.edit.error',
-							duration: 5000
-						});
-					});
+				if (status === Status.SUCCESS) postUpdate();
 			}}
 		/>
 	{/if}

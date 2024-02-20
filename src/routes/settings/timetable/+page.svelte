@@ -10,6 +10,7 @@
 	import { addToast } from '$lib/toast/addToast';
 	import { timetableSchema } from '../../../zod/timetable';
 	import { i } from '../../../languages/i18n';
+	import UseForAutoSort from '$lib/preferences/timetable/UseForAutoSort.svelte';
 
 	const getWeekdays = () =>
 		(Object.keys($timetable) as WeekDay[]).map((abbr) => ({
@@ -206,4 +207,7 @@
 
 <hr class="my-3" />
 
-<UseTimeTableForAutcompletion />
+<div class="flex flex-col gap-2">
+	<UseTimeTableForAutcompletion />
+	<UseForAutoSort />
+</div>

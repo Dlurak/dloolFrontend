@@ -180,6 +180,7 @@ const de = {
 	'settings.timetable': 'Stundenplan',
 	'settings.timetable.reset': 'Zurücksetzen',
 	'settings.timetable.useForAutoComplete': 'Nutze den Stundenplan für die Autovervollständigung',
+	'settings.timetable.useForAutoSort': 'Nutze den Stundenplan für die Auto sortierung',
 	'settings.timetable.export': 'Exportieren',
 	'settings.timetable.import': 'Importieren',
 	'settings.timetable.import.confirm':

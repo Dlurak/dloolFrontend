@@ -176,6 +176,7 @@ const en = {
 	'settings.timetable': 'Timetable',
 	'settings.timetable.reset': 'Reset',
 	'settings.timetable.useForAutoComplete': 'Use this timetable for auto complete',
+	'settings.timetable.useForAutoSort': 'Use this timetable sort automatically',
 	'settings.timetable.export': 'Export',
 	'settings.timetable.import': 'Import',
 	'settings.timetable.import.confirm':

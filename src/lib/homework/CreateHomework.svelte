@@ -12,6 +12,8 @@
 	import { network } from '../../stores';
 	import { backendUrl, backendHasResponse } from '$lib/../stores';
 	import { getOneWeekFromNow } from '../../constants/generateDates';
+	import { createHomework } from './createHomework';
+	import { Status } from '../../enums/status';
 
 	export let postSubmit: (e: Event) => void = () => {
 		return;
@@ -39,56 +41,36 @@
 
 <Box hideOnPrint fullHeight>
 	<form
-		on:submit={(e) => {
+		on:submit={async (e) => {
 			e.preventDefault();
-
-			const mappedAssignments = assignments.map((assignment) => {
-				return {
-					subject: assignment.subject.trim(),
-					description: assignment.description.trim(),
-					due: assignment.due
-				};
-			});
-			const bodyObj = {
-				from: assignedAtDateObj,
-				className: $page.url.searchParams.get('class'),
-				assignments: mappedAssignments
-			};
-
-			fetch($backendUrl + '/homework', {
-				method: 'POST',
-				headers: new Headers({
-					authorization: `Bearer ${localStorage.getItem('token')}`,
-					'content-type': 'application/json'
-				}),
-				body: JSON.stringify(bodyObj)
-			})
-				.then((res) => {
-					if (res.ok) {
-						assignments = [
-							{
-								subject: '',
-								description: '',
-								due: createDate(getOneWeekFromNow())
-							}
-						];
-
-						addToast({
-							content: 'toast.homework.add.success',
-							type: 'success',
-							duration: 5000
-						});
-
-						postSubmit(e);
-					} else throw new Error();
-				})
-				.catch(() => {
-					addToast({
-						content: 'toast.homework.add.error',
-						type: 'error',
-						duration: 5000
-					});
+			const className = $page.url.searchParams.get('class');
+			if (!className) {
+				addToast({
+					content: 'toast.homework.add.error',
+					type: 'error',
+					duration: 5000
 				});
+
+				return;
+			}
+
+			const status = await createHomework({
+				className,
+				assignements: assignments,
+				assignedAt: assignedAtDateObj
+			});
+
+			if (status === Status.SUCCESS) {
+				assignments = [
+					{
+						subject: '',
+						description: '',
+						due: createDate(getOneWeekFromNow())
+					}
+				];
+
+				postSubmit(e);
+			}
 		}}
 	>
 		<h3 class="mb-4">

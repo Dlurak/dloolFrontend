@@ -379,7 +379,7 @@ const de = {
 	'documentation.client.query.table.header.active': 'Aktiv',
 
 	holiday: 'Ferien & Feiertage',
-	'holiday.warning': 'Diese Daten könnten Fehler beinhalten oder unvollständig seien!',
+	'holiday.warning': 'Diese Daten könnten Fehler beinhalten oder unvollständig sein!',
 
 	'warning.dissmiss': 'Verstanden'
 } as const;

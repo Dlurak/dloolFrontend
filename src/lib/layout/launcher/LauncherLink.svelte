@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Token } from '../../../languages/i18n';
+	import type { TPar, Token } from '../../../languages/i18n';
 	import I18n from '$lib/I18n.svelte';
 
 	const dispatch = createEventDispatcher();
 
-	export let link: {
+	type Link<Tok extends Token> = {
 		id: number;
-		title: Token;
+		title: Tok;
+		titleOptions?: {
+			parts: TPar<Tok>;
+		};
 		description: Token;
 		action: () => void | Promise<void>;
 		bxIcon: string;
@@ -15,6 +18,8 @@
 		closeManually?: boolean;
 		showSimpelfied: boolean;
 	};
+
+	export let link: Link<Token>;
 	export let isFocused: boolean;
 </script>
 
@@ -34,7 +39,7 @@
 	>
 		<i class="bx {link.bxIcon}  flex text-xl" />
 		<div class="w-full flex flex-col items-start">
-			<h4 class="line-clamp-1"><I18n key={link.title} /></h4>
+			<h4 class="line-clamp-1"><I18n key={link.title} parts={link.titleOptions?.parts || {}} /></h4>
 			{#if !link.showSimpelfied}
 				<p
 					class="line-clamp-1 text-sm"

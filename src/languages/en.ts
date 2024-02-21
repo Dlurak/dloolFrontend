@@ -373,7 +373,9 @@ const en = {
 	holiday: 'Holidays',
 	'holiday.warning': 'This data may be incorrect or miss some holiday',
 
-	'warning.dissmiss': 'Understood'
+	'warning.dissmiss': 'Understood',
+
+	literal: '$string'
 } as const;
 
 export type EnToken = keyof typeof en;

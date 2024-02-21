@@ -39,8 +39,8 @@ export const subjectColors = localstorage<SubjectColor[]>('subjectColors', []);
 export const timetable = writable<TimeTable>(emptyTimeTable);
 
 export const showLauncher = writable(false);
-export const launcherLinks = writable<launcherLink[]>(launcherLinksConst);
-export const unfilteredLauncherLinks = writable<launcherLink[]>(launcherLinksConst);
+export const launcherLinks = writable<launcherLink<Token>[]>(launcherLinksConst);
+export const unfilteredLauncherLinks = writable<launcherLink<Token>[]>(launcherLinksConst);
 export const launcherSearchTerm = writable('');
 
 export const backendUrl = writable(PUBLIC_API_URL);

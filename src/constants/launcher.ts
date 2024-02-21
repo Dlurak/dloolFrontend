@@ -1,9 +1,14 @@
 import { goto } from '$app/navigation';
+import { getCountries } from '$lib/holidays/api/countries';
 import { setNewList } from '$lib/layout/launcher/setNewList';
 import { setLocalstorage } from '$lib/localstorage';
 import { setAndStoreTheme } from '$lib/theme';
+import { localstorage } from 'svocal';
 import type { Token } from '../languages/i18n';
 import { settings, showLauncher } from '../stores';
+import { SvocalKeys } from '../enums/svocal';
+import { getSubdivisions } from '$lib/holidays/api/subdivisions';
+import { get } from 'svelte/store';
 
 type VoidFunction = () => void | Promise<void>;
 
@@ -248,6 +253,54 @@ const rawLauncherLinks: {
 		bxIcon: 'bx-palette',
 		description: 'settings.apperance.theme',
 		query: ['theme', 'dark', 'light', 'erscheinungsbild', 'farben', 'colors'],
+		closeManually: true
+	},
+	{
+		title: 'settings.local.country',
+		action: async () => {
+			const countries = await getCountries();
+			setNewList(
+				countries.map((c) => ({
+					title: 'literal',
+					titleOptions: {
+						parts: {
+							string: c.name[0].text
+						}
+					},
+					action: () => {
+						localstorage(SvocalKeys.HOLIDAYS_COUNTRY, 'DE').set(c.isoCode);
+					},
+					bxIcon: '',
+					description: 'literal',
+					query: c.name.map((n) => n.text)
+				}))
+			);
+		},
+		bxIcon: 'bx-map-alt',
+		description: 'settings.local.country',
+		query: ['lokalisierung', 'staat', 'country'],
+		closeManually: true
+	},
+	{
+		title: 'settings.local.subdivision',
+		action: async () => {
+			const subs = await getSubdivisions(get(localstorage(SvocalKeys.HOLIDAYS_COUNTRY, 'DE')));
+			setNewList(
+				subs.map((s) => ({
+					title: 'literal',
+					titleOptions: { parts: { string: s.name[0].text } },
+					action: () => {
+						localstorage(SvocalKeys.HOLIDAYS_STATE, 'HE').set(s.shortName);
+					},
+					bxIcon: '',
+					description: 'literal',
+					query: [...s.name.map((n) => n.text), s.shortName]
+				}))
+			);
+		},
+		bxIcon: 'bx-map-alt',
+		description: 'settings.local.subdivision',
+		query: ['lokalisierung', 'bundesland', 'state'],
 		closeManually: true
 	},
 	{

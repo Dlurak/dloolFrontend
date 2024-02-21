@@ -1,8 +1,9 @@
+import type { Token } from '../../../languages/i18n';
 import { launcherLinks, launcherSearchTerm, unfilteredLauncherLinks } from '../../../stores';
 import type { launcherLink } from '../../../types/launcher';
 
 type LauncherLinkWithoutIdOrMatchingword = Omit<
-	launcherLink,
+	launcherLink<Token>,
 	'id' | 'matchingWord' | 'showSimpelfied'
 >;
 

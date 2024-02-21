@@ -10,6 +10,7 @@
 	} from '../../../stores';
 	import { launcherLinks as launcherLinksConst } from '../../../constants/launcher';
 	import type { launcherLink } from '../../../types/launcher';
+	import type { Token } from '../../../languages/i18n';
 
 	let show = false;
 
@@ -43,7 +44,7 @@
 			matches[id] = matchingWord;
 		});
 
-		const newLauncherLinks: launcherLink[] = [];
+		const newLauncherLinks: launcherLink<Token>[] = [];
 
 		for (const linkId of linkIds) {
 			const link = $unfilteredLauncherLinks.find((link) => link.id === linkId);

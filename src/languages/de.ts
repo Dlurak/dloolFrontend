@@ -381,7 +381,9 @@ const de = {
 	holiday: 'Ferien & Feiertage',
 	'holiday.warning': 'Diese Daten könnten Fehler beinhalten oder unvollständig sein!',
 
-	'warning.dissmiss': 'Verstanden'
+	'warning.dissmiss': 'Verstanden',
+
+	literal: '$string'
 } as const;
 
 export type DeToken = keyof typeof de;

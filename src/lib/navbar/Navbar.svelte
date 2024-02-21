@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import HalloweenLogo from '$lib/seasons/halloween/halloweenLogo.svelte';
+	import StPatricksLogo from '$lib/seasons/stPatricks/StPatricksLogo.svelte';
 	import { isSpecialDate } from '$lib/specialDates/isInRange';
 	import { navData } from '../../constants/nav';
 	import { settings } from '../../stores';
@@ -32,6 +33,8 @@
 		<div class="h-12 hidden sm:inline-block">
 			{#if isSpecialDate('helloween')}
 				<HalloweenLogo />
+			{:else if isSpecialDate('stPatricks')}
+				<StPatricksLogo />
 			{:else}
 				<a href="/">
 					<img src="/assets/dloolLogo.svg" alt="Logo" title="Dlool" class="h-full object-contain" />

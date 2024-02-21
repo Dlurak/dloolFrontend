@@ -10,7 +10,7 @@ export type specialDateRange = {
 	end: SpecialDate;
 };
 
-const specialDateNames = ['helloween', 'christmas'] as const;
+const specialDateNames = ['helloween', 'christmas', 'stPatricks'] as const;
 
 export type SpecialDates = (typeof specialDateNames)[number];
 
@@ -33,6 +33,16 @@ export const dates: Record<SpecialDates, specialDateRange> = {
 		end: {
 			month: 12,
 			day: 26
+		}
+	},
+	stPatricks: {
+		start: {
+			month: 3,
+			day: 16
+		},
+		end: {
+			month: 3,
+			day: 18
 		}
 	}
 };

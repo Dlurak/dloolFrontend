@@ -50,6 +50,7 @@
 		"@tailwindcss/container-queries": "^0.1.1",
 		"deep-equal": "^2.2.3",
 		"html2canvas": "^1.4.1",
+		"open-holiday-js": "1.0.2",
 		"svelte-markdown": "^0.4.1",
 		"svocal": "^0.1.1"
 	}

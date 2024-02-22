@@ -17,6 +17,9 @@ dependencies:
   html2canvas:
     specifier: ^1.4.1
     version: 1.4.1
+  open-holiday-js:
+    specifier: 1.0.2
+    version: 1.0.2
   svelte-markdown:
     specifier: ^0.4.1
     version: 0.4.1(svelte@4.2.2)
@@ -146,7 +149,7 @@ packages:
       '@arktype/fs': 0.0.10
       '@arktype/util': 0.0.16
       '@typescript/vfs': 1.5.0
-      arktype: 1.0.29-alpha
+      arktype: 2.0.0-dev.4
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -156,8 +159,18 @@ packages:
     resolution: {integrity: sha512-aPYLmcdS7eHUftTQOyPZRdoMWrvuk4m0LwO6dB9fwKqJTngnizWAeP0AS+tMincPhdZEahRyX0ju9Czvdm/zkQ==}
     dev: true
 
+  /@arktype/schema@0.0.6:
+    resolution: {integrity: sha512-Z+Y3Sy+xyRCNM2sbQtWvVZoJgdoaR/MUypWJHoc8wl47lxU0GH0J7QrkgYi5dVhRS97nfPIaDLWyoJXEOTiHzA==}
+    dependencies:
+      '@arktype/util': 0.0.23
+    dev: true
+
   /@arktype/util@0.0.16:
     resolution: {integrity: sha512-a10hhQ5E95tV0wfi8N9/74Uo6mRDHjeGWaHsyZriq4a9srZ9AbJ3UlYUQfIaQgsxLIuMw3kdClsE/H3tMdZKvw==}
+    dev: true
+
+  /@arktype/util@0.0.23:
+    resolution: {integrity: sha512-MwtDGjbgfXWxlExjIL78HvPlWOma1XFEcDd3VWuCPMt/f+3TR7fXyiGFNlIYZGOYdOIU7qgjaE8dmbd6jdJa3Q==}
     dev: true
 
   /@babel/code-frame@7.22.13:
@@ -2390,8 +2403,11 @@ packages:
     dependencies:
       dequal: 2.0.3
 
-  /arktype@1.0.29-alpha:
-    resolution: {integrity: sha512-glMLgVhIQRSkR3tymiS+POAcWVJH09sfrgic0jHnyFL8BlhHAJZX2BzdImU9zYr1y9NBqy+U93ZNrRTHXsKRDw==}
+  /arktype@2.0.0-dev.4:
+    resolution: {integrity: sha512-1AgVN3A2ngzp3cRuNF8WXZr85B38jrc7lnOkplB4iHbGxUNvI9IyuhzAJtqCjDAo05pXpY2CxLaeSHtANIpF7Q==}
+    dependencies:
+      '@arktype/schema': 0.0.6
+      '@arktype/util': 0.0.23
     dev: true
 
   /array-buffer-byte-length@1.0.0:
@@ -4044,6 +4060,12 @@ packages:
       mimic-fn: 4.0.0
     dev: true
 
+  /open-holiday-js@1.0.2:
+    resolution: {integrity: sha512-bLZF7JbG9bvR0Jb5DnpHVR9nsXjy5EGEs1NJ4sNz4rN5NuQNiY7BkLD/SBmQmGw6+SqkkReWyTiwIz3iKm73ww==}
+    dependencies:
+      zod: 3.22.4
+    dev: false
+
   /optionator@0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
@@ -5628,4 +5650,3 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: true

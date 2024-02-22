@@ -5,10 +5,12 @@ import { setLocalstorage } from '$lib/localstorage';
 import { setAndStoreTheme } from '$lib/theme';
 import { localstorage } from 'svocal';
 import type { Token } from '../languages/i18n';
-import { settings, showLauncher } from '../stores';
+import { currentLanguage, settings, showLauncher } from '../stores';
 import { SvocalKeys } from '../enums/svocal';
 import { getSubdivisions } from '$lib/holidays/api/subdivisions';
 import { get } from 'svelte/store';
+import { Holiday } from 'open-holiday-js';
+import { addToast } from '$lib/toast/addToast';
 
 type VoidFunction = () => void | Promise<void>;
 
@@ -258,13 +260,21 @@ const rawLauncherLinks: {
 	{
 		title: 'settings.local.country',
 		action: async () => {
-			const countries = await getCountries();
+			const countries = await new Holiday().getCountries().catch(() => {
+				showLauncher.set(false);
+				addToast({ content: 'error', type: 'error', duration: 5_000 });
+
+				return [];
+			});
+
 			setNewList(
 				countries.map((c) => ({
 					title: 'literal',
 					titleOptions: {
 						parts: {
-							string: c.name[0].text
+							string: (
+								c.name.find((n) => n.language === get(currentLanguage).toUpperCase()) || c.name[0]
+							).text
 						}
 					},
 					action: () => {
@@ -284,11 +294,25 @@ const rawLauncherLinks: {
 	{
 		title: 'settings.local.subdivision',
 		action: async () => {
-			const subs = await getSubdivisions(get(localstorage(SvocalKeys.HOLIDAYS_COUNTRY, 'DE')));
+			const subs = await new Holiday()
+				.getSubdivisions(get(localstorage(SvocalKeys.HOLIDAYS_COUNTRY, 'DE')))
+				.catch(() => {
+					showLauncher.set(false);
+					addToast({ content: 'error', duration: 5_000, type: 'error' });
+
+					return [];
+				});
+
 			setNewList(
 				subs.map((s) => ({
 					title: 'literal',
-					titleOptions: { parts: { string: s.name[0].text } },
+					titleOptions: {
+						parts: {
+							string: (
+								s.name.find((n) => n.language === get(currentLanguage).toUpperCase()) || s.name[0]
+							).text
+						}
+					},
 					action: () => {
 						localstorage(SvocalKeys.HOLIDAYS_STATE, 'HE').set(s.shortName);
 					},

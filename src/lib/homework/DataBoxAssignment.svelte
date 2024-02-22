@@ -52,11 +52,11 @@
 			style:--opac={isOverdue ? $homeworkOpacityValue : 100}
 		>
 			{#if colorHex}
-				<div class="py-2 w-1">
-					<div style="--color: {colorHex}" class="bg-[var(--color)] h-full w-full rounded-full" />
+				<div class="py-2 w-1 print:hidden">
+					<div style="--color: {colorHex}" class="bg-[var(--color)] h-full w-1 rounded-full" />
 				</div>
 			{/if}
-			<div>
+			<div class="w-full">
 				<span class="flex flex-row items-baseline justify-start gap-2 my-2">
 					{#if iconExistsForSubject(assignment.subject.toLowerCase())}
 						<i class="bx {getIconForSubject(assignment.subject.toLowerCase())}" />
@@ -79,9 +79,9 @@
 					<SvelteMarkdown source={assignment.description} />
 				{/if}
 			</div>
-		</div>
-		<div class="hidden print:flex items-start">
-			<div class="w-4 h-4 rounded-md border border-solid border-gray-400" />
+			<div class="hidden print:flex items-start">
+				<div class="w-4 h-4 mt-5 rounded-md border border-solid border-gray-400" />
+			</div>
 		</div>
 	</li>
 {/if}

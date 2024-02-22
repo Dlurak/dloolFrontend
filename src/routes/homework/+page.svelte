@@ -216,11 +216,13 @@
 						<I18n key="homework.noHomework" />
 					</p>
 				{:else if data.totalPageCount > 1}
-					<PageSelector
-						bind:currentPage
-						setPageFunction={(pageCount) => setPage(pageCount, true)}
-						totalPageCount={data.totalPageCount}
-					/>
+					<span class="print:hidden">
+						<PageSelector
+							bind:currentPage
+							setPageFunction={(pageCount) => setPage(pageCount, true)}
+							totalPageCount={data.totalPageCount}
+						/>
+					</span>
 				{/if}
 			{/if}
 		{/await}

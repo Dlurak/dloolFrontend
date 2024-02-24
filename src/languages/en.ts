@@ -170,7 +170,7 @@ const en = {
 	'settings.password.tooltip': 'This will be your new password, please choose a secure one',
 	'settings.save': 'Save',
 	'settings.account': 'Account',
-	'settings.preferences': 'Preferences',
+	'settings.preferences': 'General',
 	'settings.colors': 'Colors',
 	'settings.api': 'API-Settings',
 	'settings.timetable': 'Timetable',

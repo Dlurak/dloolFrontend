@@ -174,7 +174,7 @@ const de = {
 	'settings.password.tooltip': 'Das wird Dein neues Passwort sein, bitte wähle ein sicheres!',
 	'settings.save': 'Speichern',
 	'settings.account': 'Account',
-	'settings.preferences': 'Einstellungen',
+	'settings.preferences': 'Allgemein',
 	'settings.colors': 'Farben',
 	'settings.api': 'API Einstellungen',
 	'settings.timetable': 'Stundenplan',

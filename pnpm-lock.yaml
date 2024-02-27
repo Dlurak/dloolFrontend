@@ -24,8 +24,8 @@ dependencies:
     specifier: ^0.4.1
     version: 0.4.1(svelte@4.2.2)
   svocal:
-    specifier: ^0.1.1
-    version: 0.1.1(@sveltejs/kit@1.27.0)(svelte@4.2.2)
+    specifier: ^0.2.0
+    version: 0.2.0(@sveltejs/kit@1.27.0)(svelte@4.2.2)
 
 devDependencies:
   '@arktype/attest':
@@ -4922,8 +4922,8 @@ packages:
       magic-string: 0.30.5
       periscopic: 3.1.0
 
-  /svocal@0.1.1(@sveltejs/kit@1.27.0)(svelte@4.2.2):
-    resolution: {integrity: sha512-fwUPESJCRvCT8HgtTPlgnTAm4zzlWrCiIu4ksHZW0Xg0uxqldoccQF5Hfp+Hv3MtsHyTOi3rs5eScelniXR2WA==}
+  /svocal@0.2.0(@sveltejs/kit@1.27.0)(svelte@4.2.2):
+    resolution: {integrity: sha512-Qh+dFI6lYKU1bZpVRRv8G6203hFRs0bfNrVVZZhgl5YDVeJNWOJneS4PiuYMSyABkHvHrsnuahisivDS4GIcVA==}
     peerDependencies:
       '@sveltejs/kit': '*'
       svelte: ^4.0.0

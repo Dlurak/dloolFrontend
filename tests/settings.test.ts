@@ -6,7 +6,7 @@ test('the settings page is reachable', async ({ page }) => {
 	await page.getByRole('link', { name: 'Einstellungen ' }).click();
 	await expect(page).toHaveTitle('Dlool | Einstellungen');
 
-	await page.getByRole('link', { name: ' Einstellungen' }).click();
+	await page.getByRole('link', { name: ' Allgemein' }).click();
 	await expect(page).toHaveTitle('Dlool | Einstellungen');
 });
 

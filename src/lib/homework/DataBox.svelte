@@ -17,7 +17,7 @@
 	export let assignments: Assignment[];
 	export let id: string;
 	export let createdAt: number;
-	export let creatorId: string;
+	export let contributors: string[];
 
 	export let postUpdate: () => void = () => {
 		return;
@@ -44,12 +44,12 @@
 	<div class="h-full flex flex-col justify-between">
 		<DataBoxInner
 			{assignments}
+			{contributors}
 			{date}
 			{id}
 			{postUpdate}
 			bind:editMode
 			{createdAt}
-			{creatorId}
 			bind:screenshot
 		/>
 		<div class="w-full flex flex-col">
@@ -151,5 +151,13 @@
 </Box>
 
 <Modal bind:open={dialogIsOpen}>
-	<DataBoxInner {assignments} {date} {id} {postUpdate} editMode={false} {createdAt} {creatorId} />
+	<DataBoxInner
+		{assignments}
+		{contributors}
+		{date}
+		{id}
+		{postUpdate}
+		editMode={false}
+		{createdAt}
+	/>
 </Modal>

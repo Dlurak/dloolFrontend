@@ -1,0 +1,68 @@
+{
+	"vitest/test.test.ts": [
+		{
+			"location": {
+				"start": {
+					"line": 13,
+					"char": 2
+				},
+				"end": {
+					"line": 13,
+					"char": 14
+				}
+			},
+			"args": [
+				{
+					"type": "1",
+					"relationships": {
+						"args": ["equality"],
+						"typeArgs": ["equality"]
+					}
+				}
+			],
+			"typeArgs": [
+				{
+					"type": "1",
+					"relationships": {
+						"args": ["equality"],
+						"typeArgs": ["equality"]
+					}
+				}
+			],
+			"errors": [],
+			"completions": {}
+		},
+		{
+			"location": {
+				"start": {
+					"line": 14,
+					"char": 2
+				},
+				"end": {
+					"line": 14,
+					"char": 18
+				}
+			},
+			"args": [
+				{
+					"type": "\"1\"",
+					"relationships": {
+						"args": ["equality"],
+						"typeArgs": ["equality"]
+					}
+				}
+			],
+			"typeArgs": [
+				{
+					"type": "\"1\"",
+					"relationships": {
+						"args": ["equality"],
+						"typeArgs": ["equality"]
+					}
+				}
+			],
+			"errors": [],
+			"completions": {}
+		}
+	]
+}

@@ -1,9 +1,7 @@
 <script lang="ts">
-	import I18n from '$lib/I18n.svelte';
 	import SubmitButton from '$lib/SubmitButton.svelte';
 	import TimeAgo from '$lib/dates/TimeAgo.svelte';
 	import html2canvas from 'html2canvas';
-	import { i } from '../../languages/i18n';
 	import type { CustomDate } from '../../types/customDate';
 	import type { Assignment } from '../../types/homework';
 	import DatePicker from '../dates/DatePicker.svelte';
@@ -12,16 +10,17 @@
 	import { addToast } from '$lib/toast/addToast';
 	import { network } from '../../stores';
 	import DataBoxAssignment from './DataBoxAssignment.svelte';
-	import { backendUrl } from '$lib/../stores';
 	import { updateHomework } from './updateHomework';
 	import { Status } from '../../enums/status';
+	import UserOverview from './UserOverview.svelte';
+	import { sortByAmount } from '$lib/utils/arrays/sort';
 
 	export let date: CustomDate;
 	export let assignments: Assignment[];
 	export let id: string;
 	export let editMode = false;
 	export let createdAt: number;
-	export let creatorId: string;
+	export let contributors: string[];
 
 	let capturing = false;
 	let container: HTMLDivElement;
@@ -107,9 +106,6 @@
 			}}
 		/>
 	{/if}
-	{#await fetch(`${$backendUrl}/auth/${creatorId}`).then((res) => res.json()) then userData}
-		<I18n>
-			<p class="text-xs">{userData.data.user.name || i('error')}</p>
-		</I18n>
-	{/await}
+
+	<UserOverview contributors={sortByAmount(contributors)} />
 </div>

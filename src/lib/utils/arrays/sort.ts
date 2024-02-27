@@ -14,3 +14,22 @@ export const sortByDifferentArray = <T>(
 		return indexA - indexB;
 	});
 };
+
+const countAmount = (array: string[]) => {
+	const countMap: Record<string, number> = {};
+
+	for (const i of array) {
+		const oldValue = countMap[i] || 0;
+
+		countMap[i] = oldValue + 1;
+	}
+
+	return countMap;
+};
+
+export const sortByAmount = (array: string[]) => {
+	const object = countAmount(array);
+	const entries = Object.entries(object);
+	const sorted = entries.sort((a, b) => a[1] - b[1]).reverse();
+	return sorted.map(([s]) => s);
+};

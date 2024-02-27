@@ -8,6 +8,7 @@ export interface Assignment {
 
 export interface Homework {
 	creator: string;
+	contributors: string[];
 	class: string;
 	createdAt: number;
 	from: CustomDate;

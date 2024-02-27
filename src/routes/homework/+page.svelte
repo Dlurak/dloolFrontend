@@ -203,11 +203,11 @@
 						<DataBox
 							date={homework.from}
 							assignments={homework.assignments}
+							contributors={homework.contributors}
 							id={homework.id}
 							postUpdate={reload}
 							validUser={userIsMemberOfClass}
 							createdAt={homework.createdAt}
-							creatorId={homework.creator}
 						/>
 					</div>
 				{/each}

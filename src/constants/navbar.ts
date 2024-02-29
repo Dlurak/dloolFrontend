@@ -1,4 +1,4 @@
-const allIds = ['login', 'homework', 'events', 'notes', 'search'] as const;
+const allIds = ['login', 'homework', 'events', 'notes', 'search', 'register'] as const;
 export type Id = (typeof allIds)[number];
 
 type UriGoal = {
@@ -41,5 +41,11 @@ export const navbarData = {
 	search: {
 		type: 'custom',
 		id: 'search'
+	} as const,
+	register: {
+		type: 'uri',
+		uri: '/register',
+		boxIcon: 'bx-user-plus',
+		title: 'register'
 	} as const
 } satisfies Record<Id, UriGoal | Custom>;

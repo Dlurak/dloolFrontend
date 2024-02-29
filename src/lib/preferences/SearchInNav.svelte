@@ -20,12 +20,14 @@
 		'notes'
 	]);
 
+	// todo: build from constants
 	const allItems: Button[] = [
 		{ id: 'login', xOffset: 0, isDragged: false, boxIcon: 'bx-user' },
 		{ id: 'homework', xOffset: 0, isDragged: false, boxIcon: 'bx-book' },
 		{ id: 'events', xOffset: 0, isDragged: false, boxIcon: 'bx-calendar' },
 		{ id: 'notes', xOffset: 0, isDragged: false, boxIcon: 'bx-notepad' },
-		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' }
+		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' },
+		{ id: 'register', xOffset: 0, isDragged: false, boxIcon: 'bx-user-plus' }
 	];
 
 	let items = sortByDifferentArray(

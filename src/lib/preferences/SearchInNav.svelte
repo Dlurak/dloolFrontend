@@ -1,24 +1,47 @@
-<script>
-	import I18n from '$lib/I18n.svelte';
-	import { setLocalstorage } from '$lib/localstorage';
-	import Switch from '$lib/utils/Switch.svelte';
-	import { settings } from '../../stores';
+<script lang="ts">
+	import NavigationButton from './navigation/NavigationButton.svelte';
 
-	let checked = $settings.showSearchInNavbar;
+	type Button = {
+		id: string;
+		xOffset: number;
+		isDragged: boolean;
+		boxIcon: string;
+	};
 
-	settings.subscribe((s) => (checked = s.showSearchInNavbar));
+	let items = [
+		{ id: 'login', xOffset: 0, isDragged: false, boxIcon: 'bx-user' },
+		{ id: 'homework', xOffset: 0, isDragged: false, boxIcon: 'bx-book' },
+		{ id: 'events', xOffset: 0, isDragged: false, boxIcon: 'bx-calendar' },
+		{ id: 'notes', xOffset: 0, isDragged: false, boxIcon: 'bx-notepad' },
+		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' }
+	] satisfies Button[];
 </script>
 
-<div class="flex flex-row gap-2 items-center justify-between">
-	<I18n key="settings.apperance.nav.search" />
-	<Switch
-		bind:checked
-		on:change={() => {
-			settings.update((s) => {
-				s.showSearchInNavbar = checked;
-				return s;
-			});
-			setLocalstorage('searchInNav', checked);
+<div>
+	<ul
+		class="w-full justify-evenly flex gap-2 list-none bg-light-box dark:bg-dark-box bg-opacity-50 rounded-lg py-2 px-1"
+		on:dragover={(e) => {
+			e.preventDefault();
+
+			const draggedElement = items.find((i) => i.isDragged);
+			if (!draggedElement) return;
+
+			draggedElement.xOffset = e.clientX;
+			items = items.sort((a, b) => a.xOffset - b.xOffset);
 		}}
-	/>
+	>
+		{#each items as item, index}
+			<NavigationButton
+				bind:xCoord={items[index].xOffset}
+				bind:isDragged={items[index].isDragged}
+				on:dragend={() => {
+					items = items.map((it) => ({
+						...it,
+						isDragged: false
+					}));
+				}}
+				icon={item.boxIcon}
+			/>
+		{/each}
+	</ul>
 </div>

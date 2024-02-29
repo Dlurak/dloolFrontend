@@ -1,0 +1,45 @@
+const allIds = ['login', 'homework', 'events', 'notes', 'search'] as const;
+export type Id = (typeof allIds)[number];
+
+type UriGoal = {
+	type: 'uri';
+	uri: string;
+	boxIcon: string;
+	title: string;
+};
+
+type Custom = {
+	type: 'custom';
+	id: string;
+};
+
+export const navbarData = {
+	login: {
+		type: 'uri',
+		uri: '/login',
+		boxIcon: 'bx-user',
+		title: 'login'
+	} as const,
+	homework: {
+		type: 'uri',
+		uri: '/homework',
+		boxIcon: 'bx-book',
+		title: 'homework'
+	} as const,
+	events: {
+		type: 'uri',
+		uri: '/events',
+		boxIcon: 'bx-calendar',
+		title: 'events'
+	} as const,
+	notes: {
+		type: 'uri',
+		uri: '/notes',
+		boxIcon: 'bx-notepad',
+		title: 'notes'
+	} as const,
+	search: {
+		type: 'custom',
+		id: 'search'
+	} as const
+} satisfies Record<Id, UriGoal | Custom>;

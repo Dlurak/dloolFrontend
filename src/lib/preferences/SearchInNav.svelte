@@ -4,9 +4,7 @@
 	import { SvocalKeys } from '../../enums/svocal';
 	import { sortByDifferentArray } from '$lib/utils/arrays/sort';
 	import { browser } from '$app/environment';
-
-	const allIds = ['login', 'homework', 'events', 'notes', 'search'] as const;
-	type Id = (typeof allIds)[number];
+	import type { Id } from '../../constants/navbar';
 
 	type Button = {
 		id: Id;

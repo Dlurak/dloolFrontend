@@ -42,7 +42,7 @@ export enum SvocalKeys {
 	TIMETABLE_AUT_SORT = 'timetable.autosort',
 
 	/**
-	* Default: login, homework, events, notes
-	*/
+	 * Default: login, homework, events, notes
+	 */
 	NAVBAR_IDS = 'navbar.ids'
 }

@@ -6,6 +6,7 @@
 	import { browser } from '$app/environment';
 	import type { Id } from '../../constants/navbar';
 	import { allIds, navbarData } from '../../constants/navbar';
+	import I18n from '$lib/I18n.svelte';
 
 	type Button = {
 		id: Id;
@@ -85,11 +86,22 @@
 	</ul>
 	{#if inactiveItems.length}
 		<div>
-			<h5>Nicht genutzte möglichkeiten</h5>
+			<h5>
+			<I18n key="settings.nav.unused" />
+			</h5>
 			<ul class="flex gap-2 flex-col">
 				{#each inactiveItems as item, index}
 					<li class="flex gap-2 items-center">
-						<i class="bx {item.boxIcon}" />
+						<span class="flex items-center gap-1">
+							<i class="bx {item.boxIcon}" />
+							<I18n
+								key="nav.{item.id}"
+								options={{
+									transform: 'capitalize'
+								}}
+							/>
+						</span>
+
 						<button
 							class="px-2 py-1 rounded-sm bg-light-secondary dark:bg-dark-secondary shadow-sm"
 							on:click={() => {
@@ -100,7 +112,7 @@
 								items = [...items, ...removed];
 							}}
 						>
-							Add
+							<I18n key="settings.nav.add" />
 						</button>
 					</li>
 				{/each}

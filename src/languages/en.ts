@@ -192,6 +192,8 @@ const en = {
 	'settins.apperance.nav.text.show': 'Show title in the navigation bar',
 	'settins.apperance.nav.text.hide': 'Hide title in the navigation bar',
 	'settings.apperance.nav.search': 'Show search in the navigation bar',
+	'settings.nav.add': 'Add',
+	'settings.nav.unused': 'Unused components',
 	'settings.apperance.homework.opacity': 'Transparency of finished homework',
 	'settings.homework.amount': 'Homework per page',
 

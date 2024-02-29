@@ -8,13 +8,15 @@
 		boxIcon: string;
 	};
 
-	let items = [
+	let items: Button[] = [
 		{ id: 'login', xOffset: 0, isDragged: false, boxIcon: 'bx-user' },
 		{ id: 'homework', xOffset: 0, isDragged: false, boxIcon: 'bx-book' },
 		{ id: 'events', xOffset: 0, isDragged: false, boxIcon: 'bx-calendar' },
 		{ id: 'notes', xOffset: 0, isDragged: false, boxIcon: 'bx-notepad' },
 		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' }
-	] satisfies Button[];
+	];
+
+	let inactiveItems: Button[] = [];
 </script>
 
 <div>
@@ -41,7 +43,39 @@
 					}));
 				}}
 				icon={item.boxIcon}
+				on:remove={() => {
+					const removed = items.splice(index, 1);
+					if (!removed) return;
+
+					items = items;
+					inactiveItems = [...inactiveItems, removed[0]];
+				}}
+				canBeRemoved={!!(items.length - 1)}
 			/>
 		{/each}
 	</ul>
+	{#if inactiveItems.length}
+		<div>
+			<h5>Nicht genutzte möglichkeiten</h5>
+			<ul class="flex gap-2 flex-col">
+				{#each inactiveItems as item, index}
+					<li class="flex gap-2 items-center">
+						<i class="bx {item.boxIcon}" />
+						<button
+							class="px-2 py-1 rounded-sm bg-light-secondary dark:bg-dark-secondary shadow-sm"
+							on:click={() => {
+								const removed = inactiveItems.splice(index, 1);
+								if (!removed) return;
+
+								inactiveItems = inactiveItems;
+								items = [...items, ...removed];
+							}}
+						>
+							Add
+						</button>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
 </div>

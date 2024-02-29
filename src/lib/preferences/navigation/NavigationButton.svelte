@@ -9,8 +9,12 @@
 
 	export let isDragged = false;
 	export let xCoord = 0;
+	export let canBeRemoved = true;
+	export let showRemove = true;
 
-	const resetXCoord = () => (xCoord = thisEle.getBoundingClientRect().x);
+	const resetXCoord = () => {
+		xCoord = thisEle.getBoundingClientRect().x;
+	};
 
 	onMount(resetXCoord);
 </script>
@@ -19,7 +23,7 @@
 
 <li
 	draggable="true"
-	class="cursor-grab p-2 rounded-md w-14 aspect-square flex items-center justify-center bg-gray-300 dark:bg-gray-800 shadow-md hover:shadow-lg focus:shadow-lg transition-all"
+	class="relative cursor-grab p-2 rounded-md w-14 aspect-square flex items-center justify-center bg-gray-300 dark:bg-gray-800 shadow-md hover:shadow-lg focus:shadow-lg transition-all"
 	class:opacity-50={isDragged}
 	on:dragstart={() => {
 		isDragged = true;
@@ -31,5 +35,15 @@
 	}}
 	bind:this={thisEle}
 >
+	{#if showRemove}
+		<button
+			class="absolute top-[-0.875rem] left-[-0.875rem] w-7 h-7 p-1.5 flex items-center justify-center rounded-full bg-gray-400 dark:bg-gray-700 bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-25"
+			on:click={() => dispatch('remove')}
+			disabled={!canBeRemoved}
+		>
+			<i class="bx bx-x" />
+		</button>
+	{/if}
+
 	<i class="bx {icon} text-xl" />
 </li>

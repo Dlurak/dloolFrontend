@@ -2,7 +2,6 @@ export const navData = [
 	{
 		title: 'login',
 		uri: '/login',
-		showInNav: true,
 		navBoxIcon: 'bx-user',
 		showInFooter: true,
 		footerCategory: 'Authentication'
@@ -10,7 +9,6 @@ export const navData = [
 	{
 		title: 'register',
 		uri: '/register',
-		showInNav: false,
 		navBoxIcon: 'bx-user-plus',
 		showInFooter: true,
 		footerCategory: 'Authentication'
@@ -18,7 +16,6 @@ export const navData = [
 	{
 		title: 'notes',
 		uri: '/notes',
-		showInNav: true,
 		navBoxIcon: 'bx-notepad',
 		showInFooter: true,
 		footerCategory: 'Notes'
@@ -26,7 +23,6 @@ export const navData = [
 	{
 		title: 'homework',
 		uri: '/homework',
-		showInNav: true,
 		navBoxIcon: 'bx-book',
 		showInFooter: true,
 		footerCategory: 'Homework'
@@ -34,7 +30,6 @@ export const navData = [
 	{
 		title: 'events',
 		uri: '/events',
-		showInNav: true,
 		navBoxIcon: 'bx-calendar',
 		showInFooter: true,
 		footerCategory: 'events'
@@ -42,7 +37,6 @@ export const navData = [
 	{
 		title: 'settings',
 		uri: '/settings',
-		showInNav: false,
 		navBoxIcon: 'bx-cog',
 		showInFooter: true,
 		footerCategory: 'Authentication'
@@ -50,7 +44,6 @@ export const navData = [
 	{
 		title: 'export',
 		uri: '/tricks#export',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Tricks'
@@ -58,7 +51,6 @@ export const navData = [
 	{
 		title: 'install',
 		uri: '/tricks#install',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Tricks'
@@ -66,7 +58,6 @@ export const navData = [
 	{
 		title: 'status',
 		uri: '/requests',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Moderation'
@@ -74,7 +65,6 @@ export const navData = [
 	{
 		title: 'requests',
 		uri: '/requests/list',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Moderation'
@@ -82,7 +72,6 @@ export const navData = [
 	{
 		title: 'contributors',
 		uri: '/contributors',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Else'
@@ -90,7 +79,6 @@ export const navData = [
 	{
 		title: 'documentation',
 		uri: '/documentation',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Else'
@@ -98,7 +86,6 @@ export const navData = [
 	{
 		title: 'holiday',
 		uri: '/holidays',
-		showInNav: false,
 		navBoxIcon: '',
 		showInFooter: true,
 		footerCategory: 'Else'

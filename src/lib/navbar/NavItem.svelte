@@ -7,9 +7,7 @@
 	export let currentUri: string;
 	export let navBoxIcon: string;
 
-	const navDataTitles = navData
-		.filter((navDataEntry) => navDataEntry.showInNav)
-		.map((n) => n.title);
+	const navDataTitles = navData.map((n) => n.title);
 
 	type Title = (typeof navDataTitles)[number];
 

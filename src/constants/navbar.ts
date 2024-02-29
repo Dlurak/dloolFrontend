@@ -1,4 +1,4 @@
-const allIds = ['login', 'homework', 'events', 'notes', 'search', 'register'] as const;
+export const allIds = ['login', 'homework', 'events', 'notes', 'search', 'register'] as const;
 export type Id = (typeof allIds)[number];
 
 type UriGoal = {
@@ -11,6 +11,7 @@ type UriGoal = {
 type Custom = {
 	type: 'custom';
 	id: string;
+	boxIcon: string;
 };
 
 export const navbarData = {
@@ -40,6 +41,7 @@ export const navbarData = {
 	} as const,
 	search: {
 		type: 'custom',
+		boxIcon: 'bx-search',
 		id: 'search'
 	} as const,
 	register: {

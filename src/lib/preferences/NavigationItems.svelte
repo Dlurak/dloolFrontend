@@ -5,6 +5,7 @@
 	import { sortByDifferentArray } from '$lib/utils/arrays/sort';
 	import { browser } from '$app/environment';
 	import type { Id } from '../../constants/navbar';
+	import { allIds, navbarData } from '../../constants/navbar';
 
 	type Button = {
 		id: Id;
@@ -20,15 +21,12 @@
 		'notes'
 	]);
 
-	// todo: build from constants
-	const allItems: Button[] = [
-		{ id: 'login', xOffset: 0, isDragged: false, boxIcon: 'bx-user' },
-		{ id: 'homework', xOffset: 0, isDragged: false, boxIcon: 'bx-book' },
-		{ id: 'events', xOffset: 0, isDragged: false, boxIcon: 'bx-calendar' },
-		{ id: 'notes', xOffset: 0, isDragged: false, boxIcon: 'bx-notepad' },
-		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' },
-		{ id: 'register', xOffset: 0, isDragged: false, boxIcon: 'bx-user-plus' }
-	];
+	const allItems: Button[] = allIds.map((id) => {
+		const item = navbarData[id];
+		const { boxIcon } = item;
+
+		return { id, boxIcon, xOffset: 0, isDragged: false };
+	});
 
 	let items = sortByDifferentArray(
 		allItems.filter(({ id }) => $usedIdsSvocal.includes(id)),

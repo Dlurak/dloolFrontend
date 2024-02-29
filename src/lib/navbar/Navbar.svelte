@@ -61,14 +61,16 @@
 		<div
 			class="flex justify-around items-center gap-1 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
 		>
-			{#each navEntries as navEntry}
-				{@const data = navEntry[1]}
-				{#if data.type === 'uri'}
-					<NavItem uri={data.uri} {currentUri} navBoxIcon={data.boxIcon} title={data.title} />
-				{:else if data.id === 'search'}
-					<NavSearchButton />
-				{/if}
-			{/each}
+			{#key navEntries}
+				{#each navEntries as navEntry}
+					{@const data = navEntry[1]}
+					{#if data.type === 'uri'}
+						<NavItem uri={data.uri} {currentUri} navBoxIcon={data.boxIcon} title={data.title} />
+					{:else if data.id === 'search'}
+						<NavSearchButton />
+					{/if}
+				{/each}
+			{/key}
 		</div>
 	</nav>
 </div>

@@ -1,14 +1,28 @@
 <script lang="ts">
+	import { localstorage } from 'svocal';
 	import NavigationButton from './navigation/NavigationButton.svelte';
+	import { SvocalKeys } from '../../enums/svocal';
+	import { sortByDifferentArray } from '$lib/utils/arrays/sort';
+	import { browser } from '$app/environment';
+
+	const allIds = ['login', 'homework', 'events', 'notes', 'search'] as const;
+	type Id = (typeof allIds)[number];
 
 	type Button = {
-		id: string;
+		id: Id;
 		xOffset: number;
 		isDragged: boolean;
 		boxIcon: string;
 	};
 
-	let items: Button[] = [
+	const usedIdsSvocal = localstorage<Id[]>(SvocalKeys.NAVBAR_IDS, [
+		'login',
+		'homework',
+		'events',
+		'notes'
+	]);
+
+	const allItems: Button[] = [
 		{ id: 'login', xOffset: 0, isDragged: false, boxIcon: 'bx-user' },
 		{ id: 'homework', xOffset: 0, isDragged: false, boxIcon: 'bx-book' },
 		{ id: 'events', xOffset: 0, isDragged: false, boxIcon: 'bx-calendar' },
@@ -16,7 +30,24 @@
 		{ id: 'search', xOffset: 0, isDragged: false, boxIcon: 'bx-search' }
 	];
 
-	let inactiveItems: Button[] = [];
+	let items = sortByDifferentArray(
+		allItems.filter(({ id }) => $usedIdsSvocal.includes(id)),
+		$usedIdsSvocal,
+		({ id }) => id
+	);
+	let inactiveItems = allItems.filter(({ id }) => !$usedIdsSvocal.includes(id));
+
+	const saveToSvocal = () => {
+		const ids = items.map(({ id }) => id);
+		usedIdsSvocal.set(ids);
+	};
+
+	$: {
+		// Todo: Fix that svocal bug
+		if (browser) saveToSvocal();
+
+		items;
+	}
 </script>
 
 <div>

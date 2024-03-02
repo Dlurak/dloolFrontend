@@ -112,30 +112,32 @@
 			</h5>
 			<ul class="flex gap-2 flex-col">
 				{#each inactiveItems as item, index}
-					<li class="flex gap-2 items-center">
-						<span class="flex items-center gap-1">
-							<i class="bx {item.boxIcon}" />
-							<I18n
-								key="nav.{item.id}"
-								options={{
-									transform: 'capitalize'
+					{#key inactiveItems}
+						<li class="flex gap-2 items-center">
+							<span class="flex items-center gap-1">
+								<i class="bx {item.boxIcon}" />
+								<I18n
+									key="nav.{item.id}"
+									options={{
+										transform: 'capitalize'
+									}}
+								/>
+							</span>
+
+							<button
+								class="px-2 py-1 rounded-sm bg-light-secondary dark:bg-dark-secondary shadow-sm"
+								on:click={() => {
+									const removed = inactiveItems.splice(index, 1);
+									if (!removed) return;
+
+									inactiveItems = inactiveItems;
+									items = [...items, ...removed];
 								}}
-							/>
-						</span>
-
-						<button
-							class="px-2 py-1 rounded-sm bg-light-secondary dark:bg-dark-secondary shadow-sm"
-							on:click={() => {
-								const removed = inactiveItems.splice(index, 1);
-								if (!removed) return;
-
-								inactiveItems = inactiveItems;
-								items = [...items, ...removed];
-							}}
-						>
-							<I18n key="settings.nav.add" />
-						</button>
-					</li>
+							>
+								<I18n key="settings.nav.add" />
+							</button>
+						</li>
+					{/key}
 				{/each}
 			</ul>
 		</div>

@@ -53,6 +53,10 @@
 </script>
 
 <div>
+	<div class="pb-3">
+		<i class="bx bx-question-mark" />
+		<I18n key="settings.nav.tooltip" />
+	</div>
 	<ul
 		class="w-full justify-evenly flex gap-2 list-none bg-light-box dark:bg-dark-box bg-opacity-50 rounded-lg py-2 px-1"
 		on:dragover={(e) => {

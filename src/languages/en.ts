@@ -194,6 +194,7 @@ const en = {
 	'settings.apperance.nav.search': 'Show search in the navigation bar',
 	'settings.nav.add': 'Add',
 	'settings.nav.unused': 'Unused components',
+	'settings.nav.tooltip': 'Simply move the icons via drag and drop to their desired position',
 	'settings.apperance.homework.opacity': 'Transparency of finished homework',
 	'settings.homework.amount': 'Homework per page',
 

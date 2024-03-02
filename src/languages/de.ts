@@ -199,6 +199,7 @@ const de = {
 	'settings.apperance.nav.search': 'Suche in der Navigationsleiste anzeigen',
 	'settings.nav.add': 'Hinzufügen',
 	'settings.nav.unused': 'Ungenutzte Komponenten',
+	'settings.nav.tooltip': 'Bewege die icons einfach via Drag and Drop an die gewünschte Position',
 	'settings.apperance.homework.opacity': 'Transparenz abgelaufener Hausaufgaben',
 	'settings.homework.amount': 'Hausaufgaben pro Seite',
 

@@ -41,6 +41,9 @@
 		usedIdsSvocal.set(ids);
 	};
 
+	/** When this changes all items will reevualte their xoffset */
+	let reEvaluateEvent = 0;
+
 	$: {
 		// Todo: Fix that svocal bug
 		if (browser) saveToSvocal();
@@ -71,6 +74,21 @@
 						...it,
 						isDragged: false
 					}));
+					reEvaluateEvent++;
+					items = items.sort((a, b) => a.xOffset - b.xOffset);
+				}}
+				on:touch={(e) => {
+					e.preventDefault();
+
+					const draggedElement = items.find((i) => i.isDragged);
+					if (!draggedElement) return;
+
+					const { clientX } = e.detail.touch;
+
+					reEvaluateEvent++;
+					draggedElement.xOffset = clientX;
+
+					items = items.sort((a, b) => a.xOffset - b.xOffset);
 				}}
 				icon={item.boxIcon}
 				on:remove={() => {
@@ -79,15 +97,18 @@
 
 					items = items;
 					inactiveItems = [...inactiveItems, removed[0]];
+
+					reEvaluateEvent++;
 				}}
 				canBeRemoved={!!(items.length - 1)}
+				bind:reEvaluateEvent
 			/>
 		{/each}
 	</ul>
 	{#if inactiveItems.length}
 		<div>
 			<h5>
-			<I18n key="settings.nav.unused" />
+				<I18n key="settings.nav.unused" />
 			</h5>
 			<ul class="flex gap-2 flex-col">
 				{#each inactiveItems as item, index}

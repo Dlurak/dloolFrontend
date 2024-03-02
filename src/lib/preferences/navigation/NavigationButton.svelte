@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	const dispatch = createEventDispatcher();
 
 	let thisEle: HTMLLIElement;
+
+	/** change this to reevaluate the xOffset */
+	export let reEvaluateEvent = 0;
 
 	export let icon: string;
 
@@ -16,7 +20,20 @@
 		xCoord = thisEle.getBoundingClientRect().x;
 	};
 
-	onMount(resetXCoord);
+	onMount(() => {
+		resetXCoord();
+		dispatch('mount', {
+			element: thisEle
+		});
+	});
+
+	$: {
+		if (browser && thisEle) {
+			resetXCoord();
+		}
+
+		reEvaluateEvent;
+	}
 </script>
 
 <svelte:window on:resize={resetXCoord} />
@@ -30,6 +47,25 @@
 		dispatch('dragstart');
 	}}
 	on:dragend={() => {
+		isDragged = false;
+		dispatch('dragend');
+	}}
+	on:touchstart={(e) => {
+		e.preventDefault();
+
+		isDragged = true;
+		dispatch('dragstart');
+	}}
+	on:touchmove={(e) => {
+		const touch = e.touches[0];
+
+		xCoord = touch.clientX;
+
+		dispatch('touch', { ...e, touch });
+	}}
+	on:touchend={(e) => {
+		e.preventDefault();
+
 		isDragged = false;
 		dispatch('dragend');
 	}}

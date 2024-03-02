@@ -3,20 +3,37 @@
 	import HalloweenLogo from '$lib/seasons/halloween/halloweenLogo.svelte';
 	import StPatricksLogo from '$lib/seasons/stPatricks/StPatricksLogo.svelte';
 	import { isSpecialDate } from '$lib/specialDates/isInRange';
-	import { navData } from '../../constants/nav';
-	import { settings } from '../../stores';
+	import { localstorage } from 'svocal';
 	import NavItem from './NavItem.svelte';
 	import NavSearchButton from './NavSearchButton.svelte';
+	import { SvocalKeys } from '../../enums/svocal';
+	import { type Id, navbarData } from '../../constants/navbar';
+	import { sortByDifferentArray } from '$lib/utils/arrays/sort';
+	import { getEntries } from '$lib/utils/objects/entries';
 
 	export let height;
 
-	const navDataEntries = navData.filter((navDataEntry) => navDataEntry.showInNav);
+	let selectedItems = localstorage<Id[]>(SvocalKeys.NAVBAR_IDS, [
+		'login',
+		'homework',
+		'events',
+		'notes'
+	]);
+
+	const getNavEntries = () => {
+		const allEntries = getEntries(navbarData);
+		const selectedEntries = allEntries.filter(([entry]) =>
+			($selectedItems as string[]).includes(entry)
+		);
+		return sortByDifferentArray(selectedEntries, $selectedItems, ([title]) => title);
+	};
+
+	let navEntries = getNavEntries();
+	selectedItems.subscribe(() => {
+		navEntries = getNavEntries();
+	});
 
 	let currentUri = $page.url.pathname as string;
-
-	let showSearch = $settings.showSearchInNavbar;
-
-	settings.subscribe((s) => (showSearch = s.showSearchInNavbar));
 
 	page.subscribe(() => {
 		currentUri = $page.url.pathname;
@@ -44,17 +61,16 @@
 		<div
 			class="flex justify-around items-center gap-1 sm:gap-8 w-full sm:w-auto flex-wrap sm:flex-nowrap"
 		>
-			{#each navDataEntries as navDataEntry}
-				<NavItem
-					uri={navDataEntry.uri}
-					{currentUri}
-					navBoxIcon={navDataEntry.navBoxIcon}
-					title={navDataEntry.title}
-				/>
-			{/each}
-			{#if showSearch}
-				<NavSearchButton />
-			{/if}
+			{#key navEntries}
+				{#each navEntries as navEntry}
+					{@const data = navEntry[1]}
+					{#if data.type === 'uri'}
+						<NavItem uri={data.uri} {currentUri} navBoxIcon={data.boxIcon} title={data.title} />
+					{:else if data.id === 'search'}
+						<NavSearchButton />
+					{/if}
+				{/each}
+			{/key}
 		</div>
 	</nav>
 </div>

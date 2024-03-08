@@ -44,5 +44,10 @@ export enum SvocalKeys {
 	/**
 	 * Default: login, homework, events, notes
 	 */
-	NAVBAR_IDS = 'navbar.ids'
+	NAVBAR_IDS = 'navbar.ids',
+
+	/**
+	 * Default: []
+	 */
+	AUTOFILL_HOMEWORK_STRINGS = 'autofill.homework.strings'
 }

@@ -5,6 +5,7 @@
 	import Theme from '$lib/preferences/Theme.svelte';
 	import ChangeHomeworkOpacity from '$lib/preferences/ChangeHomeworkOpacity.svelte';
 	import HomeworkPerPage from '$lib/preferences/HomeworkPerPage.svelte';
+	import Presets from '$lib/preferences/Presets.svelte';
 </script>
 
 <div>
@@ -21,6 +22,7 @@
 				<h4><I18n key="homework" /></h4>
 				<ChangeHomeworkOpacity />
 				<HomeworkPerPage />
+				<Presets />
 			</section>
 		</div>
 	</section>

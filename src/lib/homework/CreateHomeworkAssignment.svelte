@@ -12,6 +12,8 @@
 	import type { CustomDate } from '../../types/customDate';
 	import type { WeekDay } from '../../constants/weekDays';
 	import deepEqual from 'deep-equal';
+	import { localstorage } from 'svocal';
+	import { SvocalKeys } from '../../enums/svocal';
 
 	// export let assignment: Assignment;
 	export let subject: string;
@@ -28,24 +30,33 @@
 	let inputModified = true;
 	const inputModifiedFalse = () => (inputModified = false);
 
+	let showPresets = false;
+	let presets: string[] = [];
+	let presetsAreEnabled = false;
+
+	const autofillSvocal = localstorage<string[]>(SvocalKeys.AUTOFILL_HOMEWORK_STRINGS, []);
+
+	autofillSvocal.subscribe((val) => {
+		presets = val;
+		presetsAreEnabled = val.length > 0;
+	});
+
 	$: {
 		fromAbbr;
 		inputModifiedFalse();
 	}
 
-	$: {
-		(() => {
-			if (!canUseTimetable) return;
-			fromAbbr = getWeekdayAbbreviationByDate(fromDate);
-			dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
+	$: (() => {
+		if (!canUseTimetable) return;
+		fromAbbr = getWeekdayAbbreviationByDate(fromDate);
+		dueWeekday = nextWeekdayForSubject(fromAbbr, subject);
 
-			if (!inputModified) {
-				due = nextCustomDateForWeekday(dueWeekday, fromDate);
-			} else {
-				inputModifiedFalse();
-			}
-		})();
-	}
+		if (!inputModified) {
+			due = nextCustomDateForWeekday(dueWeekday, fromDate);
+		} else {
+			inputModifiedFalse();
+		}
+	})();
 
 	let autocompleteSubjects = $settings.useTimeTableForAutcomplete
 		? $timetable[fromAbbr]
@@ -117,14 +128,37 @@
 			</span>
 		</div>
 	</span>
-	<I18n>
-		<textarea
-			bind:value={description}
-			placeholder={i('homework.add.description')}
-			class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
-			rows="2"
-		/>
-	</I18n>
+	<div class:relative={!showPresets} class:flex={showPresets}>
+		{#if showPresets}
+			<select
+				class="bg-transparent inline-block pl-2 pr-4 py-2 rounded-md text-light-text dark:text-dark-text border-solid border-emerald-400 dark:border-emerald-700 border-2 w-full"
+				bind:value={description}
+			>
+				{#each presets as value}
+					<option {value} selected={description == value}>{value}</option>
+				{/each}
+			</select>
+		{:else}
+			<I18n>
+				<textarea
+					bind:value={description}
+					placeholder={i('homework.add.description')}
+					class="w-full outline-1 outline-gray-400 outline rounded-sm p-1"
+					rows="2"
+				/>
+			</I18n>
+		{/if}
+		{#if presetsAreEnabled}
+			<QuickActionButton
+				iconName="bx-book-bookmark"
+				focusedIconName="bxs-book-bookmark"
+				color={showPresets ? '' : 'absolute bottom-0 right-0'}
+				on:click={() => {
+					showPresets = !showPresets;
+				}}
+			/>
+		{/if}
+	</div>
 </div>
 
 <style>

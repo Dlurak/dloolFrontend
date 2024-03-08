@@ -197,6 +197,7 @@ const en = {
 	'settings.nav.tooltip': 'Simply move the icons via drag and drop to their desired position',
 	'settings.apperance.homework.opacity': 'Transparency of finished homework',
 	'settings.homework.amount': 'Homework per page',
+	'settings.homework.presets': 'Presets for homework',
 
 	'settings.subjectColors': 'Colors for subjects',
 	'settings.subjectColors.import': 'Import colors from a JSON file',

@@ -202,6 +202,7 @@ const de = {
 	'settings.nav.tooltip': 'Bewege die icons einfach via Drag and Drop an die gewünschte Position',
 	'settings.apperance.homework.opacity': 'Transparenz abgelaufener Hausaufgaben',
 	'settings.homework.amount': 'Hausaufgaben pro Seite',
+	'settings.homework.presets': 'Voreinstellungen für Aufgabenstellungen',
 
 	'settings.subjectColors': 'Farben für Fächer',
 	'settings.subjectColors.import': 'Importiere die Farben von einer JSON-Datei',

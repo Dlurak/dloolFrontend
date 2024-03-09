@@ -171,11 +171,11 @@ export const getLanguageShortcut = <T extends string>(
 	shortcut: T,
 	currentLanguage: Languages
 ): GetLang<T> => {
-	// @ts-expect-error
+	// @ts-expect-error Using this as index will either give a object or undefined so
 	const subObj = languageShortcuts[shortcut] as Language<T> | undefined;
-	// @ts-expect-error
+	// @ts-expect-error The return type includes undefined, but only as an option
 	if (!subObj) return undefined;
 
-	// @ts-expect-error
+	// @ts-expect-error  subjObj is of type `{}`
 	return subObj[currentLanguage];
 };

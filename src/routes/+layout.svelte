@@ -15,7 +15,7 @@
 	import Theme from '$lib/layout/Theme.svelte';
 	import Launcher from '$lib/layout/launcher/launcher.svelte';
 	import type { Languages } from '../languages/i18n';
-	import { getLanguageShortcut } from '../constants/languages';
+	import { getLanguageShortcut, type LanguageShortcut } from '../constants/languages';
 	import { addToast } from '$lib/toast/addToast';
 	import { currentLanguage } from '../stores';
 	import SendRootReq from '$lib/layout/SendRootReq.svelte';

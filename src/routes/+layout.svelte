@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { inject } from '@vercel/analytics';
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
+	import { browser, dev } from '$app/environment';
 	import Navbar from '$lib/navbar/Navbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
 	import Toasts from '$lib/toast/Toasts.svelte';
@@ -15,11 +16,13 @@
 	import Theme from '$lib/layout/Theme.svelte';
 	import Launcher from '$lib/layout/launcher/launcher.svelte';
 	import type { Languages } from '../languages/i18n';
-	import { getLanguageShortcut, type LanguageShortcut } from '../constants/languages';
+	import { getLanguageShortcut } from '../constants/languages';
 	import { addToast } from '$lib/toast/addToast';
 	import { currentLanguage } from '../stores';
 	import SendRootReq from '$lib/layout/SendRootReq.svelte';
 	import TimeTable from '$lib/layout/TimeTable.svelte';
+
+	inject({ mode: dev ? 'development' : 'production' });
 
 	let footerHeight = 0;
 	let navbarHeight = 0;

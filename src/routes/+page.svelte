@@ -13,7 +13,7 @@
 <div class="max-w-[min(80rem,90%)]">
 	<section class="grid grid-cols-1 lg:grid-cols-[2fr,1fr] py-10">
 		<div class="flex flex-col justify-center gap-3">
-			<h1 class="text-5xl leading-tight">
+			<h1 class="text-5xl leading-tight break-words hyphens-auto">
 				<span
 					class="text-6xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent"
 				>
@@ -21,7 +21,7 @@
 				</span><br />
 				<I18n key="home.subtitle" />
 			</h1>
-			<h2 class="text-gray-500"><I18n key="home.digitalEra" /></h2>
+			<h2 class="text-gray-500 hyphens-auto"><I18n key="home.digitalEra" /></h2>
 
 			<div class="flex flex-wrap text-lg py-2 gap-4">
 				<a
@@ -80,7 +80,7 @@
 	</section>
 
 	<section class="pt-12">
-		<h2><I18n key="home.homeworkBut" /></h2>
+		<h2 class="hyphens-auto"><I18n key="home.homeworkBut" /></h2>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-lg gap-5">
 			<div>

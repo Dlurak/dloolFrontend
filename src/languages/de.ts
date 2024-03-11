@@ -1,6 +1,61 @@
 const de = {
-	welcome: 'Willkommen bei Dlool',
-	homeDummytext: 'Dlool ist ein kollaboratives und offenes Hausaufgabenheft.',
+	'home.subtitle': 'Das Hausaufgabenheft der nächsten Generation für Deine ganze Klasse',
+	'home.digitalEra': 'Ein Hausaufgabenheft für das digitale Zeitalter',
+	'home.quick.getStarted': '🚀 Loslegen',
+	'home.quick.why': 'Warum Dlool?',
+	'home.quick.github': 'Auf GitHub anzeigen',
+	'home.logo.alt': 'Das wunderschöne Dlool Logo',
+	'home.homeworkBut': 'Hausaufgabenhefte aber',
+	'home.homeworkBut.collaborative': 'Kollaborativ',
+	'home.homeworkBut.collaborative.1': 'Ein Nutzer trägt die Daten in Dlool ein',
+	'home.homeworkBut.collaborative.2': 'Jeder kann es sehen',
+	'home.homeworkBut.collaborative.3':
+		'Um Cybermobbing zu verhinden, braucht man keinen Account um Daten zu sehen',
+	'home.homeworkBut.collaborative.4':
+		'Adere registrierte Nutzer können die Daten editieren um Fehler zu korrigieren',
+	'home.homeworkBut.collaborative.5':
+		'Es ist nicht mehr Nötig in der Klassengruppe nach Hausaufgaben zu fragen (ﾉ◕ヮ◕)ﾉ',
+
+	'home.homeworkBut.convenient': 'Angenehm',
+	'home.homeworkBut.convenient.1': 'Du kannst deine Aufgaben jederzeit von überall einsehen',
+	'home.homeworkBut.convenient.2':
+		'Dank Fach spezifischen Icons und Farben, ist es leicht die Fächer auf anhieb zu erkennen.',
+	'home.homeworkBut.convenient.3':
+		'Der Stundenplan und die Voreinstellungen erlauben schnelle und präzise Änderungen',
+	'home.homeworkBut.convenient.4': 'Exporitere deine Daten als ical oder todo.txt',
+	'home.homeworkBut.convenient.5':
+		'Nutze einen Siri-Kurzbefehl um die Dlool Hausaufgaben mit Apple Erinerrungen zu synchroniesieren',
+
+	'home.homeworkBut.free': 'Gratis',
+	'home.homeworkBut.free.1': 'Dlool ist komplett Kostenlos, ohne versteckte Überraschungen!',
+	'home.homeworkBut.free.2': 'Es ist Open-Source Software unter der GPL lizensiert.',
+	'home.homeworkBut.free.3': 'Keine Spionage, keine Werbung und keine Abos!',
+	'home.homeworkBut.free.4': 'Kostenlos nutzbare API',
+
+	'home.more': 'Entdecke mehr',
+	'home.more.gh.frontend': 'Frontend auf GitHub',
+	'home.more.gh.backend': 'Backend auf GitHub',
+	'home.more.mastodon': '#dlool auf Mastodon',
+	'home.more.ccc': 'Mein Kurz-Vortrag',
+
+	'home.boxes.crossPlattform': 'Geräteübergreifend',
+	'home.boxes.crossPlattform.description':
+		'Dlool kann als Webapp auf allen Geräten und allen Betriebssystem genutzt werden.',
+	'home.boxes.collaborative': 'Kollaborativ',
+	'home.boxes.collaborative.description':
+		'Der Kollaborative Grundgedanke war von Beginn an sehr wichtig',
+	'home.boxes.customizable': 'Personalisierbar',
+	'home.boxes.customizable.description':
+		'Viele Einstellungen erlauben es dir wirklich dein Dlool zu nutzen!',
+	'home.boxes.libre': 'Frei',
+	'home.boxes.libre.description':
+		'Jede einzige Zeile Code sowie alle Bibliotheken und APIs sind freie Software',
+	'home.boxes.students': 'Für Schüler gemacht',
+	'home.boxes.students.description': 'Dlool wurde von Schülern für Schüler erstellt',
+	'home.boxes.easy': 'Schnell & Einfach zu nutzen',
+	'home.boxes.easy.description':
+		'Obwohl Dlool viele fortschrittliche Funktionen hat ist es dennoch leicht es zu bedienen.',
+
 	error: 'Etwas ist schiefgelaufen',
 	username: 'Nutzername',
 	name: 'Anzeigename',

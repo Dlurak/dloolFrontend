@@ -10,18 +10,20 @@
 	let hoveredBoxIndex: number | null = null;
 </script>
 
-<div class="max-w-[min(80rem,90%)]">
-	<section class="grid grid-cols-1 lg:grid-cols-[2fr,1fr] py-10">
+<div class="max-w-[min(80rem,95%)]">
+	<section class="grid grid-cols-1 lg:grid-cols-[2fr,1fr] py-10 lg:py-24">
 		<div class="flex flex-col justify-center gap-3">
-			<h1 class="text-5xl leading-tight break-words hyphens-auto">
+			<h1 class="text-4xl lg:text-5xl leading-tight break-words hyphens-auto">
 				<span
-					class="text-6xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent"
+					class="text-5xl lg:text-6xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent"
 				>
 					Dlool
 				</span><br />
 				<I18n key="home.subtitle" />
 			</h1>
-			<h2 class="text-gray-500 hyphens-auto"><I18n key="home.digitalEra" /></h2>
+			<h2 class="text-gray-500 hyphens-auto text-2xl lg:text-3xl">
+				<I18n key="home.digitalEra" />
+			</h2>
 
 			<div class="flex flex-wrap text-lg py-2 gap-4">
 				<a
@@ -55,7 +57,10 @@
 		</div>
 	</section>
 
-	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="why">
+	<section
+		class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full"
+		id="why"
+	>
 		{#each boxes as box, index}
 			<div
 				aria-roledescription="Tiles of a grid of features"

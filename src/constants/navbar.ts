@@ -1,4 +1,12 @@
-export const allIds = ['login', 'homework', 'events', 'notes', 'search', 'register', 'settings'] as const;
+export const allIds = [
+	'login',
+	'homework',
+	'events',
+	'notes',
+	'search',
+	'register',
+	'settings'
+] as const;
 export type Id = (typeof allIds)[number];
 
 type UriGoal = {

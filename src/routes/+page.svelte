@@ -11,11 +11,13 @@
 </script>
 
 <div class="max-w-[min(80rem,95%)]">
-	<section class="grid grid-cols-1 lg:grid-cols-[2fr,1fr] py-10 lg:py-24">
+	<section
+		class="grid grid-cols-1 lg:grid-cols-[2fr,1fr] py-10 lg:py-24 break-after-page print:margin-0 print:p-0"
+	>
 		<div class="flex flex-col justify-center gap-3">
 			<h1 class="text-4xl lg:text-5xl leading-tight break-words hyphens-auto">
 				<span
-					class="text-5xl lg:text-6xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent"
+					class="text-5xl lg:text-6xl bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
 				>
 					Dlool
 				</span><br />
@@ -25,7 +27,7 @@
 				<I18n key="home.digitalEra" />
 			</h2>
 
-			<div class="flex flex-wrap text-lg py-2 gap-4">
+			<div class="print:hidden flex flex-wrap text-lg py-2 gap-4">
 				<a
 					href="/documentation/getting-started"
 					class="bg-emerald-500 px-4 text-light-text dark:text-dark-text py-1 rounded-full shadow-md"
@@ -49,7 +51,7 @@
 		</div>
 
 		<div class="p-10 xl:p-14 hidden lg:block">
-			<div class="rounded-full shadow-green-500 shadow-2xl">
+			<div class="rounded-full shadow-green-500 shadow-2xl print:shadow-none">
 				<I18n>
 					<img src="/assets/dloolLogo.svg" alt={i('home.logo.alt')} />
 				</I18n>
@@ -89,7 +91,9 @@
 
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-lg gap-5">
 			<div>
-				<h3 class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
+				<h3
+					class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
+				>
 					<I18n key="home.homeworkBut.collaborative" />
 				</h3>
 				<ul>
@@ -101,7 +105,9 @@
 				</ul>
 			</div>
 			<div>
-				<h3 class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
+				<h3
+					class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
+				>
 					<I18n key="home.homeworkBut.convenient" />
 				</h3>
 				<ul>
@@ -113,7 +119,9 @@
 				</ul>
 			</div>
 			<div>
-				<h3 class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
+				<h3
+					class="kbg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
+				>
 					<I18n key="home.homeworkBut.free" />
 				</h3>
 				<ul>
@@ -126,7 +134,7 @@
 		</div>
 	</section>
 
-	<section class="pt-5">
+	<section class="pt-5 print:hidden">
 		<div class="flex items-center gap-2 py-3">
 			<span class="bg-gradient-to-r from-transparent to-gray-600 w-full h-0.5 rounded-full" />
 			<span class="whitespace-nowrap"><I18n key="home.more" /></span>

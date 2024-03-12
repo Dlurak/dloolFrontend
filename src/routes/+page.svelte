@@ -120,7 +120,7 @@
 			</div>
 			<div>
 				<h3
-					class="kbg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
+					class="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent print:text-black"
 				>
 					<I18n key="home.homeworkBut.free" />
 				</h3>

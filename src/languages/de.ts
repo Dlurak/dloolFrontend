@@ -12,22 +12,22 @@ const de = {
 	'home.homeworkBut.collaborative.3':
 		'Um Cybermobbing zu verhinden, braucht man keinen Account um Daten zu sehen',
 	'home.homeworkBut.collaborative.4':
-		'Adere registrierte Nutzer können die Daten editieren um Fehler zu korrigieren',
+		'Andere registrierte Nutzer können die Daten editieren um Fehler zu korrigieren',
 	'home.homeworkBut.collaborative.5':
 		'Es ist nicht mehr Nötig in der Klassengruppe nach Hausaufgaben zu fragen (ﾉ◕ヮ◕)ﾉ',
 
 	'home.homeworkBut.convenient': 'Angenehm',
 	'home.homeworkBut.convenient.1': 'Du kannst deine Aufgaben jederzeit von überall einsehen',
 	'home.homeworkBut.convenient.2':
-		'Dank Fach spezifischen Icons und Farben, ist es leicht die Fächer auf anhieb zu erkennen.',
+		'Dank fachspezifischen Icons und Farben, ist es leicht die Fächer auf anhieb zu erkennen.',
 	'home.homeworkBut.convenient.3':
 		'Der Stundenplan und die Voreinstellungen erlauben schnelle und präzise Änderungen',
 	'home.homeworkBut.convenient.4': 'Exporitere deine Daten als ical oder todo.txt',
 	'home.homeworkBut.convenient.5':
-		'Nutze einen Siri-Kurzbefehl um die Dlool Hausaufgaben mit Apple Erinerrungen zu synchroniesieren',
+		'Nutze einen Siri-Kurzbefehl um die Dlool Hausaufgaben mit Apple Erinnerungen zu synchronisieren',
 
 	'home.homeworkBut.free': 'Gratis',
-	'home.homeworkBut.free.1': 'Dlool ist komplett Kostenlos, ohne versteckte Überraschungen!',
+	'home.homeworkBut.free.1': 'Dlool ist komplett kostenlos, ohne versteckte Überraschungen!',
 	'home.homeworkBut.free.2': 'Es ist Open-Source Software unter der GPL lizensiert.',
 	'home.homeworkBut.free.3': 'Keine Spionage, keine Werbung und keine Abos!',
 	'home.homeworkBut.free.4': 'Kostenlos nutzbare API',

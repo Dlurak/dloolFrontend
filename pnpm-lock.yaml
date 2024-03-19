@@ -20,6 +20,9 @@ dependencies:
   html2canvas:
     specifier: ^1.4.1
     version: 1.4.1
+  iso-langs:
+    specifier: ^1.0.0
+    version: 1.0.0
   open-holiday-js:
     specifier: 1.0.2
     version: 1.0.2
@@ -3899,6 +3902,10 @@ packages:
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
+
+  /iso-langs@1.0.0:
+    resolution: {integrity: sha512-OgMi0yB1ZvahFskWJrcq86HIKtksHqbCHB0DeSTreu7JWnXs6GBTd3Jnqutfyv62We3hSPRs6udskmATj6m6nQ==}
+    dev: false
 
   /jake@10.8.7:
     resolution: {integrity: sha512-ZDi3aP+fG/LchyBzUM804VjddnwfSfsdeYkwt8NcbKRvo4rFkjhs456iLFn3k2ZUWvNe4i48WACDbza8fhq2+w==}

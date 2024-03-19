@@ -52,6 +52,7 @@
 		"@vercel/analytics": "^1.2.2",
 		"deep-equal": "^2.2.3",
 		"html2canvas": "^1.4.1",
+		"iso-langs": "^1.0.0",
 		"open-holiday-js": "1.0.2",
 		"svelte-markdown": "^0.4.1",
 		"svocal": "^0.2.0"

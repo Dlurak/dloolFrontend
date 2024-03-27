@@ -15,7 +15,7 @@ Classical homework books have a lot of problems. These are some of them and how 
 | When you lose your homework book, all your data is lost forever                           | Dlool is digital, you can't lose it.                                                                                                                                                                                        |
 | Every year you need a new homework book                                                   | Dlool can be used for multiple years.                                                                                                                                                                                       |
 | You are locked into a specific brand                                                      | Dlool is free and open source. With Dlool you can export your data to ical or todo.txt. Also there is [a way](https://github.com/Dlurak/dlool-scriptable/blob/main/reminders/README.md) to sync Dlool with Apple Reminders. |
-| Homework, tests and notes are not separate                                                | Dlool has a different system for homework, tests and notes. Everything is separated but still in one place and easy to find.                                                                                                 |
+| Homework, tests and notes are not separate                                                | Dlool has a different system for homework, tests and notes. Everything is separated but still in one place and easy to find.                                                                                                |
 
 ---
 
